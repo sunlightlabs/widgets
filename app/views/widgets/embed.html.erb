@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="Sunlight Widget">
+  <title>Sunlight Widget</title>
+    
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      outline: 0;
+    }
+    #sunlight_widget {
+      border: 2px solid #CFC8A8;
+      background: #FFF6CF;
+      padding: 10px 10px 10px 10px;
+      width: 200px;
+      font-family: Georgia, serif;
+      color: #08398F;
+      text-shadow: none;
+    }
+    #sunlight_widget a {
+      color: #08398F;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="sunlightwidget">
+  </div>
+  
+  <script type="text/javascript">
+  
+  function get_param(name){
+    name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+    var regexS = "[\\?&]"+name+"=([^&#]*)";
+    var regex = new RegExp(regexS);
+    var results = regex.exec(window.location.href);
+    if (results == null) {
+      return "";
+    } else {
+      return results[1];
+    }
+  }
+  
+  var data_url = "http://<%= @backend_hostname %>/legislators.jsonp?bioguide_id=<%= params[:bioguide_id] %>&sections=bio&callback=serverResponse"
+  var widget_id = "sunlight_widget";
+
+  function requestContent(local) {
+    var script = document.createElement('script');
+    script.src = data_url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  var serverResponse = function( data ) {
+    if (!data) return;
+    var div = document.getElementById(widget_id);
+    var txt = '';
+    var legislator = data.legislator;
+    var name = legislator.first_name + " " + legislator.last_name;
+    var seat = legislator.state + "-" + legislator.district;
+    var contact = "<a href='" + legislator.website + "'>Website</a> | " + legislator.phone;
+    var picture = "<img src='http://govpix.appspot.com/" + name + "'/>";
+    div.innerHTML = picture + "<br />" + name + "<br />" + seat + "<br />" + contact; 
+    div.style.display = 'block';
+  }
+
+  document.write("<div id='" + widget_id + "' style='display: none'></div>");
+  requestContent();
+  
+  </script>
+  
+</body>
+</html>

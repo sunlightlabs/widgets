@@ -1,0 +1,14 @@
+#sunlight_widget {
+  border: 2px solid #CFC8A8;
+  background: #FFF6CF;
+  padding: 10px 10px 10px 10px;
+  width: 200px;
+  font-family: Georgia, serif;
+  color: #08398F;
+  text-shadow: none;
+}
+
+#sunlight_widget a {
+  color: #08398F;
+  text-decoration: underline;
+}
