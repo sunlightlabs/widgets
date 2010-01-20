@@ -49,7 +49,7 @@
     }
   }
   
-  var data_url = "http://<%= @backend_hostname %>/legislators.jsonp?bioguide_id=<%= params[:bioguide_id] %>&sections=bio&callback=serverResponse"
+  var data_url = "http://<%= @backend_hostname %>/legislator.jsonp?bioguide_id=<%= params[:bioguide_id] %>&sections=bio&callback=serverResponse"
   var widget_id = "sunlight_widget";
 
   function requestContent(local) {
