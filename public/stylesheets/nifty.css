@@ -126,6 +126,20 @@ div#user_nav {
   font-size: 0.9em;
 }
 
+div#header {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #333;
+}
+
+ul#navigation {
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+ul#navigation li {
+  display: inline;
+}
+
 div#footer {
   margin-top: 20px;
   border-top: 1px solid #333;
