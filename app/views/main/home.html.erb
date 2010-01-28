@@ -1,0 +1,11 @@
+<% content_for :title do %>
+Informative, Customizable Widgets
+<% end %>
+
+<p>Sunlight Widgets focus on members of Congress. They complement online news stories and blog posts.</p>
+
+<h3>Featured Widget</h3>
+
+<script type="text/javascript" src="http://<%= @frontend_hostname %>/embed?w=bio&bgd=B001265"></script>
+
+<p><%= link_to "Customize this »", widget_path("bio") %></p>
