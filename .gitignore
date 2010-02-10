@@ -2,7 +2,7 @@
 /log/*.log
 /tmp/**/*
 /tmp/*
-/vendor/*
+/vendor/gems
 /config/*.yml
 /bin
 /db/schema.rb

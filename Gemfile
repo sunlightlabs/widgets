@@ -1,14 +1,10 @@
-## Bundle edge rails:
-git "git://github.com/rails/arel.git"
-git "git://github.com/rails/rack.git"
-git "git://github.com/rails/rails.git"
-gem "rails", "3.0.pre"
+gem "rails", "3.0.0.beta"
 
-gem "sqlite3-ruby", :require_as => "sqlite3"
-gem "mongo_mapper"
+gem "sqlite3-ruby", :require => "sqlite3"
 gem "nifty-generators"
+gem "sunlight", :require => "sunlight"
 
-only :test do
+group :test do
   gem "rspec"
   gem "cucumber"
   gem "webrat"
