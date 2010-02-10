@@ -12,5 +12,4 @@ class WidgetsController < ApplicationController
     render :layout => false
   end
 
-
 end

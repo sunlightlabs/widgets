@@ -1,4 +1,5 @@
 require File.expand_path('../boot', __FILE__)
+require 'sunlight'
 
 module Widgets
   class Application < Rails::Application

@@ -1,2 +1,3 @@
 frontend_hostname: localhost:3000
 backend_hostname: localhost:4567
+sunlight_api_key: yourkeyhere
