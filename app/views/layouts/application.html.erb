@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
   <head>
-    <title><%= h(yield(:title) + " | Sunlight Widgets") %></title>
+    <title><%= h(yield(:title) + " | Politiwidgets") %></title>
     <%= stylesheet_link_tag 'nifty' %>
     <%= yield(:head) %>
   </head>
@@ -11,7 +11,7 @@
       
       <div id="header">
  
-        <h1>Sunlight Widgets</h1>
+        <h1>Politiwidgets</h1>
         
         <div id="aside">
           <ul id="navigation">
@@ -23,7 +23,7 @@
           <div id="search">
             <form id="search_form" action="/search" method="get">
               <label class="inline">Search</label>
-              <input type="text" class="inline" name="q" size="40" />
+              <input type="text" class="inline" name="q" size="40" value="<%= @query %>" />
               <input type="submit" value="Go!" class="inline" />
             </form>
           </div><!-- search -->
