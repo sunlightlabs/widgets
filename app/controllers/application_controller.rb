@@ -9,7 +9,9 @@ class ApplicationController < ActionController::Base
     settings = YAML.load_file(Rails.root.to_s + "/config/settings.yml")
     @frontend_hostname = settings['frontend_hostname']
     @backend_hostname = settings['backend_hostname']
-    Sunlight::Base.api_key = settings['sunlight_api_key']
+    @sunlight_api_key = settings['sunlight_api_key']
+    Sunlight::Base.api_key = @sunlight_api_key
+
   end
   
 end

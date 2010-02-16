@@ -5,9 +5,9 @@ Customize <%= @full_name %>
 <h3>Embed Code</h3>
 
 <code>
-  &lt;script type="text/javascript" src="http://<%= @frontend_hostname %>/embed?w=bio&bgd=B001265"&gt;&lt;/script&gt;
+  &lt;script type="text/javascript" src="http://<%= @frontend_hostname %>/embed?w=bio&bgd=<%= params[:bioguide_id] %>"&gt;&lt;/script&gt;
 </code>
 
 <h3>Live Example</h3>
 
-<script type="text/javascript" src="http://<%= @frontend_hostname %>/embed?w=bio&bgd=B001265"></script>
+<script type="text/javascript" src="http://<%= @frontend_hostname %>/embed?w=bio&bgd=<%= params[:bioguide_id] %>"></script>
