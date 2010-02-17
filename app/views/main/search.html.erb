@@ -7,7 +7,7 @@
 <% else -%>
 <ul>
 <% @legislators.each do |legislator| -%>
-  <li><%= link_to "#{legislator.title}. #{legislator.firstname} #{legislator.lastname}", widget_path("bio", :bioguide_id => legislator.bioguide_id) %></li>
+  <li><%= link_to "#{legislator.title}. #{legislator.firstname} #{legislator.lastname}", widget_path("bio", :bioguide_id => legislator.bioguide_id, :size => "med") %></li>
 <% end -%>
 </ul>
 <% end -%>
