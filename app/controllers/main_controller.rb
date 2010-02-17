@@ -31,7 +31,8 @@ class MainController < ApplicationController
       @query = @state
       @legislators = Sunlight::Legislator.all_where(:state => @state)
     
-    elsif @district = Sunlight::District.get(:address => @query)
+    elsif @query =~ /^[0-9]+.+/ 
+      @district = Sunlight::District.get(:address => @query)
       @query_type = "Address"
       @legislators = Sunlight::Legislator.all_for(:address => @query).values
     
