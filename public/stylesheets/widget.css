@@ -1,14 +1,74 @@
-#sunlight_widget {
-  border: 2px solid #CFC8A8;
-  background: #FFF6CF;
-  padding: 10px 10px 10px 10px;
-  width: 200px;
-  font-family: Georgia, serif;
-  color: #08398F;
-  text-shadow: none;
+/*
+ * YUI Resect CSS version: 2.2.2 
+ * Copyright (c) 2007, Yahoo! Inc. All rights reserved.
+ * Licensed under the BSD License: http://developer.yahoo.net/yui/license.txt
+ */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,optgroup,button,p,blockquote,th,td{margin:0;padding:0;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}table{border-collapse:collapse;border-spacing:0;}caption,th{text-align:left;}ol,ul{list-style:none;}fieldset,img{border:0;}input,textarea,select,optgroup,option,button{font-family:inherit;font-size:100%;}button,input {width: auto;overflow: visible;}optgroup,address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;}
+dl li{list-style: none;}
+
+a:link { outline: none; }
+a:visited { outline: none; }
+a:hover { outline: none; }
+a:active { outline: none; }
+
+body{
+    color:#706a67;
+    font-size: 76%;
+    line-height: 20px;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    border: 4px solid #919191;
 }
 
-#sunlight_widget a {
-  color: #08398F;
-  text-decoration: underline;
-}
+body.sm { width: 152px; height: 292px; }
+body.med { width: 292px; height: 242px; }
+body.lg { width: 392px; height: 292px; }
+
+div#header { padding: 10px 10px 0;}
+body.lg div#header { padding: 15px 15px 0; }
+h1 { text-align: center; margin-bottom: 15px;}
+body.med h1, body.lg h1  { float: right; width: 165px; margin-bottom: 5px; margin-top:10px;}
+body.lg h1 { text-align: left; width: 240px;}
+h1 small { display: block; font-style: oblique; color: #ADADAD; font-size: 105%; line-height: 16px; font-family: Georgia, Times New Roman, Times, serif; margin-bottom: 5px;}
+body.lg h1 small { font-size: 120%; margin-bottom: 5px;}
+h1 big { text-transform: uppercase; font-weight: bold; font-size: 110%; color: #000; line-height: 16px;}
+body.lg h1 big { font-size: 150%; line-height: 20px;}
+
+div#lawmakerMetadata { font-weight: bold; float: left; margin-left: 12px; padding: 15px 0;}
+body.med div#lawmakerMetadata, body.lg div#lawmakerMetadata { text-align: center; width: 165px; margin-left: 0px; padding: 0 0; float: right;}
+body.lg div#lawmakerMetadata { text-align: left; width: 240px;}
+body.sm div.california { background: url(/images/california.jpg) top center no-repeat;}
+
+body.sm img { max-width: 62px; }
+img { border: 2px solid #E0DEDE; float: left;}
+
+
+.clear { clear: both;}
+
+body.sm div#vcard { font-size: 95%; line-height: 13px;}
+div#mainContent { background-color: #1F83B5; margin-top: -20px; height: 152px;}
+body.med div#mainContent { height: 138px; margin-top: -35px; }
+body.lg div#mainContent { height: 168px;}
+div#vcard { background: url(/images/gradient.png) top left repeat-x; padding: 30px 10px 0; color: #fff; text-align: center; line-height: 15px; height:130px; }
+body.med div#vcard { padding: 10px 10px 0; }
+body.lg div#vcard { padding: 35px 15px 0; font-size: 110%;}
+div.street-address { display: inline;}
+
+div.odd { margin: 5px 0;}
+body.med div.odd, body.lg div.odd  { margin: 8px 0;}
+div.even { padding: 3px; background: rgba(250, 250, 250); background: rgba(250, 250, 250, 0.1); }
+body.med div.even, body.lg div.even { padding: 5px; }
+
+div#buttons { margin-left: 15px; }
+body.med div#buttons { margin-left: 90px; }
+body.lg div#buttons { margin-left: 131px; }
+a.button { width: 28px; height: 28px; text-indent: -9999em; display: block; float: left; margin-top: 12px; }
+a.twitter { background: url(/images/social_icons.png) top left no-repeat; margin-right: 8px;}
+a.twitter:hover { background: url(/images/social_icons.png) left -28px no-repeat;}
+
+a.opencongress { background: url(/images/social_icons.png) -28px top no-repeat;}
+a.opencongress:hover { background: url(/images/social_icons.png) -28px -28px no-repeat;}
+
+a.youtube { background: url(/images/social_icons.png) -56px top no-repeat; margin-right: 8px;}
+a.youtube:hover { background: url(/images/social_icons.png) -56px -28px no-repeat;}
+
+body.med div.tel { width: 150px; float: right; }
