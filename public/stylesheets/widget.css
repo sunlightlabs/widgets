@@ -24,44 +24,115 @@ body.med { width: 292px; height: 242px; }
 body.lg { width: 392px; height: 292px; }
 
 div#header { padding: 10px 10px 0;}
-body.lg div#header { padding: 15px 15px 0; }
-h1 { text-align: center; margin-bottom: 15px;}
-body.med h1, body.lg h1  { float: right; width: 165px; margin-bottom: 5px; margin-top:10px;}
-body.lg h1 { text-align: left; width: 240px;}
-h1 small { display: block; font-style: oblique; color: #ADADAD; font-size: 105%; line-height: 16px; font-family: Georgia, Times New Roman, Times, serif; margin-bottom: 5px;}
+body.sm div#header  { height: 150px;}
+body.med div#header { height: 129px;}
+body.lg div#header { padding: 15px 15px 0; height: 129px;}
+
+body.sm h1 { margin-bottom: 8px; text-align: center;} 
+body.med h1 { margin-top: 5px; margin-bottom: 3px; float: right; width: 175px;}
+body.lg h1 { text-align: left; width: 240px; margin-top: 10px; float: right; margin-bottom: 3px; }
+
+h1 small { display: block; font-style: oblique; color: #ADADAD; font-size: 105%; line-height: 16px; font-family: Georgia, Times New Roman, Times, serif; margin-bottom: 2px;}
 body.lg h1 small { font-size: 120%; margin-bottom: 5px;}
+
 h1 big { text-transform: uppercase; font-weight: bold; font-size: 110%; color: #000; line-height: 16px;}
+body.sm h1 big { height: 29px; display: block;}
+body.med h1 big { font-size: 130%; line-height: 18px;}
 body.lg h1 big { font-size: 150%; line-height: 20px;}
 
-div#lawmakerMetadata { font-weight: bold; float: left; margin-left: 12px; padding: 15px 0;}
-body.med div#lawmakerMetadata, body.lg div#lawmakerMetadata { text-align: center; width: 165px; margin-left: 0px; padding: 0 0; float: right;}
+div#lawmakerMetadata { font-weight: bold; float: left; margin-left: 14px; padding: 15px 0;}
+body.sm div#lawmakerMetadata { line-height: 14px; text-align: center; margin-top: 8px; width: 50px;}
+body.med div#lawmakerMetadata { width: 175px;}
+body.med div#lawmakerMetadata, body.lg div#lawmakerMetadata { margin-left: 0px; padding: 0 0; float: right;}
 body.lg div#lawmakerMetadata { text-align: left; width: 240px;}
-body.sm div.california { background: url(/images/california.jpg) top center no-repeat;}
+
+body.sm div.al { background: url(/images/AL.png) top center no-repeat;}
+body.sm div.ak { background: url(/images/AK.png) top center no-repeat;}
+body.sm div.az { background: url(/images/AZ.png) top center no-repeat;}
+body.sm div.ar { background: url(/images/AR.png) top center no-repeat;}
+body.sm div.ca { background: url(/images/CA.jpg) top center no-repeat;}
+body.sm div.co { background: url(/images/CO.png) top center no-repeat;}
+body.sm div.ct { background: url(/images/CT.png) top center no-repeat;}
+body.sm div.de { background: url(/images/DE.png) top center no-repeat;}
+body.sm div.fl { background: url(/images/FL.png) top center no-repeat;}
+body.sm div.ga { background: url(/images/GA.png) top center no-repeat;}
+body.sm div.hi { background: url(/images/HI.png) top center no-repeat;}
+body.sm div.id { background: url(/images/ID.png) top center no-repeat;}
+body.sm div.il { background: url(/images/IL.png) top center no-repeat;}
+body.sm div.in { background: url(/images/IN.png) top center no-repeat;}
+body.sm div.ia { background: url(/images/IA.png) top center no-repeat;}
+body.sm div.ks { background: url(/images/KS.png) top center no-repeat;}
+body.sm div.ky { background: url(/images/KY.png) top center no-repeat;}
+body.sm div.la { background: url(/images/LA.png) top center no-repeat;}
+body.sm div.me { background: url(/images/ME.png) top center no-repeat;}
+body.sm div.md { background: url(/images/MD.png) top center no-repeat;}
+body.sm div.ma { background: url(/images/MA.png) top center no-repeat;}
+body.sm div.mi { background: url(/images/MI.png) top center no-repeat;}
+body.sm div.mn { background: url(/images/MN.png) top center no-repeat;}
+body.sm div.ms { background: url(/images/MS.png) top center no-repeat;}
+body.sm div.mo { background: url(/images/MO.png) top center no-repeat;}
+body.sm div.mt { background: url(/images/MT.png) top center no-repeat;}
+body.sm div.ne { background: url(/images/NE.png) top center no-repeat;}
+body.sm div.nv { background: url(/images/NV.png) top center no-repeat;}
+body.sm div.nh { background: url(/images/NH.png) top center no-repeat;}
+body.sm div.nj { background: url(/images/NJ.png) top center no-repeat;}
+body.sm div.nm { background: url(/images/NM.png) top center no-repeat;}
+body.sm div.ny { background: url(/images/NY.png) top center no-repeat;}
+body.sm div.nc { background: url(/images/NC.png) top center no-repeat;}
+body.sm div.nd { background: url(/images/ND.png) top center no-repeat;}
+body.sm div.oh { background: url(/images/OH.png) top center no-repeat;}
+body.sm div.ok { background: url(/images/OK.png) top center no-repeat;}
+body.sm div.or { background: url(/images/OR.png) top center no-repeat;}
+body.sm div.pa { background: url(/images/PA.png) top center no-repeat;}
+body.sm div.ri { background: url(/images/RI.png) top center no-repeat;}
+body.sm div.sc { background: url(/images/SC.png) top center no-repeat;}
+body.sm div.sd { background: url(/images/SD.png) top center no-repeat;}
+body.sm div.tn { background: url(/images/TN.png) top center no-repeat;}
+body.sm div.tx { background: url(/images/TX.png) top center no-repeat;}
+body.sm div.ut { background: url(/images/UT.png) top center no-repeat;}
+body.sm div.vt { background: url(/images/VT.png) top center no-repeat;}
+body.sm div.va { background: url(/images/VA.png) top center no-repeat;}
+body.sm div.wa { background: url(/images/WA.png) top center no-repeat;}
+body.sm div.wv { background: url(/images/WV.png) top center no-repeat;}
+body.sm div.wi { background: url(/images/WI.png) top center no-repeat;}
+body.sm div.wy { background: url(/images/WY.png) top center no-repeat;}
 
 body.sm img { max-width: 62px; }
+body.med img { max-width: 80px; }
 img { border: 2px solid #E0DEDE; float: left;}
 
 
 .clear { clear: both;}
 
-body.sm div#vcard { font-size: 95%; line-height: 13px;}
-div#mainContent { background-color: #1F83B5; margin-top: -20px; height: 152px;}
+body.sm div#mainContent { margin-top: -30px; height: 162px;}
+div#mainContent { background-color: #1F83B5;}
 body.med div#mainContent { height: 138px; margin-top: -35px; }
-body.lg div#mainContent { height: 168px;}
-div#vcard { background: url(/images/gradient.png) top left repeat-x; padding: 30px 10px 0; color: #fff; text-align: center; line-height: 15px; height:130px; }
-body.med div#vcard { padding: 10px 10px 0; }
-body.lg div#vcard { padding: 35px 15px 0; font-size: 110%;}
-div.street-address { display: inline;}
+body.lg div#mainContent { height: 163px; margin-top: -15px;}
+
+div#vcard { background: url(/images/gradient.png) top left repeat-x; padding: 30px 10px 0; color: #fff; line-height: 15px; height:130px; }
+body.sm div#vcard { font-size: 95%; line-height: 13px; padding: 25px 10px 0; text-align: center;}
+body.med div#vcard { padding: 20px 10px 0; height: 118px;}
+body.lg div#vcard { padding: 25px 15px 0; font-size: 110%; line-height: 16px;}
+/*div.street-address { display: inline;}*/
 
 div.odd { margin: 5px 0;}
-body.med div.odd, body.lg div.odd  { margin: 8px 0;}
+body.lg div.odd { margin: 7px 0;}
+body.med div.odd, body.lg div.odd  { margin: 8px 5px;}
 div.even { padding: 3px; background: rgba(250, 250, 250); background: rgba(250, 250, 250, 0.1); }
-body.med div.even, body.lg div.even { padding: 5px; }
+body.med div.even { padding: 5px; }
+body.lg div.even { padding: 8px;}
 
 div#buttons { margin-left: 15px; }
-body.med div#buttons { margin-left: 90px; }
-body.lg div#buttons { margin-left: 131px; }
-a.button { width: 28px; height: 28px; text-indent: -9999em; display: block; float: left; margin-top: 12px; }
+body.sm div#buttons a, body.lg div#buttons a { float: left; }
+body.med div#buttons { float: left; margin-left: 8px; margin-top: 5px; }
+body.med div#buttons a { margin-top: 0px; margin-bottom: 10px; }
+body.lg div#buttons a { margin-bottom: 15px; margin-right: 15px; margin-top: 0px;}
+body.lg div#buttons { margin-left: 8px; margin-top: 10px;}
+a.evenButton, a.oddButton { width: 28px; height: 28px; text-indent: -9999em; display: block; margin-top: 12px; }
+body.lg a.evenButton, body.lg a.oddButton { width: 36px; height: 36px;}
+body.med a.evenButton { float: left;}
+body.med a.oddButton { margin-left: 40px;}
+
 a.twitter { background: url(/images/social_icons.png) top left no-repeat; margin-right: 8px;}
 a.twitter:hover { background: url(/images/social_icons.png) left -28px no-repeat;}
 
@@ -71,4 +142,14 @@ a.opencongress:hover { background: url(/images/social_icons.png) -28px -28px no-
 a.youtube { background: url(/images/social_icons.png) -56px top no-repeat; margin-right: 8px;}
 a.youtube:hover { background: url(/images/social_icons.png) -56px -28px no-repeat;}
 
-body.med div.tel { width: 150px; float: right; }
+body.lg a.twitter { background: url(/images/social_icons_lg.png) top left no-repeat; margin-right: 8px;}
+body.lg a.twitter:hover { background: url(/images/social_icons_lg.png) left -36px no-repeat;}
+
+body.lg a.opencongress { background: url(/images/social_icons_lg.png) -36px top no-repeat;}
+body.lg a.opencongress:hover { background: url(/images/social_icons_lg.png) -36px -36px no-repeat;}
+
+body.lg a.youtube { background: url(/images/social_icons_lg.png) -72px top no-repeat; margin-right: 8px;}
+body.lg a.youtube:hover { background: url(/images/social_icons_lg.png) -72px -36px no-repeat;}
+
+body.med div#mainVcard { width: 175px; float: right; }
+body.lg div#mainVcard { width: 240px; float: right; }

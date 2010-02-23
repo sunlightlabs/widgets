@@ -16,7 +16,7 @@
                     <small><%= @legislator.title %>.</small><big><%= @legislator.firstname + " " + @legislator.lastname %></big>
                 </h1>
                 <img alt="Picture of <%= @legislator.firstname + " " + @legislator.lastname %>" src="http://govpix.appspot.com/<%= @legislator.firstname + " " + @legislator.lastname %>" />
-                <div class="californida" id="lawmakerMetadata">
+                <div class="california" id="lawmakerMetadata">
                     <span class="party">(<%= @legislator.party %>)</span>
                     <span class="state"><%= @legislator.state + '-' + @legislator.district %></span>
                 </div>
@@ -30,15 +30,15 @@
                     <div class="clear"></div>
                     <div class="adr odd">
                         <div class="street-address"><%= @legislator.congress_office %></div>
-                        <!--><span class="locality">Washington</span>
+                        <span class="locality">Washington</span>
                         <abbr class="region" title="District of Columbia">DC</abbr>
-                        <span class="postal-code">22111</span>-->
+                        <span class="postal-code">22111</span>
                     </div>	
                     <div class="url even"><a href="<%= @legislator.website %>">Website</a></div>
                     <div id="buttons">
-                        <a class="twitter button" href="http://twitter.com/<%= @legislator.twitter_id %>">Twitter</a>
-                        <a class="youtube button" href="http://youtube.com/<%= @legislator.youtube_id %>">YouTube</a>
-                        <a class="opencongress button" href="<%= @legislator.congresspedia_url %>">Open Congress</a>
+                        <a class="twitter evenButton" href="http://twitter.com/<%= @legislator.twitter_id %>">Twitter</a>
+                        <a class="youtube oddButton" href="http://youtube.com/<%= @legislator.youtube_id %>">YouTube</a>
+                        <a class="opencongress evenButton" href="<%= @legislator.congresspedia_url %>">Open Congress</a>
                     </div>
                 </div>
             </div>
