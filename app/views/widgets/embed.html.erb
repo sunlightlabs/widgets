@@ -13,10 +13,10 @@
         <div id="pageMain">
             <div id="header">
                 <h1>
-                    <small><%= @legislator.title %>.</small><big><%= @legislator.firstname + " " + @legislator.lastname %></big>
+                    <small><%= long_title @legislator.title %></small><big><%= @legislator.firstname + " " + @legislator.lastname %></big>
                 </h1>
                 <img alt="Picture of <%= @legislator.firstname + " " + @legislator.lastname %>" src="http://govpix.appspot.com/<%= @legislator.firstname + " " + @legislator.lastname %>" />
-                <div class="california" id="lawmakerMetadata">
+                <div class="<%= @legislator.state.downcase %>" id="lawmakerMetadata">
                     <span class="party">(<%= @legislator.party %>)</span>
                     <span class="state"><%= @legislator.state + '-' + @legislator.district %></span>
                 </div>
