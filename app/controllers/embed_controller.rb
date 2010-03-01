@@ -6,7 +6,7 @@ class EmbedController < ApplicationController
     case @size
       when 'sm'
         @width = 160
-        @height = 305
+        @height = 300
       when 'med'
         @width = 300
         @height = 250
