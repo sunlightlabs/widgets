@@ -1,0 +1,114 @@
+<body class="bill_<%= params[:size] %>">
+  <div id="pageMain">
+    <div id="headerWrapper">
+      <div id="header">
+        <h1 class="right">
+          <big>H.R. 3509</big><small>An act entitled The Patient Protection and Affordable Care Act</small>
+        </h1>
+        <div id="billResult" class="left">
+          <span class="failed">Failed</span>
+        </div> 
+        <div class="clear"></div> 
+      </div>  
+    </div>
+    <div id="mainContent">
+      <div id="repInfo">
+        <div id="lamaker_metaData" class="right">
+          <img alt="Picture of " src="/images/profile/" class="pic@src+ full_name@alt+" width="40px" />
+          <h2><small class="title"></small> <big class="full_name"></big></h2>
+          <span id="party" class="party party_long@class"></span>
+          <span id="stateDistrict" class="state"></span>
+        </div>
+        <div id="lawmakerVote" class="left">
+          <span class="aye">Aye</span>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div id="voteTotals">
+        <h2>Vote Totals</h2>
+        <div id="voteKey">
+          <span id="republican">Rep</span>
+          <span id="democrat">Dem</span>
+        </div>
+        <div id="chart" class="right">
+          <div>Where the chart would be</div>
+        </div>
+        <div id="chartTotals" class="left">
+          <dl>
+            <dt class="aye">Aye</dt>
+            <dd>
+              <ul>
+                <li>
+                  <span class="repbulicanBlock">Republican</span>
+                  <span class="voteTotal">15</span>
+                </li>
+                <li>
+                  <span class="democratBlock">Democrat</span>
+                  <span class="voteTotal">5</span>
+                </li>
+                <li class="clear"></li>
+              </ul>
+            </dd>
+            <dt class="nay">Nay</dt>
+            <dd>
+              <ul>
+                <li>
+                  <span class="repbulicanBlock">Republican</span>
+                  <span class="voteTotal">10</span>
+                </li>
+                <li>
+                  <span class="democratBlock">Democrat</span>
+                  <span class="voteTotal">20</span>
+                </li>
+              </ul>
+            </dd>
+          </dl>    
+        </div>
+        <div class="clear"></div>
+      </div>    
+    </div>
+  </div>
+  <script type="text/javascript" charset="utf-8">
+    var legislator_url = "http://<%= @backend_hostname %>/api/legislator.json?apikey=<%= @sunlight_api_key %>&bioguide_id=<%= params[:bioguide_id] %>&sections=basic,extended&callback=?"
+    $.getJSON(legislator_url, function(data) {
+      var legislator = data.legislator;
+
+      var legislator_district = "";
+      if (legislator.district == '0') {
+        legislator_district = "AL";
+      } else {
+        legislator_district = legislator.district;
+      }
+    
+      var legislator_state = "";
+      if (legislator.title == "Sen") {
+        legislator_state = legislator.state;
+      } else {
+        legislator_state = legislator.state + "-" + legislator_district;
+      }
+      
+      var party_long = "";
+      if (legislator.party == 'D') {
+        party_long = "democrat";
+      } else if (legislator.party == 'R') {
+        party_long = "republican";
+      } else {
+        party_long = "independent";
+      }
+    
+      var widget_data = {
+        "title": legislator.title + ".",
+        "full_name": legislator.first_name + " " + legislator.last_name,
+        "pic": legislator.bioguide_id + ".jpg",
+        "state_downcase": legislator.state.toLowerCase(),
+        "state": legislator_state,
+        "party": "(" + legislator.party + ")",
+        "party_long": party_long
+      };
+
+      $('div#repInfo').autoRender(widget_data);
+
+    });
+  </script>
+  
+</body>

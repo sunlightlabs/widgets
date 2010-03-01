@@ -5,11 +5,15 @@
   <meta name="description" content="" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title></title>
-  <link rel="stylesheet" href="/stylesheets/widget.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/stylesheets/<%= params[:id] %>.css" type="text/css" media="screen" />
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
   <script src="/javascripts/pure.min.js" type="text/javascript"></script>
 </head>
-<body class="<%= params[:size] || 'med' %>">
-  <%= render params[:id] %>
-</body>
+
+<% if params[:id] == 'bill' && params[:size] == 'sm' -%>
+<%= render 'bill_sm' %>
+<% else -%>
+<%= render params[:id] %>
+<% end -%>
+
 </html>
