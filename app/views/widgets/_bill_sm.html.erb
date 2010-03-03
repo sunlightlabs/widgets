@@ -3,10 +3,10 @@
     <div id="headerWrapper">
       <div id="header">
         <h1 class="right">
-          <big>H.R. 3509</big>
+          <big class="bill_code"></big>
         </h1>
         <div id="billResult" class="left">
-          <span class="failed">Failed</span>
+          <span class="result_upper result_lower@class"></span>
         </div> 
         <div class="clear"></div> 
       </div>  
@@ -14,12 +14,14 @@
     <div id="mainContent">
       <div id="repInfo">
         <div id="lamaker_metaData" class="right">
-          <h2><small>Rep.</small> <big>Stephanie Herseth Sandlin</big></h2>
-          <span id="party" class="democrat">Democrat</span>
-          <span id="stateDistrict">California-9</span>
+          
+          <h2><small class="title"></small> <big class="full_name"></big></h2>
+          <span id="party" class="party party_long@class"></span>
+          <span id="stateDistrict" class="state"></span>
+
         </div>
         <div id="lawmakerVote" class="left">
-          <span class="aye">Aye</span>
+          <span class="legislator_vote_value legislator_vote_class@class"></span>
         </div>
         <div class="clear"></div>
       </div>
@@ -30,7 +32,7 @@
           <span id="democrat">Dem</span>
         </div>
         <div id="chart" class="right">
-          <div>Where the chart would be</div>
+          <div>Horizontal bar graph goes here</div>
         </div>
         <div id="chartTotals" class="left">
           <dl>
@@ -39,11 +41,11 @@
               <ul>
                 <li>
                   <span class="repbulicanBlock">Republican</span>
-                  <span class="voteTotal">15</span>
+                  <span class="voteTotal rep_ayes"></span>
                 </li>
                 <li>
                   <span class="democratBlock">Democrat</span>
-                  <span class="voteTotal">5</span>
+                  <span class="voteTotal dem_ayes"></span>
                 </li>
                 <li class="clear"></li>
               </ul>
@@ -53,11 +55,11 @@
               <ul>
                 <li>
                   <span class="repbulicanBlock">Republican</span>
-                  <span class="voteTotal">10</span>
+                  <span class="voteTotal rep_nays"></span>
                 </li>
                 <li>
                   <span class="democratBlock">Democrat</span>
-                  <span class="voteTotal">20</span>
+                  <span class="voteTotal dem_nays"></span>
                 </li>
               </ul>
             </dd>
@@ -67,4 +69,114 @@
       </div>    
     </div>
   </div>
+  <script type="text/javascript" charset="utf-8">
+    var legislator_url = "http://<%= @backend_hostname %>/api/legislator.json?apikey=<%= @sunlight_api_key %>&bioguide_id=<%= params[:bioguide_id] %>&sections=basic&callback=?"
+    $.getJSON(legislator_url, function(data) {
+      var legislator = data.legislator;
+
+      var legislator_district = "";
+      if (legislator.district == '0') {
+        legislator_district = "AL";
+      } else {
+        legislator_district = legislator.district;
+      }
+    
+      var legislator_state = "";
+      if (legislator.title == "Sen") {
+        legislator_state = legislator.state;
+      } else {
+        legislator_state = legislator.state + "-" + legislator_district;
+      }
+      
+      var party_long = "";
+      if (legislator.party == 'D') {
+        party_long = "democrat";
+      } else if (legislator.party == 'R') {
+        party_long = "republican";
+      } else {
+        party_long = "independent";
+      }
+    
+      var legislator_data = {
+        "title": legislator.title + ".",
+        "full_name": legislator.first_name + " " + legislator.last_name,
+        "pic": legislator.bioguide_id + ".jpg",
+        "state_downcase": legislator.state.toLowerCase(),
+        "state": legislator_state,
+        "party": "(" + legislator.party + ")",
+        "party_long": party_long
+      };
+
+      $('div#repInfo').autoRender(legislator_data);
+
+    });
+    
+    var bill_url = "http://<%= @backend_hostname %>/api/bill.json?apikey=<%= @sunlight_api_key %>&bill_id=<%= params[:bill_id] %>&sections=basic,votes&callback=?"
+    $.getJSON(bill_url, function(data) {
+      var bill = data.bill;
+      
+      var result_upper = "Failed";
+      var result_lower = "failed";
+      if (bill.enacted) {
+        result_upper = "Passed";
+        result_lower = "passed";
+      }
+
+      var bill_data = {
+        "short_title": bill.short_title,
+        "bill_code": bill.type.toUpperCase() + " " + bill.number,
+        "result_upper": result_upper,
+        "result_lower": result_lower,
+      };
+      console.log(bill_data);
+
+      $('div#header').autoRender(bill_data);
+
+      var roll_id = "";
+      for (var v in bill.votes) {
+        var vote = bill.votes[v].vote;
+        if (vote && vote.type == "On Passage") {
+          roll_id = vote.roll_id;
+        }
+      }
+      
+      var roll_url = "http://<%= @backend_hostname %>/api/roll.json?apikey=<%= @sunlight_api_key %>&roll_id=" + roll_id + "&sections=basic,party_vote_breakdown,voter_ids&callback=?"
+      $.getJSON(roll_url, function(data) {
+        var roll = data.roll;
+        
+        var roll_data = {
+          "ayes": roll.vote_breakdown.ayes,
+          "nays": roll.vote_breakdown.nays,
+          "present": roll.vote_breakdown.present,
+          "not_voting": roll.vote_breakdown.not_voting,
+          "dem_ayes": roll.party_vote_breakdown.D.ayes,
+          "dem_nays": roll.party_vote_breakdown.D.nays,
+          "dem_present": roll.party_vote_breakdown.D.present,
+          "dem_not_voting": roll.party_vote_breakdown.D.not_voting,
+          "rep_ayes": roll.party_vote_breakdown.R.ayes,
+          "rep_nays": roll.party_vote_breakdown.R.nays,
+          "rep_present": roll.party_vote_breakdown.R.present,
+          "rep_not_voting": roll.party_vote_breakdown.R.not_voting
+        };
+        
+        var vote_obj = _.detect(roll.voter_ids, function(voter_id) { return voter_id.voter_id == '<%= params[:bioguide_id] %>'});
+        var legislator_vote = "";
+        switch (vote_obj.vote) {
+          case '+': legislator_vote = "Aye"; break;
+          case '-': legislator_vote = "Nay"; break;
+          case 'P': legislator_vote = "Present"; break;
+          case '0': legislator_vote = "Not Voting"; break;
+        };
+        $('div#voteTotals').autoRender(roll_data);
+
+        roll_data.legislator_vote_value = legislator_vote;
+        roll_data.legislator_vote_class = legislator_vote.toLowerCase();
+        $('div#lawmakerVote').autoRender(roll_data);
+        
+        
+      });
+      
+    });
+    
+  </script> 
 </body>
