@@ -57,11 +57,11 @@ class MainController < ApplicationController
     determine_abbrev = Hash[*(50.times.map { |i| [states[i], abbrevs[i]]}.flatten)]
     
     if abbrevs.include? str.upcase
-      return str.upcase
+      str.upcase
     elsif states.include? str.titlecase
-      return determine_abbrev[str.titlecase]
+      determine_abbrev[str.titlecase]
     else
-      return false
+      false
     end
   end
 

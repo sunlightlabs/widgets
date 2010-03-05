@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   filter_parameter_logging :password
+  
   before_filter :load_settings
   
   private
@@ -11,7 +12,6 @@ class ApplicationController < ActionController::Base
     @backend_hostname = settings['backend_hostname']
     @sunlight_api_key = settings['sunlight_api_key']
     Sunlight::Base.api_key = @sunlight_api_key
-
   end
   
 end

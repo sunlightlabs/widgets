@@ -21,5 +21,4 @@ class EmbedController < ApplicationController
     render :template => 'embed/embed.js.erb', :content_type => 'text/javascript'
   end
 
-
 end
