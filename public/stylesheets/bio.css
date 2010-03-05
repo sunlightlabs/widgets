@@ -46,56 +46,56 @@ body.med div#lawmakerMetadata { width: 175px;}
 body.med div#lawmakerMetadata, body.lg div#lawmakerMetadata { margin-left: 0px; padding: 0 0; float: right;}
 body.lg div#lawmakerMetadata { text-align: left; width: 240px;}
 
-body.sm div.al { background: url(/images/states/AL.png) top center no-repeat;}
-body.sm div.ak { background: url(/images/states/AK.png) top center no-repeat;}
-body.sm div.az { background: url(/images/states/AZ.png) top center no-repeat;}
-body.sm div.ar { background: url(/images/states/AR.png) top center no-repeat;}
-body.sm div.ca { background: url(/images/states/CA.jpg) top center no-repeat;}
-body.sm div.co { background: url(/images/states/CO.png) top center no-repeat;}
-body.sm div.ct { background: url(/images/states/CT.png) top center no-repeat;}
-body.sm div.de { background: url(/images/states/DE.png) top center no-repeat;}
-body.sm div.fl { background: url(/images/states/FL.png) top center no-repeat;}
-body.sm div.ga { background: url(/images/states/GA.png) top center no-repeat;}
-body.sm div.hi { background: url(/images/states/HI.png) top center no-repeat;}
-body.sm div.id { background: url(/images/states/ID.png) top center no-repeat;}
-body.sm div.il { background: url(/images/states/IL.png) top center no-repeat;}
-body.sm div.in { background: url(/images/states/IN.png) top center no-repeat;}
-body.sm div.ia { background: url(/images/states/IA.png) top center no-repeat;}
-body.sm div.ks { background: url(/images/states/KS.png) top center no-repeat;}
-body.sm div.ky { background: url(/images/states/KY.png) top center no-repeat;}
-body.sm div.la { background: url(/images/states/LA.png) top center no-repeat;}
-body.sm div.me { background: url(/images/states/ME.png) top center no-repeat;}
-body.sm div.md { background: url(/images/states/MD.png) top center no-repeat;}
-body.sm div.ma { background: url(/images/states/MA.png) top center no-repeat;}
-body.sm div.mi { background: url(/images/states/MI.png) top center no-repeat;}
-body.sm div.mn { background: url(/images/states/MN.png) top center no-repeat;}
-body.sm div.ms { background: url(/images/states/MS.png) top center no-repeat;}
-body.sm div.mo { background: url(/images/states/MO.png) top center no-repeat;}
-body.sm div.mt { background: url(/images/states/MT.png) top center no-repeat;}
-body.sm div.ne { background: url(/images/states/NE.png) top center no-repeat;}
-body.sm div.nv { background: url(/images/states/NV.png) top center no-repeat;}
-body.sm div.nh { background: url(/images/states/NH.png) top center no-repeat;}
-body.sm div.nj { background: url(/images/states/NJ.png) top center no-repeat;}
-body.sm div.nm { background: url(/images/states/NM.png) top center no-repeat;}
-body.sm div.ny { background: url(/images/states/NY.png) top center no-repeat;}
-body.sm div.nc { background: url(/images/states/NC.png) top center no-repeat;}
-body.sm div.nd { background: url(/images/states/ND.png) top center no-repeat;}
-body.sm div.oh { background: url(/images/states/OH.png) top center no-repeat;}
-body.sm div.ok { background: url(/images/states/OK.png) top center no-repeat;}
-body.sm div.or { background: url(/images/states/OR.png) top center no-repeat;}
-body.sm div.pa { background: url(/images/states/PA.png) top center no-repeat;}
-body.sm div.ri { background: url(/images/states/RI.png) top center no-repeat;}
-body.sm div.sc { background: url(/images/states/SC.png) top center no-repeat;}
-body.sm div.sd { background: url(/images/states/SD.png) top center no-repeat;}
-body.sm div.tn { background: url(/images/states/TN.png) top center no-repeat;}
-body.sm div.tx { background: url(/images/states/TX.png) top center no-repeat;}
-body.sm div.ut { background: url(/images/states/UT.png) top center no-repeat;}
-body.sm div.vt { background: url(/images/states/VT.png) top center no-repeat;}
-body.sm div.va { background: url(/images/states/VA.png) top center no-repeat;}
-body.sm div.wa { background: url(/images/states/WA.png) top center no-repeat;}
-body.sm div.wv { background: url(/images/states/WV.png) top center no-repeat;}
-body.sm div.wi { background: url(/images/states/WI.png) top center no-repeat;}
-body.sm div.wy { background: url(/images/states/WY.png) top center no-repeat;}
+body.sm div.al { background: url(/images/bio/states/AL.png) top center no-repeat;}
+body.sm div.ak { background: url(/images/bio/states/AK.png) top center no-repeat;}
+body.sm div.az { background: url(/images/bio/states/AZ.png) top center no-repeat;}
+body.sm div.ar { background: url(/images/bio/states/AR.png) top center no-repeat;}
+body.sm div.ca { background: url(/images/bio/states/CA.jpg) top center no-repeat;}
+body.sm div.co { background: url(/images/bio/states/CO.png) top center no-repeat;}
+body.sm div.ct { background: url(/images/bio/states/CT.png) top center no-repeat;}
+body.sm div.de { background: url(/images/bio/states/DE.png) top center no-repeat;}
+body.sm div.fl { background: url(/images/bio/states/FL.png) top center no-repeat;}
+body.sm div.ga { background: url(/images/bio/states/GA.png) top center no-repeat;}
+body.sm div.hi { background: url(/images/bio/states/HI.png) top center no-repeat;}
+body.sm div.id { background: url(/images/bio/states/ID.png) top center no-repeat;}
+body.sm div.il { background: url(/images/bio/states/IL.png) top center no-repeat;}
+body.sm div.in { background: url(/images/bio/states/IN.png) top center no-repeat;}
+body.sm div.ia { background: url(/images/bio/states/IA.png) top center no-repeat;}
+body.sm div.ks { background: url(/images/bio/states/KS.png) top center no-repeat;}
+body.sm div.ky { background: url(/images/bio/states/KY.png) top center no-repeat;}
+body.sm div.la { background: url(/images/bio/states/LA.png) top center no-repeat;}
+body.sm div.me { background: url(/images/bio/states/ME.png) top center no-repeat;}
+body.sm div.md { background: url(/images/bio/states/MD.png) top center no-repeat;}
+body.sm div.ma { background: url(/images/bio/states/MA.png) top center no-repeat;}
+body.sm div.mi { background: url(/images/bio/states/MI.png) top center no-repeat;}
+body.sm div.mn { background: url(/images/bio/states/MN.png) top center no-repeat;}
+body.sm div.ms { background: url(/images/bio/states/MS.png) top center no-repeat;}
+body.sm div.mo { background: url(/images/bio/states/MO.png) top center no-repeat;}
+body.sm div.mt { background: url(/images/bio/states/MT.png) top center no-repeat;}
+body.sm div.ne { background: url(/images/bio/states/NE.png) top center no-repeat;}
+body.sm div.nv { background: url(/images/bio/states/NV.png) top center no-repeat;}
+body.sm div.nh { background: url(/images/bio/states/NH.png) top center no-repeat;}
+body.sm div.nj { background: url(/images/bio/states/NJ.png) top center no-repeat;}
+body.sm div.nm { background: url(/images/bio/states/NM.png) top center no-repeat;}
+body.sm div.ny { background: url(/images/bio/states/NY.png) top center no-repeat;}
+body.sm div.nc { background: url(/images/bio/states/NC.png) top center no-repeat;}
+body.sm div.nd { background: url(/images/bio/states/ND.png) top center no-repeat;}
+body.sm div.oh { background: url(/images/bio/states/OH.png) top center no-repeat;}
+body.sm div.ok { background: url(/images/bio/states/OK.png) top center no-repeat;}
+body.sm div.or { background: url(/images/bio/states/OR.png) top center no-repeat;}
+body.sm div.pa { background: url(/images/bio/states/PA.png) top center no-repeat;}
+body.sm div.ri { background: url(/images/bio/states/RI.png) top center no-repeat;}
+body.sm div.sc { background: url(/images/bio/states/SC.png) top center no-repeat;}
+body.sm div.sd { background: url(/images/bio/states/SD.png) top center no-repeat;}
+body.sm div.tn { background: url(/images/bio/states/TN.png) top center no-repeat;}
+body.sm div.tx { background: url(/images/bio/states/TX.png) top center no-repeat;}
+body.sm div.ut { background: url(/images/bio/states/UT.png) top center no-repeat;}
+body.sm div.vt { background: url(/images/bio/states/VT.png) top center no-repeat;}
+body.sm div.va { background: url(/images/bio/states/VA.png) top center no-repeat;}
+body.sm div.wa { background: url(/images/bio/states/WA.png) top center no-repeat;}
+body.sm div.wv { background: url(/images/bio/states/WV.png) top center no-repeat;}
+body.sm div.wi { background: url(/images/bio/states/WI.png) top center no-repeat;}
+body.sm div.wy { background: url(/images/bio/states/WY.png) top center no-repeat;}
 
 body.sm img { max-width: 62px; }
 body.med img { max-width: 80px; }
@@ -109,7 +109,7 @@ div#mainContent { background-color: #1F83B5;}
 body.med div#mainContent { height: 138px; margin-top: -35px; }
 body.lg div#mainContent { height: 163px; margin-top: -15px;}
 
-div#vcard { background: url(/images/gradient.png) top left repeat-x; padding: 30px 10px 0; color: #fff; line-height: 15px; height:130px; }
+div#vcard { background: url(/images/bio/gradient.png) top left repeat-x; padding: 30px 10px 0; color: #fff; line-height: 15px; height:130px; }
 body.sm div#vcard { font-size: 95%; line-height: 13px; padding: 25px 10px 0; text-align: center;}
 body.med div#vcard { padding: 20px 10px 0; height: 118px;}
 body.lg div#vcard { padding: 25px 15px 0; font-size: 110%; line-height: 16px;}
@@ -133,23 +133,23 @@ body.lg a.evenButton, body.lg a.oddButton { width: 36px; height: 36px;}
 body.med a.evenButton { float: left;}
 body.med a.oddButton { margin-left: 40px;}
 
-a.twitter { background: url(/images/social_icons.png) top left no-repeat; margin-right: 8px;}
-a.twitter:hover { background: url(/images/social_icons.png) left -28px no-repeat;}
+a.twitter { background: url(/images/bio/social_icons.png) top left no-repeat; margin-right: 8px;}
+a.twitter:hover { background: url(/images/bio/social_icons.png) left -28px no-repeat;}
 
-a.opencongress { background: url(/images/social_icons.png) -28px top no-repeat;}
-a.opencongress:hover { background: url(/images/social_icons.png) -28px -28px no-repeat;}
+a.opencongress { background: url(/images/bio/social_icons.png) -28px top no-repeat;}
+a.opencongress:hover { background: url(/images/bio/social_icons.png) -28px -28px no-repeat;}
 
-a.youtube { background: url(/images/social_icons.png) -56px top no-repeat; margin-right: 8px;}
-a.youtube:hover { background: url(/images/social_icons.png) -56px -28px no-repeat;}
+a.youtube { background: url(/images/bio/social_icons.png) -56px top no-repeat; margin-right: 8px;}
+a.youtube:hover { background: url(/images/bio/social_icons.png) -56px -28px no-repeat;}
 
-body.lg a.twitter { background: url(/images/social_icons_lg.png) top left no-repeat; margin-right: 8px;}
-body.lg a.twitter:hover { background: url(/images/social_icons_lg.png) left -36px no-repeat;}
+body.lg a.twitter { background: url(/images/bio/social_icons_lg.png) top left no-repeat; margin-right: 8px;}
+body.lg a.twitter:hover { background: url(/images/bio/social_icons_lg.png) left -36px no-repeat;}
 
-body.lg a.opencongress { background: url(/images/social_icons_lg.png) -36px top no-repeat;}
-body.lg a.opencongress:hover { background: url(/images/social_icons_lg.png) -36px -36px no-repeat;}
+body.lg a.opencongress { background: url(/images/bio/social_icons_lg.png) -36px top no-repeat;}
+body.lg a.opencongress:hover { background: url(/images/bio/social_icons_lg.png) -36px -36px no-repeat;}
 
-body.lg a.youtube { background: url(/images/social_icons_lg.png) -72px top no-repeat; margin-right: 8px;}
-body.lg a.youtube:hover { background: url(/images/social_icons_lg.png) -72px -36px no-repeat;}
+body.lg a.youtube { background: url(/images/bio/social_icons_lg.png) -72px top no-repeat; margin-right: 8px;}
+body.lg a.youtube:hover { background: url(/images/bio/social_icons_lg.png) -72px -36px no-repeat;}
 
 body.med div#mainVcard { width: 175px; float: right; }
 body.lg div#mainVcard { width: 240px; float: right; }
