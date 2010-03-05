@@ -23,7 +23,7 @@ body.bill_sm { width: 152px; height: 292px; }
 body.bill_med { width: 292px; height: 242px; }
 body.bill_lg { width: 392px; height: 292px; }
 
-div#header { padding: 15px; background: url(/images/gradient_bill.png) bottom left repeat-x; margin-bottom: 15px;}
+div#header { padding: 15px; background: url(/images/bill/gradient.png) bottom left repeat-x; margin-bottom: 15px;}
 body.bill_med div#header { padding: 10px; margin-bottom: 10px;}
 body.bill_sm div#header { margin-bottom: 7px; padding: 10px 10px 7px;}
 .right { width: 295px; margin-right: 7px; float: left;}
@@ -64,8 +64,8 @@ body.bill_sm div#repInfo { padding-bottom: 5px;}
 
 dt { text-indent: -9999em; display: block; width: 17px; height: 17px; margin-right: 10px; margin-bottom: 25px; float: left;}
 body.bill_med dt { margin-bottom: 18px; }
-dt.aye { background: url(/images/icon_ayeSm.png) top left no-repeat;}
-dt.nay { background: url(/images/icon_naySm.png) top left no-repeat;}
+dt.aye { background: url(/images/bill/icon_ayeSm.png) top left no-repeat;}
+dt.nay { background: url(/images/bill/icon_naySm.png) top left no-repeat;}
 body.bill_sm dt { margin-bottom: 0px; }
 
 body.bill_sm dd { float: left;}
@@ -78,8 +78,8 @@ span.voteTotal { line-height: 9px; display: block; margin-bottom: 5px; }
 body.bill_med span.voteTotal { margin-bottom: 3px;}
 body.bill_sm span.voteTotal { width: 30px;}
 
-div#repInfo span.aye, div#billResult span.passed { background: url(/images/icon_ayeLg.png) center top no-repeat; font-size: 140%; color: #409744; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
-div#repInfo span.nay, div#billResult span.failed { background: url(/images/icon_nayLg.png) center top no-repeat; font-size: 140%; color: #191919; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
+div#repInfo span.aye, div#billResult span.passed { background: url(/images/bill/icon_ayeLg.png) center top no-repeat; font-size: 140%; color: #409744; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
+div#repInfo span.nay, div#billResult span.failed { background: url(/images/bill/icon_nayLg.png) center top no-repeat; font-size: 140%; color: #191919; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
 
 body.bill_med div#repInfo span.nay, body.bill_med div#billResult span.failed, body.bill_med div#repInfo span.aye, body.bill_med div#billResult span.passed  { font-size: 125%; padding-top: 32px;}
 
@@ -92,8 +92,8 @@ body.bill_sm div#repInfo span.aye, body.bill_sm div#billResult span.passed, body
 div#voteKey { line-height: 16px; }
 div#voteKey span { margin-left: 15px; padding-left: 14px; }
 body.bill_sm div#voteKey span { margin-left: 0;}
-span#republican { background: url(/images/repBlock.jpg) left 3px no-repeat;}
-span#democrat { background: url(/images/demBlock.jpg) left 3px no-repeat;}
+span#republican { background: url(/images/bill/repBlock.jpg) left 3px no-repeat;}
+span#democrat { background: url(/images/bill/demBlock.jpg) left 3px no-repeat;}
 body.bill_sm div#voteKey span#democrat  { margin-left: 10px;}
 
 .clear { clear: both;}
