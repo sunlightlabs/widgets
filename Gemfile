@@ -1,6 +1,5 @@
 gem "rails", "3.0.0.beta"
 
-gem "sqlite3-ruby", :require => "sqlite3"
 gem "sunlight", :require => "sunlight"
 
 group :test do
@@ -8,4 +7,3 @@ group :test do
   gem "cucumber"
   gem "webrat"
 end
-
