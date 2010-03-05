@@ -5,12 +5,12 @@ Customize <%= @full_name %> for <%= @legislator.firstname + " " + @legislator.la
 <h3>Embed Code</h3>
 
 <code>
-  &lt;script type="text/javascript" src="http://<%= @frontend_hostname %>/embed?w=<%= params[:id] %>&bgd=<%= params[:bioguide_id] %>&s=<%= params[:size] %>"&gt;&lt;/script&gt;
+  &lt;script type="text/javascript" src="http://<%= settings[:frontend_hostname] %>/embed?w=<%= params[:id] %>&bgd=<%= params[:bioguide_id] %>&s=<%= params[:size] %>"&gt;&lt;/script&gt;
 </code>
 
 <h3>Live Example</h3>
 
-<script type="text/javascript" src="http://<%= @frontend_hostname %>/embed?w=<%= params[:id] %>&bgd=<%= params[:bioguide_id] %>&s=<%= params[:size] %>"></script>
+<script type="text/javascript" src="http://<%= settings[:frontend_hostname] %>/embed?w=<%= params[:id] %>&bgd=<%= params[:bioguide_id] %>&s=<%= params[:size] %>"></script>
 
 <p>
   <a href="<%= widget_path(params[:id], :bioguide_id => params[:bioguide_id], :size => "sm") %>">Small</a> | 

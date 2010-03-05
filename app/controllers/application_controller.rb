@@ -6,11 +6,11 @@ class ApplicationController < ActionController::Base
   private
   
   def load_settings
-    settings = YAML.load_file(Rails.root.to_s + "/config/settings.yml")
-    @frontend_hostname = settings['frontend_hostname']
-    @backend_hostname = settings['backend_hostname']
-    @sunlight_api_key = settings['sunlight_api_key']
-    Sunlight::Base.api_key = @sunlight_api_key
+    Sunlight::Base.api_key = settings[:sunlight_api_key]
   end
   
+  def settings
+    @settings ||= YAML.load_file "#{Rails.root}/config/settings.yml"
+  end
+  helper_method :settings
 end

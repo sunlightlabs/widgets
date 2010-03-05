@@ -6,6 +6,6 @@ Informative, Customizable Widgets
 
 <h3>Featured Widget</h3>
 
-<script type="text/javascript" src="http://<%= @frontend_hostname %>/embed?w=bio&bgd=B001265&s=med"></script>
+<script type="text/javascript" src="http://<%= settings[:frontend_hostname] %>/embed?w=bio&bgd=B001265&s=med"></script>
 
 <p><%= link_to "Customize this »", widget_path("bio", :bioguide_id => "B001265", :size => "med") %></p>
