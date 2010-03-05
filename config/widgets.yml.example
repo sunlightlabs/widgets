@@ -1,0 +1,8 @@
+:example:
+  :order: 1
+  :name: Example Widget
+  :description: Description of an example widget.
+:example_two:
+  :order: 2
+  :name: Example Widget 2
+  :description: Description of a second example widget.

@@ -1,15 +1,7 @@
 <% content_for :title, 'Widget Gallery' %>
 
 <ul>
-  <li>Simple Bio</li>
-  <li>Business Card</li>
-  <li>District Map</li>  
-  <li>Bill Report</li>
-  <li>Batting Average</li>
-  <li>Capitol Words</li>
-  <li>Interest Group Report Card</li>
-  <li>Top Contributors</li>
-  <li>Top Contractors in District</li>
-  <li>Earmark Stats</li>
-  <li>Party Time Map</li>
+  <% widgets.each do |slug, widget| %>
+    <li><%= widget[:name] %></li>
+  <% end %>
 </ul>
