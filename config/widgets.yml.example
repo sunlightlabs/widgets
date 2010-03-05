@@ -2,7 +2,9 @@
   :order: 1
   :name: Example Widget
   :description: Description of an example widget.
+  :new: true
 :example_two:
   :order: 2
   :name: Example Widget 2
   :description: Description of a second example widget.
+  :new: false
