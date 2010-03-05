@@ -18,6 +18,6 @@ module Widgets
     # config.time_zone = 'Central Time (US & Canada)'
     
     # Configure sensitive parameters which will be filtered from the log file.
-    # config.filter_parameters << :secret_key
+    config.filter_parameters << :password
   end
 end
