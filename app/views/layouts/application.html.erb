@@ -1,34 +1,37 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-  <head>
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Politiwidgets</title>
-    
-    <%= stylesheet_link_tag 'main' %>
-    
-    <!--[if IE 6]><link rel="stylesheet" href="buggy.css" type="text/css" media="screen" /><![endif]-->
-    <!--[if IE 7]><link rel="stylesheet" href="buggy7.css" type="text/css" media="screen" /><![endif]-->
-    
-    <script type="text/javascript" src="http://use.typekit.com/dsl8cnv.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-    
-    <%= yield :head %>
-  </head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Politiwidgets</title>
+  
+  <%= stylesheet_link_tag 'main' %>
+  
+  <!--[if IE 6]><link rel="stylesheet" href="buggy.css" type="text/css" media="screen" /><![endif]-->
+  <!--[if IE 7]><link rel="stylesheet" href="buggy7.css" type="text/css" media="screen" /><![endif]-->
+  
+  <script type="text/javascript" src="http://use.typekit.com/dsl8cnv.js"></script>
+  <script type="text/javascript">try {Typekit.load();} catch(e) {}</script>
+  
+  <%= yield :head %>
+</head>
+
+<body class="home">
   
   <div id="headerWrapper">
     <div id="headerContainer">
       <div id="pageMain">
         <div id="header">
           
-          <h1><%= link_to 'Politiwidgets', root_path %></a></h1>
+          <h1>
+            <%= link_to 'Politiwidgets', root_path %></a>
+          </h1>
           
           <div id="nav">
             <ul>
-                <li><a id="aboutUs" href="#">About Us</a></li>
-                <li><a id="contact" href="#">Contact</a></li>
+              <li><%= link_to 'About Us', about_path, :id => 'aboutUs' %></li>
+              <li><%= link_to 'Contact', contact_path, :id => 'contact' %></li>
             </ul>
           </div>
           
@@ -39,17 +42,23 @@
             </button>
           </form>
           
-          <% if true %>
+          <% if yield :bubble %>
+          
             <div id="aboutBubble">
               <h3>About Politiwidgets</h3>
-              <p>Always innovating and creating new tools for a transparent government for reporters, bloggers and other writers about government policy and lawmakers. Politiwidgets are dynamic updatable customizable infographics to help show statical data of U.S. lawmakers. Viva la Transparency!</p>
-            </div> <!-- end aboutBubble -->
+              <p>
+                Always innovating and creating new tools for a transparent government for reporters, bloggers and other writers about government policy and lawmakers. Politiwidgets are dynamic updatable customizable infographics to help show statical data of U.S. lawmakers. Viva la Transparency!
+              </p>
+            </div>
+            
             <div id="featureShadow">
               <div id="featureBox">
                 <%= image_tag 'site/img-feature.jpg', :alt => 'featured widget', :id => 'featuredImage' %>
-                
                 <h2>Featured</h2>
-                <p id="featuredText">Our featured widget is the Business Card widget for California Representative Stephanie Herseth Sandlin. You can build out a Business Card widget for any lawmaker in Congress with the Start Building button below.</p>
+                
+                <p id="featuredText">
+                  Our featured widget is the Business Card widget for California Representative Stephanie Herseth Sandlin. You can build out a Business Card widget for any lawmaker in Congress with the Start Building button below.
+                </p>
                 <a class="start" href="#">Start Building</a>
               </div>
             </div>
@@ -70,15 +79,14 @@
           
           <div class="adspace"></div>
           
-        </div> <!-- end rtColumn -->
+        </div>
         
         <div class="clear"></div>
-      </div> <!-- end pageMain -->
-    </div> <!-- end headerContainer -->
-  </div> <!-- end headerWrapper -->
-  
-  
+      </div>
+    </div>
+  </div>
   <div class="clear"></div>
+  
   
   <div id="footerWrapper">
     <div id="footer">
@@ -89,8 +97,8 @@
         </p>
       </div>
     <div class="clear"></div>
-    </div> <!-- end footer -->
-  </div> <!-- end footerWrapper -->
+    </div>
+  </div>
   
 </body>
 </html>
