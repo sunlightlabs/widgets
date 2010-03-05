@@ -629,12 +629,12 @@ body.home #ltColumn {
 	width: 340px;
 }
 
-.odd, .oddLast {
+.odd {
 	border-right: 2px dotted #1D77A0;
 	padding-left: 10px;
 }
 
-.even, .odd, .evenLast, .oddLast{
+.even, .odd {
 	float: left;
 	width: 348px;
 	height: 152px;
@@ -643,7 +643,7 @@ body.home #ltColumn {
 	border-bottom: 2px dotted #1D77A0;
 }
 
-.even img, .odd img, .evenLast img, .oddLast img {
+.even img, .odd img {
 	border: 1px solid #406C78;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
@@ -652,7 +652,7 @@ body.home #ltColumn {
 	margin-right: 30px;
 }
 
-.evenLast, .oddLast {
+.odd.last {
 	border-bottom: 0px;
 }
 
