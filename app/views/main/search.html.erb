@@ -1,13 +1,13 @@
 <% content_for :title do %>
-<%= @query ? "Results for #{@query_type}: #{@query}" : "Search" %>
+  <%= @query ? "Results for #{@query_type}: #{@query}" : "Search" %>
 <% end %>
 
 <% if @legislators.nil? or @legislators.empty? -%>
-<p>No results found. Please try searching again.</p>
+  <p>No results found. Please try searching again.</p>
 <% else -%>
-<ul>
-<% @legislators.each do |legislator| -%>
-  <li><%= link_to "#{legislator.title}. #{legislator.firstname} #{legislator.lastname}", widget_path("bio", :bioguide_id => legislator.bioguide_id, :size => "med") %></li>
-<% end -%>
-</ul>
+  <ul>
+  <% @legislators.each do |legislator| -%>
+    <li><%= link_to "#{legislator.title}. #{legislator.firstname} #{legislator.lastname}", widget_path("bio", :bioguide_id => legislator.bioguide_id, :size => "med") %></li>
+  <% end -%>
+  </ul>
 <% end -%>
