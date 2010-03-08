@@ -37,4 +37,8 @@ module ApplicationHelper
     name << " #{legislator.name_suffix}" if legislator.name_suffix.present?
     name << ", #{legislator.nickname.present? ? legislator.nickname : legislator.firstname}"
   end
+  
+  def full_name_for(legislator)
+    "#{title_for legislator} #{search_name_for legislator} (#{legislator.party}) #{district_for legislator}"
+  end
 end

@@ -9,7 +9,7 @@
 
 <ul>
   <% widgets.each do |slug, widget| %>
-    <li class="<%= cycle 'odd', 'even' %> <%= 'last' if slug == widgets.keys.last %>">
+    <li class="widgetHome <%= cycle 'odd', 'even' %> <%= 'last' if slug == widgets.keys.last %>">
       <img src="images/<%= slug %>/icon.jpg" alt="<%= h widget[:name] %>"/>
       
       <% if widget[:new] %>

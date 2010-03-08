@@ -1,5 +1,13 @@
 class LegislatorsController < ApplicationController
   
+  def show
+    if results = Sunlight::Legislator.all_where(:bioguide_id => params[:id]) and results.any?
+      @legislator = results.first
+    else
+      head :not_found
+    end
+  end
+  
   def index
     @query = params[:q]
     @legislators = []

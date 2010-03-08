@@ -344,7 +344,7 @@ body.home #ltColumn {
 	width: 220px;
 }
 
-.widgetView, .widgetViewLast {
+.widgetView {
 	width: 350px;
 	float: left;
 	margin-bottom: 15px;
@@ -352,7 +352,7 @@ body.home #ltColumn {
 	border-bottom: 2px dotted #1D77A0;
 }
 
-.widgetViewLast {
+.widgetView.odd.last, .widgetView.future {
 	border-bottom: none;
 }
 
@@ -624,17 +624,17 @@ body.home #ltColumn {
   text-indent: -9999em;
 }
 
-.even {
+.widgetHome.even {
 	padding-left: 20px;
 	width: 340px;
 }
 
-.odd {
+.widgetHome.odd {
 	border-right: 2px dotted #1D77A0;
 	padding-left: 10px;
 }
 
-.even, .odd {
+.widgetHome {
 	float: left;
 	width: 348px;
 	height: 152px;
@@ -643,7 +643,7 @@ body.home #ltColumn {
 	border-bottom: 2px dotted #1D77A0;
 }
 
-.even img, .odd img {
+.widgetHome img {
 	border: 1px solid #406C78;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
@@ -652,7 +652,7 @@ body.home #ltColumn {
 	margin-right: 30px;
 }
 
-.odd.last {
+.widgetHome.odd.last {
 	border-bottom: 0px;
 }
 
