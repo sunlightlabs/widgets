@@ -70,13 +70,9 @@
         </div>
         
         <div id="rtColumn">
+          <%= render :partial => "layouts/sidebar/#{yield(:sidebar).present? ? yield(:sidebar) : 'nav'}" %>
         
-          <div id="sidefutureBubble">
-            <%= yield :sidebar %>
-          </div>
-          
-          <div class="adspace"></div>
-          
+          <div class="adspace"></div>  
         </div>
         
         <div class="clear"></div>
