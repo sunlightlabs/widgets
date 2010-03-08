@@ -1,10 +1,10 @@
 class LegislatorsController < ApplicationController
   
   def show
-    if results = Sunlight::Legislator.all_where(:bioguide_id => params[:id]) and results.any?
+    if results = Sunlight::Legislator.all_where(:bioguide_id => params[:bioguide_id]) and results.any?
       @legislator = results.first
     else
-      head :not_found
+      head :not_found and return false
     end
   end
   

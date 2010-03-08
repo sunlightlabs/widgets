@@ -1,18 +1,24 @@
 class WidgetsController < ApplicationController
-
-  def show
-    @legislator = Sunlight::Legislator.all_where(:bioguide_id => params[:bioguide_id]).first
-
-    case params[:id] 
-    when 'bio'
-      @full_name = "Simple Bio"
-    when 'bill'
-      @full_name = "Bill Voting Report"
-    end 
-  end
-
+  before_filter :load_widget, :load_legislator
+  
+  
   def embed
     render :layout => false
   end
 
+  private
+  
+  def load_widget
+    unless params[:id].present? and @widget = widgets[params[:id].to_sym]
+      head :not_found and return false 
+    end
+  end
+  
+  def load_legislator
+    if results = Sunlight::Legislator.all_where(:bioguide_id => params[:bioguide_id]) and results.any?
+      @legislator = results.first
+    else
+      head :not_found and return false
+    end
+  end
 end

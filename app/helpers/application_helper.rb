@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def embed_url(widget_id, bioguide_id, options = {})
+    "http://#{settings[:frontend_hostname]}/embed?w=#{widget_id}&bgd=#{bioguide_id}&s=#{options[:size] || 'lg'}"
+  end
+  
   def long_title(title)
     {:rep => 'Representative',
      :senator => 'Senator',

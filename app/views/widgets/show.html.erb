@@ -1,19 +1,110 @@
-<% content_for :title do %>
-  Customize <%= @full_name %> for <%= @legislator.firstname + " " + @legislator.lastname %>
-<% end %>
+<h2><%= h @widget[:name] %></h2>
 
-<h3>Embed Code</h3>
+<div id="leftWidgetColumn">
 
-<code>
-  &lt;script type="text/javascript" src="http://<%= settings[:frontend_hostname] %>/embed?w=<%= params[:id] %>&bgd=<%= params[:bioguide_id] %>&s=<%= params[:size] %>"&gt;&lt;/script&gt;
-</code>
+  <div id="widgetDirections">
+    <p id="directions">
+      Choose a Widget size below and alter content and style with the available dropdowns. Click Generate Widget to get your embed code and add to your site.
+    </p>
+    
+    <!-- Not sure if this is how we're going to do it
+      <span id="dataSource">Where the data is from</span>
+      <span id="dataWhen">Last pull</span>
+    -->
+  </div>
+  
+  <div id="widgetStage">
+    <div class="widgetSizes">
+      <h3>Choose Size</h3>
+      
+      <ul id="switcher">
+        <li id="switcherbtn1"><a href="#">160 x 300</a></li>
+        <li id="switcherbtn2"><a href="#">300 x 250</a></li>
+        <li id="switcherbtn3"><a href="#">400 x 300</a></li>
+      </ul>
+      
+      <div class="clear"></div>
+    </div>
+    
+    <div id="widgetConstruct">
+      <script type="text/javascript" src="<%= embed_url params[:id], params[:bioguide_id] %>"></script>
+    </div>
+  </div>
+  
+</div>
 
-<h3>Live Example</h3>
+<div id="rightWidgetColumn">
 
-<script type="text/javascript" src="http://<%= settings[:frontend_hostname] %>/embed?w=<%= params[:id] %>&bgd=<%= params[:bioguide_id] %>&s=<%= params[:size] %>"></script>
-
-<p>
-  <a href="<%= widget_path(params[:id], :bioguide_id => params[:bioguide_id], :size => "sm") %>">Small</a> | 
-  <a href="<%= widget_path(params[:id], :bioguide_id => params[:bioguide_id], :size => "med") %>">Medium</a> | 
-  <a href="<%= widget_path(params[:id], :bioguide_id => params[:bioguide_id], :size => "lg") %>">Large</a>
-</p>
+  <form action="." method="get">
+    <fieldset class="custom">
+      <legend>Style</legend>
+      <ul>
+        <li>
+          <select id="primaryColor">
+            <option value="">Primary Color</option>
+            <option value="red">Red</option>
+            <option value="orange">Orange</option>
+            <option value="yellow">Yellow</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+            <option value="indigo">Indigo</option>
+            <option value="violet">Violet</option>
+            <option value="black">Black</option>
+            <option value="white">White</option>
+            <option value="gray">Gray</option>
+          </select>
+        </li>
+        <li>  
+          <span class="or">or</span>
+          <input id="primaryHex" name="primaryHex" type="text" value="Enter Hex Code"/>
+        </li>
+        <li>
+          <select id="secondaryColor">
+            <option value="">Secondary Color</option>
+            <option value="red">Red</option>
+            <option value="orange">Orange</option>
+            <option value="yellow">Yellow</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+            <option value="indigo">Indigo</option>
+            <option value="violet">Violet</option>
+            <option value="black">Black</option>
+            <option value="white">white</option>
+            <option value="gray">gray</option>
+          </select>
+        </li>
+        <li>
+          <span class="or">or</span>
+          <input id="secondaryHex" name="secondaryHex" type="text" value="Enter Hex Code"/>
+        </li>
+      </ul>
+    </fieldset>
+    
+    <!-- This is where a widget-specific form partial will go, if necessary
+    <fieldset class="custom"> 
+      <legend>Content</legend>
+      
+    </fieldset>
+    -->
+    
+    <ul>
+      <li>
+        <label id="checkBoxType">
+          <input class="checkbox" type="checkbox" name="freezeDate"/>
+          &nbsp;&nbsp;Check box to freeze data from updating
+        </label>
+      </li>
+      <li>
+        <button class="generate" type="submit">
+          <span>Generate Widget</span>
+        </button>
+      </li>
+    </ul>
+  </form>
+  
+  <div id="embedCode">
+    <span>Embed Code</span>
+    <input id="grabCode" name="widgetCode" type="text"/>
+  </div>
+  
+</div>

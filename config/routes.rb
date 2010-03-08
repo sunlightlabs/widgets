@@ -5,8 +5,9 @@ Widgets::Application.routes.draw do |map|
   match 'contact' => 'main#contact', :as => 'contact'
   
   match 'search' => 'legislators#index', :as => 'search'
-  match 'legislator/:id' => 'legislators#show', :as  => 'legislator'
+  match 'legislator/:bioguide_id' => 'legislators#show', :as  => 'legislator'
 
+  match 'widget/:id' => 'widgets#show', :as => 'widget'
   match 'embed' => 'embed#embed', :as => 'embed'
   resources :widgets do
     member do

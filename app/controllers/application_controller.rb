@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   before_filter :load_settings
   helper_method :settings, :widgets
   
-  private
   
   def load_settings
     Sunlight::Base.api_key = settings[:sunlight_api_key]
