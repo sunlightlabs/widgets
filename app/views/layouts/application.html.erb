@@ -17,7 +17,7 @@
   <%= yield :head %>
 </head>
 
-<body class="home">
+<body class="<%= yield(:body).present? ? yield(:body) : "page" %>">
   
   <div id="headerWrapper">
     <div id="headerContainer">
@@ -35,15 +35,14 @@
             </ul>
           </div>
           
-          <form id="searchForm" action="." method="get">
-            <input id="searchField" type="text" name="search" value="Search a lawmaker or state"/>
+          <form id="searchForm" action="<%= search_path %>" method="get">
+            <input id="searchField" type="text" name="q" value="Search a lawmaker or state"/>
             <button class="searchBtn" type="submit">
               <span>Search</span>
             </button>
           </form>
           
-          <% if yield :bubble %>
-          
+          <% if yield(:bubble).present? %>
             <div id="aboutBubble">
               <h3>About Politiwidgets</h3>
               <p>
@@ -73,10 +72,7 @@
         <div id="rtColumn">
         
           <div id="sidefutureBubble">
-            <h3><%= yield :sidebar_title %></h3>
-            <p>
-              <%= yield :sidebar %>
-            </p>
+            <%= yield :sidebar %>
           </div>
           
           <div class="adspace"></div>

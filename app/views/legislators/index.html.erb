@@ -1,0 +1,52 @@
+<% content_for :sidebar_title, 'Politiwidgets' %>
+<% content_for :sidebar do %>
+  <%= render :partial => 'layouts/sidebar_widgets' %>
+<% end %>
+<% content_for :head do %>
+  <%= javascript_include_tag 'jquery-1.4.2.min' %>
+  <script type="text/javascript">
+    $().ready(function() {  
+
+      $('tr.lawMaker').mouseenter(function() {
+        $(this).addClass('hover');
+      }).mouseleave(function() {
+        $(this).removeClass('hover');
+      }).click(function() {
+        var url = $(this).find('a').attr('href');
+        if (url) {
+            window.location = url;
+        }
+      });
+      
+    });
+  </script>
+<% end %>
+
+
+<h2>Results for &#8220;California&#8221;</h2>
+<table id="mainTable">
+  <thead>
+    <tr id="titles">
+      <th id="repPhoto">Photo</th>
+      <th class="sorted">Position</th>
+      <th class="unsorted">Name</th>
+      <th class="unsorted">Party</th>
+      <th class="unsorted">District</th>
+      </tr>
+  </thead>
+  <tbody>
+    <% @legislators.each do |legislator| %>
+      <tr class="lawMaker"> 
+        <td class="headshot">
+          <img src="<%= photo_url_for legislator%>" alt="headshot"/>
+        </td>
+        <td class="lawPosition"><%= title_for legislator %></td>
+        <td class="lawName">
+          <a href="#"><%= search_name_for legislator %></a>
+        </td>
+        <td class="lawParty"><%= party_for legislator %></td>
+        <td class="lawDistrict"><%= district_for legislator %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
