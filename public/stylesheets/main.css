@@ -614,14 +614,14 @@ body.home #ltColumn {
 }
 
 .new {
-	background: url(/images/site/img-new-banner.png) top left no-repeat;
-	display: block;
-	width: 80px;
-	height: 80px;
-	position: absolute;
-	margin-left: -3px;
-	margin-top: -3px;
-	text-indent: -9999em;
+  background: url(/images/site/img-new.png) top left no-repeat;
+  display: block;
+  width: 118px;
+  height: 35px;
+  position: absolute;
+  margin-left: -3px;
+  margin-top: -3px;
+  text-indent: -9999em;
 }
 
 .even {
