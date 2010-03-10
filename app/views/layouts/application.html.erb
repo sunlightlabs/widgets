@@ -46,24 +46,9 @@
           </form>
           
           <% if yield(:bubble).present? %>
-            <div id="aboutBubble">
-              <h3>About Politiwidgets</h3>
-              <p>
-                Always innovating and creating new tools for a transparent government for reporters, bloggers and other writers about government policy and lawmakers. Politiwidgets are dynamic updatable customizable infographics to help show statical data of U.S. lawmakers. Viva la Transparency!
-              </p>
-            </div>
+            <%= render :partial => "layouts/bubble" %>
             
-            <div id="featureShadow">
-              <div id="featureBox">
-                <%= image_tag 'site/img-feature.jpg', :alt => 'featured widget', :id => 'featuredImage' %>
-                <h2>Featured</h2>
-                
-                <p id="featuredText">
-                  Our featured widget is the Business Card widget for California Representative Stephanie Herseth Sandlin. You can build out a Business Card widget for any lawmaker in Congress with the Start Building button below.
-                </p>
-                <a class="start" href="#">Start Building</a>
-              </div>
-            </div>
+            <%= render :partial => "layouts/featured" %>
           <% end %>
           
         </div> <!-- end header -->

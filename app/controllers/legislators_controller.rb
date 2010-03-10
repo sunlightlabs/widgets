@@ -10,7 +10,6 @@ class LegislatorsController < ApplicationController
   
   def index
     @query = params[:q]
-    @legislators = []
     
     if @query =~ /^[0-9]{5}$/
       @query_type = "ZIP Code"
@@ -41,6 +40,7 @@ class LegislatorsController < ApplicationController
     if @legislators
       @legislators.compact!
     else
+      @legislators = []
       @query_type = "Phrase"
     end
   end

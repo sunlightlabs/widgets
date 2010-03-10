@@ -1,0 +1,11 @@
+<div id="featureShadow">
+  <div id="featureBox">
+    <%= image_tag 'site/img-feature.jpg', :alt => 'featured widget', :id => 'featuredImage' %>
+    <h2>Featured</h2>
+    
+    <p id="featuredText">
+      Our featured widget is the Business Card widget for California Representative Stephanie Herseth Sandlin. You can build out a Business Card widget for any lawmaker in Congress with the Start Building button below.
+    </p>
+    <a class="start" href="<%= widget_path :id => @featured[:widget], :bioguide_id => @featured[:legislator] %>">Start Building</a>
+  </div>
+</div>

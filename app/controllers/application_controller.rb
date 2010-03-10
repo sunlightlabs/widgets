@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   before_filter :load_settings
-  helper_method :settings, :widgets
+  helper_method :settings, :widgets, :featured
   
   
   def load_settings
@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
   
   def settings
     @settings ||= YAML.load_file "#{Rails.root}/config/settings.yml"
+  end
+  
+  def featured
+    YAML.load_file "#{Rails.root}/config/featured.yml"
   end
   
   def widgets
