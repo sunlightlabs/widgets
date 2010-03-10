@@ -737,6 +737,7 @@ tr.lawMaker {
 	border-bottom: 2px dotted #1D77A0;
 	color: #1D77A0;
 	font-weight: bold;
+  cursor: pointer;
 }
 
 tr.lawMaker.hover {
