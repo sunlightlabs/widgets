@@ -28,7 +28,7 @@ module ApplicationHelper
      "I" => "Independent"}[legislator.party]
   end
   
-  def district_for(legislator)
+  def full_district_for(legislator)
     "#{legislator.state}-#{district_for legislator}"
   end
   
@@ -43,6 +43,6 @@ module ApplicationHelper
   end
   
   def full_name_for(legislator)
-    "#{title_for legislator} #{search_name_for legislator} (#{legislator.party}) #{district_for legislator}"
+    "#{title_for legislator} #{search_name_for legislator} (#{legislator.party}) #{full_district_for legislator}"
   end
 end

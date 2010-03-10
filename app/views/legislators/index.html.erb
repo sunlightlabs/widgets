@@ -41,7 +41,7 @@
           <a href="<%= legislator_path :bioguide_id => legislator.bioguide_id %>"><%= search_name_for legislator %></a>
         </td>
         <td class="lawParty"><%= party_for legislator %></td>
-        <td class="lawDistrict"><%= district_for legislator %></td>
+        <td class="lawDistrict"><%= full_district_for legislator %></td>
       </tr>
     <% end %>
   </tbody>
