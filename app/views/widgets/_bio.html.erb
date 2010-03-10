@@ -34,7 +34,7 @@
   </div>
 
   <script type="text/javascript" charset="utf-8">
-    var data_url = "http://<%= settings[:backend_hostname] %>/api/legislator.json?apikey=<%= settings[:sunlight_api_key] %>&bioguide_id=<%= params[:bioguide_id] %>&sections=basic,extended&callback=?"
+    var data_url = "<%= settings[:data_endpoint] %>/legislator.json?apikey=<%= settings[:sunlight_api_key] %>&bioguide_id=<%= params[:bioguide_id] %>&sections=basic,extended&callback=?"
     $.getJSON(data_url, function(data) {
       var legislator = data.legislator;
     

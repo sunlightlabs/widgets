@@ -1,3 +1,8 @@
+# The hostname this expects to run on
 :frontend_hostname: localhost:3000
-:backend_hostname: localhost:4567
-:sunlight_api_key: yourkeyhere
+
+# The Drumbone URL, all the way to the endpoint (don't put a trailing slash)
+:data_endpoint: http://localhost:4567/api
+
+# API key for Sunlight API services
+:sunlight_api_key: 

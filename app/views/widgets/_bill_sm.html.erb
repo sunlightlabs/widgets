@@ -70,7 +70,7 @@
     </div>
   </div>
   <script type="text/javascript" charset="utf-8">
-    var legislator_url = "http://<%= settings[:backend_hostname] %>/api/legislator.json?apikey=<%= settings[:sunlight_api_key] %>&bioguide_id=<%= params[:bioguide_id] %>&sections=basic&callback=?"
+    var legislator_url = "<%= settings[:data_endpoint] %>/legislator.json?apikey=<%= settings[:sunlight_api_key] %>&bioguide_id=<%= params[:bioguide_id] %>&sections=basic&callback=?"
     $.getJSON(legislator_url, function(data) {
       var legislator = data.legislator;
 
@@ -111,7 +111,7 @@
 
     });
     
-    var bill_url = "http://<%= settings[:backend_hostname] %>/api/bill.json?apikey=<%= settings[:sunlight_api_key] %>&bill_id=<%= params[:bill_id] %>&sections=basic,votes&callback=?"
+    var bill_url = "<%= settings[:data_endpoint] %>/bill.json?apikey=<%= settings[:sunlight_api_key] %>&bill_id=<%= params[:bill_id] %>&sections=basic,votes&callback=?"
     $.getJSON(bill_url, function(data) {
       var bill = data.bill;
       
@@ -140,7 +140,7 @@
         }
       }
       
-      var roll_url = "http://<%= settings[:backend_hostname] %>/api/roll.json?apikey=<%= settings[:sunlight_api_key] %>&roll_id=" + roll_id + "&sections=basic,party_vote_breakdown,voter_ids&callback=?"
+      var roll_url = "<%= settings[:data_endpoint] %>/roll.json?apikey=<%= settings[:sunlight_api_key] %>&roll_id=" + roll_id + "&sections=basic,party_vote_breakdown,voter_ids&callback=?"
       $.getJSON(roll_url, function(data) {
         var roll = data.roll;
         
