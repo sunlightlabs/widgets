@@ -17,6 +17,7 @@ body{
     line-height: 20px;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     border: 4px solid #919191;
+    background-color: white;
 }
 
 body.sm { width: 152px; height: 292px; }
