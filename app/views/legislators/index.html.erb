@@ -1,4 +1,6 @@
 <% content_for :head do %>
+  <%= javascript_include_tag 'jquery.tablesorter.min' %>
+  
   <script type="text/javascript">
     $().ready(function() {  
 
@@ -13,6 +15,14 @@
         }
       });
       
+      $('#mainTable').tablesorter({
+        sortList: [[2,0]], 
+        cssAsc: "asc", 
+        cssDesc: "desc",
+        textExtraction: "complex",
+        headers: {0: {sorter: false}}
+      });
+      
     });
   </script>
 <% end %>
@@ -23,11 +33,11 @@
   <thead>
     <tr id="titles">
       <th id="repPhoto">Photo</th>
-      <th class="sorted">Position</th>
-      <th class="unsorted">Name</th>
-      <th class="unsorted">Party</th>
-      <th class="unsorted">District</th>
-      </tr>
+      <th class="column">Position</th>
+      <th class="column">Name</th>
+      <th class="column">Party</th>
+      <th class="column">District</th>
+    </tr>
   </thead>
   
   <tbody>

@@ -712,13 +712,19 @@ tr#titles th{
 	padding: 6px 0px 6px 15px;
 }
 
-.sorted {
-	color: #5FB9E2;
+table#mainTable th {
+  color: #FFF;
+}
+
+table#mainTable th.asc, table#mainTable th.desc {
+  color: #5FB9E2;
+}
+
+table#mainTable th.desc {
 	background: url(/images/site/img-arrow-down.png) left 11px no-repeat;
 }
 
-.unsorted {
-	color: #FFF;
+table#mainTable th.asc {
 	background: url(/images/site/img-arrow-up.png) left 11px no-repeat;
 }
 

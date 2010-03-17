@@ -33,8 +33,12 @@ module ApplicationHelper
   end
   
   def district_for(legislator)
-    legislator.title == 'Sen' ? legislator.district.gsub(' Seat', '') : legislator.district
+    legislator.title == 'Sen' ? legislator.district.gsub(' Seat', '') : zero_prefix(legislator.district)
   end
+  
+  def zero_prefix(district)
+    district.to_i < 10 ? "0#{district}" : "#{district}"
+  end  
   
   def search_name_for(legislator)
     name = legislator.lastname
