@@ -41,9 +41,10 @@ module ApplicationHelper
   end  
   
   def search_name_for(legislator)
-    name = legislator.lastname
+    name = "#{legislator.nickname.present? ? legislator.nickname : legislator.firstname} "
+    name << legislator.lastname
     name << " #{legislator.name_suffix}" if legislator.name_suffix.present?
-    name << ", #{legislator.nickname.present? ? legislator.nickname : legislator.firstname}"
+    name
   end
   
   def full_name_for(legislator)

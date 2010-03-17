@@ -30,9 +30,7 @@
           <span id="republican">Rep</span>
           <span id="democrat">Dem</span>
         </div>
-        <div id="chart" class="right">
-          <div class="chart_content">Where the chart would be</div>
-        </div>
+        <div id="chart-container-1" class="right"></div>
         <div id="chartTotals" class="left">
           <dl>
             <dt class="aye">Aye</dt>
@@ -137,10 +135,10 @@
         }
       }
       
-      var roll_url = "<%= settings[:data_endpoint] %>/roll.json?apikey=<%= settings[:sunlight_api_key] %>&roll_id=" + roll_id + "&sections=basic,party_vote_breakdown,voter_ids&callback=?"
+      var roll_url = "http://<%= @backend_hostname %>/api/roll.json?apikey=<%= @sunlight_api_key %>&roll_id=" + roll_id + "&sections=basic,party_vote_breakdown,voter_ids&callback=?"
       $.getJSON(roll_url, function(data) {
         var roll = data.roll;
-        
+
         var roll_data = {
           "ayes": roll.vote_breakdown.ayes,
           "nays": roll.vote_breakdown.nays,
@@ -155,6 +153,7 @@
           "rep_present": roll.party_vote_breakdown.R.present,
           "rep_not_voting": roll.party_vote_breakdown.R.not_voting
         };
+
         
         var vote_obj = _.detect(roll.voter_ids, function(voter_id) { return voter_id.voter_id == '<%= params[:bioguide_id] %>'});
         var legislator_vote = "";
@@ -169,7 +168,6 @@
         roll_data.legislator_vote_value = legislator_vote;
         roll_data.legislator_vote_class = legislator_vote.toLowerCase();
         $('div#lawmakerVote').autoRender(roll_data);
-        
         
       });
       

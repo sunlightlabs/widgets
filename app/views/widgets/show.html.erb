@@ -1,4 +1,4 @@
-<h2><%= h @widget[:name] %></h2>
+<h2><%= h(@widget[:name] + " for " + search_name_for(@legislator)) %></h2>
 
 <div id="leftWidgetColumn">
 
@@ -18,16 +18,16 @@
       <h3>Choose Size</h3>
       
       <ul id="switcher">
-        <li id="switcherbtn1"><a href="#">160 x 300</a></li>
-        <li id="switcherbtn2"><a href="#">300 x 250</a></li>
-        <li id="switcherbtn3"><a href="#">400 x 300</a></li>
+        <li class="switcherbtn"><%= link_to "160 x 300", widget_path(params[:id], :bioguide_id => params[:bioguide_id], :size => "sm") %></li>
+        <li class="switcherbtn"><%= link_to "300 x 250", widget_path(params[:id], :bioguide_id => params[:bioguide_id], :size => "med") %></li>
+        <li class="switcherbtn"><%= link_to "400 x 300", widget_path(params[:id], :bioguide_id => params[:bioguide_id], :size => "lg") %></li>
       </ul>
       
       <div class="clear"></div>
     </div>
     
     <div id="widgetConstruct">
-      <script type="text/javascript" src="<%= embed_url params[:id], params[:bioguide_id] %>"></script>
+      <script type="text/javascript" src="<%= embed_url params[:id], params[:bioguide_id], :size => params[:size] %>"></script>
     </div>
   </div>
   
