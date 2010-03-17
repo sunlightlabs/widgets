@@ -18,17 +18,49 @@
       <h3>Choose Size</h3>
       
       <ul id="switcher">
-        <li class="switcherbtn"><%= link_to "160 x 300", widget_path(params[:id], :bioguide_id => params[:bioguide_id], :size => "sm") %></li>
-        <li class="switcherbtn"><%= link_to "300 x 250", widget_path(params[:id], :bioguide_id => params[:bioguide_id], :size => "med") %></li>
-        <li class="switcherbtn"><%= link_to "400 x 300", widget_path(params[:id], :bioguide_id => params[:bioguide_id], :size => "lg") %></li>
+        <li class="switcherbtn"><%= link_to "160 x 300", '#', :id => "sm" %></li>
+        <li class="switcherbtn"><%= link_to "300 x 250", '#', :id => "med" %></li>
+        <li class="switcherbtn"><%= link_to "400 x 300", '#', :id => "lg" %></li>
       </ul>
       
       <div class="clear"></div>
     </div>
     
     <div id="widgetConstruct">
-      <script type="text/javascript" src="<%= embed_url params[:id], params[:bioguide_id], :size => params[:size] %>"></script>
+      <iframe src='http://<%= settings[:frontend_hostname] %>/widgets/<%= params[:id] %>/embed?bioguide_id=<%= params[:bioguide_id] %>&size=lg' width='<%= @width %>' height='<%= @height %>' frameborder='0'></iframe>
     </div>
+    
+    <script type="text/javascript" charset="utf-8">
+    
+      $(document).ready(function() {
+
+        var widget_size = 'lg'
+
+        $("li.switcherbtn a").click(function() {
+
+          widget_size = $(this).attr('id');
+          var width = 400;
+          var height = 300;
+
+          if (widget_size == 'sm') {
+            width = 160;
+            height = 300;
+          } else if (widget_size == 'med') {
+            width = 300;
+            height = 250;
+          } else {
+            width = 400;
+            height = 300;
+          }
+
+          var iframe_url = 'http://' + '<%= settings[:frontend_hostname] %>' + '/widgets/' + '<%= params[:id] %>' + '/embed?bioguide_id=' + '<%= params[:bioguide_id] %>' + '&size=' + widget_size;
+          $("#widgetConstruct iframe").attr("src", iframe_url).attr("width", width).attr("height", height);
+        });
+        
+      });
+      
+    </script>
+    
   </div>
   
 </div>

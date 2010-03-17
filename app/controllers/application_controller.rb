@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :load_settings
+  before_filter :load_settings, :load_size
   helper_method :settings, :widgets, :featured
   
   
@@ -29,5 +29,23 @@ class ApplicationController < ActionController::Base
       widgets[key] = widget_hash[key]
     end
     widgets
+  end
+  
+  def load_size
+    @size = params[:s] || params[:size] || 'lg'
+    case @size
+      when 'sm'
+        @width = 160
+        @height = 300
+      when 'med'
+        @width = 300
+        @height = 250
+      when 'lg'
+        @width = 400
+        @height = 300
+      else
+        @width = 300
+        @height = 250
+    end    
   end
 end
