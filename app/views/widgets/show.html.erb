@@ -34,8 +34,9 @@
     
       $(document).ready(function() {
 
-        var widget_size = 'lg'
-
+        var widget_size = 'lg';
+        var widget_color = '#1F83B5';
+        
         $("li.switcherbtn a").click(function() {
 
           widget_size = $(this).attr('id');
@@ -57,6 +58,14 @@
           $("#widgetConstruct iframe").attr("src", iframe_url).attr("width", width).attr("height", height);
         });
         
+        $("select#primaryColor").change(function() {
+          
+          console.log(widget_color);
+          widget_color = $(this).attr('value');
+          
+          var iframe_url = 'http://' + '<%= settings[:frontend_hostname] %>' + '/widgets/' + '<%= params[:id] %>' + '/embed?bioguide_id=' + '<%= params[:bioguide_id] %>' + '&size=' + widget_size + '&color=' + widget_color;
+          $("#widgetConstruct iframe").attr("src", iframe_url);
+        });
       });
       
     </script>
@@ -73,7 +82,7 @@
       <ul>
         <li>
           <select id="primaryColor">
-            <option value="">Primary Color</option>
+            <option value="">Choose a Color</option>
             <option value="red">Red</option>
             <option value="orange">Orange</option>
             <option value="yellow">Yellow</option>
@@ -85,29 +94,6 @@
             <option value="white">White</option>
             <option value="gray">Gray</option>
           </select>
-        </li>
-        <li>  
-          <span class="or">or</span>
-          <input id="primaryHex" name="primaryHex" type="text" value="Enter Hex Code"/>
-        </li>
-        <li>
-          <select id="secondaryColor">
-            <option value="">Secondary Color</option>
-            <option value="red">Red</option>
-            <option value="orange">Orange</option>
-            <option value="yellow">Yellow</option>
-            <option value="green">Green</option>
-            <option value="blue">Blue</option>
-            <option value="indigo">Indigo</option>
-            <option value="violet">Violet</option>
-            <option value="black">Black</option>
-            <option value="white">white</option>
-            <option value="gray">gray</option>
-          </select>
-        </li>
-        <li>
-          <span class="or">or</span>
-          <input id="secondaryHex" name="secondaryHex" type="text" value="Enter Hex Code"/>
         </li>
       </ul>
     </fieldset>
