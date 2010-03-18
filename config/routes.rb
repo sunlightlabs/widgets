@@ -14,5 +14,8 @@ Widgets::Application.routes.draw do |map|
       get :embed
     end
   end
+  
+  # temporary
+  match 'gallery' => 'main#gallery'
 
 end

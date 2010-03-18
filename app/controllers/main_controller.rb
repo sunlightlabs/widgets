@@ -3,4 +3,8 @@ class MainController < ApplicationController
     @featured = featured
     @widget = widgets[@featured[:widget]]
   end
+  
+  def gallery
+    @hide_sidebar = true
+  end
 end
