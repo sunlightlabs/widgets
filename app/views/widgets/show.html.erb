@@ -29,54 +29,13 @@
     <div id="widgetConstruct">
       <iframe src='http://<%= settings[:frontend_hostname] %>/widgets/<%= params[:id] %>/embed?bioguide_id=<%= params[:bioguide_id] %>&size=lg' width='<%= @width %>' height='<%= @height %>' frameborder='0'></iframe>
     </div>
-    
-    <script type="text/javascript" charset="utf-8">
-    
-      $(document).ready(function() {
-
-        var widget_size = 'lg';
-        var widget_color = '#1F83B5';
         
-        $("li.switcherbtn a").click(function() {
-
-          widget_size = $(this).attr('id');
-          var width = 400;
-          var height = 300;
-
-          if (widget_size == 'sm') {
-            width = 160;
-            height = 300;
-          } else if (widget_size == 'med') {
-            width = 300;
-            height = 250;
-          } else {
-            width = 400;
-            height = 300;
-          }
-
-          var iframe_url = 'http://' + '<%= settings[:frontend_hostname] %>' + '/widgets/' + '<%= params[:id] %>' + '/embed?bioguide_id=' + '<%= params[:bioguide_id] %>' + '&size=' + widget_size;
-          $("#widgetConstruct iframe").attr("src", iframe_url).attr("width", width).attr("height", height);
-        });
-        
-        $("select#primaryColor").change(function() {
-          
-          console.log(widget_color);
-          widget_color = $(this).attr('value');
-          
-          var iframe_url = 'http://' + '<%= settings[:frontend_hostname] %>' + '/widgets/' + '<%= params[:id] %>' + '/embed?bioguide_id=' + '<%= params[:bioguide_id] %>' + '&size=' + widget_size + '&color=' + widget_color;
-          $("#widgetConstruct iframe").attr("src", iframe_url);
-        });
-      });
-      
-    </script>
-    
   </div>
   
 </div>
 
 <div id="rightWidgetColumn">
 
-  <form action="." method="get">
     <fieldset class="custom">
       <legend>Style</legend>
       <ul>
@@ -113,12 +72,11 @@
         </label>
       </li>
       <li>
-        <button class="generate" type="submit">
+        <button id="generate" class="generate" type="submit">
           <span>Generate Widget</span>
         </button>
       </li>
     </ul>
-  </form>
   
   <div id="embedCode">
     <span>Embed Code</span>
@@ -126,3 +84,46 @@
   </div>
   
 </div>
+
+<script type="text/javascript" charset="utf-8">
+
+  $(document).ready(function() {
+
+    var widget_size = 'lg';
+    var widget_color = '#1F83B5';
+    
+    $("li.switcherbtn a").click(function() {
+      widget_size = $(this).attr('id');
+      var width = 400;
+      var height = 300;
+
+      if (widget_size == 'sm') {
+        width = 160;
+        height = 300;
+      } else if (widget_size == 'med') {
+        width = 300;
+        height = 250;
+      } else {
+        width = 400;
+        height = 300;
+      }
+
+      var iframe_url = 'http://' + '<%= settings[:frontend_hostname] %>' + '/widgets/' + '<%= params[:id] %>' + '/embed?bioguide_id=' + '<%= params[:bioguide_id] %>' + '&size=' + widget_size;
+      $("#widgetConstruct iframe").attr("src", iframe_url).attr("width", width).attr("height", height);
+    });
+    
+    $("select#primaryColor").change(function() {
+      widget_color = $(this).attr('value');
+      
+      var iframe_url = 'http://' + '<%= settings[:frontend_hostname] %>' + '/widgets/' + '<%= params[:id] %>' + '/embed?bioguide_id=' + '<%= params[:bioguide_id] %>' + '&size=' + widget_size + '&color=' + widget_color;
+      $("#widgetConstruct iframe").attr("src", iframe_url);
+    });
+    
+    $("button#generate").click(function() {
+      var embed_url = "http://" + "<%= settings[:frontend_hostname] %>" + "/embed?w=" + "<%= params[:id] %>" + "&bgd=" + "<%= params[:bioguide_id] %>" + "&s=" + widget_size + '&color=' + widget_color;
+      
+      $('input#grabCode').attr('value', "<script type='text\/javascript' src='" + embed_url + "'><\/script>");
+    });
+  });
+  
+</script>
