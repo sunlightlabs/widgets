@@ -1,0 +1,50 @@
+/*
+ * YUI Resect CSS version: 2.2.2 
+ * Copyright (c) 2007, Yahoo! Inc. All rights reserved.
+ * Licensed under the BSD License: http://developer.yahoo.net/yui/license.txt
+ */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,optgroup,button,p,blockquote,th,td{margin:0;padding:0;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}table{border-collapse:collapse;border-spacing:0;}caption,th{text-align:left;}ol,ul{list-style:none;}fieldset,img{border:0;}input,textarea,select,optgroup,option,button{font-family:inherit;font-size:100%;}button,input {width: auto;overflow: visible;}optgroup,address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;}
+dl li{list-style: none;}
+
+a:link { outline: none; }
+a:visited { outline: none; }
+a:hover { outline: none; }
+a:active { outline: none; }
+
+body{
+    color:#5A5A5A;
+    font-size: 76%;
+    line-height: 20px;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    border: 4px solid #919191;
+}
+
+body.contract_sm { width: 152px; height: 292px; }
+body.contract_med { width: 292px; height: 242px; }
+body.contract_lg { width: 392px; height: 292px; }
+
+body.contract_sm div#chart-container-1 { width: 142px; height: 100px;}
+body.contract_med div#chart-container-1 { width: 282px; height: 150px;}
+
+div#mainContent { padding: 10px; }
+body.contract_sm div#mainContent { padding: 12px 10px 10px; }
+body.contract_lg div#mainContent { padding: 15px }
+
+div#header { background: url(/images/top_contractors/gradient_bill.png) bottom left repeat-x; }
+body.contract_lg div#header { height: 75px;}
+body.contract_med div#header { height: 65px;}
+body.contract_sm div#header { height: 80px;}
+
+div#headerWrapper { background-color: #DDD9D7; }
+
+h1 big { text-indent: -9999em; display: block; background: url(/images/top_contractors/header_title.png) top left no-repeat; height: 45px; float: left; width: 73px;}
+body.contract_sm h1 small { float: none; margin-left: 3px; margin-top: 46px; font-size: 90%; }
+h1 small { display: block; float: left; margin-left: 10px; margin-top: 28px; font-size: 100%; font-family: Georgia, Times New Roman, Times, serif; font-style: oblique;}
+h1 { float: left; padding: 10px;}
+body.contract_lg h1 { padding: 15px 15px 0;}
+div#districtMap { float: right; background: #fff; width: 45px; height: 34px; padding: 15px; border-left: 1px solid #BCBCBC;}
+body.contract_sm div#districtMap { padding: 5px; height: 69px;}
+body.contract_lg div#districtMap { height: 44px;}
+
+li { font-size: 90%; line-height: 17px; color: #878787;}
+ol { list-style-type: decimal; padding-left: 20px; margin-top: 5px;}

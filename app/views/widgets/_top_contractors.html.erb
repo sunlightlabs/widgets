@@ -1,0 +1,105 @@
+<body class="contract_lg">
+  <div id="pageMain">
+    <div id="headerWrapper">
+      <div id="header">
+        <h1>
+          <big>Top 5 Contractors</big><small>in <span class="state"></span></small>
+        </h1>
+        <div id="districtMap">
+          <img alt="district map" src="/images/districts/" class="pic@src+"/>
+        </div>    
+        <div class="clear"></div> 
+      </div>
+    </div>
+    <div id="mainContent">
+      <div id="chart-container-1"></div>
+      <!-- <ol>
+      <li>Name of Contractor</li>
+      <li>Name of Contractor</li>
+      <li>Name of Contractor</li>
+      <li>Name of Contractor</li>
+      <li>Name of Contractor</li>
+      </ol>  -->
+    </div>
+  </div>
+  <script type="text/javascript" charset="utf-8">
+    var data_url = "<%= settings[:data_endpoint] %>/legislator.json?apikey=<%= settings[:sunlight_api_key] %>&bioguide_id=<%= params[:bioguide_id] %>&callback=?"
+    console.log(data_url);
+    $.getJSON(data_url, function(data) {
+      var legislator = data.legislator;
+        
+      var legislator_district = "";
+      if (legislator.district == '0') {
+        legislator_district = "AL";
+      } else {
+        legislator_district = legislator.district;
+      }
+      var legislator_state = legislator.state + "-" + legislator_district;
+      var legislator_state_no_hyphen = legislator.state + legislator_district;
+
+      
+      var widget_data = {
+        "full_name": legislator.first_name + " " + legislator.last_name,
+        "pic": legislator_state_no_hyphen + "-small.gif",
+        "state_downcase": legislator.state.toLowerCase(),
+        "state": legislator_state,
+        "party": "(" + legislator.party + ")",
+      };
+
+      $('div#header').autoRender(widget_data);
+      
+      
+      var top_contractors = legislator.contracts.top_contractors;
+      var top_names = [];
+      var top_amounts = [];
+      for (var i = 0; i < 5; i++) {
+        top_names[i] = top_contractors[i].name.substring(0,12);
+        top_amounts[i] = parseFloat(top_contractors[i].amount);
+      }
+
+      var chart1 = new Highcharts.Chart({
+        chart: {
+          renderTo: 'chart-container-1',
+          defaultSeriesType: 'bar',
+          
+          // width: 130,//sm size
+          // height: 100,//sm size
+          // margin: [0, 20, 20, 20]
+          
+          // width: 272,//med size
+          // height: 150,//med size
+          // margin: [0, 20, 20, 70]
+
+          width: 360,//lg size
+          height: 180,//lg size
+          margin: [0, 20, 20, 70]
+
+        },
+        title: {
+          text: "",
+          style: {
+            display: 'none',
+            position: 'absolute',
+            left: '0',
+            top: '0'
+          }
+        },
+        xAxis: {
+          categories: top_names
+          //categories: ['Wal-Mart', 'Target', 'Costco', 'Toys R Us', 'DSW Shoes']//med and lg size
+          // categories: ['1', '2', '3', '4', '5']//sm size
+        },
+        yAxis: {
+          title: null
+        },
+        credits: { enabled: false },
+        legend: { enabled: false },
+
+        series: [{
+          name: '',
+          data: top_amounts
+          }]
+        });
+    });
+  </script>
+</body>
