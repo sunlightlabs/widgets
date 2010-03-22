@@ -636,6 +636,18 @@ ul#switcher li a:hover {
 	background: url(/images/site/button-customize.png) left -20px no-repeat;
 }
 
+#primaryColor {
+  margin-left: -10px;
+}
+
+#updateColor {
+  font-size: 12pt;
+  padding: 2px 15px;
+  margin-left: 3px;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
 #futureBubble {
 	background: url(/images/site/img-bottom-futurebubble.png) top left no-repeat;
 	float: left;
