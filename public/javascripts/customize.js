@@ -28,13 +28,11 @@ $(document).ready(function() {
     updateFrame();
   });
   
-  $("button#generate").click(function() {
-    var embed_url = "http://" + frontend_hostname + "/embed?w=" + widget_id + "&bgd=" + bioguide_id + "&s=" + widget_size + "&color=" + widget_color;
-    
-    $('input#grabCode').attr('value', "<script type='text\/javascript' src='" + embed_url + "'><\/script>");
-  });
+  $("button#generate").click(updateEmbedCode);
+  $("#grabCode").click(function() {$(this).select()});
   
   updateFrame();
+  updateEmbedCode();
 });
 
 /* Depends on frontend_hostname, id, and bioguide_id being set before this file is included. */
@@ -46,4 +44,10 @@ function updateFrame() {
   $("#widgetConstruct iframe").attr("src", iframe_url)
     .attr("width", sizes[widget_size][0])
     .attr("height", sizes[widget_size][1]);
+}
+
+function updateEmbedCode() {
+  var embed_url = "http://" + frontend_hostname + "/embed?w=" + widget_id + "&bgd=" + bioguide_id + "&s=" + widget_size + "&color=" + widget_color;
+    
+  $('input#grabCode').attr('value', "<script type='text\/javascript' src='" + embed_url + "'><\/script>");
 }
