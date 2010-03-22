@@ -1,3 +1,49 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'colorpicker' %>
+  <%= javascript_include_tag 'colorpicker' %>
+  <script type="text/javascript" charset="utf-8">
+  
+    var widget_size = 'lg';
+    var widget_color = '#1F83B5';
+    
+    var sizes = {sm: [160, 300], med: [300, 250], lg: [400,300]};
+    
+    $(document).ready(function() {
+    
+      $("li.switcherbtn a").click(function() {
+        var new_size = $(this).attr('id');
+        if (new_size != widget_size) {
+          widget_size = new_size;
+          updateFrame();
+        }
+        return false;
+      });
+      
+      $("#primaryColor").change(function() {
+        widget_color = $("#primaryColor").attr('value');
+        updateFrame();
+      });
+      
+      $("button#generate").click(function() {
+        var embed_url = "http://" + "<%= settings[:frontend_hostname] %>" + "/embed?w=" + "<%= params[:id] %>" + "&bgd=" + "<%= params[:bioguide_id] %>" + "&s=" + widget_size + '&color=' + widget_color;
+        
+        $('input#grabCode').attr('value', "<script type='text\/javascript' src='" + embed_url + "'><\/script>");
+      });
+    });
+    
+    function updateFrame() {
+      var iframe_url = "http://<%= settings[:frontend_hostname] %>/widgets/<%= params[:id] %>/embed?bioguide_id=<%= params[:bioguide_id] %>";
+      
+      iframe_url += "&size=" + widget_size + "&color=" + widget_color;
+      
+      $("#widgetConstruct iframe").attr("src", iframe_url)
+        .attr("width", sizes[widget_size][0])
+        .attr("height", sizes[widget_size][1]);
+    }
+    
+  </script>
+<% end %>
+
 <h2><%= h(@widget[:name] + " for " + search_name_for(@legislator)) %></h2>
 
 <div id="leftWidgetColumn">
@@ -57,6 +103,8 @@
       </ul>
     </fieldset>
     
+    <div id="colorPicker"></div>
+    
     <!-- This is where a widget-specific form partial will go, if necessary
     <fieldset class="custom"> 
       <legend>Content</legend>
@@ -84,46 +132,3 @@
   </div>
   
 </div>
-
-<script type="text/javascript" charset="utf-8">
-
-  $(document).ready(function() {
-
-    var widget_size = 'lg';
-    var widget_color = '#1F83B5';
-    
-    $("li.switcherbtn a").click(function() {
-      widget_size = $(this).attr('id');
-      var width = 400;
-      var height = 300;
-
-      if (widget_size == 'sm') {
-        width = 160;
-        height = 300;
-      } else if (widget_size == 'med') {
-        width = 300;
-        height = 250;
-      } else {
-        width = 400;
-        height = 300;
-      }
-
-      var iframe_url = 'http://' + '<%= settings[:frontend_hostname] %>' + '/widgets/' + '<%= params[:id] %>' + '/embed?bioguide_id=' + '<%= params[:bioguide_id] %>' + '&size=' + widget_size;
-      $("#widgetConstruct iframe").attr("src", iframe_url).attr("width", width).attr("height", height);
-    });
-    
-    $("select#primaryColor").change(function() {
-      widget_color = $(this).attr('value');
-      
-      var iframe_url = 'http://' + '<%= settings[:frontend_hostname] %>' + '/widgets/' + '<%= params[:id] %>' + '/embed?bioguide_id=' + '<%= params[:bioguide_id] %>' + '&size=' + widget_size + '&color=' + widget_color;
-      $("#widgetConstruct iframe").attr("src", iframe_url);
-    });
-    
-    $("button#generate").click(function() {
-      var embed_url = "http://" + "<%= settings[:frontend_hostname] %>" + "/embed?w=" + "<%= params[:id] %>" + "&bgd=" + "<%= params[:bioguide_id] %>" + "&s=" + widget_size + '&color=' + widget_color;
-      
-      $('input#grabCode').attr('value', "<script type='text\/javascript' src='" + embed_url + "'><\/script>");
-    });
-  });
-  
-</script>
