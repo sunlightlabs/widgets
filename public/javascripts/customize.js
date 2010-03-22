@@ -1,11 +1,11 @@
 var sizes = {sm: [160, 300], med: [300, 250], lg: [400,300]};
 
 var widget_size = 'lg';
-var widget_color = '#1F83B5';
-var colorpicker_color = widget_color;
+var widget_color = '1F83B5';
 
 $(document).ready(function() {
 
+  // widget size switcher
   $("li.switcherbtn a").click(function() {
     var new_size = $(this).attr('id');
     if (new_size != widget_size) {
@@ -15,22 +15,23 @@ $(document).ready(function() {
     return false;
   });
   
-  $("#primaryColor").ColorPicker({
-    flat: true, 
-    color: widget_color, 
-    onChange: function(hsb, hex, rgb, el) {
-      colorpicker_color = hex;
-    }
-  });
-  
+  // color picker
   $("#updateColor").click(function() {
-    widget_color = colorpicker_color;
+    var picked = $("#primaryColorText").val();
+    if (picked && picked.replace)
+      widget_color = picked.replace("#", "");
+    
     updateFrame();
   });
+  $("#primaryColorText").val("#" + widget_color);
+  $.farbtastic("#primaryColor", "#primaryColorText").setColor("#" + widget_color);
   
+  // embed code field
   $("button#generate").click(updateEmbedCode);
   $("#grabCode").click(function() {$(this).select()});
   
+  
+  // pre-populate
   updateFrame();
   updateEmbedCode();
 });

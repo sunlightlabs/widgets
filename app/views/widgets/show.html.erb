@@ -1,6 +1,6 @@
 <% content_for :head do %>
-  <%= stylesheet_link_tag 'colorpicker' %>
-  <%= javascript_include_tag 'colorpicker' %>
+  <%= stylesheet_link_tag 'farbtastic' %>
+  <%= javascript_include_tag 'farbtastic' %>
   
   <script type="text/javascript">
     var frontend_hostname = "<%= settings[:frontend_hostname] %>";
@@ -42,10 +42,11 @@
 </div>
 
 <div id="rightWidgetColumn">
-
+    
     <fieldset class="custom">
       <legend>Style</legend>
       <div id="primaryColor"></div>
+      <input type="text" id="primaryColorText" /><br/><br/>
       <input type="button" value="Update Color" id="updateColor" />
     </fieldset>
     
