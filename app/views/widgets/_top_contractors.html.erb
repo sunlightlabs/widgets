@@ -26,7 +26,7 @@
     
     var url = drumboneUrl("legislator", ["basic", "contracts"], {bioguide_id: bioguide_id});
     
-    $.getJSON(url, function(data) {
+    loadWidget(url, function(data) {
       var legislator = data.legislator;
         
       var legislator_district = "";

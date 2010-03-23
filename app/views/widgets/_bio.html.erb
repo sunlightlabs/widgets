@@ -35,9 +35,10 @@
   </div>
 
   <script type="text/javascript" charset="utf-8">
+  
     var url = drumboneUrl("legislator", ["basic"], {bioguide_id: bioguide_id});
     
-    $.getJSON(url, function(data) {
+    loadWidget(url, function(data) {
       var legislator = data.legislator;
     
       var legislator_title = "";
@@ -75,7 +76,6 @@
       };
 
       $('div#pageMain').autoRender(widget_data);
-
     });
   </script>
 </body>

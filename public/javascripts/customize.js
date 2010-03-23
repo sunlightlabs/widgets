@@ -27,6 +27,7 @@ $(function() {
     
     updateFrame();
   });
+  
   $("#primaryColorText").val("#" + widget_color);
   $.farbtastic("#primaryColor", "#primaryColorText").setColor("#" + widget_color);
   
