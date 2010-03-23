@@ -4,7 +4,7 @@
       <h1>
         <small class="title"></small><big class="full_name"></big>
       </h1>
-      <img alt="Picture of " src="/images/profile/" class="pic@src+ full_name@alt+" />
+      <img alt="Picture of " src="" class="pic@src full_name@alt+" />
       <div class="state_downcase@class" id="lawmakerMetadata">
         <span class="party"></span>
         <span class="state"></span>
@@ -62,7 +62,7 @@
       var widget_data = {
         "title": legislator_title,
         "full_name": legislator.first_name + " " + legislator.last_name,
-        "pic": legislator.bioguide_id + ".jpg",
+        "pic": profileImage(legislator.bioguide_id),
         "state_downcase": legislator.state.toLowerCase(),
         "state": legislator_state,
         "party": "(" + legislator.party + ")",

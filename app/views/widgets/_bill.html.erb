@@ -14,7 +14,7 @@
     <div id="mainContent">
       <div id="repInfo">
         <div id="lamaker_metaData" class="right">
-          <img alt="Picture of " src="/images/profile/" class="pic@src+ full_name@alt+" width="40px" />
+          <img alt="Picture of " src="/images/profile/" class="pic@src full_name@alt+" width="40px" />
           <h2><small class="title"></small> <big class="full_name"></big></h2>
           <span id="party" class="party party_long@class"></span>
           <span id="stateDistrict" class="state"></span>
@@ -97,7 +97,7 @@
       var legislator_data = {
         "title": legislator.title + ".",
         "full_name": legislator.first_name + " " + legislator.last_name,
-        "pic": legislator.bioguide_id + ".jpg",
+        "pic": profileImage(legislator.bioguide_id),
         "state_downcase": legislator.state.toLowerCase(),
         "state": legislator_state,
         "party": "(" + legislator.party + ")",
