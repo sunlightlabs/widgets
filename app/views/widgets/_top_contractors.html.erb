@@ -23,27 +23,27 @@
     </div>
   </div>
   <script type="text/javascript" charset="utf-8">
-    var data_url = "<%= settings[:data_endpoint] %>/legislator.json?apikey=<%= settings[:sunlight_api_key] %>&bioguide_id=<%= params[:bioguide_id] %>&callback=?"
-    console.log(data_url);
-    $.getJSON(data_url, function(data) {
+    
+    var url = drumboneUrl("legislator", ["basic", "contracts"], {bioguide_id: bioguide_id});
+    
+    $.getJSON(url, function(data) {
       var legislator = data.legislator;
         
       var legislator_district = "";
-      if (legislator.district == '0') {
+      if (legislator.district == '0')
         legislator_district = "AL";
-      } else {
+      else
         legislator_district = legislator.district;
-      }
+      
       var legislator_state = legislator.state + "-" + legislator_district;
       var legislator_state_no_hyphen = legislator.state + legislator_district;
 
-      
       var widget_data = {
-        "full_name": legislator.first_name + " " + legislator.last_name,
-        "pic": legislator_state_no_hyphen + "-small.gif",
-        "state_downcase": legislator.state.toLowerCase(),
-        "state": legislator_state,
-        "party": "(" + legislator.party + ")",
+        full_name: legislator.first_name + " " + legislator.last_name,
+        pic: legislator_state_no_hyphen + "-small.gif",
+        state_downcase: legislator.state.toLowerCase(),
+        state: legislator_state,
+        party: "(" + legislator.party + ")",
       };
 
       $('div#header').autoRender(widget_data);

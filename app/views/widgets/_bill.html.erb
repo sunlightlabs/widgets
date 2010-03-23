@@ -119,12 +119,10 @@
   </div>
   
   <script type="text/javascript" charset="utf-8">
-    var bioguide_id = "<%= params[:bioguide_id] %>";
     var roll_id = "<%= params[:roll_id] %>";
+    var url = drumboneUrl("roll", ["basic", "bill", "party_vote_breakdown", "voters." + bioguide_id], {roll_id: roll_id});
     
-    var roll_url = drumboneUrl("roll", ["basic", "bill", "party_vote_breakdown", "voters." + bioguide_id], {roll_id: roll_id});
-    
-    $.getJSON(roll_url, function(data) {
+    $.getJSON(url, function(data) {
       
       // legislator info
       var legislator = data.roll.voters[bioguide_id].voter;
@@ -150,13 +148,13 @@
         party_long = "independent";
       
       var legislator_data = {
-        "title": legislator.title + ".",
-        "full_name": legislator.first_name + " " + legislator.last_name,
-        "pic": profileImage(legislator.bioguide_id),
-        "state_downcase": legislator.state.toLowerCase(),
-        "state": legislator_state,
-        "party": "(" + legislator.party + ")",
-        "party_long": party_long
+        title: legislator.title + ".",
+        full_name: legislator.first_name + " " + legislator.last_name,
+        pic: profileImage(legislator.bioguide_id),
+        state_downcase: legislator.state.toLowerCase(),
+        state: legislator_state,
+        party: "(" + legislator.party + ")",
+        party_long: party_long
       };
 
       $('div#repInfo').autoRender(legislator_data);
@@ -165,8 +163,8 @@
       var bill = data.roll.bill;
      
       var bill_data = {
-        "short_title": bill.short_title,
-        "bill_code": bill.type.toUpperCase() + " " + bill.number,
+        short_title: bill.short_title,
+        bill_code: bill.type.toUpperCase() + " " + bill.number,
       };
       $('div#header').autoRender(bill_data);
       
@@ -175,18 +173,18 @@
       var roll = data.roll;
       
       var roll_data = {
-          "ayes": roll.vote_breakdown.ayes,
-          "nays": roll.vote_breakdown.nays,
-          "present": roll.vote_breakdown.present,
-          "not_voting": roll.vote_breakdown.not_voting,
-          "dem_ayes": roll.party_vote_breakdown.D.ayes,
-          "dem_nays": roll.party_vote_breakdown.D.nays,
-          "dem_present": roll.party_vote_breakdown.D.present,
-          "dem_not_voting": roll.party_vote_breakdown.D.not_voting,
-          "rep_ayes": roll.party_vote_breakdown.R.ayes,
-          "rep_nays": roll.party_vote_breakdown.R.nays,
-          "rep_present": roll.party_vote_breakdown.R.present,
-          "rep_not_voting": roll.party_vote_breakdown.R.not_voting
+          ayes: roll.vote_breakdown.ayes,
+          nays: roll.vote_breakdown.nays,
+          present: roll.vote_breakdown.present,
+          not_voting: roll.vote_breakdown.not_voting,
+          dem_ayes: roll.party_vote_breakdown.D.ayes,
+          dem_nays: roll.party_vote_breakdown.D.nays,
+          dem_present: roll.party_vote_breakdown.D.present,
+          dem_not_voting: roll.party_vote_breakdown.D.not_voting,
+          rep_ayes: roll.party_vote_breakdown.R.ayes,
+          rep_nays: roll.party_vote_breakdown.R.nays,
+          rep_present: roll.party_vote_breakdown.R.present,
+          rep_not_voting: roll.party_vote_breakdown.R.not_voting
         };
         $('div#voteTotals').autoRender(roll_data);
 

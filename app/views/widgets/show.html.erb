@@ -43,15 +43,15 @@
 
 <div id="rightWidgetColumn">
     
+    <% if @widget[:custom] %>
+      <%= render :partial => "widgets/custom/#{params[:id]}" %>
+    <% end %>
+    
     <fieldset class="custom">
       <div id="primaryColor"></div>
       <input type="text" id="primaryColorText" /><br/><br/>
       <input type="button" value="Update Color" class="update" id="updateColor" />
     </fieldset>
-    
-    <% if @widget[:custom] %>
-      <%= render :partial => "widgets/custom/#{params[:id]}" %>
-    <% end %>
     
     <ul>
       <li>

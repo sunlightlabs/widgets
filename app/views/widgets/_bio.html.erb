@@ -11,6 +11,7 @@
       </div>
       <div class="clear"></div>
     </div>
+    
     <div id="mainContent" style="background-color: #<%= params[:color] || "1F83B5" %>">
       <div id="vcard">
         <div id="mainVcard">
@@ -34,8 +35,9 @@
   </div>
 
   <script type="text/javascript" charset="utf-8">
-    var data_url = "<%= settings[:data_endpoint] %>/legislator.json?apikey=<%= settings[:sunlight_api_key] %>&bioguide_id=<%= params[:bioguide_id] %>&sections=basic,extended&callback=?"
-    $.getJSON(data_url, function(data) {
+    var url = drumboneUrl("legislator", ["basic"], {bioguide_id: bioguide_id});
+    
+    $.getJSON(url, function(data) {
       var legislator = data.legislator;
     
       var legislator_title = "";
@@ -46,32 +48,30 @@
       };
     
       var legislator_district = "";
-      if (legislator.district == '0') {
+      if (legislator.district == '0')
         legislator_district = "AL";
-      } else {
+      else
         legislator_district = legislator.district;
-      }
     
       var legislator_state = "";
-      if (legislator_title == "Senator") {
+      if (legislator_title == "Senator")
         legislator_state = legislator.state;
-      } else {
+      else
         legislator_state = legislator.state + "-" + legislator_district;
-      }
-    
+      
       var widget_data = {
-        "title": legislator_title,
-        "full_name": legislator.first_name + " " + legislator.last_name,
-        "pic": profileImage(legislator.bioguide_id),
-        "state_downcase": legislator.state.toLowerCase(),
-        "state": legislator_state,
-        "party": "(" + legislator.party + ")",
-        "tel": legislator.phone,
-        "street_address": legislator.congress_office,
-        'website': legislator.website,
-        'twitter': legislator.twitter_id,
-        'youtube': legislator.youtube_url,
-        'govtrack': legislator.govtrack_id
+        title: legislator_title,
+        full_name: legislator.first_name + " " + legislator.last_name,
+        pic: profileImage(legislator.bioguide_id),
+        state_downcase: legislator.state.toLowerCase(),
+        state: legislator_state,
+        party: "(" + legislator.party + ")",
+        tel: legislator.phone,
+        street_address: legislator.congress_office,
+        website: legislator.website,
+        twitter: legislator.twitter_id,
+        youtube: legislator.youtube_url,
+        govtrack: legislator.govtrack_id
       };
 
       $('div#pageMain').autoRender(widget_data);
