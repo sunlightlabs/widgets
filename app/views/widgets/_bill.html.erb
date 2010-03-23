@@ -122,7 +122,7 @@
     var roll_id = "<%= params[:roll_id] %>";
     var url = drumboneUrl("roll", ["basic", "bill", "party_vote_breakdown", "voters." + bioguide_id], {roll_id: roll_id});
     
-    $.getJSON(url, function(data) {
+    loadWidget(url, function(data) {
       
       // legislator info
       var legislator = data.roll.voters[bioguide_id].voter;

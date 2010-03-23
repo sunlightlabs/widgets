@@ -19,3 +19,11 @@ function queryString(object) {
   });
   return query;
 }
+
+function loadWidget(url, callback) {
+  var augmented = function(data) {
+    callback(data); 
+    $("body").css("display", "block");
+  };
+  return $.getJSON(url, augmented);
+}
