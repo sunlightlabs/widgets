@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
   
   def settings
-    @settings ||= YAML.load_file "#{Rails.root}/config/settings.yml"
+    @@settings ||= YAML.load_file "#{Rails.root}/config/settings.yml"
   end
   
   def featured
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
   
   def widgets
-    @widgets ||= load_widgets
+    @@widgets ||= load_widgets
   end
   
   # It would be nicer if you could cleanly load a YAML file into an ordered hash
