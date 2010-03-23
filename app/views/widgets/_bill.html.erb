@@ -47,7 +47,7 @@
               <dd class="first">
                 <ul>
                   <li>
-                    <span class="repbulicanBlock">Republican</span>
+                    <span class="republicanBlock">Republican</span>
                     <span class="voteTotal rep_ayes"></span>
                   </li>
                   <li>
@@ -61,7 +61,7 @@
               <dd>
                 <ul>
                   <li>
-                    <span class="repbulicanBlock">Republican</span>
+                    <span class="republicanBlock">Republican</span>
                     <span class="voteTotal rep_nays"></span>
                   </li>
                   <li>
@@ -86,7 +86,7 @@
               <dd>
                 <ul>
                   <li>
-                    <span class="repbulicanBlock">Republican</span>
+                    <span class="republicanBlock">Republican</span>
                     <span class="voteTotal rep_ayes"></span>
                   </li>
                   <li>
@@ -100,7 +100,7 @@
               <dd>
                 <ul>
                   <li>
-                    <span class="repbulicanBlock">Republican</span>
+                    <span class="republicanBlock">Republican</span>
                     <span class="voteTotal rep_nays"></span>
                   </li>
                   <li>
@@ -200,9 +200,9 @@
         
         var vote_data = {
           legislator_vote_value: legislator_vote,
-          legislator_vote_class: legislator_vote.toLowerCase()
+          legislator_vote_class: legislator_vote.replace(" ", "").toLowerCase()
         };
-        $('div#lawmakerVote').autoRender(roll_data);
+        $('div#lawmakerVote').autoRender(vote_data);
 
     });
     

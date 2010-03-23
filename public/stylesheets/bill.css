@@ -72,8 +72,8 @@ body.bill_sm dt { margin-bottom: 0px; }
 body.bill_sm dd { float: left;}
 body.bill_sm dd.first { margin-right: 15px;}
 
-span.repbulicanBlock, span.democratBlock { text-indent: -9999em; display: block; float: left; width: 8px; height: 8px; margin-right:5px; }
-span.repbulicanBlock { background-color: #E31E26; }
+span.republicanBlock, span.democratBlock { text-indent: -9999em; display: block; float: left; width: 8px; height: 8px; margin-right:5px; }
+span.republicanBlock { background-color: #E31E26; }
 span.democratBlock { background-color: #0697C9; }
 span.voteTotal { line-height: 9px; display: block; margin-bottom: 5px; }
 body.bill_med span.voteTotal { margin-bottom: 3px;}
