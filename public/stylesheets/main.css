@@ -636,7 +636,7 @@ ul#switcher li a:hover {
 	background: url(/images/site/button-customize.png) left -20px no-repeat;
 }
 
-#updateColor {
+input.update {
   font-size: 12pt;
   padding: 2px 15px;
   margin-left: 3px;

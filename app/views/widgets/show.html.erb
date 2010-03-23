@@ -46,7 +46,7 @@
     <fieldset class="custom">
       <div id="primaryColor"></div>
       <input type="text" id="primaryColorText" /><br/><br/>
-      <input type="button" value="Update Color" id="updateColor" />
+      <input type="button" value="Update Color" class="update" id="updateColor" />
     </fieldset>
     
     <% if @widget[:custom] %>
@@ -59,11 +59,6 @@
           <input class="checkbox" type="checkbox" name="freezeDate"/>
           &nbsp;&nbsp;Check box to freeze data from updating
         </label>
-      </li>
-      <li>
-        <button id="generate" class="generate" type="submit">
-          <span>Generate Widget</span>
-        </button>
       </li>
     </ul>
   
