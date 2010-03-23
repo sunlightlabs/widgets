@@ -1,4 +1,4 @@
-<body class="contract_lg">
+<body class="contract_<%= params[:size] %>">
   <div id="pageMain">
     <div id="headerWrapper">
       <div id="header">
@@ -13,20 +13,20 @@
     </div>
     <div id="mainContent">
       <div id="chart-container-1"></div>
-      <!-- <ol>
-      <li>Name of Contractor</li>
-      <li>Name of Contractor</li>
-      <li>Name of Contractor</li>
-      <li>Name of Contractor</li>
-      <li>Name of Contractor</li>
-      </ol>  -->
+      <% if params[:size] == 'sm' -%>
+      <ol id="contractor_names">
+        <li class="contractors name"></li>
+      </ol>
+      <% end -%>
     </div>
   </div>
   <script type="text/javascript" charset="utf-8">
-    
+  
+    var size = '<%= params[:size] %>';
     var url = drumboneUrl("legislator", ["basic", "contracts"], {bioguide_id: bioguide_id});
     
     $.getJSON(url, function(data) {
+
       var legislator = data.legislator;
         
       var legislator_district = "";
@@ -48,32 +48,43 @@
 
       $('div#header').autoRender(widget_data);
       
-      
       var top_contractors = legislator.contracts.top_contractors;
       var top_names = [];
       var top_amounts = [];
+      var name_objects = [];
       for (var i = 0; i < 5; i++) {
-        top_names[i] = top_contractors[i].name.substring(0,12);
+        top_names[i] = top_contractors[i].name;
+        name_objects[i] = { "name": top_contractors[i].name.substring(0,15)};
         top_amounts[i] = parseFloat(top_contractors[i].amount);
       }
 
+      var dimensions = {};
+      if (size == 'sm') {
+        dimensions.width = 130;
+        dimensions.height = 100;
+        dimensions.margin = [0, 20, 20, 20];
+      } else if (size == 'med') {
+        dimensions.width = 272;
+        dimensions.height = 150;
+        dimensions.margin = [0, 30, 20, 80];
+      } else {
+        dimensions.width = 360;
+        dimensions.height = 180;
+        dimensions.margin = [0, 30, 20, 80];
+      }
+
+      var names = top_names;      
+      if (size == 'sm') {
+        names = ['1', '2', '3', '4', '5'];
+        $('ol#contractor_names').autoRender({"contractors": name_objects});
+      }
       var chart1 = new Highcharts.Chart({
         chart: {
           renderTo: 'chart-container-1',
           defaultSeriesType: 'bar',
-          
-          // width: 130,//sm size
-          // height: 100,//sm size
-          // margin: [0, 20, 20, 20]
-          
-          // width: 272,//med size
-          // height: 150,//med size
-          // margin: [0, 20, 20, 70]
-
-          width: 360,//lg size
-          height: 180,//lg size
-          margin: [0, 20, 20, 70]
-
+          width: dimensions.width,
+          height: dimensions.height,
+          margin: dimensions.margin
         },
         title: {
           text: "",
@@ -85,16 +96,28 @@
           }
         },
         xAxis: {
-          categories: top_names
-          //categories: ['Wal-Mart', 'Target', 'Costco', 'Toys R Us', 'DSW Shoes']//med and lg size
-          // categories: ['1', '2', '3', '4', '5']//sm size
+          categories: names,
+          labels: {
+            formatter: function() {
+              return this.value.substring(0,10);
+            }
+          }
         },
         yAxis: {
-          title: null
+          title: null,
+          labels: {
+            formatter: function() {
+              return '$' + this.value/1000000 + 'M';
+            }
+          }
         },
         credits: { enabled: false },
         legend: { enabled: false },
-
+        tooltip: {
+              formatter: function() {
+                 return this.x + ' for $'+ Highcharts.numberFormat(this.y, 2, '.');
+              }
+           },
         series: [{
           name: '',
           data: top_amounts
