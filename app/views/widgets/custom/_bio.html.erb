@@ -1,0 +1,26 @@
+<fieldset class="custom">
+  <div id="primaryColor"></div>
+  <input type="text" id="primaryColorText" /><br/><br/>
+  <input type="button" value="Update Color" class="update" id="updateColor" />
+</fieldset>
+
+<%= stylesheet_link_tag 'farbtastic' %>
+<%= javascript_include_tag 'farbtastic' %>  
+<script type="text/javascript">
+  
+  custom.color = "<%= @widget[:custom][:color] %>";
+  
+  $(function() {
+    $("#primaryColorText").val("#" + custom.color);
+    $.farbtastic("#primaryColor", "#primaryColorText").setColor("#" + custom.color);
+  
+    // color picker
+    $("#updateColor").click(function() {
+      var picked = $("#primaryColorText").val();
+      if (picked && picked.replace)
+        custom.color = picked.replace("#", "");
+      
+      updateFrame();
+    });
+  });
+</script>

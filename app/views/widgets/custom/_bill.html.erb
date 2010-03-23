@@ -1,0 +1,22 @@
+<fieldset class="custom">
+  <legend>Find a Vote</legend>
+  
+  <input type="text" id="roll_id" /><br/><br/>
+  <input type="button" value="Update Vote" class="update" id="update_roll_id" />
+</fieldset>
+
+<script type="text/javascript">
+  
+  custom.roll_id = "<%= @widget[:custom][:roll_id] %>";
+  
+  $(function() {
+    // pre-populate with the default
+    $("#roll_id").val(custom.roll_id);
+    
+    $("#update_roll_id").click(function() {
+      custom.roll_id = $("#roll_id").val();
+      updateFrame();
+    });
+  });
+  
+</script>
