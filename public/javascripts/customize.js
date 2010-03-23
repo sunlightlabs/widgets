@@ -1,7 +1,6 @@
 var sizes = {sm: [160, 300], med: [300, 250], lg: [400,300]};
 
 var widget_size = 'lg';
-var widget_color = '1F83B5';
 
 // should be filled in with any default values before the document is ready
 var custom = {}
@@ -19,18 +18,6 @@ $(function() {
     return false;
   });
   
-  // color picker
-  $("#updateColor").click(function() {
-    var picked = $("#primaryColorText").val();
-    if (picked && picked.replace)
-      widget_color = picked.replace("#", "");
-    
-    updateFrame();
-  });
-  
-  $("#primaryColorText").val("#" + widget_color);
-  $.farbtastic("#primaryColor", "#primaryColorText").setColor("#" + widget_color);
-  
   // embed code field
   $("#grabCode").click(function() {$(this).select()});
   
@@ -38,10 +25,7 @@ $(function() {
 
 /* Depends on frontend_hostname, id, and bioguide_id being set before this file is included. */
 function updateFrame() {
-  var iframe_url = "http://" + frontend_hostname + "/widgets/" + widget_id + "/embed?bioguide_id=" + bioguide_id;
-  
-  iframe_url += "&size=" + widget_size + "&color=" + widget_color;
-  iframe_url += "&" + queryString(custom);
+  var iframe_url = "http://" + frontend_hostname + "/widgets/" + widget_id + "/embed?bioguide_id=" + bioguide_id + "&size=" + widget_size + "&" + queryString(custom);
   
   $("#widgetConstruct iframe").attr("src", iframe_url)
     .attr("width", sizes[widget_size][0])
@@ -51,8 +35,7 @@ function updateFrame() {
 }
 
 function updateEmbedCode() {
-  var embed_url = "http://" + frontend_hostname + "/embed?w=" + widget_id + "&bgd=" + bioguide_id + "&s=" + widget_size + "&color=" + widget_color;
-  embed_url += "&" + queryString(custom);
+  var embed_url = "http://" + frontend_hostname + "/embed?w=" + widget_id + "&bgd=" + bioguide_id + "&s=" + widget_size + "&" + queryString(custom);
   
   $('input#grabCode').attr('value', "<script type='text\/javascript' src='" + embed_url + "'><\/script>");
 }

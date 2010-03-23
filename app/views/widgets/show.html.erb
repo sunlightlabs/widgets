@@ -1,7 +1,4 @@
 <% content_for :head do %>
-  <%= stylesheet_link_tag 'farbtastic' %>
-  <%= javascript_include_tag 'farbtastic' %>
-  
   <script type="text/javascript">
     var frontend_hostname = "<%= settings[:frontend_hostname] %>";
     var widget_id = "<%= params[:id] %>";
@@ -46,12 +43,6 @@
     <% if @widget[:custom] %>
       <%= render :partial => "widgets/custom/#{params[:id]}" %>
     <% end %>
-    
-    <fieldset class="custom">
-      <div id="primaryColor"></div>
-      <input type="text" id="primaryColorText" /><br/><br/>
-      <input type="button" value="Update Color" class="update" id="updateColor" />
-    </fieldset>
     
     <ul>
       <li>
