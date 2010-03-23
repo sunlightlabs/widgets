@@ -1,5 +1,8 @@
 # :new - will apply a "New" banner on the home page.
-# :custom - the site will look for an additional form partial specifying custom options
+
+# :custom - The presence of this key, and it having anything inside it, 
+#   triggers the site to look for an additional form partial specifying custom options. 
+#   Any keys inside custom are available for use in that partial.
 
 :example:
   :order: 1
@@ -10,4 +13,5 @@
   :order: 2
   :name: Example Widget 2
   :description: Description of a second example widget.
-  :custom: true
+  :custom:
+    :anything: id-20896
