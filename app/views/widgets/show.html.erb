@@ -49,12 +49,9 @@
       <input type="button" value="Update Color" id="updateColor" />
     </fieldset>
     
-    <!-- This is where a widget-specific form partial will go, if necessary
-    <fieldset class="custom"> 
-      <legend>Content</legend>
-      
-    </fieldset>
-    -->
+    <% if @widget[:custom] %>
+      <%= render :partial => "widgets/customize/#{params[:id]}" %>
+    <% end %>
     
     <ul>
       <li>

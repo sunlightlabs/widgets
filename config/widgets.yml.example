@@ -1,3 +1,6 @@
+# :new - will apply a "New" banner on the home page.
+# :custom - the site will look for an additional form partial specifying custom options
+
 :example:
   :order: 1
   :name: Example Widget
@@ -7,4 +10,4 @@
   :order: 2
   :name: Example Widget 2
   :description: Description of a second example widget.
-  :new: false
+  :custom: true
