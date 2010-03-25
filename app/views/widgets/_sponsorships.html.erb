@@ -148,7 +148,7 @@
           color: 'auto',
           y: 1,
           formatter: function() {
-            return this.y + "";
+            return decimal_format(this.y,1) + '';
           }
         }
       }
@@ -157,7 +157,7 @@
     tooltip: {
       formatter: function() {
         return '<b>'+ this.x +'</b><br/>'+
-        this.series.name +': '+ this.y +'';
+        this.series.name +': '+ decimal_format(this.y,1) + '';
       }
     }, 
 
@@ -166,9 +166,9 @@
     series: [
       {name: 'Chamber Average',
       data: [legislator.sponsorships.average_sponsored, 
-             0.2, 
+             legislator.sponsorships.average_sponsored_enacted, 
              legislator.sponsorships.average_cosponsored,
-             4.3]},
+             legislator.sponsorships.average_cosponsored_enacted]},
       {name: legislator.first_name + " " + legislator.last_name,
       data: [legislator.sponsorships.sponsored, 
              legislator.sponsorships.sponsored_enacted, 
