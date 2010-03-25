@@ -1,0 +1,183 @@
+<body class="sponsored_<%= @size %>">
+  <div id="pageMain">
+    <div id="headerWrapper">
+      <div id="header">
+        <% if @size == 'lg' -%>
+          <img alt="Picture of " src="/images/profile/" class="pic@src full_name@alt+" width="40px" />
+        <% end -%>
+          <div id="repInfo">
+          <h1>
+            <small class="title"></small> 
+            <big class="full_name"></big>
+          </h1>
+          <div class="california" id="lawmakerMetadata">
+            <span class="party"></span>
+            <span class="state"></span>
+          </div>
+        </div> <!-- end headerLeft -->
+        <% unless @size == 'sm' %>
+        <div id="counter">
+          <span id="bills-sponsored">Number of Bills Sponsored</span>
+          <span id="number" class="bills_introduced"></span>
+        </div>
+        <% end -%>
+        <div class="clear"></div>
+      </div> <!-- end header -->
+      <div id="mainContent">
+        <h2>Sponsored Bills</h2>
+        <div id="chart-container-1">
+        </div> <!-- end chart-container -->
+        <dl>
+          <dt id="lawmaker-color">Color Block for Lawmaker Average</dt>
+          <dd id="lawmaker-average">Lawmaker Count</dd>
+          <dt id="house-color">Color Block for House Average</dt>
+          <dd id="house-average">Chamber Average</dd>
+        </dl>
+        <% if @size == 'sm' -%>
+        <ol id="key">
+          <li>Sponsored</li>
+          <li>Then Enacted</li>
+          <li>Cosponsored</li>
+          <li>Then Enacted</li>
+        </ol>
+        <% end -%>
+      </div> <!-- end mainContent -->
+    </div> <!-- end headerWrapper -->
+  </div> <!-- end pageMain -->
+  <script type="text/javascript" charset="utf-8">
+
+  var url = drumboneUrl("legislator", ["basic", "sponsorships"], {bioguide_id: bioguide_id});
+  
+  loadWidget(url, function(data) {
+    var legislator = data.legislator;
+  
+    var legislator_title = "";
+    switch (legislator.title) {
+      case 'Sen': legislator_title = "Senator"; break;
+      case 'Rep': legislator_title = "Representative"; break;
+      case 'Del': legislator_title = "Delegate"; break;
+    };
+  
+    var legislator_district = "";
+    if (legislator.district == '0')
+      legislator_district = "AL";
+    else
+      legislator_district = legislator.district;
+  
+    var legislator_state = "";
+    if (legislator_title == "Senator")
+      legislator_state = legislator.state;
+    else
+      legislator_state = legislator.state + "-" + legislator_district;
+    
+    var widget_data = {
+      title: legislator_title,
+      full_name: legislator.first_name + " " + legislator.last_name,
+      pic: profileImage(legislator.bioguide_id),
+      state_downcase: legislator.state.toLowerCase(),
+      state: legislator_state,
+      party: "(" + legislator.party + ")",
+      bills_introduced: legislator.sponsorships.sponsored
+    };
+
+    $('div#pageMain').autoRender(widget_data);
+    
+    var dimensions = {};
+    if (size == 'lg') {
+      dimensions.width = 350;
+      dimensions.height = 145;
+      dimensions.margin = [0, 20, 20, 85];
+    } else if (size == 'med') {
+      dimensions.width = 280;
+      dimensions.height = 114;
+      dimensions.margin = [10, 20, 10, 85];
+    } else {      
+      dimensions.width = 160;
+      dimensions.height = 100;
+      dimensions.margin = [10, 20, 15, 20];
+    }
+    
+    var categories = ['Sponsored',  'Enacted', 'Cosponsored', 'Enacted'];
+    var group_padding = .05;
+    if (size == 'sm') {
+      categories = ['1', '2', '3', '4'];
+      group_padding = -.02;
+    }
+    
+    var chart1 = new Highcharts.Chart({
+    chart: {
+      renderTo: 'chart-container-1',
+      defaultSeriesType: 'bar',
+      width: dimensions.width,
+      height: dimensions.height,
+      margin: dimensions.margin
+    },
+    title: {
+      text: "",
+      style: {
+        display: 'none',
+        position: 'absolute',
+        left: '0',
+        top: '0'
+      }
+    },
+    xAxis: {
+      categories: categories
+    },
+    yAxis: {
+      title: null,
+      gridLineWidth: 0,
+      labels: {
+        enabled: false
+      }
+    },
+
+    colors: [
+    '#0C6A6F',
+    '#0AA6AE'
+    ],
+
+    credits: { enabled: false },
+
+    plotOptions: {
+      bar: {
+        groupPadding: group_padding,
+        pointPadding: .2,
+        dataLabels: {
+          enabled: true,
+          color: 'auto',
+          y: 1,
+          formatter: function() {
+            return this.y + "";
+          }
+        }
+      }
+    },
+
+    tooltip: {
+      formatter: function() {
+        return '<b>'+ this.x +'</b><br/>'+
+        this.series.name +': '+ this.y +'';
+      }
+    }, 
+
+    legend: { enabled: false },
+
+    series: [
+      {name: 'Chamber Average',
+      data: [legislator.sponsorships.average_sponsored, 
+             0.2, 
+             legislator.sponsorships.average_cosponsored,
+             4.3]},
+      {name: legislator.first_name + " " + legislator.last_name,
+      data: [legislator.sponsorships.sponsored, 
+             legislator.sponsorships.sponsored_enacted, 
+             legislator.sponsorships.cosponsored, 
+             legislator.sponsorships.cosponsored_enacted]}
+      ]
+  });
+    
+  });
+</script>
+  
+</body>
