@@ -1,0 +1,322 @@
+/*
+ * YUI Resect CSS version: 2.2.2 
+ * Copyright (c) 2007, Yahoo! Inc. All rights reserved.
+ * Licensed under the BSD License: http://developer.yahoo.net/yui/license.txt
+ */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,optgroup,button,p,blockquote,th,td{margin:0;padding:0;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}table{border-collapse:collapse;border-spacing:0;}caption,th{text-align:left;}ol,ul{list-style:none;}fieldset,img{border:0;}input,textarea,select,optgroup,option,button{font-family:inherit;font-size:100%;}button,input {width: auto;overflow: visible;}optgroup,address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;}
+dl li{list-style: none;}
+
+a:link { outline: none; }
+a:visited { outline: none; }
+a:hover { outline: none; }
+a:active { outline: none; }
+
+.clear {
+	clear: both;
+}
+
+body{
+    color:#5A5A5A;
+    font-size: 76%;
+    line-height: 20px;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    border: 4px solid #919191;
+}
+
+body.sponsored_sm { 
+	width: 152px; 
+	height: 292px; 
+}
+
+body.sponsored_med { 
+	width: 292px; 
+	height: 242px; 
+}
+
+body.sponsored_lg { 
+	width: 392px; 
+	height: 292px; 
+}
+
+#mainContent {
+	padding: 10px;
+	height: 195px;
+}
+
+body.sponsored_med div#mainContent {
+	height: 135px;
+}
+
+body.sponsored_lg div#mainContent { 
+	padding: 15px;
+	height: 165px;
+}
+
+#headerWrapper { 
+	 background-color: #EBE9D4;
+}
+
+#header { 
+	background: url(/images/sponsorships/gradient_bill.png) bottom left repeat-x;
+	height: 85px;
+}
+
+body.sponsored_med #header { 
+	height: 75px; 
+}
+
+body.sponsored_sm #header { 
+	height: 45px;
+	padding: 10px; 
+}
+
+body.sponsored_sm div#headerWrapper { 
+	height: 65px;
+}
+
+body.sponsored_med div#headerWrapper { 
+	height: 75px;
+}
+
+body.sponsored_lg div#headerWrapper { 
+	height: 85px;
+}
+
+#repInfo {
+	float: left;
+	margin: 15px 0 15px 10px;
+}
+
+body.sponsored_med #repInfo {
+	margin: 8px 0 10px 12px;
+	width: 190px;
+	line-height: 130%
+}
+
+body.sponsored_sm #repInfo {
+	float: none;
+	margin: 0;
+}
+
+body.sponsored_lg div#header img {
+	border: 1px solid #BBBDBF;
+	float: left;
+	margin: 15px 0 0 15px;
+	width: 42px;
+}
+
+body.sponsored_sm #header span {
+	display: inline;
+}
+
+body.sponsored_lg h1 {
+	width: 230px;
+}
+
+h1 small, h1 big {
+	display: block;
+}
+
+body.sponsored_sm h1 {
+	line-height: 100%;
+}
+
+body.sponsored_sm h1 small, body.sponsored_sm h1 big {
+	display: inline;
+}
+
+body.sponsored_lg #lawmakerMetadata {
+	line-height: 140%;
+}
+
+body.sponsored_med #lawmakerMetadata {
+	line-height: 130%;
+	font-size: 95%;
+}
+
+body.sponsored_med big {
+	line-height: 110%;
+}
+
+body.sponsored_sm #lawmakerMetadata {
+	line-height: 115%;
+}
+
+body.contributors_sm h1 {
+	line-height: 100%;
+}
+
+body.sponsored_sm h1 big {
+	font-size: 100%;
+	font-weight: bold;
+	color: #191919;
+	line-height: 130%;
+	text-transform: uppercase;
+}
+
+h1 small {
+	font-family: Georgia, Times New Roman, Times, serif;
+	font-size: 105%;
+	font-style: italic;
+	color: #606161;
+	font-weight: normal;
+	text-transform: none;
+}
+
+ h1 big {
+	font-size: 110%;
+	font-weight: bold;
+	color: #191919;
+	text-transform: uppercase;
+}	
+
+span#party {
+	color: #606161;
+	font-weight: normal;
+	text-transform: none;
+	font-weight: bold;
+	margin-right: 5px;
+	line-height: 140%;
+}
+
+body.sponsored_sm span#party {
+	line-height: 115%;
+}
+
+body.sponsored_med span#party {
+	line-height: 130%;
+}
+
+body.sponsored_lg #counter {
+	height: 54px;
+	width: 80px;
+	padding: 15px 0;
+	background: #FFF;
+	border-left: 2px solid #ADADAD;
+	float: right;
+}
+
+body.sponsored_med #counter{
+	float: right;
+	height: 44px;
+	width: 80px;
+	padding: 15px 0;
+	background: #FFF;
+	border-left: 2px solid #ADADAD;
+}
+
+#bills-sponsored {
+	background: url(/images/sponsorships/bills-sponsored.png) top left no-repeat;
+	text-indent: -9999em;
+	width: 58px;
+	height: 27px;
+	margin: 0 auto 9px;
+	display: block;
+}
+
+body.sponsored_med #bills-sponsored {
+	background: url(/images/sponsorships/bills-sponsored-med.png) top left no-repeat;
+	display: block;
+	margin: 0 auto 6px;
+	width: 54px;
+	height: 25px;
+}
+
+#number {
+	font-weight: bold;
+	font-size: 190%;
+	width: 80px;
+	text-align: center;
+	display: block;
+}
+
+body.sponsored_med #number {
+	width: 80px;
+	font-size: 150%
+}
+
+h2 {
+	background: url(/images/sponsorships/sponsored-bills.png) top center no-repeat;
+	height: 13px;
+	text-indent: -9999em;
+}
+
+body.sponsored_sm h2 {
+	background: url(/images/sponsorships/sponsored-bills-sm.png) top center no-repeat;
+	height: 10px;
+	text-indent: -9999em;
+}
+
+body.sponsored_lg #chart-container-1 {
+	width: 362px;
+	height: 135px;
+	overflow: hidden;
+	padding-top: 10px;
+}
+
+body.sponsored_med #chart-container-1 {
+	width: 272px;
+	height: 114px;
+	overflow: hidden;
+}
+
+body.sponsored_sm #chart-container-1 {
+	width: 132px;
+	height: 95px;
+	overflow: hidden;
+}
+
+dl dt, dl dd {
+	float: left;
+}
+
+body.sponsored_sm dl dd {
+	float: none;
+	line-height: 130%;
+}
+
+body.sponsored_sm dl {
+	margin-bottom: 4px;
+	font-size: 95%;
+}
+
+#lawmaker-color, #house-color {
+	background: url(/images/sponsorships/lawmaker-color.jpg) top left no-repeat;
+	width: 10px;
+	height: 10px;
+	text-indent: -9999em;
+	margin-right: 5px;
+	margin-top: 1px;
+}
+
+#house-color {
+	background: url(/images/sponsorships/house-color.jpg) top left no-repeat;
+	margin-left: 30px;
+}
+
+body.sponsored_sm #house-color {
+	margin-left: 0px;
+}
+
+dl dd {
+	font-size: 100%;
+	line-height: 100%;
+	color: #606161;
+}
+
+#key {
+	line-height: 120%;
+	border-top: 1px solid #BBBDBF;
+	padding-top: 3px;
+	list-style: decimal;
+	padding-left: 17px;
+	font-size: 95%;
+}
+
+/*added*/
+#sources {	background: #606161; height: 10px; margin-top: 2px;	width: 152px;}
+#sources a { background: url(/images/sponsorships/sources.png) center 1px no-repeat; height: 10px;	width: auto; display: block; text-indent: -9999em; }
+#sources a:hover {	background: url(/images/sponsorships/sources-over.png) center 1px no-repeat;}
+body.sponsored_med #sources { width: 292px; }
+body.sponsored_lg #sources { width: 392px; }
+
