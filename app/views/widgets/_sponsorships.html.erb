@@ -30,8 +30,8 @@
         <dl>
           <dt id="lawmaker-color">Color Block for Lawmaker Average</dt>
           <dd id="lawmaker-average">Lawmaker Count</dd>
-          <dt id="house-color">Color Block for House Average</dt>
-          <dd id="house-average">Chamber Average</dd>
+          <dt id="house-color">Color Block for Chamber Average</dt>
+          <dd id="house-average" class="chamber_average">Chamber Average</dd>
         </dl>
         <% if @size == 'sm' -%>
         <ol id="key">
@@ -77,7 +77,8 @@
       state_downcase: legislator.state.toLowerCase(),
       state: legislator_state,
       party: "(" + legislator.party + ")",
-      bills_introduced: legislator.sponsorships.sponsored
+      bills_introduced: legislator.sponsorships.sponsored,
+      chamber_average: chamberFor(legislator.title) + " Average"
     };
 
     $('div#pageMain').autoRender(widget_data);
@@ -97,7 +98,7 @@
       dimensions.margin = [10, 20, 15, 20];
     }
     
-    var categories = ['Sponsored',  'Enacted', 'Cosponsored', 'Enacted'];
+    var categories = ['Sponsored',  'Then Enacted', 'Cosponsored', 'Then Enacted'];
     var group_padding = .05;
     if (size == 'sm') {
       categories = ['1', '2', '3', '4'];
@@ -105,79 +106,84 @@
     }
     
     var chart1 = new Highcharts.Chart({
-    chart: {
-      renderTo: 'chart-container-1',
-      defaultSeriesType: 'bar',
-      width: dimensions.width,
-      height: dimensions.height,
-      margin: dimensions.margin
-    },
-    title: {
-      text: "",
-      style: {
-        display: 'none',
-        position: 'absolute',
-        left: '0',
-        top: '0'
-      }
-    },
-    xAxis: {
-      categories: categories
-    },
-    yAxis: {
-      title: null,
-      gridLineWidth: 0,
-      labels: {
-        enabled: false
-      }
-    },
+      chart: {
+        renderTo: 'chart-container-1',
+        defaultSeriesType: 'bar',
+        width: dimensions.width,
+        height: dimensions.height,
+        margin: dimensions.margin
+      },
+      title: {
+        text: "",
+        style: {
+          display: 'none',
+          position: 'absolute',
+          left: '0',
+          top: '0'
+        }
+      },
+      xAxis: {
+        categories: categories
+      },
+      yAxis: {
+        title: null,
+        gridLineWidth: 0,
+        labels: {
+          enabled: false
+        }
+      },
 
-    colors: [
-    '#0C6A6F',
-    '#0AA6AE'
-    ],
+      colors: [
+        '#0C6A6F',
+        '#0AA6AE'
+      ],
 
-    credits: { enabled: false },
+      credits: { enabled: false },
 
-    plotOptions: {
-      bar: {
-        groupPadding: group_padding,
-        pointPadding: .2,
-        dataLabels: {
-          enabled: true,
-          color: 'auto',
-          y: 1,
-          formatter: function() {
-            return decimal_format(this.y,1) + '';
+      plotOptions: {
+        bar: {
+          groupPadding: group_padding,
+          pointPadding: .2,
+          dataLabels: {
+            enabled: true,
+            color: 'auto',
+            y: 1,
+            formatter: function() {
+              return decimal_format(this.y,1) + '';
+            }
           }
         }
-      }
-    },
+      },
 
-    tooltip: {
-      formatter: function() {
-        return '<b>'+ this.x +'</b><br/>'+
-        this.series.name +': '+ decimal_format(this.y,1) + '';
-      }
-    }, 
+      tooltip: {
+        formatter: function() {
+          return '<b>'+ this.x +'</b><br/>'+
+          this.series.name +': '+ decimal_format(this.y,1) + '';
+        }
+      }, 
 
-    legend: { enabled: false },
+      legend: { enabled: false },
 
-    series: [
-      {name: 'Chamber Average',
-      data: [legislator.sponsorships.average_sponsored, 
-             legislator.sponsorships.average_sponsored_enacted, 
-             legislator.sponsorships.average_cosponsored,
-             legislator.sponsorships.average_cosponsored_enacted]},
-      {name: legislator.first_name + " " + legislator.last_name,
-      data: [legislator.sponsorships.sponsored, 
-             legislator.sponsorships.sponsored_enacted, 
-             legislator.sponsorships.cosponsored, 
-             legislator.sponsorships.cosponsored_enacted]}
-      ]
-  });
+      series: [
+        {name: chamberFor(legislator.title) + ' Average',
+        data: [legislator.sponsorships.average_sponsored, 
+              legislator.sponsorships.average_sponsored_enacted, 
+              legislator.sponsorships.average_cosponsored,
+              legislator.sponsorships.average_cosponsored_enacted]},
+        {name: legislator.first_name + " " + legislator.last_name,
+        data: [legislator.sponsorships.sponsored, 
+              legislator.sponsorships.sponsored_enacted, 
+              legislator.sponsorships.cosponsored, 
+              legislator.sponsorships.cosponsored_enacted]}
+        ]
+    });
     
   });
+  
+  function chamberFor(title) {
+    return (title == 'Sen') ? "Senate" : "House";
+  }
+  
 </script>
   
 </body>
