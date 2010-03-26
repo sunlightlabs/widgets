@@ -31,89 +31,19 @@
         <div class="clear"></div>
       </div>
       <div id="voteTotals">
-      
-        <% if params[:size] == 'sm' %>
-          <h2>Vote Totals</h2>
-          <div id="voteKey">
-            <span id="republican">Rep</span>
-            <span id="democrat">Dem</span>
-          </div>
-          <div id="chart" class="right">
-            <div></div>
-          </div>
-          <div id="chartTotals" class="left">
-            <dl>
-              <dt class="aye">Aye</dt>
-              <dd class="first">
-                <ul>
-                  <li>
-                    <span class="republicanBlock">Republican</span>
-                    <span class="voteTotal rep_ayes"></span>
-                  </li>
-                  <li>
-                    <span class="democratBlock">Democrat</span>
-                    <span class="voteTotal dem_ayes"></span>
-                  </li>
-                  <li class="clear"></li>
-                </ul>
-              </dd>
-              <dt class="nay">Nay</dt>
-              <dd>
-                <ul>
-                  <li>
-                    <span class="republicanBlock">Republican</span>
-                    <span class="voteTotal rep_nays"></span>
-                  </li>
-                  <li>
-                    <span class="democratBlock">Democrat</span>
-                    <span class="voteTotal dem_nays"></span>
-                  </li>
-                </ul>
-              </dd>
-            </dl>    
-          </div>
-          <div class="clear"></div>       
-        <% else %>
-          <h2>Vote Totals</h2>
-          <div id="voteKey">
-            <span id="republican">Rep</span>
-            <span id="democrat">Dem</span>
-          </div>
-          <div id="chart-container-1" class="right"></div>
-          <div id="chartTotals" class="left">
-            <dl>
-              <dt class="aye">Aye</dt>
-              <dd>
-                <ul>
-                  <li>
-                    <span class="republicanBlock">Republican</span>
-                    <span class="voteTotal rep_ayes"></span>
-                  </li>
-                  <li>
-                    <span class="democratBlock">Democrat</span>
-                    <span class="voteTotal dem_ayes"></span>
-                  </li>
-                  <li class="clear"></li>
-                </ul>
-              </dd>
-              <dt class="nay">Nay</dt>
-              <dd>
-                <ul>
-                  <li>
-                    <span class="republicanBlock">Republican</span>
-                    <span class="voteTotal rep_nays"></span>
-                  </li>
-                  <li>
-                    <span class="democratBlock">Democrat</span>
-                    <span class="voteTotal dem_nays"></span>
-                  </li>
-                </ul>
-              </dd>
-            </dl>    
-          </div>
-          <div class="clear"></div>
-        <% end %>
-        
+        <h2>Vote Totals</h2>
+        <div id="voteKey">
+          <dl>
+            <dt id="republican">Republican</dt>
+            <dd>Rep</dd>
+            <dt id="democrat">Democrat</dt>
+            <dd>Dem</dd>
+            <dt id="independent">Independent</dt>
+            <dd>Ind</dd>
+          </dl>
+        </div>
+        <div id="chart-container-1" class="right">          
+        <div class="clear"></div>         
       </div>    
     </div>
   </div>
@@ -186,24 +116,102 @@
           rep_present: roll.party_vote_breakdown.R.present,
           rep_not_voting: roll.party_vote_breakdown.R.not_voting
         };
-        $('div#voteTotals').autoRender(roll_data);
+      $('div#voteTotals').autoRender(roll_data);
 
 
-        var vote = data.roll.voters[bioguide_id].vote;
-        var legislator_vote = "";
-        switch (vote) {
-          case '+': legislator_vote = "Aye"; break;
-          case '-': legislator_vote = "Nay"; break;
-          case 'P': legislator_vote = "Present"; break;
-          case '0': legislator_vote = "Not Voting"; break;
-        };
-        
-        var vote_data = {
-          legislator_vote_value: legislator_vote,
-          legislator_vote_class: legislator_vote.replace(" ", "").toLowerCase()
-        };
-        $('div#lawmakerVote').autoRender(vote_data);
+      var vote = data.roll.voters[bioguide_id].vote;
+      var legislator_vote = "";
+      switch (vote) {
+        case '+': legislator_vote = "Aye"; break;
+        case '-': legislator_vote = "Nay"; break;
+        case 'P': legislator_vote = "Present"; break;
+        case '0': legislator_vote = "Not Voting"; break;
+      };
+      
+      var vote_data = {
+        legislator_vote_value: legislator_vote,
+        legislator_vote_class: legislator_vote.replace(" ", "").toLowerCase()
+      };
+      $('div#lawmakerVote').autoRender(vote_data);
 
+
+      var dimensions = {};
+      if (size == 'sm') {
+        dimensions.width = 150;
+        dimensions.height = 70;
+        dimensions.margin = [10, 0, 23, 30];
+      } else if (size == 'med') {
+        dimensions.width = 280;
+        dimensions.height = 55;
+        dimensions.margin = [5, 20, 20, 30];
+      } else {
+        dimensions.width = 350;
+        dimensions.height = 75;
+        dimensions.margin = [5, 20, 20, 30];
+      }
+      
+      var series = [];
+      series[0] = {
+                    name: 'Democrat',
+                    data: [roll.party_vote_breakdown.D.ayes, roll.party_vote_breakdown.D.nays]
+                  };
+      series[1] = {
+                    name: 'Republican',
+                    data: [roll.party_vote_breakdown.R.ayes, roll.party_vote_breakdown.R.nays]
+                   };
+      if (roll.party_vote_breakdown.I != null) {
+        series[2] = {
+                      name: 'Independent',
+                      data: [roll.party_vote_breakdown.I.ayes, roll.party_vote_breakdown.I.nays]
+                    };
+      }
+      
+      var chart1 = new Highcharts.Chart({
+        chart: {
+          renderTo: 'chart-container-1',
+          defaultSeriesType: 'bar',
+          width: dimensions.width,
+          height: dimensions.height,
+          margin: dimensions.margin
+        },
+        colors: [
+        '#0096C9',
+        '#E31E26'
+        ],
+        title: {
+          text: " ",
+          style: {
+            display: 'none',
+            position: 'absolute',
+            left: '0',
+            top: '0'
+          }
+        },
+        xAxis: {
+          categories: ['Aye', 'Nay']
+        },
+        yAxis: {
+          title: null
+        },
+        credits: { enabled: false },
+        legend: { enabled: false },
+
+        plotOptions: {
+          bar: {
+            borderWidth: 0.5,
+            stacking: 'normal',
+            groupPadding: -.02, // sm size
+            pointPadding: .2,
+          }
+        },
+        tooltip: {
+          formatter: function() {
+            return '<b>'+ this.y +'</b>' + ' ' + this.x + ' Votes' + '<br/>'+
+            'by ' + this.series.name + 's';
+          }
+        }, 
+        series: series
+      });
     });
     
   </script>

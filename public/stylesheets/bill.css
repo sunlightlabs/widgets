@@ -36,6 +36,9 @@ body.bill_sm .left { width: 132px;}
 div#headerWrapper { background-color: #DDD9D7; }
 div#mainContent { padding: 0 15px;}
 body.bill_med div#mainContent, body.bill_sm div#mainContent { padding: 0 10px;}
+body.bill_sm div#mainContent {height: 212px;} /*added*/
+body.bill_med div#mainContent {height: 152px;} /*added*/
+body.bill_lg div#mainContent {height: 180px;} /*added*/
 
 h2 small, h1 small { font-family: Georgia, Times New Roman, Times, serif; font-style: oblique; }
 h2 small, h1 big { display: block;}
@@ -45,7 +48,7 @@ h1 small { font-size: 105%; line-height: 16px;}
 h2 small { font-size: 110%;}
 body.bill_med h2 small, body.bill_sm h2 small { display: inline;}
 h2 big, div#voteTotals h2 { color: #191919; text-transform: uppercase; font-weight: bold; font-size: 115%; line-height:18px;}
-div#voteTotals h2 { float: left; margin-bottom:5px;}
+div#voteTotals h2 { float: left; margin-bottom:5px; margin-right: 20px;}
 body.bill_med h2, body.bill_sm h2, body.bill_med div#voteTotals h2 { margin-bottom: 3px; }
 body.bill_med h2 big { line-height: 14px;}
 body.bill_sm h2 big, body.bill_sm div#voteTotals h2 { font-size: 110%; line-height: 12px;}
@@ -67,34 +70,48 @@ dt { text-indent: -9999em; display: block; width: 17px; height: 17px; margin-rig
 body.bill_med dt { margin-bottom: 18px; }
 dt.aye { background: url(/images/bill/icon_ayeSm.png) top left no-repeat;}
 dt.nay { background: url(/images/bill/icon_naySm.png) top left no-repeat;}
-body.bill_sm dt { margin-bottom: 0px; }
+body.bill_sm dt, body.bill_med div#voteKey dt { margin-bottom: 0px; }
 
 body.bill_sm dd { float: left;}
 body.bill_sm dd.first { margin-right: 15px;}
 
-span.republicanBlock, span.democratBlock { text-indent: -9999em; display: block; float: left; width: 8px; height: 8px; margin-right:5px; }
-span.republicanBlock { background-color: #E31E26; }
-span.democratBlock { background-color: #0697C9; }
-span.voteTotal { line-height: 9px; display: block; margin-bottom: 5px; }
+span.republicanBlock, span.democratBlock, span.independentBlock, div#voteKey dt { text-indent: -9999em; display: block; float: left; width: 8px; height: 8px; margin-right:5px; }
+span.republicanBlock, span.democratBlock, span.independentBlock { width: 6px; height: 6px; margin-top: 1px;}
+span.republicanBlock, dt#republican { background-color: #E31E26; }
+span.democratBlock, dt#democrat { background-color: #0697C9; }
+span.independentBlock, dt#independent { background-color: #BCBEC0; }
+span.voteTotal { line-height: 9px; display: block; margin-bottom: 4px; font-size: 95%;}
 body.bill_med span.voteTotal { margin-bottom: 3px;}
 body.bill_sm span.voteTotal { width: 30px;}
+div#chartTotals li { padding-left: 25px;}
+div#chart-container-1 {overflow: hidden;}
+body.bill_lg div#chart-container-1 {width: 350px;}
+body.bill_med div#chart-container-1 {width: 275px;}
 
 div#repInfo span.aye, div#billResult span.passed { background: url(/images/bill/icon_ayeLg.png) center top no-repeat; font-size: 140%; color: #409744; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
 div#repInfo span.nay, div#billResult span.failed { background: url(/images/bill/icon_nayLg.png) center top no-repeat; font-size: 140%; color: #191919; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
 
 body.bill_med div#repInfo span.nay, body.bill_med div#billResult span.failed, body.bill_med div#repInfo span.aye, body.bill_med div#billResult span.passed  { font-size: 125%; padding-top: 32px;}
 
-body.bill_sm div#repInfo span.aye, body.bill_sm div#billResult span.passed { background: url(/images/icon_ayeSm.png) left 1px no-repeat; padding-top: 0px; padding-left: 20px;}
+body.bill_sm div#repInfo span.aye, body.bill_sm div#billResult span.passed { background: url(/images/bill/icon_ayeSm.png) left 1px no-repeat; padding-top: 0px; padding-left: 20px;}
 
-body.bill_sm div#repInfo span.nay, body.bill_sm div#billResult span.failed { background: url(/images/icon_naySm.png) left 1px no-repeat; padding-top: 0px; padding-left: 20px;}
+body.bill_sm div#repInfo span.nay, body.bill_sm div#billResult span.failed { background: url(/images/bill/icon_naySm.png) left 1px no-repeat; padding-top: 0px; padding-left: 20px;}
 
 body.bill_sm div#repInfo span.aye, body.bill_sm div#billResult span.passed, body.bill_sm div#repInfo span.nay, body.bill_sm div#billResult span.failed { font-size: 105%; text-align: left;}
 
 div#voteKey { line-height: 16px; }
 div#voteKey span { margin-left: 15px; padding-left: 14px; }
+div#voteKey dt { margin-top: 4px;}
+div#voteKey dd { float: left; margin-right: 10px;}
+body.bill_sm div#voteKey dd { margin-right: 8px;}
 body.bill_sm div#voteKey span { margin-left: 0;}
-span#republican { background: url(/images/bill/repBlock.jpg) left 3px no-repeat;}
-span#democrat { background: url(/images/bill/demBlock.jpg) left 3px no-repeat;}
 body.bill_sm div#voteKey span#democrat  { margin-left: 10px;}
 
 .clear { clear: both;}
+
+/*added*/
+#sources {	background: #606161; height: 10px; margin-top: 2px;	width: 152px;}
+#sources a { background: url(/images/bill/sources.png) center 1px no-repeat; height: 10px;	width: auto; display: block; text-indent: -9999em; }
+#sources a:hover {	background: url(/images/bill/sources-over.png) center 1px no-repeat;}
+body.bill_med #sources {width: 292px; }
+body.bill_lg #sources {	width: 392px; }
