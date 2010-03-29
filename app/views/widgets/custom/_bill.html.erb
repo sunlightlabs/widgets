@@ -37,6 +37,12 @@
       
       var url = drumboneUrl("bill", ["basic", "votes"], {bill_id: bill_id});
       $.getJSON(url, function(data) {
+        
+        if (data.error) {
+          $("#vote_error").html("Couldn't find a bill by this code.").show();
+          return;
+        }
+        
         var bill = data.bill;
         
         var title = bill.short_title || bill.official_title;
