@@ -1,220 +1,217 @@
-<body class="bill_<%= params[:size] %>">
-  <div id="pageMain">
-    <div id="headerWrapper">
-      <div id="header">
-        <h1 class="right">
-          <big class="bill_code"></big>
-          <% unless params[:size] == 'sm' %>
-            <small class="short_title"></small>
-          <% end %>
-        </h1>
-        <!--<div id="billResult" class="left">
-          <span class="result_upper result_lower@class"></span>
-        </div> -->
-        <div class="clear"></div> 
-      </div>  
-    </div>
-    <div id="mainContent">
-      <div id="repInfo">
-        <div id="lamaker_metaData" class="right">
-          <% unless params[:size] == 'sm' %>
-            <img alt="Picture of " src="/images/profile/" class="pic@src full_name@alt+" width="40px" />
-          <% end %>
-          
-          <h2><small class="title"></small> <big class="full_name"></big></h2>
-          <span id="party" class="party party_long@class"></span>
-          <span id="stateDistrict" class="state"></span>
-        </div>
-        <div id="lawmakerVote" class="left">
-          <span class="legislator_vote_value legislator_vote_class@class"></span>
-        </div>
-        <div class="clear"></div>
-      </div>
-      <div id="voteTotals">
-        <h2>Vote Totals</h2>
-        <div id="voteKey">
-          <dl>
-            <dt id="republican">Republican</dt>
-            <dd>Rep</dd>
-            <dt id="democrat">Democrat</dt>
-            <dd>Dem</dd>
-            <dt id="independent">Independent</dt>
-            <dd>Ind</dd>
-          </dl>
-        </div>
-        <div id="chart-container-1" class="right">          
-        <div class="clear"></div>         
-      </div>    
-    </div>
+<div id="pageMain">
+  <div id="headerWrapper">
+    <div id="header">
+      <h1 class="right">
+        <big class="bill_code"></big>
+        <% unless params[:size] == 'sm' %>
+          <small class="short_title"></small>
+        <% end %>
+      </h1>
+      <!--<div id="billResult" class="left">
+        <span class="result_upper result_lower@class"></span>
+      </div> -->
+      <div class="clear"></div> 
+    </div>  
   </div>
+  <div id="mainContent">
+    <div id="repInfo">
+      <div id="lamaker_metaData" class="right">
+        <% unless params[:size] == 'sm' %>
+          <img alt="Picture of " src="/images/profile/" class="pic@src full_name@alt+" width="40px" />
+        <% end %>
+        
+        <h2><small class="title"></small> <big class="full_name"></big></h2>
+        <span id="party" class="party party_long@class"></span>
+        <span id="stateDistrict" class="state"></span>
+      </div>
+      <div id="lawmakerVote" class="left">
+        <span class="legislator_vote_value legislator_vote_class@class"></span>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div id="voteTotals">
+      <h2>Vote Totals</h2>
+      <div id="voteKey">
+        <dl>
+          <dt id="republican">Republican</dt>
+          <dd>Rep</dd>
+          <dt id="democrat">Democrat</dt>
+          <dd>Dem</dd>
+          <dt id="independent">Independent</dt>
+          <dd>Ind</dd>
+        </dl>
+      </div>
+      <div id="chart-container-1" class="right">          
+      <div class="clear"></div>         
+    </div>    
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  var roll_id = "<%= params[:roll_id] %>";
+  var url = drumboneUrl("roll", ["basic", "bill", "party_vote_breakdown", "voters." + bioguide_id], {roll_id: roll_id});
   
-  <script type="text/javascript" charset="utf-8">
-    var roll_id = "<%= params[:roll_id] %>";
-    var url = drumboneUrl("roll", ["basic", "bill", "party_vote_breakdown", "voters." + bioguide_id], {roll_id: roll_id});
+  loadWidget(url, function(data) {
     
-    loadWidget(url, function(data) {
-      
-      // legislator info
-      var legislator = data.roll.voters[bioguide_id].voter;
-      
-      var legislator_district = "";
-      if (legislator.district == '0')
-        legislator_district = "AL";
-      else
-        legislator_district = legislator.district;
+    // legislator info
+    var legislator = data.roll.voters[bioguide_id].voter;
     
-      var legislator_state = "";
-      if (legislator.title == "Sen")
-        legislator_state = legislator.state;
-      else
-        legislator_state = legislator.state + "-" + legislator_district;
-      
-      var party_long = "";
-      if (legislator.party == 'D')
-        party_long = "democrat";
-      else if (legislator.party == 'R')
-        party_long = "republican";
-      else
-        party_long = "independent";
-      
-      var legislator_data = {
-        title: legislator.title + ".",
-        full_name: legislator.first_name + " " + legislator.last_name,
-        pic: profileImage(legislator.bioguide_id),
-        state_downcase: legislator.state.toLowerCase(),
-        state: legislator_state,
-        party: "(" + legislator.party + ")",
-        party_long: party_long
+    var legislator_district = "";
+    if (legislator.district == '0')
+      legislator_district = "AL";
+    else
+      legislator_district = legislator.district;
+  
+    var legislator_state = "";
+    if (legislator.title == "Sen")
+      legislator_state = legislator.state;
+    else
+      legislator_state = legislator.state + "-" + legislator_district;
+    
+    var party_long = "";
+    if (legislator.party == 'D')
+      party_long = "democrat";
+    else if (legislator.party == 'R')
+      party_long = "republican";
+    else
+      party_long = "independent";
+    
+    var legislator_data = {
+      title: legislator.title + ".",
+      full_name: legislator.first_name + " " + legislator.last_name,
+      pic: profileImage(legislator.bioguide_id),
+      state_downcase: legislator.state.toLowerCase(),
+      state: legislator_state,
+      party: "(" + legislator.party + ")",
+      party_long: party_long
+    };
+
+    $('div#repInfo').autoRender(legislator_data);
+    
+    // bill info
+    var bill = data.roll.bill;
+    
+    var bill_data = {
+      short_title: bill.short_title,
+      bill_code: bill.type.toUpperCase() + " " + bill.number,
+    };
+    $('div#header').autoRender(bill_data);
+    
+    
+    // roll info
+    var roll = data.roll;
+    
+    var roll_data = {
+        ayes: roll.vote_breakdown.ayes,
+        nays: roll.vote_breakdown.nays,
+        present: roll.vote_breakdown.present,
+        not_voting: roll.vote_breakdown.not_voting,
+        dem_ayes: roll.party_vote_breakdown.D.ayes,
+        dem_nays: roll.party_vote_breakdown.D.nays,
+        dem_present: roll.party_vote_breakdown.D.present,
+        dem_not_voting: roll.party_vote_breakdown.D.not_voting,
+        rep_ayes: roll.party_vote_breakdown.R.ayes,
+        rep_nays: roll.party_vote_breakdown.R.nays,
+        rep_present: roll.party_vote_breakdown.R.present,
+        rep_not_voting: roll.party_vote_breakdown.R.not_voting
       };
-
-      $('div#repInfo').autoRender(legislator_data);
-      
-      // bill info
-      var bill = data.roll.bill;
-     
-      var bill_data = {
-        short_title: bill.short_title,
-        bill_code: bill.type.toUpperCase() + " " + bill.number,
-      };
-      $('div#header').autoRender(bill_data);
-      
-      
-      // roll info
-      var roll = data.roll;
-      
-      var roll_data = {
-          ayes: roll.vote_breakdown.ayes,
-          nays: roll.vote_breakdown.nays,
-          present: roll.vote_breakdown.present,
-          not_voting: roll.vote_breakdown.not_voting,
-          dem_ayes: roll.party_vote_breakdown.D.ayes,
-          dem_nays: roll.party_vote_breakdown.D.nays,
-          dem_present: roll.party_vote_breakdown.D.present,
-          dem_not_voting: roll.party_vote_breakdown.D.not_voting,
-          rep_ayes: roll.party_vote_breakdown.R.ayes,
-          rep_nays: roll.party_vote_breakdown.R.nays,
-          rep_present: roll.party_vote_breakdown.R.present,
-          rep_not_voting: roll.party_vote_breakdown.R.not_voting
-        };
-      $('div#voteTotals').autoRender(roll_data);
+    $('div#voteTotals').autoRender(roll_data);
 
 
-      var vote = data.roll.voters[bioguide_id].vote;
-      var legislator_vote = "";
-      switch (vote) {
-        case '+': legislator_vote = "Aye"; break;
-        case '-': legislator_vote = "Nay"; break;
-        case 'P': legislator_vote = "Present"; break;
-        case '0': legislator_vote = "Not Voting"; break;
-      };
-      
-      var vote_data = {
-        legislator_vote_value: legislator_vote,
-        legislator_vote_class: legislator_vote.replace(" ", "").toLowerCase()
-      };
-      $('div#lawmakerVote').autoRender(vote_data);
+    var vote = data.roll.voters[bioguide_id].vote;
+    var legislator_vote = "";
+    switch (vote) {
+      case '+': legislator_vote = "Aye"; break;
+      case '-': legislator_vote = "Nay"; break;
+      case 'P': legislator_vote = "Present"; break;
+      case '0': legislator_vote = "Not Voting"; break;
+    };
+    
+    var vote_data = {
+      legislator_vote_value: legislator_vote,
+      legislator_vote_class: legislator_vote.replace(" ", "").toLowerCase()
+    };
+    $('div#lawmakerVote').autoRender(vote_data);
 
 
-      var dimensions = {};
-      if (size == 'sm') {
-        dimensions.width = 150;
-        dimensions.height = 70;
-        dimensions.margin = [10, 0, 23, 30];
-      } else if (size == 'med') {
-        dimensions.width = 280;
-        dimensions.height = 55;
-        dimensions.margin = [5, 20, 20, 30];
-      } else {
-        dimensions.width = 350;
-        dimensions.height = 75;
-        dimensions.margin = [5, 20, 20, 30];
-      }
-      
-      var series = [];
-      series[0] = {
-                    name: 'Democrat',
-                    data: [roll.party_vote_breakdown.D.ayes, roll.party_vote_breakdown.D.nays]
+    var dimensions = {};
+    if (size == 'sm') {
+      dimensions.width = 150;
+      dimensions.height = 70;
+      dimensions.margin = [10, 0, 23, 30];
+    } else if (size == 'med') {
+      dimensions.width = 280;
+      dimensions.height = 55;
+      dimensions.margin = [5, 20, 20, 30];
+    } else {
+      dimensions.width = 350;
+      dimensions.height = 75;
+      dimensions.margin = [5, 20, 20, 30];
+    }
+    
+    var series = [];
+    series[0] = {
+                  name: 'Democrat',
+                  data: [roll.party_vote_breakdown.D.ayes, roll.party_vote_breakdown.D.nays]
+                };
+    series[1] = {
+                  name: 'Republican',
+                  data: [roll.party_vote_breakdown.R.ayes, roll.party_vote_breakdown.R.nays]
                   };
-      series[1] = {
-                    name: 'Republican',
-                    data: [roll.party_vote_breakdown.R.ayes, roll.party_vote_breakdown.R.nays]
-                   };
-      if (roll.party_vote_breakdown.I != null) {
-        series[2] = {
-                      name: 'Independent',
-                      data: [roll.party_vote_breakdown.I.ayes, roll.party_vote_breakdown.I.nays]
-                    };
-      }
-      
-      var chart1 = new Highcharts.Chart({
-        chart: {
-          renderTo: 'chart-container-1',
-          defaultSeriesType: 'bar',
-          width: dimensions.width,
-          height: dimensions.height,
-          margin: dimensions.margin
-        },
-        colors: [
-        '#0096C9',
-        '#E31E26',
-        '#BCBEC0'
-        ],
-        title: {
-          text: " ",
-          style: {
-            display: 'none',
-            position: 'absolute',
-            left: '0',
-            top: '0'
-          }
-        },
-        xAxis: {
-          categories: ['Aye', 'Nay']
-        },
-        yAxis: {
-          title: null
-        },
-        credits: { enabled: false },
-        legend: { enabled: false },
-
-        plotOptions: {
-          bar: {
-            borderWidth: 0.5,
-            stacking: 'normal',
-            groupPadding: -.02, // sm size
-            pointPadding: .2,
-          }
-        },
-        tooltip: {
-          formatter: function() {
-            return '<b>'+ this.y +'</b>' + ' ' + this.x + ' Votes' + '<br/>'+
-            'by ' + this.series.name + 's';
-          }
-        }, 
-        series: series
-      });
-    });
+    if (roll.party_vote_breakdown.I != null) {
+      series[2] = {
+                    name: 'Independent',
+                    data: [roll.party_vote_breakdown.I.ayes, roll.party_vote_breakdown.I.nays]
+                  };
+    }
     
-  </script>
+    var chart1 = new Highcharts.Chart({
+      chart: {
+        renderTo: 'chart-container-1',
+        defaultSeriesType: 'bar',
+        width: dimensions.width,
+        height: dimensions.height,
+        margin: dimensions.margin
+      },
+      colors: [
+      '#0096C9',
+      '#E31E26',
+      '#BCBEC0'
+      ],
+      title: {
+        text: " ",
+        style: {
+          display: 'none',
+          position: 'absolute',
+          left: '0',
+          top: '0'
+        }
+      },
+      xAxis: {
+        categories: ['Aye', 'Nay']
+      },
+      yAxis: {
+        title: null
+      },
+      credits: { enabled: false },
+      legend: { enabled: false },
+
+      plotOptions: {
+        bar: {
+          borderWidth: 0.5,
+          stacking: 'normal',
+          groupPadding: -.02, // sm size
+          pointPadding: .2,
+        }
+      },
+      tooltip: {
+        formatter: function() {
+          return '<b>'+ this.y +'</b>' + ' ' + this.x + ' Votes' + '<br/>'+
+          'by ' + this.series.name + 's';
+        }
+      }, 
+      series: series
+    });
+  });
   
-</body>
+</script>

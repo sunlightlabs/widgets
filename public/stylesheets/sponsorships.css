@@ -23,17 +23,17 @@ body{
     border: 4px solid #919191;
 }
 
-body.sponsored_sm { 
+body.sponsorships_sm { 
 	width: 152px; 
 	height: 292px; 
 }
 
-body.sponsored_med { 
+body.sponsorships_med { 
 	width: 292px; 
 	height: 242px; 
 }
 
-body.sponsored_lg { 
+body.sponsorships_lg { 
 	width: 392px; 
 	height: 292px; 
 }
@@ -43,11 +43,11 @@ body.sponsored_lg {
 	height: 195px;
 }
 
-body.sponsored_med div#mainContent {
+body.sponsorships_med div#mainContent {
 	height: 135px;
 }
 
-body.sponsored_lg div#mainContent { 
+body.sponsorships_lg div#mainContent { 
 	padding: 15px;
 	height: 165px;
 }
@@ -61,24 +61,24 @@ body.sponsored_lg div#mainContent {
 	height: 85px;
 }
 
-body.sponsored_med #header { 
+body.sponsorships_med #header { 
 	height: 75px; 
 }
 
-body.sponsored_sm #header { 
+body.sponsorships_sm #header { 
 	height: 45px;
 	padding: 10px; 
 }
 
-body.sponsored_sm div#headerWrapper { 
+body.sponsorships_sm div#headerWrapper { 
 	height: 65px;
 }
 
-body.sponsored_med div#headerWrapper { 
+body.sponsorships_med div#headerWrapper { 
 	height: 75px;
 }
 
-body.sponsored_lg div#headerWrapper { 
+body.sponsorships_lg div#headerWrapper { 
 	height: 85px;
 }
 
@@ -87,29 +87,29 @@ body.sponsored_lg div#headerWrapper {
 	margin: 15px 0 15px 10px;
 }
 
-body.sponsored_med #repInfo {
+body.sponsorships_med #repInfo {
 	margin: 8px 0 10px 12px;
 	width: 190px;
 	line-height: 130%
 }
 
-body.sponsored_sm #repInfo {
+body.sponsorships_sm #repInfo {
 	float: none;
 	margin: 0;
 }
 
-body.sponsored_lg div#header img {
+body.sponsorships_lg div#header img {
 	border: 1px solid #BBBDBF;
 	float: left;
 	margin: 15px 0 0 15px;
 	width: 42px;
 }
 
-body.sponsored_sm #header span {
+body.sponsorships_sm #header span {
 	display: inline;
 }
 
-body.sponsored_lg h1 {
+body.sponsorships_lg h1 {
 	width: 230px;
 }
 
@@ -117,28 +117,28 @@ h1 small, h1 big {
 	display: block;
 }
 
-body.sponsored_sm h1 {
+body.sponsorships_sm h1 {
 	line-height: 100%;
 }
 
-body.sponsored_sm h1 small, body.sponsored_sm h1 big {
+body.sponsorships_sm h1 small, body.sponsorships_sm h1 big {
 	display: inline;
 }
 
-body.sponsored_lg #lawmakerMetadata {
+body.sponsorships_lg #lawmakerMetadata {
 	line-height: 140%;
 }
 
-body.sponsored_med #lawmakerMetadata {
+body.sponsorships_med #lawmakerMetadata {
 	line-height: 130%;
 	font-size: 95%;
 }
 
-body.sponsored_med big {
+body.sponsorships_med big {
 	line-height: 110%;
 }
 
-body.sponsored_sm #lawmakerMetadata {
+body.sponsorships_sm #lawmakerMetadata {
 	line-height: 115%;
 }
 
@@ -146,7 +146,7 @@ body.contributors_sm h1 {
 	line-height: 100%;
 }
 
-body.sponsored_sm h1 big {
+body.sponsorships_sm h1 big {
 	font-size: 100%;
 	font-weight: bold;
 	color: #191919;
@@ -179,15 +179,15 @@ span#party {
 	line-height: 140%;
 }
 
-body.sponsored_sm span#party {
+body.sponsorships_sm span#party {
 	line-height: 115%;
 }
 
-body.sponsored_med span#party {
+body.sponsorships_med span#party {
 	line-height: 130%;
 }
 
-body.sponsored_lg #counter {
+body.sponsorships_lg #counter {
 	height: 54px;
 	width: 80px;
 	padding: 15px 0;
@@ -196,7 +196,7 @@ body.sponsored_lg #counter {
 	float: right;
 }
 
-body.sponsored_med #counter{
+body.sponsorships_med #counter{
 	float: right;
 	height: 44px;
 	width: 80px;
@@ -214,7 +214,7 @@ body.sponsored_med #counter{
 	display: block;
 }
 
-body.sponsored_med #bills-sponsored {
+body.sponsorships_med #bills-sponsored {
 	background: url(/images/sponsorships/bills-sponsored-med.png) top left no-repeat;
 	display: block;
 	margin: 0 auto 6px;
@@ -230,7 +230,7 @@ body.sponsored_med #bills-sponsored {
 	display: block;
 }
 
-body.sponsored_med #number {
+body.sponsorships_med #number {
 	width: 80px;
 	font-size: 150%
 }
@@ -241,26 +241,26 @@ h2 {
 	text-indent: -9999em;
 }
 
-body.sponsored_sm h2 {
+body.sponsorships_sm h2 {
 	background: url(/images/sponsorships/sponsored-bills-sm.png) top center no-repeat;
 	height: 10px;
 	text-indent: -9999em;
 }
 
-body.sponsored_lg #chart-container-1 {
+body.sponsorships_lg #chart-container-1 {
 	width: 362px;
 	height: 135px;
 	overflow: hidden;
 	padding-top: 10px;
 }
 
-body.sponsored_med #chart-container-1 {
+body.sponsorships_med #chart-container-1 {
 	width: 272px;
 	height: 114px;
 	overflow: hidden;
 }
 
-body.sponsored_sm #chart-container-1 {
+body.sponsorships_sm #chart-container-1 {
 	width: 132px;
 	height: 95px;
 	overflow: hidden;
@@ -270,12 +270,12 @@ dl dt, dl dd {
 	float: left;
 }
 
-body.sponsored_sm dl dd {
+body.sponsorships_sm dl dd {
 	float: none;
 	line-height: 130%;
 }
 
-body.sponsored_sm dl {
+body.sponsorships_sm dl {
 	margin-bottom: 4px;
 	font-size: 95%;
 }
@@ -294,7 +294,7 @@ body.sponsored_sm dl {
 	margin-left: 30px;
 }
 
-body.sponsored_sm #house-color {
+body.sponsorships_sm #house-color {
 	margin-left: 0px;
 }
 
@@ -317,6 +317,6 @@ dl dd {
 #sources {	background: #606161; height: 10px; margin-top: 2px;	width: 152px;}
 #sources a { background: url(/images/sponsorships/sources.png) center 1px no-repeat; height: 10px;	width: auto; display: block; text-indent: -9999em; }
 #sources a:hover {	background: url(/images/sponsorships/sources-over.png) center 1px no-repeat;}
-body.sponsored_med #sources { width: 292px; }
-body.sponsored_lg #sources { width: 392px; }
+body.sponsorships_med #sources { width: 292px; }
+body.sponsorships_lg #sources { width: 392px; }
 

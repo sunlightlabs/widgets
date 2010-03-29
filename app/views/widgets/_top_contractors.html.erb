@@ -1,128 +1,126 @@
-<body class="contract_<%= params[:size] %>">
-  <div id="pageMain">
-    <div id="headerWrapper">
-      <div id="header">
-        <h1>
-          <big>Top 5 Contractors</big><small>in <span class="state"></span></small>
-        </h1>
-        <div id="districtMap">
-          <img alt="district map" src="/images/districts/" class="pic@src+"/>
-        </div>    
-        <div class="clear"></div> 
-      </div>
-    </div>
-    <div id="mainContent">
-      <div id="chart-container-1"></div>
-      <% if params[:size] == 'sm' -%>
-      <ol id="contractor_names">
-        <li class="contractors name"></li>
-      </ol>
-      <% end -%>
+<div id="pageMain">
+  <div id="headerWrapper">
+    <div id="header">
+      <h1>
+        <big>Top 5 Contractors</big><small>in <span class="state"></span></small>
+      </h1>
+      <div id="districtMap">
+        <img alt="district map" src="/images/districts/" class="pic@src+"/>
+      </div>    
+      <div class="clear"></div> 
     </div>
   </div>
-  <script type="text/javascript" charset="utf-8">
+  <div id="mainContent">
+    <div id="chart-container-1"></div>
+    <% if params[:size] == 'sm' -%>
+    <ol id="contractor_names">
+      <li class="contractors name"></li>
+    </ol>
+    <% end -%>
+  </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+
+  var size = '<%= params[:size] %>';
+  var url = drumboneUrl("legislator", ["basic", "contracts"], {bioguide_id: bioguide_id});
   
-    var size = '<%= params[:size] %>';
-    var url = drumboneUrl("legislator", ["basic", "contracts"], {bioguide_id: bioguide_id});
+  loadWidget(url, function(data) {
+
+    var legislator = data.legislator;
+      
+    var legislator_district = "";
+    if (legislator.district == '0')
+      legislator_district = "AL";
+    else
+      legislator_district = legislator.district;
     
-    loadWidget(url, function(data) {
+    var legislator_state = legislator.state + "-" + legislator_district;
+    var legislator_state_no_hyphen = legislator.state + legislator_district;
 
-      var legislator = data.legislator;
-        
-      var legislator_district = "";
-      if (legislator.district == '0')
-        legislator_district = "AL";
-      else
-        legislator_district = legislator.district;
-      
-      var legislator_state = legislator.state + "-" + legislator_district;
-      var legislator_state_no_hyphen = legislator.state + legislator_district;
+    var widget_data = {
+      full_name: legislator.first_name + " " + legislator.last_name,
+      pic: legislator_state_no_hyphen + "-small.gif",
+      state_downcase: legislator.state.toLowerCase(),
+      state: legislator_state,
+      party: "(" + legislator.party + ")",
+    };
 
-      var widget_data = {
-        full_name: legislator.first_name + " " + legislator.last_name,
-        pic: legislator_state_no_hyphen + "-small.gif",
-        state_downcase: legislator.state.toLowerCase(),
-        state: legislator_state,
-        party: "(" + legislator.party + ")",
-      };
+    $('div#header').autoRender(widget_data);
+    
+    var top_contractors = legislator.contracts.top_contractors;
+    var top_names = [];
+    var top_amounts = [];
+    var name_objects = [];
+    for (var i = 0; i < 5; i++) {
+      top_names[i] = top_contractors[i].name;
+      name_objects[i] = { "name": top_contractors[i].name.substring(0,15)};
+      top_amounts[i] = parseFloat(top_contractors[i].amount);
+    }
 
-      $('div#header').autoRender(widget_data);
-      
-      var top_contractors = legislator.contracts.top_contractors;
-      var top_names = [];
-      var top_amounts = [];
-      var name_objects = [];
-      for (var i = 0; i < 5; i++) {
-        top_names[i] = top_contractors[i].name;
-        name_objects[i] = { "name": top_contractors[i].name.substring(0,15)};
-        top_amounts[i] = parseFloat(top_contractors[i].amount);
-      }
+    var dimensions = {};
+    if (size == 'sm') {
+      dimensions.width = 130;
+      dimensions.height = 100;
+      dimensions.margin = [0, 20, 20, 20];
+    } else if (size == 'med') {
+      dimensions.width = 272;
+      dimensions.height = 150;
+      dimensions.margin = [0, 30, 20, 80];
+    } else {
+      dimensions.width = 360;
+      dimensions.height = 180;
+      dimensions.margin = [0, 30, 20, 80];
+    }
 
-      var dimensions = {};
-      if (size == 'sm') {
-        dimensions.width = 130;
-        dimensions.height = 100;
-        dimensions.margin = [0, 20, 20, 20];
-      } else if (size == 'med') {
-        dimensions.width = 272;
-        dimensions.height = 150;
-        dimensions.margin = [0, 30, 20, 80];
-      } else {
-        dimensions.width = 360;
-        dimensions.height = 180;
-        dimensions.margin = [0, 30, 20, 80];
-      }
-
-      var names = top_names;      
-      if (size == 'sm') {
-        names = ['1', '2', '3', '4', '5'];
-        $('ol#contractor_names').autoRender({"contractors": name_objects});
-      }
-      var chart1 = new Highcharts.Chart({
-        chart: {
-          renderTo: 'chart-container-1',
-          defaultSeriesType: 'bar',
-          width: dimensions.width,
-          height: dimensions.height,
-          margin: dimensions.margin
-        },
-        title: {
-          text: "",
-          style: {
-            display: 'none',
-            position: 'absolute',
-            left: '0',
-            top: '0'
+    var names = top_names;      
+    if (size == 'sm') {
+      names = ['1', '2', '3', '4', '5'];
+      $('ol#contractor_names').autoRender({"contractors": name_objects});
+    }
+    var chart1 = new Highcharts.Chart({
+      chart: {
+        renderTo: 'chart-container-1',
+        defaultSeriesType: 'bar',
+        width: dimensions.width,
+        height: dimensions.height,
+        margin: dimensions.margin
+      },
+      title: {
+        text: "",
+        style: {
+          display: 'none',
+          position: 'absolute',
+          left: '0',
+          top: '0'
+        }
+      },
+      xAxis: {
+        categories: names,
+        labels: {
+          formatter: function() {
+            return this.value.substring(0,10);
           }
-        },
-        xAxis: {
-          categories: names,
-          labels: {
+        }
+      },
+      yAxis: {
+        title: null,
+        labels: {
+          formatter: function() {
+            return '$' + this.value/1000000 + 'M';
+          }
+        }
+      },
+      credits: { enabled: false },
+      legend: { enabled: false },
+      tooltip: {
             formatter: function() {
-              return this.value.substring(0,10);
+                return this.x + ' for $'+ Highcharts.numberFormat(this.y, 2, '.');
             }
-          }
-        },
-        yAxis: {
-          title: null,
-          labels: {
-            formatter: function() {
-              return '$' + this.value/1000000 + 'M';
-            }
-          }
-        },
-        credits: { enabled: false },
-        legend: { enabled: false },
-        tooltip: {
-              formatter: function() {
-                 return this.x + ' for $'+ Highcharts.numberFormat(this.y, 2, '.');
-              }
-           },
-        series: [{
-          name: '',
-          data: top_amounts
-          }]
-        });
-    });
-  </script>
-</body>
+          },
+      series: [{
+        name: '',
+        data: top_amounts
+        }]
+      });
+  });
+</script>

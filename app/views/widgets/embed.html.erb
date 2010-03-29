@@ -29,6 +29,9 @@
   <%= stylesheet_link_tag "#{params[:id]}.css" %>
 </head>
 
-<%= render params[:id] %>
+<body class="<%= params[:id] %>_<%= params[:size] %>">
+  <%= render params[:id] %>
+  
+</body>
 
 </html>
