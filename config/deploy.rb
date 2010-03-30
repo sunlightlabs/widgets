@@ -19,6 +19,8 @@ role :web, domain
 role :app, domain
 role :db,  domain, :primary => true 
 
+after "deploy", "deploy:cleanup"
+
 namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "touch #{current_path}/tmp/restart.txt"
