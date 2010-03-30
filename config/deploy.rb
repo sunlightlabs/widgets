@@ -1,20 +1,27 @@
-default_run_options[:pty] = true
+set :environment, (ENV['target'] || 'staging')
 
-set :application, "widgets"
+set :user, 'widgets'
+set :application, user
+set :deploy_to, "/home/#{user}/www"
+
+if environment == 'production'
+  set :domain, "politiwidgets.com"
+else
+  set :domain, "widgets.sunlightlabs.com"
+end
+
 set :repository,  "git@github.com:sunlightlabs/widgets.git"
-set :scm, "git"
-set :user, "widgets"
+set :scm, 'git'
 set :use_sudo, false
 set :deploy_via, :remote_cache
-set :deploy_to, "/home/widgets/www"
 
-role :web, "widgets.sunlightlabs.com"
-role :app, "widgets.sunlightlabs.com"
-role :db,  "widgets.sunlightlabs.com", :primary => true 
+role :web, domain
+role :app, domain
+role :db,  domain, :primary => true 
 
 namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
-    run "touch #{File.join(current_path,'tmp','restart.txt')}"
+    run "touch #{current_path}/tmp/restart.txt"
   end
   
   task :symlink_config do
@@ -32,7 +39,7 @@ namespace :bundler do
   end
 
   task :symlink_vendor do
-    shared_gems = File.join(shared_path, 'vendor/gems')
+    shared_gems = "#{shared_path}/vendor/gems"
     release_gems = "#{release_path}/vendor/gems"
     run("mkdir -p #{shared_gems} && mkdir -p #{release_gems} && rm -rf #{release_gems} && ln -s #{shared_gems} #{release_gems}")
   end
