@@ -1,0 +1,201 @@
+<div id="pageMain">
+  <div id="headerWrapper">
+    <div id="header">
+      <% unless @size == 'sm' -%>
+        <img alt="Picture of " src="/images/profile/" class="pic@src full_name@alt+" width="40px" />
+      <% end -%>      
+      <h1>
+        <small class="title"></small> 
+        <big class="full_name"></big>
+      </h1>
+      <div class="" id="lawmakerMetadata">
+        <span class="party"></span>
+        <span class="state"></span>
+      </div>
+      <div class="clear"></div>
+    </div> <!-- end header -->
+    
+    <div id="mainContent">
+      <h2>2010 EARMARKS</h2>
+      <% if @size == 'sm' -%>
+      <div id="chart-container-1"></div> <!-- end chart-container -->
+      <div id="leftBox">
+        <h3>Granted <span>to</span> Lawmaker</h3>
+        <span id="granted" class="earmarks_granted"></span>
+      </div>
+      <div id="rightBox">
+        <h3>Average <span>for</span> <span class="chamber"></span></h3>
+        <span id="average" class="earmark_avg"></span>
+      </div>
+      <div class="clear"></div>
+      <% else -%>
+      <span id="granted" class="earmarks_granted"></span>
+      <h3>Granted <span>to</span> <span class="full_name"></span></h3>
+      <div class="clear"></div>
+      <div id="chart-container-1"></div>
+      <span id="average" class="earmark_avg"></span>
+      <h3>Average <span>for</span> <span class="chamber"></span></h3>
+      <% end -%>
+    </div> <!-- end mainContent -->
+  </div> <!-- end headerWrapper -->
+</div> <!-- end pageMain -->
+
+<script type="text/javascript" charset="utf-8">
+
+  var url = drumboneUrl("legislator", ["basic", "earmarks"], {bioguide_id: bioguide_id});
+  
+  loadWidget(url, function(data) {
+    var legislator = data.legislator;
+    var earmarks = legislator.earmarks;
+  
+    var legislator_title = "";
+    switch (legislator.title) {
+      case 'Sen': legislator_title = "Senator"; break;
+      case 'Rep': legislator_title = "Representative"; break;
+      case 'Del': legislator_title = "Delegate"; break;
+    };
+  
+    var legislator_district = "";
+    if (legislator.district == '0')
+      legislator_district = "AL";
+    else
+      legislator_district = legislator.district;
+  
+    var legislator_state = "";
+    if (legislator_title == "Senator")
+      legislator_state = legislator.state;
+    else
+      legislator_state = legislator.state + "-" + legislator_district;
+    
+    var widget_data = {
+      title: legislator_title,
+      full_name: legislator.first_name + " " + legislator.last_name,
+      pic: profileImage(legislator.bioguide_id),
+      state_downcase: legislator.state.toLowerCase(),
+      state: legislator_state,
+      party: "(" + legislator.party + ")",
+      chamber: chamberFor(legislator_title),
+      earmarks_granted: earmarks.total_number,
+      earmark_avg: earmarks.average_number
+    };
+
+    $('div#pageMain').autoRender(widget_data);
+    
+    var dimensions = {};
+    var y_label_offset = -5;
+    var series_type = 'bar';
+    var colors = ['#157C3E', '#73B745'];
+    var chamber_data = { name: chamberFor(legislator_title),
+                         data: [earmarks.average_amount]
+                       }; 
+    var lawmaker_data = { name: legislator.first_name + " " + legislator.last_name,
+                          data: [earmarks.total_amount],
+                        };
+    var series = [chamber_data, lawmaker_data];
+    var line_width = 0;
+  
+    if (size == 'lg') {
+      dimensions.width = 330;
+      dimensions.height = 90;
+      dimensions.margin = [-15, 0, -15, 0];
+      y_label_offset = -10;
+    } else if (size == 'med') {
+      dimensions.width = 240;
+      dimensions.height = 65;
+      dimensions.margin = [-10, 10, -10, 0];
+      y_label_offset = -3;
+    } else {      
+      dimensions.width = 132;
+      dimensions.height = 135;
+      dimensions.margin = [4, 0, 10, 0];
+      y_label_offset = -5;
+      series_type = 'column';
+      colors = ['#73B745','#157C3E'];
+      series = [lawmaker_data, chamber_data];
+      line_width = 1;
+    }
+        
+    var chart1 = new Highcharts.Chart({
+      chart: {
+        renderTo: 'chart-container-1',
+        defaultSeriesType: series_type,
+        width: dimensions.width,
+        height: dimensions.height,
+        margin: dimensions.margin
+      },
+
+      title: {
+        text: "",
+        style: {
+          display: 'none',
+          position: 'absolute',
+          left: '0',
+          top: '0'
+        }
+      },
+
+      xAxis: {
+        categories: [legislator.first_name + " " + legislator.last_name, chamberFor(legislator_title)],
+        labels: {
+          enabled: false,
+        },
+        lineWidth: line_width,
+        lineColor: '#CCC'
+      },
+
+      yAxis: {
+        title: null,
+        gridLineWidth: 0,
+        labels: {
+          enabled: false,
+        }
+      },
+
+      colors: colors, 
+      credits: { enabled: false },
+
+      plotOptions: {
+        bar: {
+          groupPadding: .15,
+          pointPadding: .1,
+          dataLabels: {
+            enabled: true,
+            color: '#606161',
+            y: y_label_offset,
+            formatter: function() {
+              return 'Total:' + '<br>' + '$' + Highcharts.numberFormat(this.y/1000000, 2, '.') +"M";
+            }
+          }
+        },
+        column: {
+          groupPadding: .05,
+          pointPadding: .2,
+          dataLabels: {
+            enabled: true,
+            color: '#606161',
+            y: -5,
+            formatter: function() {
+              return 'Totaling:' + '<br>' + '$' + Highcharts.numberFormat(this.y/1000000, 2, '.') +"M";
+            }
+          }
+        }
+      },
+
+      tooltip: {
+        formatter: function() {
+          return '<strong>'+ this.series.name +'</strong><br/>'+
+          '$' + Highcharts.numberFormat(this.y, 2, '.');
+        }
+      }, 
+
+      legend: { enabled: false },
+      series: series
+    });
+  });
+  
+  function chamberFor(title) {
+    return (title == 'Sen') ? "Senate" : "House";
+  }
+  
+</script>
+
