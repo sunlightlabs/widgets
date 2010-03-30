@@ -1,7 +1,6 @@
 class MainController < ApplicationController
   def index
-    @featured = featured
-    @widget = widgets[@featured[:widget]]
+    @widget = widgets[settings[:featured][:widget]]
   end
   
   def gallery

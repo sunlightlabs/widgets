@@ -13,10 +13,6 @@ class ApplicationController < ActionController::Base
     @@settings ||= YAML.load_file "#{Rails.root}/config/settings.yml"
   end
   
-  def featured
-    YAML.load_file "#{Rails.root}/config/featured.yml"
-  end
-  
   def widgets
     @@widgets ||= load_widgets
   end

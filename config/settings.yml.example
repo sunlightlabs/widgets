@@ -6,3 +6,7 @@
 
 # API key for Sunlight API services
 :sunlight_api_key: 
+
+:featured:
+  :legislator: # Bioguide ID of a legislator to feature
+  :widget: # Key of a widget (from widgets.yml) to feature

@@ -21,7 +21,7 @@
         <p class="moduleText">
           <%= h widget[:description] %>
         </p>
-        <a class="customize" href="<%= widget_path :id => slug, :bioguide_id => @featured[:legislator] %>">Customize</a>
+        <a class="customize" href="<%= widget_path :id => slug, :bioguide_id => settings[:featured][:legislator] %>">Customize</a>
       </div>
     </li>
   <% end %>
