@@ -35,11 +35,11 @@
       legislator_district = legislator.district;
     
     var legislator_state = legislator.state + "-" + legislator_district;
-    var legislator_state_no_hyphen = legislator.state + legislator_district;
+    var pic_filename = legislator.state + legislator.district + "-small.gif";
 
     var widget_data = {
       full_name: legislator.first_name + " " + legislator.last_name,
-      pic: legislator_state_no_hyphen + "-small.gif",
+      pic: pic_filename,
       state_downcase: legislator.state.toLowerCase(),
       state: legislator_state,
       party: "(" + legislator.party + ")",
