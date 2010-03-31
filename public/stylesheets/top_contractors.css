@@ -12,6 +12,7 @@ a:hover { outline: none; }
 a:active { outline: none; }
 
 body{
+    background-color:white;
     color:#5A5A5A;
     font-size: 76%;
     line-height: 20px;

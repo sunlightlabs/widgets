@@ -33,6 +33,7 @@ module ApplicationHelper
   end
   
   def district_for(legislator)
+    return 'AL' if legislator.district == '0'
     legislator.title == 'Sen' ? legislator.district.gsub(' Seat', '') : zero_prefix(legislator.district)
   end
   

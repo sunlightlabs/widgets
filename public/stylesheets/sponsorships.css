@@ -17,6 +17,7 @@ a:active { outline: none; }
 
 body{
     color:#5A5A5A;
+    background-color:white;
     font-size: 76%;
     line-height: 20px;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
