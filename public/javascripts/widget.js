@@ -22,8 +22,15 @@ function queryString(object) {
 
 function loadWidget(url, callback) {
   var augmented = function(data) {
+    // if you wanted to check the data for an "error" key, here is where you would do it
+    
     callback(data); 
     $("body").css("display", "block");
   };
-  return $.getJSON(url, augmented);
+  
+  return $.ajax({
+    url: url, 
+    dataType: "jsonp",
+    success: augmented
+  });
 }
