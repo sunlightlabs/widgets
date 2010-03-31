@@ -21,10 +21,7 @@
 </div>
 <script type="text/javascript" charset="utf-8">
 
-  var size = '<%= params[:size] %>';
-  var url = drumboneUrl("legislator", ["basic", "contracts"], {bioguide_id: bioguide_id});
-  
-  loadWidget(url, function(data) {
+  loadWidget("legislator", ["basic", "contracts"], {bioguide_id: bioguide_id}, function(data) {
 
     var legislator = data.legislator;
       

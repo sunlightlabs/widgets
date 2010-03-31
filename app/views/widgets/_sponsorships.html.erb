@@ -15,17 +15,16 @@
         </div>
       </div> <!-- end headerLeft -->
       <% unless @size == 'sm' %>
-      <div id="counter">
-        <span id="bills-sponsored">Number of Bills Sponsored</span>
-        <span id="number" class="bills_introduced"></span>
-      </div>
+        <div id="counter">
+          <span id="bills-sponsored">Number of Bills Sponsored</span>
+          <span id="number" class="bills_introduced"></span>
+        </div>
       <% end -%>
       <div class="clear"></div>
     </div> <!-- end header -->
     <div id="mainContent">
       <h2>Sponsored Bills</h2>
-      <div id="chart-container-1">
-      </div> <!-- end chart-container -->
+      <div id="chart-container-1"></div>
       <dl>
         <dt id="lawmaker-color">Color Block for Lawmaker Average</dt>
         <dd id="lawmaker-average">Lawmaker Count</dd>
@@ -33,12 +32,12 @@
         <dd id="house-average" class="chamber_average">Chamber Average</dd>
       </dl>
       <% if @size == 'sm' -%>
-      <ol id="key">
-        <li>Sponsored</li>
-        <li>Then Enacted</li>
-        <li>Cosponsored</li>
-        <li>Then Enacted</li>
-      </ol>
+        <ol id="key">
+          <li>Sponsored</li>
+          <li>Then Enacted</li>
+          <li>Cosponsored</li>
+          <li>Then Enacted</li>
+        </ol>
       <% end -%>
     </div> <!-- end mainContent -->
   </div> <!-- end headerWrapper -->
@@ -46,9 +45,7 @@
 
 <script type="text/javascript" charset="utf-8">
 
-  var url = drumboneUrl("legislator", ["basic", "sponsorships"], {bioguide_id: bioguide_id});
-  
-  loadWidget(url, function(data) {
+  loadWidget("legislator", ["basic", "sponsorships"], {bioguide_id: bioguide_id}, function(data) {
     var legislator = data.legislator;
   
     var legislator_title = "";

@@ -42,9 +42,7 @@
 
 <script type="text/javascript" charset="utf-8">
 
-  var url = drumboneUrl("legislator", ["basic", "earmarks"], {bioguide_id: bioguide_id});
-  
-  loadWidget(url, function(data) {
+  loadWidget("legislator", ["basic", "earmarks"], {bioguide_id: bioguide_id}, function(data) {
     var legislator = data.legislator;
     var earmarks = legislator.earmarks;
   

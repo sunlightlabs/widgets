@@ -14,15 +14,9 @@
     var data_endpoint = "<%= settings[:data_endpoint] %>";
     var sunlight_api_key = "<%= settings[:sunlight_api_key] %>";
     var size = "<%= @size %>";
-    
-    function decimal_format(num, places) {
-      if (Math.floor(num) == num) {
-        return num;
-      } else {
-        return Highcharts.numberFormat(num, places);
-      }
-    }
+    var snapshot_id = "<%= params[:snapshot_id] %>";
   </script>
+  
   <%= javascript_include_tag 'widget' %>
   
   <%= stylesheet_link_tag 'widget.css' %>
