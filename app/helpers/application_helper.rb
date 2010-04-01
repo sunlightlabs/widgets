@@ -51,4 +51,13 @@ module ApplicationHelper
   def full_name_for(legislator)
     "#{title_for legislator} #{search_name_for legislator} (#{legislator.party}) #{full_district_for legislator}"
   end
+  
+  def param_string
+    str = "bioguide_id=#{params[:bgd]}&size=#{params[:s]}"
+    [:bgd, :s].each { |p| params.delete(p) }
+    params.each do |key, value|
+      str += "&#{key}=#{value}"
+    end
+    str
+  end
 end
