@@ -10,6 +10,10 @@
   
   custom.color = "<%= @widget[:custom][:color] %>";
   
+  snapshot.method = "legislator";
+  snapshot.sections = ["basic"];
+  snapshot.options = {bioguide_id: bioguide_id};
+  
   $(function() {
     $("#primaryColorText").val("#" + custom.color);
     $.farbtastic("#primaryColor", "#primaryColorText").setColor("#" + custom.color);

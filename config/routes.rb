@@ -15,6 +15,8 @@ Widgets::Application.routes.draw do |map|
     end
   end
   
+  match 'snapshot' => 'widgets#snapshot', :as => 'snapshot'
+  
   # temporary
   match 'gallery' => 'main#gallery'
 

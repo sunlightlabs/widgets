@@ -505,6 +505,15 @@ ul#switcher li a:hover {
 	line-height: 110%;	
 }
 
+#loadingBox {display: none;}
+#loadingBox img {margin-right: 10px;}
+#errorBox {
+  display: none; 
+  padding-top: 10px;
+  color: #f00; 
+  font-weight: normal;
+}
+
 .generate {
 	background: url(/images/site/button-gen-widget.jpg) top left no-repeat;
 	display: block;

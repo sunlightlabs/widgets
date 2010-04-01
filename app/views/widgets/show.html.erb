@@ -1,9 +1,6 @@
 <% content_for :head do %>
   <script type="text/javascript">
     var frontend_hostname = "<%= settings[:frontend_hostname] %>";
-    var data_endpoint = "<%= settings[:data_endpoint] %>";
-    var sunlight_api_key = "<%= settings[:sunlight_api_key] %>";
-    
     var widget_id = "<%= params[:id] %>";
     var bioguide_id = "<%= params[:bioguide_id] %>";
     
@@ -17,6 +14,9 @@
     // fill in this object in the widget-specific form partial to have them included in any 
     // snapshot request to Drumbone
     var snapshot = {};
+    
+    // this will get filled in when someone clicks the freeze checkbox
+    var snapshot_id = null;
   </script>
   <%= javascript_include_tag 'customize' %>
 <% end %>
@@ -54,18 +54,21 @@
 
 <div id="rightWidgetColumn">
     
-    <% if @widget[:custom] %>
-      <%= render :partial => "widgets/form/#{params[:id]}" %>
-    <% end %>
+    <%= render :partial => "widgets/form/#{params[:id]}" %>
     
-    <!--<ul>
-      <li>
-        <label id="checkBoxType">
-          <input class="checkbox" type="checkbox" name="freezeDate"/>
-          &nbsp;&nbsp;Check box to freeze data from updating
-        </label>
-      </li>
-    </ul>-->
+    <ul id="freezeBox"><li>
+      <label id="checkBoxType">
+        <input class="checkbox" type="checkbox" id="freeze" name="freezeDate"/>
+        &nbsp;&nbsp;Check box to freeze data from updating
+      </label>
+    </li></ul>
+    
+    <div id="loadingBox">
+      <%= image_tag "site/spinner.gif" %>
+      <span>Freezing the data...</span>
+    </div>
+    
+    <div id="errorBox"></div>
   
   <div id="embedCode">
     <span>Embed Code</span>

@@ -1,6 +1,10 @@
 class WidgetsController < ApplicationController
-  before_filter :load_widget, :load_legislator
+  before_filter :load_widget, :except => :snapshot
+  before_filter :load_legislator, :except => :snapshot
   
+  def snapshot
+    render :text => "123456"
+  end
   
   def embed
     render :layout => false
