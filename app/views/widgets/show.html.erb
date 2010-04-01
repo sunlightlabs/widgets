@@ -1,8 +1,22 @@
 <% content_for :head do %>
   <script type="text/javascript">
     var frontend_hostname = "<%= settings[:frontend_hostname] %>";
+    var data_endpoint = "<%= settings[:data_endpoint] %>";
+    var sunlight_api_key = "<%= settings[:sunlight_api_key] %>";
+    
     var widget_id = "<%= params[:id] %>";
     var bioguide_id = "<%= params[:bioguide_id] %>";
+    
+    // various globals to help out in keeping state of the widget during customization
+    var sizes = {sm: [160, 300], med: [300, 250], lg: [400,300]};
+    var widget_size = 'lg';
+
+    // should be filled in with any default values before the document is ready
+    var custom = {};
+
+    // fill in this object in the widget-specific form partial to have them included in any 
+    // snapshot request to Drumbone
+    var snapshot = {};
   </script>
   <%= javascript_include_tag 'customize' %>
 <% end %>
@@ -41,7 +55,7 @@
 <div id="rightWidgetColumn">
     
     <% if @widget[:custom] %>
-      <%= render :partial => "widgets/custom/#{params[:id]}" %>
+      <%= render :partial => "widgets/form/#{params[:id]}" %>
     <% end %>
     
     <!--<ul>

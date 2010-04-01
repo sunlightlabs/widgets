@@ -27,7 +27,7 @@
 
 <body class="<%= params[:id] %>_<%= params[:size] %>">
   
-  <%= render params[:id] %>
+  <%= render "widgets/embed/#{params[:id]}" %>
   
   <%= render :partial => "layouts/analytics" %>
   

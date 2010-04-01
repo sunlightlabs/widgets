@@ -22,9 +22,10 @@ function loadWidget(method, sections, options, callback) {
     data.sections = sections.join(",");
     $.extend(data, options); 
   }
+  
 
   return $.ajax({
-    url: url, 
+    url: url,
     data: data,
     dataType: "jsonp",
     jsonpCallback: "politiwidgetsCallback",
@@ -33,7 +34,7 @@ function loadWidget(method, sections, options, callback) {
 }
 
 
-// helpers
+// helper fuctions (that do not make use of global variables)
 
 function profileImage(bioguide) {
   return "http://assets.sunlightfoundation.com/moc/100x125/" + bioguide + ".jpg";

@@ -1,10 +1,3 @@
-var sizes = {sm: [160, 300], med: [300, 250], lg: [400,300]};
-
-var widget_size = 'lg';
-
-// should be filled in with any default values before the document is ready
-var custom = {}
-
 $(function() {
   updateFrame();
 
@@ -38,6 +31,22 @@ function updateEmbedCode() {
   var embed_url = "http://" + frontend_hostname + "/embed?w=" + widget_id + "&bgd=" + bioguide_id + "&s=" + widget_size + "&" + queryString(custom);
   
   $('input#grabCode').attr('value', "<script type='text\/javascript' src='" + embed_url + "'><\/script>");
+}
+
+/** 
+ * Similar to the loadWidgets function in widget.js, this fetches JSON from Drumbone and 
+ * posts it to the app server-side, for storage into S3.
+ */
+function fetchSnapshot(method, sections, options) {
+  data = {};
+  data.apikey = sunlight_api_key;
+  data.sections = sections.join(",");
+  $.extend(data, options); 
+}
+
+// drumbone URL
+function drumboneUrl(endpoint, method) {
+  return endpoint + "/" + method + ".json";
 }
 
 // not currently doing any http encoding
