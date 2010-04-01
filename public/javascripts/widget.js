@@ -22,7 +22,6 @@ function loadWidget(method, sections, options, callback) {
     data.sections = sections.join(",");
     $.extend(data, options); 
   }
-  
 
   return $.ajax({
     url: url, 

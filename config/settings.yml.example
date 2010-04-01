@@ -7,6 +7,19 @@
 # API key for Sunlight API services
 :sunlight_api_key: 
 
+# Location to look for stored snapshots
+# Give the full URL down to the directory, but not the snapshot file
+# e.g. "http://data.politiwidgets.com/production/"
+# Include the trailing slash!
+:snapshot_directory: 
+
 :featured:
   :legislator: # Bioguide ID of a legislator to feature
   :widget: # Key of a widget (from widgets.yml) to feature
+  
+# Amazon S3 info, for storing snapshots
+# Leave access_key blank to store JSON files locally (e.g. in development)
+:s3:
+  :access_key: 
+  :secret_key: 
+  :bucket: # do not prefix with "s3://"

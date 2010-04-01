@@ -10,9 +10,11 @@
   <![endif]-->
   
   <script type="text/javascript">
-    var bioguide_id = "<%= params[:bioguide_id] %>";
     var data_endpoint = "<%= settings[:data_endpoint] %>";
     var sunlight_api_key = "<%= settings[:sunlight_api_key] %>";
+    var snapshot_directory = "<%= settings[:snapshot_directory] %>";
+    
+    var bioguide_id = "<%= params[:bioguide_id] %>";
     var size = "<%= @size %>";
     var snapshot_id = "<%= params[:snapshot_id] %>";
   </script>
