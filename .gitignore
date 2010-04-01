@@ -5,3 +5,4 @@
 /vendor/gems
 /config/*.yml
 /bin
+/.bundle
