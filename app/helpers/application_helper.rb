@@ -54,7 +54,7 @@ module ApplicationHelper
   
   def param_string
     str = "bioguide_id=#{params[:bgd]}&size=#{params[:s]}"
-    [:bgd, :s].each { |p| params.delete(p) }
+    [:bgd, :s, :action, :controller].each { |p| params.delete(p) }
     params.each do |key, value|
       str += "&#{key}=#{value}"
     end
