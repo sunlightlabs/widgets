@@ -25,6 +25,13 @@
   custom.roll_id = "<%= @widget[:custom][:roll_id][chamber] %>";
   var chamber = chamberFor("<%= @legislator.title %>");
   
+  
+  snapshot.method = "roll";
+  snapshot.sections = ["basic", "bill", "party_vote_breakdown", "voters." + bioguide_id];
+  
+  // will need to be kept up to date as the roll_id changes
+  snapshot.options = {roll_id: custom.roll_id};
+  
   $(function() {
     // pre-populate with the default
     $("#roll_id").val(custom.roll_id);
@@ -118,6 +125,7 @@
   
   function updateRoll(roll_id) {
     custom.roll_id = roll_id;
+    snapshot.options.roll_id = roll_id;
     updateFrame();
   }
   
