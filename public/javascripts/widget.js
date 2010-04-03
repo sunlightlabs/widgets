@@ -42,7 +42,7 @@ function profileImage(bioguide) {
 
 // returns a string suitable for feeding into JQuery's $.getJSON function (using a ? for the JSONP callback)
 function drumboneUrl(endpoint, method) {
-  return endpoint + "/" + method + ".json";
+  return endpoint + method + ".json";
 }
 
 function snapshotUrl(endpoint, id) {

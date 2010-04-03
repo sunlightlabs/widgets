@@ -1,16 +1,15 @@
 # The hostname this expects to run on
 :frontend_hostname: localhost:3000
 
-# The Drumbone URL, all the way to the endpoint (don't put a trailing slash)
-:data_endpoint: http://localhost:4567/api
+# The Drumbone URL, all the way to the endpoint (Include the trailing slash!)
+:data_endpoint: http://localhost:4567/api/
 
 # API key for Sunlight API services
 :sunlight_api_key: 
 
 # Location to look for stored snapshots
 # Give the full URL down to the directory, but not the snapshot file
-# e.g. "http://data.politiwidgets.com/production/"
-# Include the trailing slash!
+# e.g. "http://data.politiwidgets.com/production/" (Include the trailing slash!)
 :snapshot_directory: 
 
 :featured:
@@ -22,4 +21,5 @@
 :s3:
   :access_key: 
   :secret_key: 
-  :bucket: # do not prefix with "s3://"
+  :bucket: # e.g. "data.politiwidgets.com"
+  :path: # e.g. "/production/" (include the trailing slash!)

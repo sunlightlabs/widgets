@@ -131,7 +131,7 @@
   
   // returns a string suitable for feeding into JQuery's $.getJSON function (using a ? for the JSONP callback)
   function drumboneUrl(method, sections, options) {
-    return data_endpoint + "/" + method + ".json?apikey=" + sunlight_api_key + "&sections=" + sections.join(",") + "&" + queryString(options) + "&callback=?";
+    return data_endpoint + method + ".json?apikey=" + sunlight_api_key + "&sections=" + sections.join(",") + "&" + queryString(options) + "&callback=?";
   }
   
   // automatically slides the session up based on the year
