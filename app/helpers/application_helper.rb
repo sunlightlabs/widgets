@@ -57,12 +57,14 @@ module ApplicationHelper
   end
   
   def param_string
-    str = "bioguide_id=#{params[:bgd]}&size=#{params[:s]}"
-    [:bgd, :s, :action, :controller].each { |p| params.delete(p) }
-    params.each do |key, value|
-      str += "&#{key}=#{value}"
-    end
-    str
+    options = {}
+    options[:bioguide_id] = params.delete :bgd
+    options[:size] = params.delete :s
+    options = options.merge params
+    
+    [:action, :controller].each {|key| options.delete key}
+    
+    query_string_for options
   end
   
   def e(string)
