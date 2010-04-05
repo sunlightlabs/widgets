@@ -1,6 +1,6 @@
 class WidgetsController < ApplicationController
   before_filter :load_widget, :except => :snapshot
-  before_filter :load_legislator, :except => :snapshot
+  before_filter :load_legislator, :only => :show
   
   def snapshot
     return unless params[:method] and params[:sections]

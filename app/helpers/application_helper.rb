@@ -1,7 +1,11 @@
 module ApplicationHelper
 
   def embed_url(widget_id, bioguide_id, options = {})
-    "http://#{settings[:frontend_hostname]}/embed?w=#{widget_id}&bgd=#{bioguide_id}&s=#{options[:size] || 'lg'}"
+    options[:s] ||= options.delete(:size) || 'lg'
+    options[:w] = widget_id
+    options[:bgd] = bioguide_id
+    
+    "http://#{settings[:frontend_hostname]}/embed?#{query_string_for options}"
   end
   
   def long_title(title)
@@ -59,5 +63,19 @@ module ApplicationHelper
       str += "&#{key}=#{value}"
     end
     str
+  end
+  
+  def e(string)
+    CGI::escape string
+  end
+  
+  def query_string_for(options = {})
+    string = ""
+    keys = options.keys.sort_by(&:to_s)
+    keys.each do |key|
+      string << "&" unless key == keys.first
+      string << "#{key}=#{e options[key].to_s}"
+    end
+    string
   end
 end

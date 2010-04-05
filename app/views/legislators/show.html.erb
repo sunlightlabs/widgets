@@ -6,7 +6,7 @@
       <h3><%= h widget[:title] %></h3>
       
       <div class="widget">
-        <script type="text/javascript" src="<%= embed_url slug, params[:bioguide_id], :size => 'med' %>"></script>
+        <script type="text/javascript" src="<%= embed_url slug, @legislator.bioguide_id, :size => 'med', :title => @legislator.title %>"></script>
       </div>
       
       <!-- <a class="getcode" href="#">Get Code</a> -->

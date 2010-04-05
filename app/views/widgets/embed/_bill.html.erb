@@ -52,7 +52,7 @@
     roll_id = nil
     if params[:roll_id]
       roll_id = params[:roll_id]
-    elsif @legislator.title == 'Sen'
+    elsif params[:title] == 'Sen'
       roll_id = @widget[:custom][:roll_id][:senate]
     else
       roll_id = @widget[:custom][:roll_id][:house]
