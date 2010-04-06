@@ -696,7 +696,7 @@ input.update {
 }
 
 #futureLawBubble {
-	background: url(/images/site/img-law-bubble.jpg) top left no-repeat;
+	background: #B2EAF7 url(/images/site/img-law-bubble.jpg) top left no-repeat;
 	width: 279px;
   padding: 45px 10px 10px 10px;
   margin-top: 40px;
