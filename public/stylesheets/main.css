@@ -385,6 +385,10 @@ body.home #ltColumn {
   border-radius: 5px;
 }
 
+#widgetDirections p {
+  padding-right: 10px;
+}
+
 #widgetDirections li {
 	display: block;
 	float: left;
