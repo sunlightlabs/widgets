@@ -28,8 +28,7 @@
   
   <div id="headerWrapper">
     <div id="headerContainer">
-      <div id="pageMain">
-        <div id="header">
+      <div id="header">
           
           <h1>
             <%= link_to 'Politiwidgets', root_path %></a>
@@ -55,8 +54,10 @@
             <%= render :partial => "layouts/featured" %>
           <% end %>
           
-        </div> <!-- end header -->
-        
+      </div> <!-- end header -->
+    </div> <!-- end headerContainer -->
+  </div> <!-- end headerWrapper -->
+      <div id="pageMain">
         <div id="ltColumn">
           <%= yield %>
         </div>
@@ -69,12 +70,9 @@
           </div>
         <% end %>
         
-      </div>
-    </div>
-  </div>
-  <div class="clear"></div>
-  
-  
+        <div class="clear"></div>
+      </div> <!-- end pageMain -->
+
   <div id="footerWrapper">
     <div id="footer">
       <h4 id="knight"><a href="http://www.knightfoundation.org/"><big>John S. and James L. Knight Foundation</big><small>Informed, engaged communities</small></a></h4>
