@@ -295,6 +295,7 @@ body.home h2 {
 #featuredText {
 	font-size: 110%;
 	line-height: 140%;
+  padding: 7px 0;
 }
 
 a.start {
