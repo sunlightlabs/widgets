@@ -10,14 +10,18 @@
 <ul>
   <% widgets.each do |slug, widget| %>
     <li class="widgetHome <%= cycle 'odd', 'even' %> <%= 'last' if slug == widgets.keys.last %>">
-      <img src="images/<%= slug %>/icon.jpg" alt="<%= h widget[:name] %>"/>
+      <a href="<%= widget_path :id => slug, :bioguide_id => settings[:featured][:legislator] %>">
+        <img src="images/<%= slug %>/icon.jpg" alt="<%= h widget[:name] %>"/>
+      </a>
       
       <% if widget[:new] %>
         <span class="new">NEW</span>
       <% end %>
       
       <div class="moduleInsideLeft">
-        <h3><%= h widget[:name] %></h3>
+        <h3><a href="<%= widget_path :id => slug, :bioguide_id => settings[:featured][:legislator] %>">
+          <%= h widget[:name] %>
+        </a></h3>
         <p class="moduleText">
           <%= h widget[:description] %>
         </p>
@@ -26,7 +30,7 @@
     </li>
   <% end %>
   
-  <li id="futureBubble">
+  <li id="futureBubble" class="<%= widgets.size % 2 == 1 ? 'even' : 'odd' %>">
     <h3>Future Politiwidgets</h3>
     <p>
       Always innovating and creating new tools for a transparent government for reporters, bloggers and other writers about government policy and lawmakers. Future politiwidgets will include dynamic infographics for Top Contributors, Top Contractors, Earmark Stats, Interest Group Ratings and the Batting Average for any lawmaker in Congress.
