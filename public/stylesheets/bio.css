@@ -88,7 +88,7 @@ img { border: 2px solid #E0DEDE; float: left;}
 
 body.bio_sm div#mainContent { margin-top: -30px; height: 150px;}
 div#mainContent { background-color: #1F83B5;}
-body.bio_med div#mainContent { height: 126px; margin-top: -35px; }
+body.bio_med div#mainContent { height: 136px; margin-top: -45px; }
 body.bio_lg div#mainContent { height: 151px; margin-top: -15px;}
 
 div#vcard { background: url(/images/bio/gradient.png) top left repeat-x; padding: 30px 10px 0; color: #fff; line-height: 15px; height:130px; }
