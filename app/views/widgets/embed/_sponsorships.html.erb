@@ -43,6 +43,8 @@
 
 <script type="text/javascript" charset="utf-8">
 
+  var description = "Data provided by <a href=\"http://govtrack.us\">GovTrack</a> through the <a href=\"http://thomas.loc.gov\">Library of Congress</a>.";
+
   loadWidget("legislator", ["basic", "sponsorships"], {bioguide_id: bioguide_id}, function(data) {
     var legislator = data.legislator;
   
@@ -77,6 +79,7 @@
     };
 
     $('div#pageMain').autoRender(widget_data);
+    updateSource(legislator.last_updated, description);
     
     var dimensions = {};
     if (size == 'lg') {

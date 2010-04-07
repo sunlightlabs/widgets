@@ -40,6 +40,8 @@
 
 <script type="text/javascript" charset="utf-8">
 
+  var description = "Data provided by <a href=\"http://www.taxpayer.net\">Taxpayers for Common Sense</a>.";
+
   loadWidget("legislator", ["basic", "earmarks"], {bioguide_id: bioguide_id}, function(data) {
     var legislator = data.legislator;
     var earmarks = legislator.earmarks;
@@ -76,6 +78,7 @@
     };
 
     $('div#pageMain').autoRender(widget_data);
+    updateSource(earmarks.last_updated, description);
     
     var dimensions = {};
     var y_label_offset = -5;

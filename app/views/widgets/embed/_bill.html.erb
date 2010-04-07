@@ -60,6 +60,8 @@
   var roll_id = "<%= roll_id %>";
   var sections = ["basic", "bill", "party_vote_breakdown", "voters." + bioguide_id];
   
+  var description = "Data provided by <a href=\"http://govtrack.us\">GovTrack</a> through the <a href=\"http://thomas.loc.gov\">Library of Congress</a>.";
+  
   loadWidget("roll", sections, {roll_id: roll_id}, function(data) {
     
     // legislator info
@@ -125,7 +127,8 @@
         rep_not_voting: roll.party_vote_breakdown.R.not_voting
       };
     $('div#voteTotals').autoRender(roll_data);
-
+    
+    updateSource(bill.last_updated, description);
 
     var vote = data.roll.voters[bioguide_id].vote;
     var legislator_vote = "";
