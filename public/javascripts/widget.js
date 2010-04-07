@@ -69,6 +69,19 @@ function snapshotUrl(endpoint, id) {
   return endpoint + id + ".json";
 }
 
+function updateSource(date, text) {
+  $("#last_updated").html(formatDate(new Date(date)));
+  $("#sourceContent").html(text);
+}
+
+function formatDate(date) {
+  return (zeroPrefix(date.getMonth() + 1)) + "/" + zeroPrefix(date.getDate()) + "/" + (zeroPrefix(date.getYear() % 100));
+}
+
+function zeroPrefix(n) {
+  return ((n < 10) ? "0" : "") + n;
+}
+
 function decimal_format(num, places) {
   if (Math.floor(num) == num) {
     return num;

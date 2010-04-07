@@ -38,7 +38,14 @@
     <%= render "widgets/embed/#{params[:id]}" %>
     
     <div id="sources">
-      <a href="#">SOURCE INFO / LAST UPDATED 00/00/00</a>
+      <a class="sourceText" href="#">
+        <% if params[:size] == 'sm' %>
+          SOURCE INFO / 
+        <% else %>
+          SOURCE INFO / LAST UPDATED 
+        <% end %>
+        <span id="last_updated">00/00/00</span>
+      </a>
       <div id="sourceArea">
         <p id="sourceContent"></p>
       </div>

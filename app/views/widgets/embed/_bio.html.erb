@@ -33,6 +33,8 @@
 
 <script type="text/javascript" charset="utf-8">
 
+  var description = "Data by <a href=\"http://sunlightlabs.com\">Sunlight Labs</a>, collected through the <a href=\"http://services.sunlightlabs.com/docs/Sunlight_Congress_API/\">Sunlight Labs Congress API</a>.";
+  
   loadWidget("legislator", ["basic"], {bioguide_id: bioguide_id}, function(data) {
     var legislator = data.legislator;
   
@@ -71,5 +73,6 @@
     };
 
     $('div#pageMain').autoRender(widget_data);
+    updateSource(legislator.last_updated, description);
   });
 </script>

@@ -37,7 +37,7 @@ body.lg #sources {
   width: 392px;
 }
 
-#sources a {
+#sources a.sourceText {
   background: url(/images/widgets/source-info.jpg) left top no-repeat;
   display: block;
   padding-left: 12px;
@@ -52,24 +52,24 @@ body.lg #sources {
   text-decoration: none;
 }
 
-#sources a.active {
+#sources a.sourceText.active {
   background: url(/images/widgets/source-info.jpg) left -20px no-repeat;
 }
 
-body.med #sources a {
+body.med #sources a.sourceText {
   margin-left: 45px;
 }
 
-body.sm #sources a {
+body.sm #sources a.sourceText {
   margin-left: 12px;
 }
 
-#sources a:hover {
+#sources a.sourceText:hover {
   background: url(/images/widgets/source-info.jpg) left -10px no-repeat;
   color: #FFF;
 }
 
-#sources a.active:hover {
+#sources a.sourceText.active:hover {
   background: url(/images/widgets/source-info.jpg) left -30px no-repeat;
   color:#FFF;
 }
@@ -94,4 +94,12 @@ body.sm #sourceArea {
 
 body.med #sourceArea { 
   width: 272px;
+}
+
+p#sourceContent a, p#sourceContent a:visited {
+  color: #CCC;
+}
+
+p#sourceContent a:hover {
+  color:#FFF;
 }
