@@ -95,7 +95,6 @@ div#vcard { background: url(/images/bio/gradient.png) top left repeat-x; padding
 body.bio_sm div#vcard { font-size: 95%; line-height: 13px; padding: 25px 10px 0; text-align: center;}
 body.bio_med div#vcard { padding: 20px 10px 0; height: 118px;}
 body.bio_lg div#vcard { padding: 25px 15px 0; font-size: 110%; line-height: 16px;}
-/*div.street-address { display: inline;}*/
 
 div.odd { margin: 5px 0;}
 body.bio_lg div.odd { margin: 7px 0;}
