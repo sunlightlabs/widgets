@@ -1,3 +1,23 @@
+/** 
+ * Behavior applied to all widgets
+ */
+ 
+$(document).ready(function() {
+  $("div#sources a").toggle(
+    function(){
+       $(this).addClass("active");
+       $("div#sourceArea").slideDown("slow");
+       return false;
+    },
+    function(){
+         $(this).removeClass("active");
+         $("div#sourceArea").slideUp("slow");
+         return false;
+      } 
+  );
+});
+
+
 /**
  * The main widget loading function. Makes use of several global variables set (by necessity) in
  * app/views/widgets/embed.html.  If a snapshot_id is set, it'll use that, otherwise, it'll use the
@@ -34,7 +54,7 @@ function loadWidget(method, sections, options, callback) {
 }
 
 
-// helper fuctions (that do not make use of global variables)
+// helper functions (that do not make use of global variables)
 
 function profileImage(bioguide) {
   return "http://assets.sunlightfoundation.com/moc/100x125/" + bioguide + ".jpg";

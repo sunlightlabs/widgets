@@ -1,24 +1,23 @@
-<div id="pageMain">
-  <div id="headerWrapper">
-    <div id="header">
-      <h1>
-        <big>Top 5 Contractors</big><small>in <span class="state"></span></small>
-      </h1>
-      <div id="districtMap">
-        <img alt="district map" src="/images/districts/" class="pic@src+"/>
-      </div>    
-      <div class="clear"></div> 
-    </div>
-  </div>
-  <div id="mainContent">
-    <div id="chart-container-1"></div>
-    <% if params[:size] == 'sm' -%>
-    <ol id="contractor_names">
-      <li class="contractors name"></li>
-    </ol>
-    <% end -%>
+<div id="headerWrapper">
+  <div id="header">
+    <h1>
+      <big>Top 5 Contractors</big><small>in <span class="state"></span></small>
+    </h1>
+    <div id="districtMap">
+      <img alt="district map" src="/images/districts/" class="pic@src+"/>
+    </div>    
+    <div class="clear"></div> 
   </div>
 </div>
+<div id="mainContent">
+  <div id="chart-container-1"></div>
+  <% if params[:size] == 'sm' -%>
+  <ol id="contractor_names">
+    <li class="contractors name"></li>
+  </ol>
+  <% end -%>
+</div>
+
 <script type="text/javascript" charset="utf-8">
 
   loadWidget("legislator", ["basic", "contracts"], {bioguide_id: bioguide_id}, function(data) {

@@ -1,16 +1,3 @@
-/*
- * YUI Resect CSS version: 2.2.2 
- * Copyright (c) 2007, Yahoo! Inc. All rights reserved.
- * Licensed under the BSD License: http://developer.yahoo.net/yui/license.txt
- */
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,optgroup,button,p,blockquote,th,td{margin:0;padding:0;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}table{border-collapse:collapse;border-spacing:0;}caption,th{text-align:left;}ol,ul{list-style:none;}fieldset,img{border:0;}input,textarea,select,optgroup,option,button{font-family:inherit;font-size:100%;}button,input {width: auto;overflow: visible;}optgroup,address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;}
-dl li{list-style: none;}
-
-a:link { outline: none; }
-a:visited { outline: none; }
-a:hover { outline: none; }
-a:active { outline: none; }
-
 body{
     color:#5A5A5A;
     font-size: 76%;
@@ -20,23 +7,19 @@ body{
     background-color: white;
 }
 
-body.bill_sm { width: 152px; height: 292px; }
-body.bill_med { width: 292px; height: 242px; }
-body.bill_lg { width: 392px; height: 292px; }
-
 div#header { padding: 15px; background: url(/images/bill/gradient.png) bottom left repeat-x; margin-bottom: 15px;}
 body.bill_med div#header { padding: 10px; margin-bottom: 10px;}
 body.bill_sm div#header { margin-bottom: 7px; padding: 10px 10px 7px;}
 .right { width: 295px; margin-right: 7px; float: left;}
 body.bill_med .right { width: 205px;}
-body.bill_sm .right { width: 132px; margin-bottom: 5px;}
+body.bill_sm .right { width: 136px; margin-bottom: 4px; margin-right: 0px;}
 .left { float: left; width: 60px; margin: 0 auto;}
 body.bill_sm .left { width: 132px;}
 
 div#headerWrapper { background-color: #DDD9D7; }
-div#mainContent { padding: 0 15px;}
+div#mainContent { padding: 0 15px; background: #FFF;}
 body.bill_med div#mainContent, body.bill_sm div#mainContent { padding: 0 10px;}
-body.bill_sm div#mainContent {height: 212px;} /*added*/
+body.bill_sm div#mainContent {height: 212px; width: 132px;} /*added*/
 body.bill_med div#mainContent {height: 152px;} /*added*/
 body.bill_lg div#mainContent {height: 180px;} /*added*/
 
@@ -48,10 +31,22 @@ h1 small { font-size: 105%; line-height: 16px;}
 h2 small { font-size: 110%;}
 body.bill_med h2 small, body.bill_sm h2 small { display: inline;}
 h2 big, div#voteTotals h2 { color: #191919; text-transform: uppercase; font-weight: bold; font-size: 115%; line-height:18px;}
+
+div#repInfo span.present, div#billResult span.present { background: url(/images/bill/icon_presLg.png) center top no-repeat; font-size: 140%; color: #191919; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
+div#repInfo span.notactive, div#billResult span.notactive { background: url(/images/bill/icon_notactLg.png) center top no-repeat; font-size: 140%; color: #191919; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
+
+body.bill_sm div#repInfo span.present, body.bill_sm div#billResult span.present { background: url(/images/bill/icon_presSm.png) left 1px no-repeat; padding-top: 0px; padding-left: 20px;}
+
+body.bill_sm div#repInfo span.notactive, body.bill_sm div#billResult span.notactive { background: url(/images/bill/icon_notactSm.png) left 1px no-repeat; padding-top: 0px; padding-left: 20px;}
+
+
 div#voteTotals h2 { float: left; margin-bottom:5px; margin-right: 20px;}
+body.bill_sm div#voteTotals h2 {margin-right: 0px;}
+body.bill_sm div#chart-container-1 {width: 120px;}
+
 body.bill_med h2, body.bill_sm h2, body.bill_med div#voteTotals h2 { margin-bottom: 3px; }
 body.bill_med h2 big { line-height: 14px;}
-body.bill_sm h2 big, body.bill_sm div#voteTotals h2 { font-size: 110%; line-height: 12px;}
+body.bill_sm h2 big, body.bill_sm div#voteTotals h2 { font-size: 105%; line-height: 12px;}
 body.bill_sm div#voteTotals h2 { display: block; width: 132px;}
 
 span.democrat { color: #0797C9;}
@@ -106,12 +101,3 @@ div#voteKey dd { float: left; margin-right: 10px;}
 body.bill_sm div#voteKey dd { margin-right: 8px;}
 body.bill_sm div#voteKey span { margin-left: 0;}
 body.bill_sm div#voteKey span#democrat  { margin-left: 10px;}
-
-.clear { clear: both;}
-
-/*added*/
-#sources {	background: #606161; height: 10px; margin-top: 2px;	width: 152px;}
-#sources a { background: url(/images/bill/sources.png) center 1px no-repeat; height: 10px;	width: auto; display: block; text-indent: -9999em; }
-#sources a:hover {	background: url(/images/bill/sources-over.png) center 1px no-repeat;}
-body.bill_med #sources {width: 292px; }
-body.bill_lg #sources {	width: 392px; }

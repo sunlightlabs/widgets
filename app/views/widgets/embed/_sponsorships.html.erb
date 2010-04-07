@@ -1,47 +1,45 @@
-<div id="pageMain">
-  <div id="headerWrapper">
-    <div id="header">
-      <% if @size == 'lg' -%>
-        <img alt="Picture of " src="/images/profile/" class="pic@src full_name@alt+" width="40px" />
-      <% end -%>
-        <div id="repInfo">
-        <h1>
-          <small class="title"></small> 
-          <big class="full_name"></big>
-        </h1>
-        <div class="california" id="lawmakerMetadata">
-          <span class="party"></span>
-          <span class="state"></span>
-        </div>
-      </div> <!-- end headerLeft -->
-      <% unless @size == 'sm' %>
-        <div id="counter">
-          <span id="bills-sponsored">Number of Bills Sponsored</span>
-          <span id="number" class="bills_introduced"></span>
-        </div>
-      <% end -%>
-      <div class="clear"></div>
-    </div> <!-- end header -->
-    <div id="mainContent">
-      <h2>Sponsored Bills</h2>
-      <div id="chart-container-1"></div>
-      <dl>
-        <dt id="lawmaker-color">Color Block for Lawmaker Average</dt>
-        <dd id="lawmaker-average">Lawmaker Count</dd>
-        <dt id="house-color">Color Block for Chamber Average</dt>
-        <dd id="house-average" class="chamber_average">Chamber Average</dd>
-      </dl>
-      <% if @size == 'sm' -%>
-        <ol id="key">
-          <li>Sponsored</li>
-          <li>Then Enacted</li>
-          <li>Cosponsored</li>
-          <li>Then Enacted</li>
-        </ol>
-      <% end -%>
-    </div> <!-- end mainContent -->
-  </div> <!-- end headerWrapper -->
-</div> <!-- end pageMain -->
+<div id="headerWrapper">
+  <div id="header">
+    <% if @size == 'lg' -%>
+      <img alt="Picture of " src="/images/profile/" class="pic@src full_name@alt+" width="40px" />
+    <% end -%>
+      <div id="repInfo">
+      <h1>
+        <small class="title"></small> 
+        <big class="full_name"></big>
+      </h1>
+      <div class="california" id="lawmakerMetadata">
+        <span class="party"></span>
+        <span class="state"></span>
+      </div>
+    </div> <!-- end headerLeft -->
+    <% unless @size == 'sm' %>
+      <div id="counter">
+        <span id="bills-sponsored">Number of Bills Sponsored</span>
+        <span id="number" class="bills_introduced"></span>
+      </div>
+    <% end -%>
+    <div class="clear"></div>
+  </div> <!-- end header -->
+  <div id="mainContent">
+    <h2>Sponsored Bills</h2>
+    <div id="chart-container-1"></div>
+    <dl>
+      <dt id="lawmaker-color">Color Block for Lawmaker Average</dt>
+      <dd id="lawmaker-average">Lawmaker Count</dd>
+      <dt id="house-color">Color Block for Chamber Average</dt>
+      <dd id="house-average" class="chamber_average">Chamber Average</dd>
+    </dl>
+    <% if @size == 'sm' -%>
+      <ol id="key">
+        <li>Sponsored</li>
+        <li>Then Enacted</li>
+        <li>Cosponsored</li>
+        <li>Then Enacted</li>
+      </ol>
+    <% end -%>
+  </div> <!-- end mainContent -->
+</div> <!-- end headerWrapper -->
 
 <script type="text/javascript" charset="utf-8">
 

@@ -6,7 +6,14 @@
   <%= javascript_include_tag 'underscore.min' %>
   <%= javascript_include_tag 'highcharts' %>
   <!--[if IE]>
-  <script src="/javascripts/excanvas.compiled.js" type="text/javascript"></script>
+    <script src="/javascripts/excanvas.compiled.js" type="text/javascript"></script>
+  <![endif]-->
+  
+  <!--[if IE 6]>
+    <%= stylesheet_link_tag 'widgets-buggy' %>
+  <![endif]-->
+  <!--[if IE 7]>
+    <%= stylesheet_link_tag 'widgets-buggy7' %>
   <![endif]-->
   
   <script type="text/javascript">
@@ -25,9 +32,21 @@
   <%= stylesheet_link_tag "#{params[:id]}.css" %>
 </head>
 
-<body class="<%= params[:id] %>_<%= params[:size] %>">
+<body class="<%= params[:id] %>_<%= params[:size] %> <%= params[:size] %>">
+  <div id="pageMain">
   
-  <%= render "widgets/embed/#{params[:id]}" %>
+    <%= render "widgets/embed/#{params[:id]}" %>
+    
+    <div id="sources">
+      <a href="#">Sources</a>
+      <% if params[:size] != 'sm' %>
+        <span id="dated">/ LAST UPDATED 00/00/00</span>
+      <% end %>
+      <div id="sourceArea">
+        <p id="sourceContent"></p>
+      </div>
+    </div>
+  </div>
   
   <%= render :partial => "layouts/analytics" %>
   

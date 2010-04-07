@@ -1,34 +1,32 @@
-<div id="pageMain">
-  <div id="header">
-    <h1>
-      <small class="title"></small><big class="full_name"></big>
-    </h1>
-    <img alt="Picture of " src="" class="pic@src full_name@alt+" />
-    <div class="state_downcase@class" id="lawmakerMetadata">
-      <span class="party"></span>
-      <span class="state"></span>
-    </div>
-    <div class="clear"></div>
+<div id="header">
+  <h1>
+    <small class="title"></small><big class="full_name"></big>
+  </h1>
+  <img alt="Picture of " src="" class="pic@src full_name@alt+" />
+  <div class="state_downcase@class" id="lawmakerMetadata">
+    <span class="party"></span>
+    <span class="state"></span>
   </div>
-  
-  <div id="mainContent" style="background-color: #<%= params[:color] || "1F83B5" %>">
-    <div id="vcard">
-      <div id="mainVcard">
-        <div class="tel even"></div>
-        <div class="clear"></div>
-        <div class="adr odd">
-          <div class="street_address"></div>
-          <span class="locality">Washington</span>
-          <abbr class="region" title="District of Columbia">DC</abbr>
-          <span class="postal-code">22111</span>
-        </div>	
-        <div class="url even"><a class="website@href" href="#">Website</a></div>
-      </div>
-      <div id="buttons">
-        <a class="twitter twitter@href+ evenButton" href="http://twitter.com/">Twitter</a>
-        <a class="youtube@href oddButton" href="#">YouTube</a>
-        <a class="opencongress govtrack@href+ evenButton" href="http://www.opencongress.org/person/show/">Open Congress</a>
-      </div>
+  <div class="clear"></div>
+</div>
+
+<div id="mainContent" style="background-color: #<%= params[:color] || "1F83B5" %>">
+  <div id="vcard">
+    <div id="mainVcard">
+      <div class="tel even"></div>
+      <div class="clear"></div>
+      <div class="adr odd">
+        <div class="street_address"></div>
+        <span class="locality">Washington</span>
+        <abbr class="region" title="District of Columbia">DC</abbr>
+        <span class="postal-code">22111</span>
+      </div>	
+      <div class="url even"><a class="website@href" href="#">Website</a></div>
+    </div>
+    <div id="buttons">
+      <a class="twitter twitter@href+ evenButton" href="http://twitter.com/">Twitter</a>
+      <a class="youtube@href oddButton" href="#">YouTube</a>
+      <a class="opencongress govtrack@href+ evenButton" href="http://www.opencongress.org/person/show/">Open Congress</a>
     </div>
   </div>
 </div>

@@ -1,1 +1,101 @@
+/*
+ * YUI Resect CSS version: 2.2.2 
+ * Copyright (c) 2007, Yahoo! Inc. All rights reserved.
+ * Licensed under the BSD License: http://developer.yahoo.net/yui/license.txt
+ */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,optgroup,button,p,blockquote,th,td{margin:0;padding:0;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}table{border-collapse:collapse;border-spacing:0;}caption,th{text-align:left;}ol,ul{list-style:none;}fieldset,img{border:0;}input,textarea,select,optgroup,option,button{font-family:inherit;font-size:100%;}button,input {width: auto;overflow: visible;}optgroup,address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;}
+dl li{list-style: none;}
+
+a:link { outline: none; }
+a:visited { outline: none; }
+a:hover { outline: none; }
+a:active { outline: none; }
+
+
 body {display: none}
+
+body.sm { width: 152px; height: 292px; position: relative; }
+body.med { width: 292px; height: 242px; position: relative; }
+body.lg { width: 392px; height: 292px; position: relative; }
+
+.clear { clear: both;}
+
+#sources {
+  background: #606161;
+  height: 10px;
+  padding-top: 2px;
+  width: 152px;
+  position: absolute;
+  bottom: 0px;
+}
+
+body.med #sources {
+  width: 292px;
+}
+
+body.lg #sources {
+  width: 392px;
+}
+
+#sources a {
+  background: url(/images/widgets/source-info.jpg) center top no-repeat;
+  display: block;
+  text-indent: -9999em;
+  line-height: 100%;
+  height: 10px;
+  width: 82px;
+  float: left;
+  margin-left: 100px;
+  overflow: hidden;
+}
+
+#sources a.active {
+  background: url(/images/widgets/source-info.jpg) center -20px no-repeat;
+}
+
+body.med #sources a {
+  margin-left: 45px;
+}
+
+body.sm #sources a {
+  margin-left: 12px;
+}
+
+#sources a:hover {
+  background: url(/images/widgets/source-info.jpg) center -10px no-repeat;
+}
+
+#sources a.active:hover {
+  background: url(/images/widgets/source-info.jpg) center -30px no-repeat;
+}
+
+#dated {
+  font-size: 75%;
+  color: #BBBDBF;
+  display: block;
+  float: left;
+  height: 10px;
+  line-height: 100%;
+}
+
+#sourceArea {
+  position: absolute;
+  bottom: 10px;
+  background: #606161;
+  color: #FFF;
+  padding: 10px;
+  display: none;
+}
+
+body.lg #sourceArea {
+  width: 362px;
+  padding: 15px;
+}
+
+body.sm #sourceArea { 
+  width: 132px; 
+}
+
+body.med #sourceArea { 
+  width: 272px;
+}

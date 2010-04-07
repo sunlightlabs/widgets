@@ -1,0 +1,39 @@
+div#header {  background: none; border-bottom: #CCC 1px solid;}
+div#header img {position: relative;}
+body.lg div#mainContent {height: 145px;}
+body.lg div#vcard { height: 125px;}
+body.med div#vcard { height: 106px;}
+body.sm div#vcard { height: 125px;}
+
+body.sm img { width: 62px; }
+body.med img { width: 80px; }
+body.med div#buttons { margin-left: 4px;}
+body.med a.oddButton { margin-left: 36px;}
+body.sm h1 big { height: 29px; display: block; font-size: 110%;}
+
+div#vcard {background: #1F6C93;}
+div.even {background: #338BB7;}
+
+a.twitter { background: transparent url(images/social_icons-8.png) top left no-repeat; margin-right: 8px;}
+a.twitter:hover { background:transparent url(images/social_icons-8.png) left -28px no-repeat;}
+
+a.opencongress { background: transparent url(images/social_icons-8.png) -28px top no-repeat;}
+a.opencongress:hover { background: transparent url(images/social_icons-8.png) -28px -28px no-repeat;}
+
+a.youtube { background: transparent url(images/social_icons-8.png) -56px top no-repeat; margin-right: 8px;}
+a.youtube:hover { background: transparent url(images/social_icons-8.png) -56px -28px no-repeat;}
+
+body.lg a.twitter { background: transparent url(images/social_icons_lg-8.png) top left no-repeat; margin-right: 8px;}
+body.lg a.twitter:hover { background: transparent url(images/social_icons_lg-8.png) left -36px no-repeat;}
+
+body.lg a.opencongress { background: transparent url(images/social_icons_lg-8.png) -36px top no-repeat;}
+body.lg a.opencongress:hover { background: transparent url(images/social_icons_lg-8.png) -36px -36px no-repeat;}
+
+body.lg a.youtube { background: transparent url(images/social_icons_lg-8.png) -72px top no-repeat; margin-right: 8px;}
+body.lg a.youtube:hover { background: transparent url(images/social_icons_lg-8.png) -72px -36px no-repeat;}
+
+body.lg #sources a { margin-left: 50px;}
+body.med #sources a { margin-left: 25px;}
+body.sm #sources a { margin-left: 5px;}
+
+#dated { height: 9px; padding-top: 1px;}

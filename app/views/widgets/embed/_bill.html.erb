@@ -1,49 +1,47 @@
-<div id="pageMain">
-  <div id="headerWrapper">
-    <div id="header">
-      <h1 class="right">
-        <big class="bill_code"></big>
-        <% unless params[:size] == 'sm' %>
-          <small class="short_title"></small>
-        <% end %>
-      </h1>
-      <!--<div id="billResult" class="left">
-        <span class="result_upper result_lower@class"></span>
-      </div> -->
-      <div class="clear"></div> 
-    </div>  
-  </div>
-  <div id="mainContent">
-    <div id="repInfo">
-      <div id="lamaker_metaData" class="right">
-        <% unless params[:size] == 'sm' %>
-          <img alt="Picture of " src="/images/profile/" class="pic@src full_name@alt+" width="40px" />
-        <% end %>
-        
-        <h2><small class="title"></small> <big class="full_name"></big></h2>
-        <span id="party" class="party party_long@class"></span>
-        <span id="stateDistrict" class="state"></span>
-      </div>
-      <div id="lawmakerVote" class="left">
-        <span class="legislator_vote_value legislator_vote_class@class"></span>
-      </div>
-      <div class="clear"></div>
+<div id="headerWrapper">
+  <div id="header">
+    <h1 class="right">
+      <big class="bill_code"></big>
+      <% unless params[:size] == 'sm' %>
+        <small class="short_title"></small>
+      <% end %>
+    </h1>
+    <!--<div id="billResult" class="left">
+      <span class="result_upper result_lower@class"></span>
+    </div> -->
+    <div class="clear"></div> 
+  </div>  
+</div>
+<div id="mainContent">
+  <div id="repInfo">
+    <div id="lamaker_metaData" class="right">
+      <% unless params[:size] == 'sm' %>
+        <img alt="Picture of " src="/images/profile/" class="pic@src full_name@alt+" width="40px" />
+      <% end %>
+      
+      <h2><small class="title"></small> <big class="full_name"></big></h2>
+      <span id="party" class="party party_long@class"></span>
+      <span id="stateDistrict" class="state"></span>
     </div>
-    <div id="voteTotals">
-      <h2>Vote Totals</h2>
-      <div id="voteKey">
-        <dl>
-          <dt id="republican">Republican</dt>
-          <dd>Rep</dd>
-          <dt id="democrat">Democrat</dt>
-          <dd>Dem</dd>
-          <dt id="independent">Independent</dt>
-          <dd>Ind</dd>
-        </dl>
-      </div>
-      <div id="chart-container-1" class="right">          
-      <div class="clear"></div>         
-    </div>    
+    <div id="lawmakerVote" class="left">
+      <span class="legislator_vote_value legislator_vote_class@class"></span>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div id="voteTotals">
+    <h2>Vote Totals</h2>
+    <div id="voteKey">
+      <dl>
+        <dt id="republican">Republican</dt>
+        <dd>Rep</dd>
+        <dt id="democrat">Democrat</dt>
+        <dd>Dem</dd>
+        <dt id="independent">Independent</dt>
+        <dd>Ind</dd>
+      </dl>
+    </div>
+    
+    <div id="chart-container-1" class="right"></div>
   </div>
 </div>
 
