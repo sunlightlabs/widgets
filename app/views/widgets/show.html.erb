@@ -20,6 +20,7 @@
   </script>
   <%= javascript_include_tag 'customize' %>
 <% end %>
+<% content_for :title, h(@widget[:name] + " for " + search_name_for(@legislator)) %>
 
 <h2><%= h(@widget[:name] + " for " + search_name_for(@legislator)) %></h2>
 
