@@ -124,6 +124,9 @@ a.opencongress:hover { background: url(/images/bio/social_icons.png) -28px -28px
 a.youtube { background: url(/images/bio/social_icons.png) -56px top no-repeat; margin-right: 8px;}
 a.youtube:hover { background: url(/images/bio/social_icons.png) -56px -28px no-repeat;}
 
+a.website, a.website:visited {color: #DDD;}
+a.website:hover {color: #FFF;}
+
 body.bio_lg a.twitter { background: url(/images/bio/social_icons_lg.png) top left no-repeat; margin-right: 8px;}
 body.bio_lg a.twitter:hover { background: url(/images/bio/social_icons_lg.png) left -36px no-repeat;}
 
