@@ -20,6 +20,8 @@ $(function() {
     }
   });
   
+  $("#freezeExplainShow").click(function() {$("#freezeExplain").toggle(); return false;});
+  
   // embed code field
   $("#grabCode").click(function() {$(this).select()});
   

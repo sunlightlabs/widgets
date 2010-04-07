@@ -525,6 +525,17 @@ ul#switcher li a:hover {
 	line-height: 110%;	
 }
 
+#freezeExplain {
+  display: none;
+  margin: 10px 0;
+}
+
+a#freezeExplainShow {
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 92%;
+}
+
 #loadingBox {display: none;}
 #loadingBox img {margin-right: 10px;}
 #errorBox {
