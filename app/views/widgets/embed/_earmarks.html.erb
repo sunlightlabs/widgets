@@ -15,7 +15,7 @@
   </div> <!-- end header -->
   
   <div id="mainContent">
-    <h2>2010 EARMARKS</h2>
+    <h2>FY<span class="fiscal_year"></span> EARMARKS</h2>
     <% if @size == 'sm' -%>
     <div id="chart-container-1"></div> <!-- end chart-container -->
     <div id="leftBox">
@@ -74,7 +74,8 @@
       party: "(" + legislator.party + ")",
       chamber: chamberFor(legislator_title),
       earmarks_granted: earmarks.total_number,
-      earmark_avg: earmarks.average_number
+      earmark_avg: earmarks.average_number,
+      fiscal_year: earmarks.fiscal_year
     };
 
     $('div#pageMain').autoRender(widget_data);
