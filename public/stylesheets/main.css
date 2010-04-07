@@ -29,23 +29,23 @@ body.page div#ltColumn {
 
 body.home #headerWrapper{
 	margin: 0 auto;
-	background: url(images/bg-head-fade.jpg) top left repeat-x;
+	background: url(/images/site/bg-head-fade.jpg) top left repeat-x;
 	height: auto;
 }
 
 body.home #headerContainer{
-	background: url(images/bg-head.jpg) top left no-repeat;
+	background: url(/images/site/bg-head.jpg) top left no-repeat;
 	height: auto;
 }
 
 #headerWrapper {
 	margin: 0 auto;
-	background: url(images/bg-head-fade.jpg) left bottom repeat-x;
+	background: url(/images/site/bg-head-fade.jpg) left bottom repeat-x;
 	height: 196px;
 }
 
 #headerContainer{
-	background: url(images/bg-head.jpg) top left no-repeat;
+	background: url(/images/site/bg-head.jpg) top left no-repeat;
 	height: 171px;
 }
 
