@@ -39,15 +39,16 @@
     
     <div id="sources">
       <a class="sourceText" href="#">
-        <% if params[:size] == 'sm' %>
-          SOURCE INFO / 
-        <% else %>
-          SOURCE INFO / LAST UPDATED 
-        <% end %>
-        <span id="last_updated">00/00/00</span>
+        SOURCE INFO
       </a>
       <div id="sourceArea">
-        <p id="sourceContent"></p>
+        <p>
+          <span id="sourceContent"></span>
+          <br/><br/>
+          <span class="last_updated_container">
+            Last updated: <span id="last_updated">00/00/00</span>
+          </span>
+        </p>
       </div>
     </div>
   </div>

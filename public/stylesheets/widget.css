@@ -45,7 +45,7 @@ body.lg #sources {
   height: 10px;
   width: auto;
   float: left;
-  margin-left: 100px;
+  margin-left: 10px;
   overflow: hidden;
   font-size: 75%;
   color: #CCC;
@@ -54,14 +54,6 @@ body.lg #sources {
 
 #sources a.sourceText.active {
   background: url(/images/widgets/source-info.jpg) left -20px no-repeat;
-}
-
-body.med #sources a.sourceText {
-  margin-left: 45px;
-}
-
-body.sm #sources a.sourceText {
-  margin-left: 12px;
 }
 
 #sources a.sourceText:hover {
@@ -96,10 +88,14 @@ body.med #sourceArea {
   width: 272px;
 }
 
-p#sourceContent a, p#sourceContent a:visited {
+#sourceArea span.last_updated_container {
+  font-size: 90%;
+}
+
+#sourceContent a, #sourceContent a:visited {
   color: #CCC;
 }
 
-p#sourceContent a:hover {
+#sourceContent a:hover {
   color:#FFF;
 }

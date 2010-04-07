@@ -75,7 +75,7 @@ function updateSource(date, text) {
 }
 
 function formatDate(date) {
-  return (zeroPrefix(date.getMonth() + 1)) + "/" + zeroPrefix(date.getDate()) + "/" + (zeroPrefix(date.getYear() % 100));
+  return (zeroPrefix(date.getMonth() + 1)) + "/" + zeroPrefix(date.getDate()) + "/" + (zeroPrefix(date.getYear() + 1900));
 }
 
 function zeroPrefix(n) {
