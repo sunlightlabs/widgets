@@ -29,29 +29,36 @@ body.page div#ltColumn {
 
 body.home #headerWrapper{
 	margin: 0 auto;
-	background: url(/images/site/bg-head-fade.jpg) top left repeat-x;
-	height: 389px;
+	background: url(images/bg-head-fade.jpg) top left repeat-x;
+	height: auto;
 }
 
 body.home #headerContainer{
-	background: url(/images/site/bg-head.jpg) top left no-repeat;
-	height: 364px;
+	background: url(images/bg-head.jpg) top left no-repeat;
+	height: auto;
 }
 
 #headerWrapper {
 	margin: 0 auto;
-	background: url(/images/site/bg-head-fade.jpg) left bottom repeat-x;
+	background: url(images/bg-head-fade.jpg) left bottom repeat-x;
 	height: 196px;
 }
 
 #headerContainer{
-	background: url(/images/site/bg-head.jpg) top left no-repeat;
+	background: url(images/bg-head.jpg) top left no-repeat;
 	height: 171px;
 }
 
 #columnWrapper {
 	margin-top: 20px;
 }
+
+#header {
+	width: 940px;
+	margin: 0 auto;
+	padding: 0px 10px;
+}
+
 
 body.home #header {
 	height: 389px;
@@ -329,6 +336,7 @@ div#pageMain{
 #ltColumn {
 	float:left;
 	width: 730px;
+	margin-bottom: 50px;
 }
 
 body.home #ltColumn {
@@ -688,7 +696,7 @@ input.update {
 	float: left;
   width: 319px;
   padding: 35px 10px 10px 10px;
-  margin: 12px 0 50px 20px;
+  margin: 12px 0 0px 20px;
   -moz-border-radius-bottomright: 5px; 
   -moz-border-radius-bottomleft: 5px;
   -webkit-border-bottom-right-radius: 5px;
