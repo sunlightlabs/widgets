@@ -105,7 +105,7 @@ body.bio_lg div.even { padding: 8px;}
 
 div#buttons { margin-left: 15px; }
 body.bio_sm div#buttons a, body.bio_lg div#buttons a { float: left; }
-body.bio_med div#buttons { float: left; margin-left: 8px; margin-top: 5px; }
+body.bio_med div#buttons { float: left; margin-left: 8px; margin-top: 15px; }
 body.bio_med div#buttons a { margin-top: 0px; margin-bottom: 10px; }
 body.bio_lg div#buttons a { margin-bottom: 15px; margin-right: 15px; margin-top: 0px;}
 body.bio_lg div#buttons { margin-left: 8px; margin-top: 10px;}
@@ -129,11 +129,11 @@ a.website:hover {color: #FFF;}
 body.bio_lg a.twitter { background: url(/images/bio/social_icons_lg.png) top left no-repeat; margin-right: 8px;}
 body.bio_lg a.twitter:hover { background: url(/images/bio/social_icons_lg.png) left -36px no-repeat;}
 
-body.bio_lg a.opencongress { background: url(/images/bio/social_icons_lg.png) -36px top no-repeat;}
-body.bio_lg a.opencongress:hover { background: url(/images/bio/social_icons_lg.png) -36px -36px no-repeat;}
+body.bio_lg a.opencongress { background: url(/images/bio/social_icons_lg.png) -72px top no-repeat;}
+body.bio_lg a.opencongress:hover { background: url(/images/bio/social_icons_lg.png) -72px -36px no-repeat;}
 
-body.bio_lg a.youtube { background: url(/images/bio/social_icons_lg.png) -72px top no-repeat; margin-right: 8px;}
-body.bio_lg a.youtube:hover { background: url(/images/bio/social_icons_lg.png) -72px -36px no-repeat;}
+body.bio_lg a.youtube { background: url(/images/bio/social_icons_lg.png) -36px top no-repeat; margin-right: 8px;}
+body.bio_lg a.youtube:hover { background: url(/images/bio/social_icons_lg.png) -36px -36px no-repeat;}
 
 body.bio_med div#mainVcard { width: 175px; float: right; }
 body.bio_lg div#mainVcard { width: 240px; float: right; }
