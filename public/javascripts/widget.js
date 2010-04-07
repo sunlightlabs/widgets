@@ -1,23 +1,3 @@
-/** 
- * Behavior applied to all widgets
- */
- 
-$(document).ready(function() {
-  $("div#sources a").toggle(
-    function(){
-       $(this).addClass("active");
-       $("div#sourceArea").slideDown("slow");
-       return false;
-    },
-    function(){
-         $(this).removeClass("active");
-         $("div#sourceArea").slideUp("slow");
-         return false;
-      } 
-  );
-});
-
-
 /**
  * The main widget loading function. Makes use of several global variables set (by necessity) in
  * app/views/widgets/embed.html.  If a snapshot_id is set, it'll use that, otherwise, it'll use the
@@ -28,6 +8,22 @@ function loadWidget(method, sections, options, callback) {
   var augmented = function(data) {
     // if you wanted to check the data for an "error" key, here is where you would do it
     callback(data); 
+    
+    $("div#sources a").toggle(
+      function(){
+        $(this).addClass("active");
+        $("div#sourceArea").slideDown("slow");
+        $(".highcharts-container").hide();
+        return false;
+      },
+      function() {
+        $(this).removeClass("active");
+        $("div#sourceArea").slideUp("slow");
+        $(".highcharts-container").show();
+        return false;
+      } 
+    );
+  
     $("body").css("display", "block");
   };
   
