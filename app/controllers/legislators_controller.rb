@@ -9,7 +9,7 @@ class LegislatorsController < ApplicationController
   end
   
   def index
-    @query = params[:q]
+    @query = params[:q] || ""
     
     if @query =~ /^[0-9]{5}$/
       @query_type = "ZIP Code"
@@ -30,7 +30,9 @@ class LegislatorsController < ApplicationController
       @district = Sunlight::District.get(:address => @query)
       @query_type = "Address"
       @legislators = Sunlight::Legislator.all_for(:address => @query).values
-    
+    elsif @query == ''
+      @query_type = "All Members of Congress"
+      @legislators = Sunlight::Legislator.all_where(:in_office => true)
     else
       @query_type = "Name"
       @query = @query.titlecase

@@ -27,9 +27,9 @@
   </script>
 <% end %>
 
-<% content_for :title, "Search Results for #{@query}" %>
+<% content_for :title, (@query.blank? ? "All Members of Congress" : "Search Results for #{@query}") %>
 
-<h2>Results for &#8220;<%= @query %>&#8221;</h2>
+<h2><%= @query.blank? ? "All Members of Congress" : "Search Results for #{@query}" %></h2>
 <table id="mainTable">
   <thead>
     <tr id="titles">
