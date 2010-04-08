@@ -45,6 +45,12 @@ class LegislatorsController < ApplicationController
       @legislators = []
       @query_type = "Phrase"
     end
+    
+    if @legislators.length == 1      
+      redirect_to legislator_path(@legislators.first.bioguide_id)
+      return
+    end
+
   end
   
   private
