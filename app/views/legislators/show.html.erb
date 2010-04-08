@@ -5,7 +5,7 @@
 <ul>
   <% widgets.each do |slug, widget| %>
     <li class="widgetView <%= cycle 'odd', 'even' %> <%= 'last' if slug == widgets.keys.last %>">
-      <h3><%= h widget[:title] %></h3>
+      <h3><%= h widget[:name] %></h3>
       
       <div class="widget">
         <script type="text/javascript" src="<%= embed_url slug, @legislator.bioguide_id, :size => 'med', :title => @legislator.title %>"></script>
