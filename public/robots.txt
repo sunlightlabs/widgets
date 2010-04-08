@@ -1,4 +1,5 @@
 User-agent: *
+Sitemap: http://politiwidgets.com/sitemap.xml
 Disallow: /embed
 Disallow: /widgets/bio/embed
 Disallow: /widgets/bill/embed
