@@ -19,7 +19,14 @@
         sortList: [[2,0]], 
         cssAsc: "asc", 
         cssDesc: "desc",
-        textExtraction: "complex",
+        textExtraction: function(node) {
+          var contents = _.compact($.trim($(node).text()).split(' '));
+          if ($(node).hasClass("lawName")) {
+            return _.last(contents) + " " + _.first(contents);
+          } else {
+            return _.first(contents);
+          }
+        },
         headers: {0: {sorter: false}}
       });
       
