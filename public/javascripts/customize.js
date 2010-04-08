@@ -20,7 +20,15 @@ $(function() {
     }
   });
   
-  $("#freezeExplainShow").click(function() {$("#freezeExplain").toggle(); return false;});
+  $("#freezeExplainShow").toggle(function() {
+    $("#freezeExplain").show(); 
+    $("#freezeExplainShow").html("hide");
+    return false;
+  }, function() {
+    $("#freezeExplain").hide(); 
+    $("#freezeExplainShow").html("more");
+    return false;
+  });
   
   // embed code field
   $("#grabCode").click(function() {$(this).select()});
