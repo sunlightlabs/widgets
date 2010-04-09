@@ -9,7 +9,6 @@ class LegislatorsController < ApplicationController
   end
   
   def index
-    @hide_sidebar = true
     @query = params[:q] || ""
     
     if @query =~ /^[0-9]{5}$/
