@@ -23,7 +23,7 @@
           if ($(node).hasClass("lawName")) {
             return _.last(contents) + " " + _.first(contents);
           } else {
-            return _.first(contents);
+            return _.first(contents) + " ";
           }
         },
         headers: {0: {sorter: false}}
