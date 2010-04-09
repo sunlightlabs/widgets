@@ -10,9 +10,8 @@
         $(this).removeClass('hover');
       }).click(function() {
         var url = $(this).find('a').attr('href');
-        if (url) {
+        if (url)
             window.location = url;
-        }
       });
       
       $('#mainTable').tablesorter({
@@ -34,6 +33,7 @@
   </script>
 <% end %>
 
+<% content_for :hide_sidebar, true %>
 <% content_for :title, (@query.blank? ? "All Members of Congress" : "Search Results for #{@query}") %>
 
 <h2><%= @query.blank? ? "All Members of Congress" : "Search Results for #{@query}" %></h2>

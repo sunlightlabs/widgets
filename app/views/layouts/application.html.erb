@@ -66,10 +66,10 @@
           <%= yield %>
         </div>
         
-        <% unless @hide_sidebar %>
+        <% unless yield :hide_sidebar %>
           <div id="rtColumn">
             <%= render :partial => "layouts/sidebar/#{yield(:sidebar).present? ? yield(:sidebar) : 'nav'}" %>
-          
+            
             <!--<div class="adspace"></div>-->
           </div>
         <% end %>
