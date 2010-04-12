@@ -1,0 +1,15 @@
+ActionMailer::Base.smtp_settings = {
+  :address => '',
+  :port => 25,
+  :user_name => '',
+  :password => '',
+  :authentication => :plain,
+  :domain => ''
+}
+
+ActionMailer::Base.default_url_options[:host] = ""
+
+# array of strings of email addresses
+CONTACT_RECIPIENTS = [
+  
+]

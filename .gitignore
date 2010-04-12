@@ -6,3 +6,4 @@
 /config/*.yml
 /bin
 /.bundle
+/config/initializers/mailer.rb

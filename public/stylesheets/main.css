@@ -820,6 +820,11 @@ td {
   margin-bottom: 15px;
 }
 
+#contactForm div.notice {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
 #nameLabel, #emailLabel, #messageLabel {
   font-size: 110%;
   color: #C96F2A;
