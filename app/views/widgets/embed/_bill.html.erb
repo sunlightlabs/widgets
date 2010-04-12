@@ -131,19 +131,14 @@
     updateSource(bill.last_updated, description);
 
     var vote = data.roll.voters[bioguide_id].vote;
-    var legislator_vote = "";
-    switch (vote) {
-      case '+': legislator_vote = "Aye"; break;
-      case '-': legislator_vote = "Nay"; break;
-      case 'P': legislator_vote = "Present"; break;
-      case '0': legislator_vote = "Not Voting"; break;
-    };
+    var vote_map = {
+      '+': {legislator_vote_value: "Aye", legislator_vote_class: "aye"},
+      '-': {legislator_vote_value: "Nay", legislator_vote_class: "nay"},
+      'P': {legislator_vote_value: "Present", legislator_vote_class: "present"},
+      '0': {legislator_vote_value: "Absent", legislator_vote_class: "notvoting"}
+    }
     
-    var vote_data = {
-      legislator_vote_value: legislator_vote,
-      legislator_vote_class: legislator_vote.replace(" ", "").toLowerCase()
-    };
-    $('div#lawmakerVote').autoRender(vote_data);
+    $('div#lawmakerVote').autoRender(vote_map[vote]);
 
 
     var dimensions = {};

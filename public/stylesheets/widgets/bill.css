@@ -32,12 +32,12 @@ h2 small { font-size: 110%;}
 body.bill_med h2 small, body.bill_sm h2 small { display: inline;}
 h2 big, div#voteTotals h2 { color: #191919; text-transform: uppercase; font-weight: bold; font-size: 115%; line-height:18px;}
 
-div#repInfo span.present, div#billResult span.present { background: url(/images/widgets/bill/icon_presLg.png) center top no-repeat; font-size: 140%; color: #191919; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
-div#repInfo span.notactive, div#billResult span.notactive { background: url(/images/widgets/bill/icon_notactLg.png) center top no-repeat; font-size: 140%; color: #191919; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
+div#repInfo span.present, div#billResult span.present { background: url(/images/widgets/bill/icon_presLg.png) center top no-repeat; font-size: 120%; color: #191919; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
+div#repInfo span.notvoting, div#billResult span.notvoting { background: url(/images/widgets/bill/icon_notactLg.png) center top no-repeat; font-size: 120%; color: #191919; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
 
 body.bill_sm div#repInfo span.present, body.bill_sm div#billResult span.present { background: url(/images/widgets/bill/icon_presSm.png) left 1px no-repeat; padding-top: 0px; padding-left: 20px;}
 
-body.bill_sm div#repInfo span.notactive, body.bill_sm div#billResult span.notactive { background: url(/images/widgets/bill/icon_notactSm.png) left 1px no-repeat; padding-top: 0px; padding-left: 20px;}
+body.bill_sm div#repInfo span.notvoting, body.bill_sm div#billResult span.notvoting { background: url(/images/widgets/bill/icon_notactSm.png) left 1px no-repeat; padding-top: 0px; padding-left: 20px;}
 
 
 div#voteTotals h2 { float: left; margin-bottom:5px; margin-right: 20px;}
