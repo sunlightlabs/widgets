@@ -18,8 +18,10 @@ function loadWidget(method, sections, options, callback) {
       },
       function() {
         $(this).removeClass("active");
-        $("div#sourceArea").slideUp("slow");
-        $(".highcharts-container").show();
+        $("div#sourceArea").slideUp("slow", function() {
+          $(".highcharts-container").show();        
+        });
+        
         return false;
       } 
     );
