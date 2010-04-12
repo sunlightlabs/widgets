@@ -12,7 +12,7 @@
   <% widgets.each do |slug, widget| %>
     <li class="widgetHome <%= cycle 'odd', 'even' %> <%= 'last' if slug == widgets.keys.last %>">
       <a href="<%= widget_path :id => slug, :bioguide_id => settings[:featured][:legislator] %>">
-        <img src="images/<%= slug %>/icon.jpg" alt="<%= h widget[:name] %>"/>
+        <img src="images/widgets/<%= slug %>/icon.jpg" alt="<%= h widget[:name] %>"/>
       </a>
       
       <% if widget[:new] %>
