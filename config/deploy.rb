@@ -27,11 +27,9 @@ namespace :deploy do
   end
   
   task :symlink_config do
-    shared_config = File.join(shared_path, 'config')
-    release_config = "#{release_path}/config"
-    %w{widgets settings}.each do |file|
-      run "ln -s #{shared_config}/#{file}.yml #{release_config}/#{file}.yml"
-    end
+    run "ln -s #{shared_path}/config/widgets.yml #{release_path}/config/widgets.yml"
+    run "ln -s #{shared_path}/config/settings.yml #{release_path}/config/settings.yml"
+    run "ln -s #{shared_path}/config/mailer.rb #{release_path}/config/initializers/mailer.rb"
   end
 end
 

@@ -9,7 +9,7 @@ class MainController < ApplicationController
       if params[:name].blank? or params[:email].blank? or params[:message].blank?
         params[:notice] = 'Please fill out all fields.'
       else
-        ContactForm.new_form(params[:name], params[:email], params[:message]).deliver
+        ContactForm.contact_form(params[:name], params[:email], params[:message]).deliver
         redirect_to contact_path(:notice => 'Your message has been sent.')
       end
     end
