@@ -61,7 +61,7 @@ div#repInfo { border-bottom: 1px solid #D2D2D2; padding-bottom: 10px; margin-bot
 body.bill_med div#repInfo { padding-bottom: 8px; margin-bottom: 8px;}
 body.bill_sm div#repInfo { padding-bottom: 5px;}
 
-dt { text-indent: -9999em; display: block; width: 17px; height: 17px; margin-right: 8px; margin-bottom: 25px; float: left;}
+dt { text-indent: -9999em; display: block; width: 17px; height: 17px; margin-right: 8px; margin-bottom: 15px; float: left;}
 body.bill_med dt { margin-bottom: 18px; }
 dt.aye { background: url(/images/widgets/bill/icon_ayeSm.png) top left no-repeat;}
 dt.nay { background: url(/images/widgets/bill/icon_naySm.png) top left no-repeat;}
