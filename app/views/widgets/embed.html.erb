@@ -29,7 +29,7 @@
   <%= javascript_include_tag 'widget' %>
   
   <%= stylesheet_link_tag 'widget.css' %>
-  <%= stylesheet_link_tag "#{params[:id]}.css" %>
+  <%= stylesheet_link_tag "widgets/#{params[:id]}.css" %>
 </head>
 
 <body class="<%= params[:id] %>_<%= params[:size] %> <%= params[:size] %>">

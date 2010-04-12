@@ -91,7 +91,7 @@ div#mainContent { background-color: #1F83B5;}
 body.bio_med div#mainContent { height: 136px; margin-top: -45px; }
 body.bio_lg div#mainContent { height: 151px; margin-top: -15px;}
 
-div#vcard { background: url(/images/bio/gradient.png) top left repeat-x; padding: 30px 10px 0; color: #fff; line-height: 15px; height:130px; }
+div#vcard { background: url(/images/widgets/bio/gradient.png) top left repeat-x; padding: 30px 10px 0; color: #fff; line-height: 15px; height:130px; }
 body.bio_sm div#vcard { font-size: 95%; line-height: 13px; padding: 25px 10px 0; text-align: center;}
 body.bio_med div#vcard { padding: 20px 10px 0; height: 118px;}
 body.bio_lg div#vcard { padding: 25px 15px 0; font-size: 110%; line-height: 16px;}
@@ -115,26 +115,26 @@ body.bio_lg a.evenButton, body.bio_lg a.oddButton { width: 36px; height: 36px;}
 body.bio_med a.evenButton { float: left;}
 body.bio_med a.oddButton { margin-left: 40px;}
 
-a.twitter { background: url(/images/bio/social_icons.png) top left no-repeat; margin-right: 8px;}
-a.twitter:hover { background: url(/images/bio/social_icons.png) left -28px no-repeat;}
+a.twitter { background: url(/images/widgets/bio/social_icons.png) top left no-repeat; margin-right: 8px;}
+a.twitter:hover { background: url(/images/widgets/bio/social_icons.png) left -28px no-repeat;}
 
-a.opencongress { background: url(/images/bio/social_icons.png) -28px top no-repeat;}
-a.opencongress:hover { background: url(/images/bio/social_icons.png) -28px -28px no-repeat;}
+a.opencongress { background: url(/images/widgets/bio/social_icons.png) -28px top no-repeat;}
+a.opencongress:hover { background: url(/images/widgets/bio/social_icons.png) -28px -28px no-repeat;}
 
-a.youtube { background: url(/images/bio/social_icons.png) -56px top no-repeat; margin-right: 8px;}
-a.youtube:hover { background: url(/images/bio/social_icons.png) -56px -28px no-repeat;}
+a.youtube { background: url(/images/widgets/bio/social_icons.png) -56px top no-repeat; margin-right: 8px;}
+a.youtube:hover { background: url(/images/widgets/bio/social_icons.png) -56px -28px no-repeat;}
 
 a.website, a.website:visited {color: #DDD;}
 a.website:hover {color: #FFF;}
 
-body.bio_lg a.twitter { background: url(/images/bio/social_icons_lg.png) top left no-repeat; margin-right: 8px;}
-body.bio_lg a.twitter:hover { background: url(/images/bio/social_icons_lg.png) left -36px no-repeat;}
+body.bio_lg a.twitter { background: url(/images/widgets/bio/social_icons_lg.png) top left no-repeat; margin-right: 8px;}
+body.bio_lg a.twitter:hover { background: url(/images/widgets/bio/social_icons_lg.png) left -36px no-repeat;}
 
-body.bio_lg a.opencongress { background: url(/images/bio/social_icons_lg.png) -72px top no-repeat;}
-body.bio_lg a.opencongress:hover { background: url(/images/bio/social_icons_lg.png) -72px -36px no-repeat;}
+body.bio_lg a.opencongress { background: url(/images/widgets/bio/social_icons_lg.png) -72px top no-repeat;}
+body.bio_lg a.opencongress:hover { background: url(/images/widgets/bio/social_icons_lg.png) -72px -36px no-repeat;}
 
-body.bio_lg a.youtube { background: url(/images/bio/social_icons_lg.png) -36px top no-repeat; margin-right: 8px;}
-body.bio_lg a.youtube:hover { background: url(/images/bio/social_icons_lg.png) -36px -36px no-repeat;}
+body.bio_lg a.youtube { background: url(/images/widgets/bio/social_icons_lg.png) -36px top no-repeat; margin-right: 8px;}
+body.bio_lg a.youtube:hover { background: url(/images/widgets/bio/social_icons_lg.png) -36px -36px no-repeat;}
 
 body.bio_med div#mainVcard { width: 175px; float: right; }
 body.bio_lg div#mainVcard { width: 240px; float: right; }

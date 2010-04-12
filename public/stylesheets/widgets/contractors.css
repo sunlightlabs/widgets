@@ -14,14 +14,14 @@ div#mainContent { padding: 10px; }
 body.contractors_sm div#mainContent { padding: 12px 10px 10px; }
 body.contractors_lg div#mainContent { padding: 15px }
 
-div#header { background: url(/images/contractors/gradient_bill.png) bottom left repeat-x; }
+div#header { background: url(/images/widgets/contractors/gradient_bill.png) bottom left repeat-x; }
 body.contractors_lg div#header { height: 75px;}
 body.contractors_med div#header { height: 65px;}
 body.contractors_sm div#header { height: 80px;}
 
 div#headerWrapper { background-color: #DDD9D7; }
 
-h1 big { text-indent: -9999em; display: block; background: url(/images/contractors/header_title.png) top left no-repeat; height: 45px; float: left; width: 73px;}
+h1 big { text-indent: -9999em; display: block; background: url(/images/widgets/contractors/header_title.png) top left no-repeat; height: 45px; float: left; width: 73px;}
 body.contractors_sm h1 small { float: none; margin-left: 3px; margin-top: 46px; font-size: 90%; }
 h1 small { display: block; float: left; margin-left: 10px; margin-top: 28px; font-size: 100%; font-family: Georgia, Times New Roman, Times, serif; font-style: oblique;}
 h1 { float: left; padding: 10px;}

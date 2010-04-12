@@ -26,7 +26,7 @@ body.sponsorships_lg div#mainContent {
 }
 
 #header { 
-	background: url(/images/sponsorships/gradient_bill.png) bottom left repeat-x;
+	background: url(/images/widgets/sponsorships/gradient_bill.png) bottom left repeat-x;
 	height: 85px;
 }
 
@@ -175,7 +175,7 @@ body.sponsorships_med #counter{
 }
 
 #bills-sponsored {
-	background: url(/images/sponsorships/bills-sponsored.png) top left no-repeat;
+	background: url(/images/widgets/sponsorships/bills-sponsored.png) top left no-repeat;
 	text-indent: -9999em;
 	width: 58px;
 	height: 27px;
@@ -184,7 +184,7 @@ body.sponsorships_med #counter{
 }
 
 body.sponsorships_med #bills-sponsored {
-	background: url(/images/sponsorships/bills-sponsored-med.png) top left no-repeat;
+	background: url(/images/widgets/sponsorships/bills-sponsored-med.png) top left no-repeat;
 	display: block;
 	margin: 0 auto 6px;
 	width: 54px;
@@ -205,13 +205,13 @@ body.sponsorships_med #number {
 }
 
 h2 {
-	background: url(/images/sponsorships/sponsored-bills.png) top center no-repeat;
+	background: url(/images/widgets/sponsorships/sponsored-bills.png) top center no-repeat;
 	height: 13px;
 	text-indent: -9999em;
 }
 
 body.sponsorships_sm h2 {
-	background: url(/images/sponsorships/sponsored-bills-sm.png) top center no-repeat;
+	background: url(/images/widgets/sponsorships/sponsored-bills-sm.png) top center no-repeat;
 	height: 10px;
 	text-indent: -9999em;
 }
@@ -250,7 +250,7 @@ body.sponsorships_sm dl {
 }
 
 #lawmaker-color, #house-color {
-	background: url(/images/sponsorships/lawmaker-color.jpg) top left no-repeat;
+	background: url(/images/widgets/sponsorships/lawmaker-color.jpg) top left no-repeat;
 	width: 10px;
 	height: 10px;
 	text-indent: -9999em;
@@ -259,7 +259,7 @@ body.sponsorships_sm dl {
 }
 
 #house-color {
-	background: url(/images/sponsorships/house-color.jpg) top left no-repeat;
+	background: url(/images/widgets/sponsorships/house-color.jpg) top left no-repeat;
 	margin-left: 30px;
 }
 
