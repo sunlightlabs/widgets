@@ -797,6 +797,74 @@ td {
 	padding-left: 10px;
 }
 
+/* contact and about pages */
+
+#contactForm, #aboutText {
+  background: #B2EAF7 url(/images/site/img-contact-bubble.jpg) top left no-repeat;
+  width: 440px;
+  padding: 50px 20px 20px 20px;
+  margin-bottom: 30px;
+  -moz-border-radius-bottomleft: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+#contactForm li {
+  margin-bottom: 10px;
+}
+
+#contactForm p {
+  margin-bottom: 15px;
+}
+
+#nameLabel, #emailLabel, #messageLabel {
+  font-size: 110%;
+  color: #C96F2A;
+  font-weight: bold;
+  display: block;
+  width: 120px;
+  float: left;
+  padding-top: 5px;
+}
+
+#contactForm input, #contactForm textarea {
+  width: 300px;
+  height: 15px;
+  padding: 5px 0 5px 8px;
+  color: #406C78;
+  font-size: 100%;
+  background: #FFF url(/images/site/img-searchbarfade.jpg) top left repeat-x;
+  border: 1px solid #666;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#contactForm textarea {
+  height: 100px;
+}
+
+.submitBtn {
+  background: url(/images/site/button-submit.jpg) top left no-repeat;
+  text-indent: -9999em;
+  display: block;
+  width: 99px;
+  height: 38px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-bottom-radius: 5px;
+  margin-top: 20px;
+  margin-left: 333px;
+}
+
+
+.submitBtn:hover {
+  background: url(/images/site/button-submit.jpg) left -38px no-repeat;
+}
+
 .headshot{
 	padding-top: 5px;
 	padding-left: 5px;
