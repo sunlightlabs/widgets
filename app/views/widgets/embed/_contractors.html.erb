@@ -1,7 +1,7 @@
 <div id="headerWrapper">
   <div id="header">
     <h1>
-      <big>Top 5 Contractors</big><small>in <span class="state"></span> for FY<span class="fiscal_year"></span></small>
+      <big>Top 5 Contractors</big><small>in <span class="state"></span>></small>
     </h1>
     <div id="districtMap">
       <img alt="district map" class="pic@src"/>
@@ -45,8 +45,8 @@
       pic: pic_filename,
       state_downcase: legislator.state.toLowerCase(),
       state: legislator_state,
-      party: "(" + legislator.party + ")",
-      fiscal_year: legislator.contracts.fiscal_year
+      party: "(" + legislator.party + ")"
+      // fiscal_year: legislator.contracts.fiscal_year
     };
 
     $('div#header').autoRender(widget_data);
