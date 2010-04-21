@@ -80,6 +80,26 @@ function zeroPrefix(n) {
   return ((n < 10) ? "0" : "") + n;
 }
 
+function displayTitle(title, size) {
+  var titles;
+  if (size == 'sm') {
+    titles = {
+      Sen: "Sen.",
+      Rep: "Rep.",
+      Del: "Del.",
+      def: "Hon."
+    }
+  } else {
+    titles = {
+      Sen: "Senator",
+      Rep: "Representative",
+      Del: "Delegate",
+      def: "Honorable"
+    }
+  }
+  return titles[title] || titles.def;
+}
+
 function decimal_format(num, places) {
   if (Math.floor(num) == num) {
     return num;

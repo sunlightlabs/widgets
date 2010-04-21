@@ -46,12 +46,6 @@
     var legislator = data.legislator;
     var earmarks = legislator.earmarks;
   
-    var legislator_title = "";
-    switch (legislator.title) {
-      case 'Sen': legislator_title = "Senator"; break;
-      case 'Rep': legislator_title = "Representative"; break;
-      case 'Del': legislator_title = "Delegate"; break;
-    };
   
     var legislator_district = "";
     if (legislator.district == '0')
@@ -60,19 +54,19 @@
       legislator_district = legislator.district;
   
     var legislator_state = "";
-    if (legislator_title == "Senator")
+    if (legislator.title == "Sen")
       legislator_state = legislator.state;
     else
       legislator_state = legislator.state + "-" + legislator_district;
     
     var widget_data = {
-      title: legislator_title,
+      title: displayTitle(legislator.title, size),
       full_name: legislator.first_name + " " + legislator.last_name,
       pic: profileImage(legislator.bioguide_id),
       state_downcase: legislator.state.toLowerCase(),
       state: legislator_state,
       party: "(" + legislator.party + ")",
-      chamber: chamberFor(legislator_title),
+      chamber: chamberFor(legislator.title),
       earmarks_granted: earmarks.total_number,
       earmark_avg: earmarks.average_number,
       fiscal_year: earmarks.fiscal_year
@@ -85,7 +79,7 @@
     var y_label_offset = -5;
     var series_type = 'bar';
     var colors = ['#157C3E', '#73B745'];
-    var chamber_data = { name: chamberFor(legislator_title),
+    var chamber_data = { name: chamberFor(legislator.title),
                          data: [earmarks.average_amount]
                        }; 
     var lawmaker_data = { name: legislator.first_name + " " + legislator.last_name,
@@ -135,7 +129,7 @@
       },
 
       xAxis: {
-        categories: [legislator.first_name + " " + legislator.last_name, chamberFor(legislator_title)],
+        categories: [legislator.first_name + " " + legislator.last_name, chamberFor(legislator.title)],
         labels: {
           enabled: false,
         },

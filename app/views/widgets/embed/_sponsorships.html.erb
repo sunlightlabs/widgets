@@ -50,13 +50,6 @@
   loadWidget("legislator", ["basic", "sponsorships"], {bioguide_id: bioguide_id}, function(data) {
     var legislator = data.legislator;
   
-    var legislator_title = "";
-    switch (legislator.title) {
-      case 'Sen': legislator_title = "Senator"; break;
-      case 'Rep': legislator_title = "Representative"; break;
-      case 'Del': legislator_title = "Delegate"; break;
-    };
-  
     var legislator_district = "";
     if (legislator.district == '0')
       legislator_district = "AL";
@@ -64,13 +57,13 @@
       legislator_district = legislator.district;
   
     var legislator_state = "";
-    if (legislator_title == "Senator")
+    if (legislator.title == "Sen")
       legislator_state = legislator.state;
     else
       legislator_state = legislator.state + "-" + legislator_district;
     
     var widget_data = {
-      title: legislator_title,
+      title: displayTitle(legislator.title, size),
       full_name: legislator.first_name + " " + legislator.last_name,
       pic: profileImage(legislator.bioguide_id),
       state_downcase: legislator.state.toLowerCase(),
