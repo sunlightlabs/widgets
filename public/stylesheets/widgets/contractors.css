@@ -23,7 +23,11 @@ div#headerWrapper { background-color: #DDD9D7; }
 
 h1 big { text-indent: -9999em; display: block; background: url(/images/widgets/contractors/header_title.png) top left no-repeat; height: 45px; float: left; width: 73px;}
 body.contractors_sm h1 small { float: none; margin-left: 3px; margin-top: 46px; font-size: 90%; }
-h1 small { display: block; float: left; margin-left: 10px; margin-top: 28px; font-size: 100%; font-family: Georgia, Times New Roman, Times, serif; font-style: oblique;}
+
+body.contractors_med h1 small { margin-top: 16px; line-height: 15px;}
+body.contractors_med span#year { display: block;}
+
+h1 small { display: block; float: left; margin-left: 15px; margin-top: 29px; font-size: 100%; font-family: Georgia, Times New Roman, Times, serif; font-style: oblique;}
 h1 { float: left; padding: 10px;}
 body.contractors_lg h1 { padding: 15px 15px 0;}
 div#districtMap { float: right; background: #fff; width: 45px; height: 34px; padding: 15px; border-left: 1px solid #BCBCBC;}

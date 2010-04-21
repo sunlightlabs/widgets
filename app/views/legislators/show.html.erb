@@ -8,6 +8,7 @@
       <h3><a href="<%= widget_path :id => slug, :bioguide_id => @legislator.bioguide_id %>"><%= h widget[:name] %></a></h3>
       
       <div class="widget">
+        <a href="<%= widget_path :id => slug, :bioguide_id => @legislator.bioguide_id %>"></a>
         <script type="text/javascript" src="<%= embed_url_for slug, @legislator.bioguide_id, :size => 'med', :title => @legislator.title %>"></script>
       </div>
       

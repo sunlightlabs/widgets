@@ -22,7 +22,9 @@
     <div class="clear"></div>
   </div> <!-- end header -->
   <div id="mainContent">
-    <h2>Sponsored Bills</h2>
+    <% if @size == 'sm' -%>
+      <h2>Sponsored Bills</h2>
+    <% end -%>
     <div id="chart-container-1"></div>
     <dl>
       <dt id="lawmaker-color">Color Block for Lawmaker Average</dt>
@@ -76,17 +78,17 @@
     
     var dimensions = {};
     if (size == 'lg') {
-      dimensions.width = 350;
-      dimensions.height = 145;
-      dimensions.margin = [0, 20, 20, 85];
+      dimensions.width = 200;
+      dimensions.height = 160;
+      dimensions.margin = [0, 0, 20, 85];
     } else if (size == 'med') {
-      dimensions.width = 280;
-      dimensions.height = 114;
-      dimensions.margin = [10, 20, 10, 85];
+      dimensions.width = 205;
+      dimensions.height = 123;
+      dimensions.margin = [10, 0, 10, 85];
     } else {      
-      dimensions.width = 160;
-      dimensions.height = 100;
-      dimensions.margin = [10, 20, 15, 20];
+      dimensions.width = 130;
+      dimensions.height = 95;
+      dimensions.margin = [10, 30, 15, 20];
     }
     
     var categories = ['Sponsored',  'Then Enacted', 'Cosponsored', 'Then Enacted'];

@@ -419,7 +419,7 @@ body.home #ltColumn {
 ul#switcher li a {
   width: 68px;
   height: 18px;
-  padding: 2px 5px 2px 5px;
+  padding: 5px 5px 2px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -973,3 +973,11 @@ p#footerText a{
   font-weight: bold;
   text-decoration: none;
 }
+
+div.widget>a { width: 300px; height: 250px; display: block; position: absolute;}
+
+
+#differentWidget { padding-top: 40px; margin-bottom: 30px;}
+#differentWidget li { margin-bottom: 3px;}
+#differentWidget a { font-weight:bold; text-decoration:none;}
+span.tipText { font-family:Georgia,Times,Times New Roman,Serif; font-style: italic; margin-bottom: 15px; display: block; line-height: 16px;}

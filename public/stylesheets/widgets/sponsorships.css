@@ -94,6 +94,8 @@ body.sponsorships_sm h1 small, body.sponsorships_sm h1 big {
 	display: inline;
 }
 
+body.sponsorships_med .title { line-height: 18px;}
+
 body.sponsorships_lg #lawmakerMetadata {
 	line-height: 140%;
 }
@@ -214,25 +216,6 @@ body.sponsorships_sm h2 {
 	background: url(/images/widgets/sponsorships/sponsored-bills-sm.png) top center no-repeat;
 	height: 10px;
 	text-indent: -9999em;
-}
-
-body.sponsorships_lg #chart-container-1 {
-	width: 362px;
-	height: 135px;
-	overflow: hidden;
-	padding-top: 10px;
-}
-
-body.sponsorships_med #chart-container-1 {
-	width: 272px;
-	height: 114px;
-	overflow: hidden;
-}
-
-body.sponsorships_sm #chart-container-1 {
-	width: 132px;
-	height: 95px;
-	overflow: hidden;
 }
 
 dl dt, dl dd {
