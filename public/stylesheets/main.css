@@ -978,4 +978,4 @@ p#footerText a{
 #differentWidget { padding-top: 40px; margin-bottom: 30px;}
 #differentWidget li { margin-bottom: 3px;}
 #differentWidget a { font-weight:bold; text-decoration:none;}
-span.tipText { font-family:Georgia,Times,Times New Roman,Serif; font-style: italic; margin-bottom: 10px; display: block;}
+span.tipText { font-family:Georgia,Times,Times New Roman,Serif; font-style: italic; margin-bottom: 15px; display: block; line-height: 16px;}
