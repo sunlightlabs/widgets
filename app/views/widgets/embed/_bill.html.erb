@@ -88,7 +88,7 @@
       party_long = "independent";
     
     var legislator_data = {
-      title: legislator.title + ".",
+      title: displayTitle(legislator.title, size),
       full_name: legislator.first_name + " " + legislator.last_name,
       pic: profileImage(legislator.bioguide_id),
       state_downcase: legislator.state.toLowerCase(),
