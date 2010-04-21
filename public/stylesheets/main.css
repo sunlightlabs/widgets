@@ -974,6 +974,8 @@ p#footerText a{
   text-decoration: none;
 }
 
+div.widget>a { width: 300px; height: 250px; display: block; position: absolute;}
+
 
 #differentWidget { padding-top: 40px; margin-bottom: 30px;}
 #differentWidget li { margin-bottom: 3px;}
