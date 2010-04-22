@@ -80,24 +80,24 @@ function zeroPrefix(n) {
   return ((n < 10) ? "0" : "") + n;
 }
 
-function displayTitle(title, size) {
-  var titles;
-  if (size == 'sm') {
-    titles = {
-      Sen: "Sen.",
-      Rep: "Rep.",
-      Del: "Del.",
-      def: "Hon."
-    }
-  } else {
-    titles = {
-      Sen: "Senator",
-      Rep: "Representative",
-      Del: "Delegate",
-      def: "Honorable"
-    }
+function shortTitle(legislator) {
+  var titles = {
+    Sen: "Sen.",
+    Rep: "Rep.",
+    Del: "Del.",
+    def: "Hon."
   }
-  return titles[title] || titles.def;
+  return titles[legislator.title] || titles.def;
+}
+
+function longTitle(legislator) {
+  var titles = {
+    Sen: "Senator",
+    Rep: "Representative",
+    Del: "Delegate",
+    def: "Honorable"
+  }
+  return titles[legislator.title] || titles.def;
 }
 
 function decimal_format(num, places) {
