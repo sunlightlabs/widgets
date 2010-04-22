@@ -1,6 +1,8 @@
+/* custom, frontend_hostname, widget_id, and bioguide_id all should be initialized before this file is included. */
+
 $(function() {
   updateFrame();
-
+  
   // widget size switcher
   $("li.switcherbtn a").click(function() {
     var new_size = $(this).attr('id');
@@ -35,7 +37,7 @@ $(function() {
   
 });
 
-/* Depends on frontend_hostname, id, and bioguide_id being set before this file is included. */
+
 function updateFrame() {
   var iframe_url = "http://" + frontend_hostname + "/widgets/" + widget_id + "/embed?bioguide_id=" + bioguide_id + "&size=" + widget_size + "&" + queryString(custom);
   
@@ -106,7 +108,7 @@ function fetchSnapshot() {
 function queryString(object) {
   var query = "";
   $.each(object, function(k, v) {
-    query += k + "=" + v;
+    query += k + "=" + v + "&";
   });
   return query;
 }

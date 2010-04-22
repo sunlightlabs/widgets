@@ -1,4 +1,8 @@
 <% content_for :head do %>
+  <!-- For color picker -->
+  <%= stylesheet_link_tag 'farbtastic' %>
+  <%= javascript_include_tag 'farbtastic' %>
+  
   <script type="text/javascript">
     var frontend_hostname = "<%= settings[:frontend_hostname] %>";
     var widget_id = "<%= params[:id] %>";
@@ -17,9 +21,30 @@
     
     // this will get filled in when someone clicks the freeze checkbox
     var snapshot_id = null;
+    
+    
+    // color picker
+    custom.color = "<%= @widget[:custom][:color] %>";
+  
+    $(function() {
+      $("#primaryColorText").val("#" + custom.color);
+      $.farbtastic("#primaryColor", "#primaryColorText").setColor("#" + custom.color);
+    
+      // color picker
+      $("#updateColor").click(function() {
+        var picked = $("#primaryColorText").val();
+        if (picked && picked.replace)
+          custom.color = picked.replace("#", "");
+        
+        updateFrame();
+      });
+    });
+    
   </script>
+  
   <%= javascript_include_tag 'customize' %>
 <% end %>
+
 <% content_for :title, h(@widget[:name] + " for " + search_name_for(@legislator)) %>
 
 <h2>
@@ -60,8 +85,13 @@
 </div>
 
 <div id="rightWidgetColumn">
-    
     <%= render :partial => "widgets/show/#{params[:id]}" %>
+    
+    <fieldset class="custom">
+      <div id="primaryColor"></div>
+      <input type="text" id="primaryColorText" /><br/><br/>
+      <input type="button" value="Update Color" class="update" id="updateColor" />
+    </fieldset>
     
     <ul id="freezeBox"><li>
       <label id="checkBoxType">
