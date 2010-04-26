@@ -7,8 +7,9 @@
 
 <div id="featureShadow">
   <div id="featureBox">
-    <%= image_tag 'site/img-feature.jpg', :alt => 'featured widget', :id => 'featuredImage' %>
-    <h2>Featured</h2>
+    
+    <a href="<%= widget_path :id => settings[:featured][:widget], :bioguide_id => settings[:featured][:legislator] %>"><%= image_tag 'site/img-feature.jpg', :alt => 'featured widget', :id => 'featuredImage' %></a>
+    <h2><a href="<%= widget_path :id => settings[:featured][:widget], :bioguide_id => settings[:featured][:legislator] %>">Featured</a></h2>
     
     <p id="featuredText">
       Featured is the <%= h @widget[:name] %> widget, which you can make for any lawmaker in Congress.

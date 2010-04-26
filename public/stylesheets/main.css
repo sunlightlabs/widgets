@@ -282,7 +282,7 @@ h2 {
 	float:left;
 }
 
-#featureBox h2, #featureBox p, #featureBox a {
+#featureBox h2, #featureBox p, #featureBox a.start {
 	margin-left: 320px;
 }
 
