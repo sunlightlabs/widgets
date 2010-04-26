@@ -37,7 +37,6 @@ class LegislatorsController < ApplicationController
 
     else
       @query_type = "Name"
-      @query = @query.titlecase
       @legislators = Sunlight::Legislator.search_by_name(@query, 0.90)
     end
     
