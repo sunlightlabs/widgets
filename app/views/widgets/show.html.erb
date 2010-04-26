@@ -46,6 +46,7 @@
 <% end %>
 
 <% content_for :title, h(@widget[:name] + " for " + search_name_for(@legislator)) %>
+<% content_for :sidebar, 'legislator' %>
 
 <h2>
   <%= h @widget[:name] %>
