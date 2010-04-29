@@ -1,4 +1,3 @@
-<% puts params[:color].inspect %>
 <div id="headerWrapper" style="background-color: #<%= params[:color] || "DDD9D7" %>">
   <div id="header">
     <h1 class="right">
@@ -17,7 +16,7 @@
   <div id="repInfo">
     <div id="lamaker_metaData" class="right">
       <% unless params[:size] == 'sm' %>
-        <img alt="Picture of " src="/images/profile/" class="pic@src full_name@alt+" width="40px" />
+        <img alt="Picture of " src="" class="pic@src full_name@alt+" width="40px" />
       <% end %>
       
       <h2><small class="title"></small> <big class="full_name"></big></h2>
