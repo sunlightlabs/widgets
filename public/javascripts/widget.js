@@ -58,6 +58,11 @@ function profileImage(bioguide) {
   return "http://assets.sunlightfoundation.com/moc/100x125/" + bioguide + ".jpg";
 }
 
+// automatically slides the session up based on the year
+function currentSession() {
+  return Math.floor(((new Date().getYear() + 1900 + 1) / 2) - 894)
+}
+
 // returns a string suitable for feeding into JQuery's $.getJSON function (using a ? for the JSONP callback)
 function drumboneUrl(endpoint, method) {
   return endpoint + method + ".json";
