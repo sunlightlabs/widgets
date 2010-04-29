@@ -112,3 +112,8 @@ function queryString(object) {
   });
   return query;
 }
+
+// automatically slides the session up based on the year
+function currentSession() {
+  return Math.floor(((new Date().getYear() + 1900 + 1) / 2) - 894)
+}

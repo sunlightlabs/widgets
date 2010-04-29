@@ -45,7 +45,7 @@
 
 <script type="text/javascript" charset="utf-8">
 
-  var description = "Data provided by <a href=\"http://govtrack.us\">GovTrack</a> through the <a href=\"http://thomas.loc.gov\">Library of Congress</a>.";
+  var description = "Data provided by <a href=\"http://govtrack.us\">GovTrack</a> through the <a href=\"http://thomas.loc.gov\">Library of Congress</a>.\n\nStatistics apply to legislative activity for the " + currentSession() + "th Congress.";
 
   loadWidget("legislator", ["basic", "sponsorships"], {bioguide_id: bioguide_id}, function(data) {
     var legislator = data.legislator;
