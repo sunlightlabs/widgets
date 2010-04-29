@@ -981,6 +981,3 @@ div.widget>a { width: 300px; height: 250px; display: block; position: absolute;}
 #differentWidget li { margin-bottom: 3px;}
 #differentWidget a { font-weight:bold; text-decoration:none;}
 span.tipText { font-family:Georgia,Times,Times New Roman,Serif; font-style: italic; margin-bottom: 15px; display: block; line-height: 16px;}
-
-.error { background-color: #FFCCCC; border: 2px solid #CC6666; padding: 20px; width: 260px; height: 210px;}
-.error p { font-size: 120%; text-align: center; margin-top: 30px; color: #a94b4b;}
