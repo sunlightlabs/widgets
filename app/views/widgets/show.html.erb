@@ -48,11 +48,25 @@
 <% content_for :title, h(@widget[:name] + " for " + search_name_for(@legislator)) %>
 <% content_for :sidebar, 'legislator' %>
 
-<h2>
-  <%= h @widget[:name] %>
-  for
-  <%= search_name_for @legislator %>
-</h2>
+<% content_for :page_header do %>
+<div id="pageTop">
+	<h2>
+	  <%= h @widget[:name] %>
+	  for
+	   <span>
+	   <%= search_name_for @legislator %>
+	   </span>
+	</h2>
+	<div id="selectNew">
+	  <form id="change" action="." method="get">
+	   <label>Change Lawmaker</label>
+	   <input id="changeLawmaker" name="changeLawmaker" type="text" value="Enter a lawmaker's name"/>
+	  </form> <!-- end change -->
+	</div> <!-- end selectNew -->
+	<div class="clear"></div>
+</div> <!-- end pageTop -->
+<% end %>
+
 
 <div id="leftWidgetColumn">
 

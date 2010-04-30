@@ -244,6 +244,10 @@ h2 {
 	margin-bottom: 20px;
 }
 
+h2 span { 
+	font-weight: 900; 
+}
+
 #chooseText {
   font-family: Georgia, Times, Times New Roman, serif;
   font-style: italic;
@@ -780,6 +784,16 @@ tr.lawMaker.hover {
 td {
 	padding-left: 10px;
 }
+
+/* --------------------------------- for revised Widget page*/
+
+#pageTop { border-bottom: #1D77A0 1px solid; margin: 15px 0 30px 0; padding-bottom: 15px; }
+#pageTop h2 { float: left;}
+#selectNew { float: right; display: block; margin-top: -2px; }
+#change label { font-weight: bold; float: left; margin-top: 3px; }
+#changeLawmaker { float: left; margin: 0 10px; padding-left: 10px; width: 150px ; height: 24px; color: #406C78; background: #FFF url(/images/site/img-searchbarfade.jpg) top left repeat-x; border: 1px solid #666;	-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; font-family: Georgia,Times,"Times New Roman",serif; font-size: 90%; }
+.submit { background: url(/images/site/btn-search.jpg) top left no-repeat; width: 88px; height: 26px; float: left; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+.submit:hover { background: url(/images/site/btn-search.jpg) left -27px no-repeat; }
 
 /* contact and about pages */
 

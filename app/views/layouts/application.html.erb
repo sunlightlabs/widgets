@@ -60,6 +60,10 @@
     </div> <!-- end headerContainer -->
   </div> <!-- end headerWrapper -->
       <div id="pageMain">
+        <% if yield(:page_header).present? %>
+          <%= yield :page_header %>
+        <% end %>
+        
         <div id="ltColumn">
           <%= yield %>
         </div>
