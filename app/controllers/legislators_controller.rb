@@ -1,6 +1,6 @@
 class LegislatorsController < ApplicationController
 
-  caches_action :index, :cache_path => Proc.new { |controller| controller.params }, :expires_in => 1.dayd
+  caches_action :index, :cache_path => Proc.new { |controller| controller.params }, :expires_in => 1.day
 
   def show
     if results = Sunlight::Legislator.all_where(:bioguide_id => params[:bioguide_id]) and results.any?
