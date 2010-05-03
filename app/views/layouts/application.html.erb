@@ -56,28 +56,29 @@
             <%= render :partial => "layouts/featured" %>
           <% end %>
           
-      </div> <!-- end header -->
-    </div> <!-- end headerContainer -->
-  </div> <!-- end headerWrapper -->
-      <div id="pageMain">
-        <% if yield(:page_header).present? %>
-          <%= yield :page_header %>
-        <% end %>
+      </div>
+    </div>
+  </div>
+  
+  <div id="pageMain">
+    <% if yield(:page_header).present? %>
+      <%= yield :page_header %>
+    <% end %>
+    
+    <div id="ltColumn">
+      <%= yield %>
+    </div>
+    
+    <% unless yield(:hide_sidebar).present? %>
+      <div id="rtColumn">
+        <%= render :partial => "layouts/sidebar/#{yield(:sidebar).present? ? yield(:sidebar) : 'nav'}" %>
         
-        <div id="ltColumn">
-          <%= yield %>
-        </div>
-        
-        <% unless yield(:hide_sidebar).present? %>
-          <div id="rtColumn">
-            <%= render :partial => "layouts/sidebar/#{yield(:sidebar).present? ? yield(:sidebar) : 'nav'}" %>
-            
-            <!--<div class="adspace"></div>-->
-          </div>
-        <% end %>
-        
-        <div class="clear"></div>
-      </div> <!-- end pageMain -->
+        <!--<div class="adspace"></div>-->
+      </div>
+    <% end %>
+    
+    <div class="clear"></div>
+  </div> <!-- end pageMain -->
 
   <div id="footerWrapper">
     <div id="footer">
