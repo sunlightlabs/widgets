@@ -5,11 +5,14 @@ class WidgetsController < ApplicationController
   def snapshot
     return unless params[:method] and params[:sections]
     
-    drumbone = Drumbone.new settings[:sunlight_api_key]
-    drumbone.endpoint = settings[:data_endpoint]
-    drumbone.callback = "politiwidgetsCallback"
+    Drumbone.api_key = settings[:sunlight_api_key]
+    Drumbone.url = settings[:data_endpoint]
+    Drumbone.jsonp_callback = "politiwidgetsCallback"
     
-    json = drumbone.jsonp_for params[:method], params[:sections].split(","), params[:options]
+    model = "Drumbone::#{params[:method].capitalize}".constantize
+    options = params[:options].merge :sections => params[:sections].split(",")
+    
+    json = model.find options
     
     # timestamped, down to below the millisecond
     id = (Time.now.to_f * 100000).to_i.to_s
