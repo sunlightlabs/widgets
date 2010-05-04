@@ -1,0 +1,78 @@
+<div id="headerWrapper">
+  <div id="header">
+    <% if params[:size] != 'sm' %>
+      <img alt="Picture of " src="" class="pic@src full_name@alt+" />
+    <% end %>
+    
+    <h1>
+      <small class="title"></small> 
+      <big class="full_name">Stephanie Herseth Sandlin</big>
+    </h1>
+    
+    <div class="california" id="lawmakerMetadata">
+      <span id="party" class="party"></span>
+      <span id="state" class="state"></span>
+    </div>
+    
+    <div class="clear"></div>
+  </div> <!-- end header -->
+  <div id="mainContent">
+    <h2>Top 5 Contributors</h2>
+    <div id="chart-container-1"></div>
+    <% if params[:size] == 'sm' %>
+      <ol id="contributor_names">
+        <li class="contributors name"></li>
+      </ol>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  var description = "Data calculated from numbers provided by the <a href=\"http://opensecrets.org\">Center for Responsive Politics</a>.";
+
+  loadWidget("legislator", ["basic", "contributions"], {bioguide_id: bioguide_id}, function(data) {
+  
+    var legislator = data.legislator;
+      
+    var legislator_district = "";
+    if (legislator.district == '0')
+      legislator_district = "AL";
+    else
+      legislator_district = legislator.district;
+    
+    var legislator_state = legislator.state + "-" + legislator_district;
+    
+    
+    $('div#pageMain').autoRender({
+      title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
+      full_name: legislator.first_name + " " + legislator.last_name,
+      pic: profileImage(legislator.bioguide_id, "40x50"),
+      state: legislator_state,
+      party: "(" + legislator.party + ")",
+    });
+    
+    
+    
+    var cycle = currentCycle();
+    var top_contributors = legislator.contributions[cycle].top_contributors;
+    var top_names = [];
+    var top_amounts = [];
+    var name_objects = [];
+    
+    for (var i = 0; i < 5; i++) {
+      top_names[i] = top_contributors[i].name;
+      name_objects[i] = {name: top_contributors[i].name.substring(0,15)};
+      top_amounts[i] = parseFloat(top_contributors[i].total_amount);
+    }
+    
+    var names = top_names;
+    if (size == 'sm') {
+      names = ['1', '2', '3', '4', '5'];
+      $('ol#contributor_names').autoRender({"contributors": name_objects});
+    }
+    
+  
+  });
+  
+</script>

@@ -54,13 +54,19 @@ function loadWidget(method, sections, options, callback) {
 
 // helper functions (that do not make use of global variables)
 
-function profileImage(bioguide) {
-  return "http://assets.sunlightfoundation.com/moc/100x125/" + bioguide + ".jpg";
+function profileImage(bioguide, size) {
+  if (!size) size = "100x125";
+  return "http://assets.sunlightfoundation.com/moc/" + size + "/" + bioguide + ".jpg";
 }
 
 // automatically slides the session up based on the year
 function currentSession() {
   return Math.floor(((new Date().getYear() + 1900 + 1) / 2) - 894)
+}
+
+function currentCycle() {
+  var year = new Date().getYear() + 1900;
+  return (year % 2 == 0 ? year : year + 1);
 }
 
 // returns a string suitable for feeding into JQuery's $.getJSON function (using a ? for the JSONP callback)

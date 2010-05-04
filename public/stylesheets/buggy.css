@@ -26,3 +26,5 @@ div#footer {padding-top: 30px; }
 h4#knight {margin-left: 10px;}
 h4#sunlight { background:transparent url(/images/site/logo-sunlight-8.png) top left no-repeat;}
 h4#knight a { background: transparent url(/images/site/logo-knight-8.png) top left no-repeat;}
+
+div#header {  background: none; border-bottom: #CCC 1px solid;}

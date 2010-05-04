@@ -36,4 +36,8 @@ body.lg #sources a { margin-left: 50px;}
 body.med #sources a { margin-left: 25px;}
 body.sm #sources a { margin-left: 5px;}
 
-#dated { height: 9px; padding-top: 1px;}
+#contributor_names {padding-left: 23px;}
+body.contributions_sm h2 {background: url(/images/widgets/contributions/top-five-sm-8.png) top center no-repeat;}
+body.contributions_sm #sources a {margin-left: 6px;}
+body.contributions_med #sources a {margin-left: 25px;}
+body.contributions_lg #sources a { margin-left: 50px;}

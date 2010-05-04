@@ -14,9 +14,9 @@
 <div id="mainContent">
   <div id="chart-container-1"></div>
   <% if params[:size] == 'sm' -%>
-  <ol id="contractor_names">
-    <li class="contractors name"></li>
-  </ol>
+    <ol id="contractor_names">
+      <li class="contractors name"></li>
+    </ol>
   <% end -%>
 </div>
 
@@ -63,6 +63,12 @@
       name_objects[i] = {name: top_contractors[i].name.substring(0,15)};
       top_amounts[i] = parseFloat(top_contractors[i].amount);
     }
+    
+    var names = top_names;      
+    if (size == 'sm') {
+      names = ['1', '2', '3', '4', '5'];
+      $('ol#contractor_names').autoRender({"contractors": name_objects});
+    }
 
     var dimensions = {};
     if (size == 'sm') {
@@ -79,11 +85,7 @@
       dimensions.margin = [0, 30, 20, 80];
     }
 
-    var names = top_names;      
-    if (size == 'sm') {
-      names = ['1', '2', '3', '4', '5'];
-      $('ol#contractor_names').autoRender({"contractors": name_objects});
-    }
+    
     var chart1 = new Highcharts.Chart({
       chart: {
         renderTo: 'chart-container-1',
