@@ -6,7 +6,7 @@
     
     <h1>
       <small class="title"></small> 
-      <big class="full_name">Stephanie Herseth Sandlin</big>
+      <big class="full_name"></big>
     </h1>
     
     <div class="california" id="lawmakerMetadata">
@@ -20,7 +20,7 @@
     <h2>Top 5 Contributors</h2>
     <div id="chart-container-1"></div>
     <% if params[:size] == 'sm' %>
-      <ol id="contributor_names">
+      <ol id="key">
         <li class="contributors name"></li>
       </ol>
     <% end %>
@@ -30,8 +30,9 @@
 <script type="text/javascript">
 
   var description = "Data calculated from numbers provided by the <a href=\"http://opensecrets.org\">Center for Responsive Politics</a>.";
-
-  loadWidget("legislator", ["basic", "contributions"], {bioguide_id: bioguide_id}, function(data) {
+  var cycle = currentCycle();
+  
+  loadWidget("legislator", ["basic", "contributions.last_updated", "contributions." + cycle + ".top_contributors"], {bioguide_id: bioguide_id}, function(data) {
   
     var legislator = data.legislator;
       
@@ -43,7 +44,6 @@
     
     var legislator_state = legislator.state + "-" + legislator_district;
     
-    
     $('div#pageMain').autoRender({
       title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
       full_name: legislator.first_name + " " + legislator.last_name,
@@ -52,9 +52,6 @@
       party: "(" + legislator.party + ")",
     });
     
-    
-    
-    var cycle = currentCycle();
     var top_contributors = legislator.contributions[cycle].top_contributors;
     var top_names = [];
     var top_amounts = [];
@@ -69,10 +66,90 @@
     var names = top_names;
     if (size == 'sm') {
       names = ['1', '2', '3', '4', '5'];
-      $('ol#contributor_names').autoRender({"contributors": name_objects});
+      $('ol#key').autoRender({"contributors": name_objects});
     }
+    updateSource(legislator.contributions.last_updated, description);
+        
+    var dimensions = {};
+    if (size == 'lg') {
+      dimensions.width = 350;
+      dimensions.height = 165;
+      dimensions.margin = [10, 15, 0, 120];
+    } else if (size == 'med') {
+      dimensions.width = 260;
+      dimensions.height = 115;
+      dimensions.margin = [10, 10, 10, 120];
+    } else {      
+      dimensions.width = 160;
+      dimensions.height = 115;
+      dimensions.margin = [10, 20, 15, 15];
+      categories = ['1', '2', '3', '4', '5'];
+    }    
     
-  
+
+    $(document).ready(function() {
+      var chart1 = new Highcharts.Chart({
+        chart: {
+          renderTo: 'chart-container-1',
+          defaultSeriesType: 'bar',
+          width: dimensions.width,
+          height: dimensions.height,
+          margin: dimensions.margin,
+        },
+
+        title: {
+          text: " ",
+          style: {
+            display: 'none',
+            position: 'absolute',
+            left: '0',
+            top: '0'
+          }
+        },
+
+        xAxis: {
+          categories: names,
+          labels: {
+            formatter: function() {
+              return this.value.substring(0,17);
+            }
+          }
+        },
+
+        yAxis: {
+          title: null,
+          maxPadding: 0.35,
+          gridLineWidth: 0,
+          labels: {
+            enabled: false
+          }          
+        },
+        colors: ['#96BD6A'],
+        credits: { enabled: false },
+        plotOptions: {
+          bar: {
+            dataLabels: {
+              enabled: true,
+              color: 'auto',
+              y: 0,
+              formatter: function() {
+                return '$' + Highcharts.numberFormat(this.y, 0);
+              }
+            }
+          }
+        },
+        tooltip: {
+          formatter: function() {
+            return '<b>' + this.x +'</b><br/>$' + Highcharts.numberFormat(this.y, 0) + '';
+          }
+        }, 
+        legend: { enabled: false },
+        series: [{
+          name: '',
+          data: top_amounts
+        }]
+      });
+    });    
   });
   
 </script>
