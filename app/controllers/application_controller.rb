@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   
   def load_settings
     Sunlight::Base.api_key = settings[:sunlight_api_key]
+    Drumbone.api_key = settings[:sunlight_api_key]
+    Drumbone.url = settings[:data_endpoint]
   end
   
   def settings

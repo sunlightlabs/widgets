@@ -45,7 +45,7 @@
   <%= javascript_include_tag 'customize' %>
 <% end %>
 
-<% content_for :title, h(@widget[:name] + " for " + search_name_for(@legislator)) %>
+<% content_for :title, h(@widget[:name] + " for " + titled_name_for(@legislator)) %>
 <% content_for :sidebar, 'legislator' %>
 
 <% content_for :page_header do %>
@@ -54,7 +54,7 @@
       <%= h @widget[:name] %>
       for
       <span>
-      <%= search_name_for @legislator %>
+      <%= titled_name_for @legislator %>
       </span>
     </h2>
     

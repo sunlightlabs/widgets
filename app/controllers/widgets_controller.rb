@@ -5,12 +5,11 @@ class WidgetsController < ApplicationController
   def snapshot
     return unless params[:method] and params[:sections]
     
-    Drumbone.api_key = settings[:sunlight_api_key]
-    Drumbone.url = settings[:data_endpoint]
-    Drumbone.jsonp_callback = "politiwidgetsCallback"
-    
     model = "Drumbone::#{params[:method].capitalize}".constantize
-    options = params[:options].merge :sections => params[:sections].split(",")
+    options = params[:options].merge({
+      :sections => params[:sections].split(","),
+      :callback => "politiwidgetsCallback"
+    })
     
     json = model.find options
     
@@ -53,9 +52,7 @@ class WidgetsController < ApplicationController
   end
   
   def load_legislator
-    if results = Sunlight::Legislator.all_where(:bioguide_id => params[:bioguide_id]) and results.any?
-      @legislator = results.first
-    else
+    unless @legislator = Drumbone::Legislator.find(:bioguide_id => params[:bioguide_id])
       head :not_found and return false
     end
   end

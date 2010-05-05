@@ -45,6 +45,15 @@ module ApplicationHelper
     district.to_i < 10 ? "0#{district}" : "#{district}"
   end  
   
+  # Sunlight Drumbone API legislator only
+  def titled_name_for(legislator)
+    name = "#{legislator.nickname.present? ? legislator.nickname : legislator.first_name} "
+    name << legislator.last_name
+    name << " #{legislator.name_suffix}" if legislator.name_suffix.present?
+    name
+  end
+  
+  # Sunlight Congress API legislator only
   def search_name_for(legislator)
     name = "#{legislator.nickname.present? ? legislator.nickname : legislator.firstname} "
     name << legislator.lastname
@@ -52,8 +61,9 @@ module ApplicationHelper
     name
   end
   
+  # Sunlight Drumbone API legislator only
   def full_name_for(legislator)
-    "#{title_for legislator} #{search_name_for legislator} (#{legislator.party}) #{full_district_for legislator}"
+    "#{title_for legislator} #{titled_name_for legislator} (#{legislator.party}) #{full_district_for legislator}"
   end
   
   def param_string
