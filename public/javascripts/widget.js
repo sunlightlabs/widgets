@@ -7,7 +7,10 @@
 function loadWidget(method, sections, options, callback) {
   var augmented = function(data) {
     // if you wanted to check the data for an "error" key, here is where you would do it
-    callback(data); 
+    if (data.error)
+      setError("Error loading widget.<br/><br/>Error message: " + data.error.code + " - " + data.error.message);
+    else
+      callback(data);
     
     $("div#sources a").toggle(
       function(){
