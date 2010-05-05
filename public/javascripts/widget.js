@@ -26,7 +26,7 @@ function loadWidget(method, sections, options, callback) {
       } 
     );
   
-    $("body").css("display", "block");
+    $("body").show();
   };
   
   
@@ -53,6 +53,17 @@ function loadWidget(method, sections, options, callback) {
 
 
 // helper functions (that do not make use of global variables)
+
+function setAlert(message) {
+  $("#pageMain").hide();
+  $("#widgetAlert p").html(message);
+  $("#widgetAlert").show();
+}
+
+function setError(message) {
+  $("#widgetAlert").addClass("error");
+  setAlert(message);
+}
 
 function profileImage(bioguide, size) {
   if (!size) size = "100x125";

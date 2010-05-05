@@ -33,6 +33,10 @@
 </head>
 
 <body class="<%= params[:id] %>_<%= params[:size] %> <%= params[:size] %>">
+  <div id="widgetAlert" class="alert">
+    <p></p>
+  </div>
+  
   <div id="pageMain">
   
     <%= render "widgets/embed/#{params[:id]}" %>

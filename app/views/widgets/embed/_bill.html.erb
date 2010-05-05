@@ -65,8 +65,13 @@
   loadWidget("roll", sections, {roll_id: roll_id}, function(data) {
     
     // legislator info
-    var legislator = data.roll.voters[bioguide_id].voter;
-    
+    var legislator;
+    if (data.roll.voters[bioguide_id])
+      legislator = data.roll.voters[bioguide_id].voter;
+    else {
+      setAlert("This representative has no recorded vote for this bill.");
+      return;
+    }
     var legislator_district = "";
     if (legislator.district == '0')
       legislator_district = "AL";
