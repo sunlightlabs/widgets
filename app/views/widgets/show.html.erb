@@ -54,7 +54,9 @@
       <%= h @widget[:name] %>
       for
       <span>
-      <%= titled_name_for @legislator %>
+        <a href="<%= legislator_path :bioguide_id => @legislator.bioguide_id %>">
+          <%= titled_name_for @legislator %>
+        </a>
       </span>
     </h2>
     
