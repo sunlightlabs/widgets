@@ -43,13 +43,12 @@ body.lg #sources {
   padding-left: 12px;
   line-height: 100%;
   height: 10px;
-  width: auto;
   float: left;
   margin-left: 10px;
-  overflow: hidden;
   font-size: 75%;
   color: #CCC;
   text-decoration: none;
+  text-transform: uppercase;
 }
 
 #sources a.sourceText.active {
