@@ -1,0 +1,76 @@
+<div id="headerWrapper" style="background-color: #<%= params[:color] || "ECF9E9" %>">
+  <div id="header">
+    <h1>
+      <small class="title"></small> 
+      <big class="full_name"></big>
+    </h1>
+    <img alt="Picture of " src="" class="pic@src full_name@alt+" />
+    <div class="california" id="lawmakerMetadata">
+      <span class="party"></span>
+      <span class="state"></span>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<div class="clear"></div>
+<div id="mainContent">
+  <h2 class="rating_name"></h2>
+  <span class="rating"></span>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+  var description = "Data provided by <a href=\"http://www.votesmart.org/\">Project Vote Smart</a>.";
+
+  <%
+    sig_id = nil
+    if params[:sig_id]
+      sig_id = params[:sig_id]
+    else
+      sig_id = @widget[:custom][:sig_id]
+    end
+  %>
+  
+  var sig_id = "<%= sig_id %>";
+
+  loadWidget("legislator", ["basic","ratings.last_updated","ratings." + sig_id], {bioguide_id: bioguide_id}, function(data) {
+    var legislator = data.legislator;
+    var ratings = legislator.ratings;
+    var rating = ratings[sig_id];
+  
+    var legislator_district = "";
+    if (legislator.district == '0')
+      legislator_district = "AL";
+    else
+      legislator_district = legislator.district;
+  
+    var legislator_state = "";
+    if (legislator.title == "Sen")
+      legislator_state = legislator.state;
+    else
+      legislator_state = legislator.state + "-" + legislator_district;
+    
+    var legislator_party = "";
+    if (legislator.party == "R")
+      legislator_party = "Republican";
+    else if (legislator.party == "D")
+      legislator_party = "Democrat";
+    else
+      legislator_party = "Independent";
+    
+    var widget_data = {
+      title: longTitle(legislator),
+      full_name: legislator.first_name + " " + legislator.last_name,
+      pic: profileImage(legislator.bioguide_id),
+      state_downcase: legislator.state.toLowerCase(),
+      state: legislator_state,
+      party: legislator_party,
+      rating_name: rating.name,
+      rating: rating.rating
+    };
+
+    $('div#pageMain').autoRender(widget_data);
+    updateSource(ratings.last_updated, description);
+    
+  });
+</script>
