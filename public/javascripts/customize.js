@@ -1,5 +1,7 @@
 /* custom, frontend_hostname, widget_id, and bioguide_id all should be initialized before this file is included. */
 
+var last_search;
+
 $(function() {
   updateFrame();
   
@@ -35,8 +37,64 @@ $(function() {
   // embed code field
   $("#grabCode").click(function() {$(this).select()});
   
+  
+  // legislator switcher
+  var originalSwitcher = "Enter lawmaker's last name";
+  $("#changeLawmaker").val(originalSwitcher);
+  $("#changeLawmaker").focus(function() {
+    if ($(this).val() == originalSwitcher)
+      $(this).val("");
+  });
+  
+  $("#changeLawmaker").keyup(function() {
+    var search = $(this).val();
+    if (this.zid) 
+      clearTimeout(this.zid);
+    
+    if (last_search != search && search.length > 1) {
+      this.zid = setTimeout(function() {
+      
+        searchLawmakers(search, function(legislators) {
+          if (legislators == null || legislators.length == 0)
+            $("div.changeResults").html("None found.").show();
+          else {
+            var html = "";
+            for (var i=0; i<legislators.length; i++)
+              html += lawmakerResultHtml(legislators[i]);
+              
+            $("div.changeResults").html(html).show();
+          }
+        });
+        
+      }, 500);
+      last_search = search;
+    }
+  })
 });
 
+function searchLawmakers(name, callback) {  
+  $.ajax({
+    url: "http://services.sunlightlabs.com/api/legislators.getList.json",
+    data: {apikey: sunlight_api_key, lastname__istartswith: name},
+    dataType: "jsonp",
+    jsonp: "jsonp",
+    success: function(data) {
+      if (data.response && data.response.legislators)
+        callback(data.response.legislators);
+      else
+        callback(null);
+    }
+  });
+}
+
+function lawmakerResultHtml(legislator) {
+  legislator = legislator.legislator;
+  var html = "<div class=\"lawmakerResult\">";
+  html += "<img src=\"" + profileImage(legislator.bioguide_id, "40x50") + "\"/>";
+  html += "<span>" + legislatorName(legislator) + "</span>";
+  html += "</div>";
+  return html;
+}
 
 function updateFrame() {
   var iframe_url = "http://" + frontend_hostname + "/widgets/" + widget_id + "/embed?bioguide_id=" + bioguide_id + "&size=" + widget_size + "&" + queryString(custom);
@@ -116,4 +174,15 @@ function queryString(object) {
 // automatically slides the session up based on the year
 function currentSession() {
   return Math.floor(((new Date().getYear() + 1900 + 1) / 2) - 894)
+}
+
+function profileImage(bioguide, size) {
+  if (!size) size = "100x125";
+  return "http://assets.sunlightfoundation.com/moc/" + size + "/" + bioguide + ".jpg";
+}
+
+function legislatorName(legislator) {
+  var first_name = legislator.nickname ? legislator.nickname : legislator.firstname;
+  var suffix = legislator.name_suffix ? " " + legislator.name_suffix : "";
+  return legislator.title + ". " + first_name + " " + legislator.lastname + suffix;
 }
