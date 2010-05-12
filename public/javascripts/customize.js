@@ -67,9 +67,15 @@ $(function() {
         });
         
       }, 500);
+        
       last_search = search;
     }
-  })
+    
+    else if (search == "") {
+      last_search = "";
+      $("div.changeResults").html("").hide();
+    }
+  });
 });
 
 function searchLawmakers(name, callback) {  
