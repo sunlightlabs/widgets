@@ -795,12 +795,20 @@ td {
 
 #selectNew { float: right; display: block; margin-top: -2px; }
 #change label { font-weight: bold; float: left; margin-top: 3px; }
-#changeLawmaker { float: left; margin: 0 10px; padding-left: 10px; width: 150px ; height: 24px; color: #406C78; background: #FFF url(/images/site/img-searchbarfade.jpg) top left repeat-x; border: 1px solid #666;	-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; font-family: Georgia,Times,"Times New Roman",serif; font-size: 90%; }
+#changeLawmaker { float: left; margin: 0 10px; padding-left: 10px; width: 150px ; height: 24px; color: #406C78; background: #FFF url(/images/site/img-searchbarfade.jpg) top left repeat-x; border: 1px solid #666; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; font-family: Georgia,Times,"Times New Roman",serif; font-size: 90%; }
 div.changeResults {
-  display: none; 
-  position: absolute; background-color: white;
+  background-color: white;
+  width: 156px;
+  border: 1px solid #D1D3D4;
+  border-top: none;
 }
 
+div#changeResults_wrapper { background: url(/images/site/img-feature-shadow.png) 5px top repeat-y; z-index: 1; position: absolute; margin-left: 120px; margin-top: 26px; width: 161px; padding-bottom: 4px; display: none; }
+
+div.changeResults span { line-height: 15px;}
+div.changeResults li { list-style-type: none; padding: 8px 15px; height: 50px;}
+div.changeResults li:hover { background-color: #e9f2f4;}
+div.changeResults img { margin-right: 10px; float: left; border: 1px solid #E0DEDE;}
 
 .submit { background: url(/images/site/btn-search.jpg) top left no-repeat; width: 88px; height: 26px; float: left; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
 .submit:hover { background: url(/images/site/btn-search.jpg) left -27px no-repeat; }
