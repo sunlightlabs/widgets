@@ -56,13 +56,15 @@ $(function() {
       
         searchLawmakers(search, function(legislators) {
           if (legislators == null || legislators.length == 0)
-            $("div.changeResults").html("None found.").show();
+            $("div#changeResults_wrapper").html("None found.").show();
           else {
-            var html = "";
+            
+            var html = "<div class=\"changeResults\"><ul>";
             for (var i=0; i<legislators.length; i++)
               html += lawmakerResultHtml(legislators[i]);
-              
-            $("div.changeResults").html(html).show();
+            html += "</ul></div>";
+            
+            $("div#changeResults_wrapper").html(html).show();
           }
         });
         
@@ -95,10 +97,10 @@ function searchLawmakers(name, callback) {
 
 function lawmakerResultHtml(legislator) {
   legislator = legislator.legislator;
-  var html = "<div class=\"lawmakerResult\">";
+  var html = "<li class=\"lawmakerResult clear\">";
   html += "<img src=\"" + profileImage(legislator.bioguide_id, "40x50") + "\"/>";
   html += "<span>" + legislatorName(legislator) + "</span>";
-  html += "</div>";
+  html += "</li>";
   return html;
 }
 
