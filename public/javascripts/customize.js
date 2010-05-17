@@ -44,6 +44,14 @@ $(function() {
   $("#changeLawmaker").focus(function() {
     if ($(this).val() == originalSwitcher)
       $(this).val("");
+  }).blur(function() {
+    if ($(this).val() == "")
+      $(this).val(originalSwitcher);
+  });
+  
+  var baseUrl = window.location.href.replace(window.location.search, "");
+  $("div.changeResults li").live("click", function() {
+    window.location = baseUrl + "?bioguide_id=" + this.id;
   });
   
   $("#changeLawmaker").keyup(function() {
@@ -55,17 +63,20 @@ $(function() {
       this.zid = setTimeout(function() {
       
         searchLawmakers(search, function(legislators) {
+          var html = "<div class=\"changeResults\">";
+          
           if (legislators == null || legislators.length == 0)
-            $("div#changeResults_wrapper").html("None found.").show();
+            html += "<p>No legislators found by that last name.</p>";
           else {
-            
-            var html = "<div class=\"changeResults\"><ul>";
+            html += "<ul>";
             for (var i=0; i<legislators.length; i++)
               html += lawmakerResultHtml(legislators[i]);
-            html += "</ul></div>";
-            
-            $("div#changeResults_wrapper").html(html).show();
+            html += "</ul>";
           }
+          
+          html += "</div>";
+          
+          $("div#changeResults_wrapper").html(html).show();
         });
         
       }, 500);
@@ -97,7 +108,7 @@ function searchLawmakers(name, callback) {
 
 function lawmakerResultHtml(legislator) {
   legislator = legislator.legislator;
-  var html = "<li class=\"lawmakerResult clear\">";
+  var html = "<li class=\"lawmakerResult clear\" id=\"" + legislator.bioguide_id + "\">";
   html += "<img src=\"" + profileImage(legislator.bioguide_id, "40x50") + "\"/>";
   html += "<span>" + legislatorName(legislator) + "</span>";
   html += "</li>";

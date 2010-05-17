@@ -790,6 +790,7 @@ td {
 #pageTop { border-bottom: #1D77A0 1px solid; margin: 15px 0 30px 0; padding-bottom: 15px; }
 #pageTop h2 { float: left;}
 
+#pageTop h2 a:link {color: #C96F2A;}
 #pageTop h2 a:visited {outline: none; color: #C96F2A; text-decoration: none;}
 #pageTop h2 a:hover{outline: none; color: #1D77A0; text-decoration: none; }
 
@@ -802,11 +803,12 @@ div.changeResults {
   border: 1px solid #D1D3D4;
   border-top: none;
 }
+div.changeResults p {padding: 10px;}
 
 div#changeResults_wrapper { background: url(/images/site/img-feature-shadow.png) 5px top repeat-y; z-index: 1; position: absolute; margin-left: 120px; margin-top: 26px; width: 161px; padding-bottom: 4px; display: none; }
 
 div.changeResults span { line-height: 15px;}
-div.changeResults li { list-style-type: none; padding: 8px 15px; height: 50px;}
+div.changeResults li {list-style-type: none; padding: 8px 15px; height: 50px; cursor: pointer;}
 div.changeResults li:hover { background-color: #e9f2f4;}
 div.changeResults img { margin-right: 10px; float: left; border: 1px solid #E0DEDE;}
 
