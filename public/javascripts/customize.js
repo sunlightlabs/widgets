@@ -205,3 +205,8 @@ function legislatorName(legislator) {
   var suffix = legislator.name_suffix ? " " + legislator.name_suffix : "";
   return legislator.title + ". " + first_name + " " + legislator.lastname + suffix;
 }
+
+// returns a string suitable for feeding into JQuery's $.getJSON function (using a ? for the JSONP callback)
+function drumboneUrl(endpoint, api_key, method, sections, options) {
+  return endpoint + method + ".json?apikey=" + api_key + "&sections=" + sections.join(",") + "&" + queryString(options) + "&callback=?";
+}

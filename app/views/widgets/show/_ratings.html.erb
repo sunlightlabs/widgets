@@ -1,7 +1,54 @@
-<script type="text/javascript">
+<fieldset class="custom">
+  <legend>Select Interest Group</legend>
+  
+  <select id="interest_groups" style="margin: 15px 0" disabled>
+    <option>Loading interest groups...</option>
+  </select>
+</fieldset>
+
+<script type="text/javascript">  
   
   snapshot.method = "legislator";
-  snapshot.sections = ["basic", "ratings"];
   snapshot.options = {bioguide_id: bioguide_id};
   
+  // both will have to be kept up to date as the sig_id changes with user input
+  custom.sig_id = "<%= @widget[:custom][:sig_id] %>";
+  snapshot.sections = ["basic", "ratings.last_updated", "ratings." + custom.sig_id];
+  
+  // load interest groups
+  var url = drumboneUrl(data_endpoint, sunlight_api_key, "legislator", ["ratings"], {bioguide_id: bioguide_id});
+  $.getJSON(url, function(data) {
+    
+    if (data.error) {
+      $("#interest_groups option").html("Error loading groups for this legislator.");
+      return;
+    }
+    
+    $("#interest_groups option").attr("value", "-1").html("Select a group:");
+    $("#interest_groups").removeAttr("disabled");
+    
+    var groups_by_name = {}
+    var group_names = [];
+    $.each(data.legislator.ratings, function(sig_id, group) {
+      if (sig_id != "last_updated") {
+        groups_by_name[group.name] = sig_id;
+        group_names[group_names.length] = group.name;
+      }
+    });
+    group_names = group_names.sort();
+    
+    $.each(group_names, function(i) {
+      $("#interest_groups").append("<option value=\"" + groups_by_name[group_names[i]] + "\">" + group_names[i] + "</option>");
+    });
+  });
+  
+  $("#interest_groups").change(function() {
+    $("#ratings_error").hide();
+    var sig_id = $(this).val();
+    
+    custom.sig_id = sig_id;
+    snapshot.sections = ["basic", "ratings.last_updated", "ratings." + custom.sig_id];
+    
+    updateFrame();
+  });
 </script>
