@@ -370,7 +370,7 @@ body.home #ltColumn {
 }
 
 #rightWidgetColumn select { width: 220px;}
-#rightWidgetColumn input, body.page #rightWidgetColumn input { border:1px solid #666666; width: 220px; -moz-border-radius: 5px; -webkit-border-radius: 5px;}
+#rightWidgetColumn input, body.page #rightWidgetColumn input { border:1px solid #666666; -moz-border-radius: 5px; -webkit-border-radius: 5px;}
 #rightWidgetColumn input#freeze { width: 15px;}
 #rightWidgetColumn div#embedCode input { width: 190px; padding: 3px;}
 div#embedCode span { margin-bottom: 5px; display: block;}
@@ -683,9 +683,8 @@ a#freezeExplainShow {
 }
 
 input.update {
-  font-size: 12pt;
-  padding: 2px 15px;
-  margin-left: 3px;
+  font-size: 100%;
+  padding: 5px 20px;
   margin-top: -10px;
   margin-bottom: 20px;
 }
@@ -693,6 +692,7 @@ input.update {
 #primaryColorText {
   padding: 5px 5px;
   font-size: 12pt;
+  width: 210px;
 }
 
 #futureBubble {
@@ -819,6 +819,10 @@ div.changeResults img { margin-right: 10px; float: left; border: 1px solid #E0DE
 
 .submit { background: url(/images/site/btn-search.jpg) top left no-repeat; width: 88px; height: 26px; float: left; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
 .submit:hover { background: url(/images/site/btn-search.jpg) left -27px no-repeat; }
+
+#updateColor, #find_bill { color: #FFF; background-color: #E26E1E; cursor: pointer; font-weight: bold; }
+#updateColor:hover, #find_bill:hover { background-color: #0178A2; }
+
 
 /* contact and about pages */
 
