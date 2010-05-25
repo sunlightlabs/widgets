@@ -23,7 +23,7 @@ body.sm { width: 152px; height: 292px; position: relative; }
 body.med { width: 292px; height: 242px; position: relative; }
 body.lg { width: 392px; height: 292px; position: relative; }
 
-div#header { padding: 10px 10px 0; background: #FFF; background:url(/images/ratings/gradient_bill.png) bottom left repeat-x; height: 120px;}
+div#header { padding: 10px 10px 0; background: #FFF; background:url(/images/widgets/ratings/gradient_bill.png) bottom left repeat-x; height: 120px;}
 body.med div#header { height: 90px;}
 body.lg div#header { padding: 15px 15px 0; height: 111px;}
 
