@@ -369,6 +369,12 @@ body.home #ltColumn {
 	width: 220px;
 }
 
+#rightWidgetColumn select { width: 220px;}
+#rightWidgetColumn input, body.page #rightWidgetColumn input { border:1px solid #666666; width: 220px; -moz-border-radius: 5px; -webkit-border-radius: 5px;}
+#rightWidgetColumn input#freeze { width: 15px;}
+#rightWidgetColumn div#embedCode input { width: 190px; padding: 3px;}
+div#embedCode span { margin-bottom: 5px; display: block;}
+
 .widgetView {
 	width: 350px;
 	float: left;
@@ -574,7 +580,6 @@ a#freezeExplainShow {
 	background: #1D77A0;
 	display: block;
 	width: 200px;
-	height: 50px;
 	padding: 10px 10px;
 	margin-top: 20px;
 }
