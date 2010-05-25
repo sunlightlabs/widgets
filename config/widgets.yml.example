@@ -1,15 +1,47 @@
-# :new - will apply a "New" banner on the home page.
-
-# :custom - Any keys inside custom are available for use in the widget's customization form.
-
-:example:
+:bio:
   :order: 1
-  :name: Example Widget
-  :description: Description of an example widget.
+  :name: Business Card
+  :description: Biographical and contact information for any lawmaker in Congress.
   :new: true
-:example_two:
+  :custom: 
+    :color: 1F83B5
+:bill:
   :order: 2
-  :name: Example Widget 2
-  :description: Description of a second example widget.
+  :name: Vote Report
+  :description: See what a lawmaker voted on a particular bill, and how the vote went down.
+  :custom: 
+    :color: DDD9D7
+    :roll_id: 
+      :senate: s105-2010
+      :house: h167-2010
+:contractors:
+  :order: 3
+  :name: Top Contractors
+  :description: The top 5 federal contractors in a congressional district.
+  :custom: 
+    :color: DDD9D7
+:sponsorships:
+  :order: 4
+  :name: Sponsorships
+  :description: Some statistics on the bills a legislator has sponsored or cosponsored, relative to their colleagues.
+  :custom: 
+    :color: EBE9D4
+:earmarks:
+  :order: 5
+  :name: Earmarks
+  :description: How many earmarks a lawmaker has received, relative to their colleagues.
+  :custom: 
+    :color: ECF9E9
+:contributions:
+  :order: 6
+  :name: Campaign Contributions
+  :description: The top 5 contributors to a lawmaker, in the current election cycle.
   :custom:
-    :anything: id-20896
+    :color: EBE9D4
+:ratings:
+  :order: 7
+  :name: Interest Group Ratings
+  :description: Rating received from a specific interest group.
+  :custom: 
+    :sig_id: 657
+    :color: F6F5E8
