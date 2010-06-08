@@ -15,6 +15,7 @@
   function updateSig(sig_id) {
     custom.sig_id = sig_id;
     snapshot.sections = ["basic", "ratings.last_updated", "ratings." + custom.sig_id];
+    updateFrame();
   }
   
   function sigError(message) {
@@ -65,7 +66,6 @@
     if (sig != "-1") {
       $("#ratings_error").hide();
       updateSig(sig);
-      updateFrame();
     }
   });
 </script>
