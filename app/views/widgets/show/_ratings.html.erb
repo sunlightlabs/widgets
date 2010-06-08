@@ -24,6 +24,7 @@
   }
   
   // load interest groups
+  manualUpdate = true;
   var url = drumboneUrl(data_endpoint, sunlight_api_key, "legislator", ["ratings"], {bioguide_id: bioguide_id});
   $.getJSON(url, function(data) {
     
