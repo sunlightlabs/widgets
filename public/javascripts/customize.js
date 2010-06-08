@@ -6,21 +6,16 @@ var last_search;
 var disabledEmbed = false;
 
 // if the custom form will do a network request, trigger this to avoid a race condition between that network request and the document.ready callback below
+// make sure to call setupWidget at the end of that network request though
 var manualUpdate = false;
 
 $(function() {
   setEventHandlers();
   
-  // show the widget
   if (!manualUpdate)
     updateFrame();
-  
-  // give the customization form the chance to disable the embed if there's an error
-  if (disabledEmbed) {
-    $("#grabCode").val("");
-    $("#freeze").attr("disabled", "disabled");
-  }
 });
+
 
 function setEventHandlers() {
   // widget size switcher
@@ -110,7 +105,8 @@ function setEventHandlers() {
 }
 
 function disableEmbed() {
-  disabledEmbed = true;
+  $("#grabCode").val("");
+  $("#freeze").attr("disabled", "disabled");
 }
 
 function searchLawmakers(name, callback) {  
