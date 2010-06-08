@@ -61,6 +61,7 @@ function setAlert(message) {
   $("#pageMain").hide();
   $("#widgetAlert p").html(message);
   $("#widgetAlert").show();
+  $("body").show();
 }
 
 function setError(message) {

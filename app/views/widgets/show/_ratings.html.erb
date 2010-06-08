@@ -12,20 +12,31 @@
   snapshot.options = {bioguide_id: bioguide_id};
   
   // both will have to be kept up to date as the sig_id changes with user input
-  custom.sig_id = "<%= @widget[:custom][:sig_id] %>";
-  snapshot.sections = ["basic", "ratings.last_updated", "ratings." + custom.sig_id];
+  function updateSig(sig_id) {
+    custom.sig_id = sig_id;
+    snapshot.sections = ["basic", "ratings.last_updated", "ratings." + custom.sig_id];
+  }
+  
+  function sigError(message) {
+    $("#interest_groups option").html("Error loading interest groups.");
+    
+    $(function() {
+      $("#grabCode").val("");
+      $("#freeze").attr("disabled", "disabled");
+    });
+  }
   
   // load interest groups
   var url = drumboneUrl(data_endpoint, sunlight_api_key, "legislator", ["ratings"], {bioguide_id: bioguide_id});
   $.getJSON(url, function(data) {
     
     if (data.error) {
-      $("#interest_groups option").html("Error loading groups for this legislator.");
+      sigError("Error loading interest groups.");
+      return;
+    } else if (!data.legislator.ratings) {
+      sigError("No interest group ratings.");
       return;
     }
-    
-    $("#interest_groups option").attr("value", "-1").html("Select a group:");
-    $("#interest_groups").removeAttr("disabled");
     
     var groups_by_name = {}
     var group_names = [];
@@ -35,20 +46,30 @@
         group_names[group_names.length] = group.name;
       }
     });
+    
+    if (group_names.length < 1) {
+      sigError("No recent ratings.");
+      return;
+    }
+    
+    $("#interest_groups option").attr("value", "-1").html("Select a group:");
+    $("#interest_groups").removeAttr("disabled");
+    
     group_names = group_names.sort();
     
     $.each(group_names, function(i) {
       $("#interest_groups").append("<option value=\"" + groups_by_name[group_names[i]] + "\">" + group_names[i] + "</option>");
     });
+    
+    updateSig(groups_by_name[group_names[0]]);
   });
   
   $("#interest_groups").change(function() {
-    $("#ratings_error").hide();
-    var sig_id = $(this).val();
-    
-    custom.sig_id = sig_id;
-    snapshot.sections = ["basic", "ratings.last_updated", "ratings." + custom.sig_id];
-    
-    updateFrame();
+    var sig = $(this).val();
+    if (sig != "-1") {
+      $("#ratings_error").hide();
+      updateSig(sig);
+      updateFrame();
+    }
   });
 </script>
