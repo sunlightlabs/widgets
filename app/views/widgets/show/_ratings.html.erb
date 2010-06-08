@@ -19,11 +19,7 @@
   
   function sigError(message) {
     $("#interest_groups option").html("Error loading interest groups.");
-    
-    $(function() {
-      $("#grabCode").val("");
-      $("#freeze").attr("disabled", "disabled");
-    });
+    disableEmbed();
   }
   
   // load interest groups

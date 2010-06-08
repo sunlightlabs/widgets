@@ -1,10 +1,9 @@
 /* custom, frontend_hostname, widget_id, and bioguide_id all should be initialized before this file is included. */
 
 var last_search;
+var disable = false;
 
 $(function() {
-  updateFrame();
-  
   // widget size switcher
   $("li.switcherbtn a").click(function() {
     var new_size = $(this).attr('id');
@@ -89,7 +88,20 @@ $(function() {
       $("div.changeResults").html("").hide();
     }
   });
+  
+  // show the widget
+  updateFrame();
+  
+  // give the customization form the chance to disable the embed if there's an error
+  if (disabledEmbed) {
+    $("#grabCode").val("");
+    $("#freeze").attr("disabled", "disabled");
+  }
 });
+
+function disableEmbed() {
+  disabledEmbed = true;
+}
 
 function searchLawmakers(name, callback) {  
   $.ajax({
