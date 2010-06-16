@@ -536,6 +536,8 @@ ul#switcher li a:hover {
 	line-height: 110%;	
 }
 
+.checkbox { margin-right: 5px;}
+
 #freezeExplain {
   display: none;
   margin: 10px 0;
@@ -545,6 +547,7 @@ a#freezeExplainShow {
   font-weight: bold;
   text-decoration: underline;
   font-size: 92%;
+  margin-left: 10px;
 }
 
 #loadingBox {display: none;}
@@ -938,6 +941,8 @@ body.home #rtColumn {
 
 #sideNav li {
 	display: block;
+	margin-bottom: 10px;
+	line-height: 12px;
 }
 
 .adspace {

@@ -95,6 +95,8 @@ body.med #sourceArea {
   color: #CCC;
 }
 
+#sourceContent { margin-bottom: 15px; display: block;}
+
 #sourceContent a:hover {
   color:#FFF;
 }
