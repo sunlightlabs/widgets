@@ -31,18 +31,16 @@
   <div id="headerWrapper">
     <div id="headerContainer">
       <div id="header">
-          
+          <div id="nav">
+              <ul>
+                <li><%= link_to 'Contact', contact_path, :id => 'contact' %></li>
+                <li><%= link_to 'About Us', about_path, :id => 'aboutUs' %></li>
+              </ul>
+              <div class="clear"></div>
+          </div>
           <h1>
             <%= link_to 'Politiwidgets', root_path %></a>
           </h1>
-          
-          <div id="nav">
-            <ul>
-              <li><%= link_to 'About Us', about_path, :id => 'aboutUs' %></li>
-              <li><%= link_to 'Contact', contact_path, :id => 'contact' %></li>
-            </ul>
-          </div>
-          
           <form id="searchForm" action="<%= search_path %>" method="get">
             <input id="searchField" type="text" name="q" value="Search a lawmaker or state"/>
             <button class="searchBtn" type="submit">

@@ -6,10 +6,10 @@
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,optgroup,button,p,blockquote,th,td{margin:0;padding:0;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}table{border-collapse:collapse;border-spacing:0;}caption,th{text-align:left;}ol,ul{list-style:none;}fieldset,img{border:0;}input,textarea,select,optgroup,option,button{font-family:inherit;font-size:100%;}button,input {width: auto;overflow: visible;}optgroup,address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;}
 dl li{list-style: none;}
 
-a:link{outline: none; color: #1D77A0; font-weight: bold; text-decoration: none; transition: color .2s linear;-webkit-transition: color .2s linear;-moz-transition: color .2s linear;}
-a:visited{outline: none; color: #1D77A0; font-weight: bold; text-decoration: none;}
-a:hover{outline: none; color: #EF8741; font-weight: bold; text-decoration: none; transition: color .2s linear;}
-a:active{outline: none; color: #406C78; font-weight: bold; text-decoration: none;}
+a:link{outline: none; color: #1D77A0; text-decoration: none; transition: color .2s linear;-webkit-transition: color .2s linear;-moz-transition: color .2s linear;}
+a:visited{outline: none; color: #1D77A0; text-decoration: none;}
+a:hover{outline: none; color: #EF8741; text-decoration: none; transition: color .2s linear;}
+a:active{outline: none; color: #406C78; text-decoration: none;}
 
 .clear{ clear: both;}
 
@@ -72,7 +72,7 @@ body.page #header {
 h1 {
 	width: 343px;
 	height: 39px;
-	margin-top: 60px;
+	margin-top: 10px;
 	float: left;
 }
 
@@ -84,49 +84,13 @@ h1 a{
 	text-indent: -9999em;
 }
 
-#nav {
-	display: block;
-	float: right;
-	width: 150px;
-	margin-top: 36px;
-}
+#nav { padding-top: 36px;}
+div#nav li { float: right; }
+div#nav li a { text-decoration: none; color: #FFF; line-height: 13px; transition: color .2s linear; -webkit-transition: color .2s linear; -moz-transition: color .2s linear;}
 
-div#nav li {
-  float: left;
-}
+#aboutUs {  border-right: 1px solid #FFF; padding-right: 15px; margin-right: 15px;}
 
-#aboutUs {
-  font-weight: bold;
-	text-decoration: none;
-	color: #FFF;
-	line-height: 13px;
-	border-right: 1px solid #FFF; 
-	margin-right: 7px;
-	padding-right: 7px;
-	margin-bottom: 2px;
-	margin-left: 35px;
-	line-height: 13px;
-	transition: color .2s linear;
-	-webkit-transition: color .2s linear;
-	-moz-transition: color .2s linear;
-}
-
-#aboutUs:hover {
-	color: #EF8741;
-	transition: color .2s linear;
-}
-
-#contact {
-  font-weight: bold;
-	text-decoration: none;
-	color: #FFF;
-	line-height: 13px;
-	transition: color .2s linear;
-	-webkit-transition: color .2s linear;
-	-moz-transition: color .2s linear;
-}
-
-#contact:hover {
+#aboutUs:hover, #contact:hover {
 	color: #EF8741;
 	transition: color .2s linear;
 }
@@ -237,6 +201,8 @@ h3 a:active{outline: none; color: #C96F2A; font-weight: normal; text-decoration:
 legend {
 	margin-bottom: 7px;
 }
+
+legend.noTip { margin-bottom: 10px;}
 
 h2 {
 	color: #C96F2A;
@@ -395,10 +361,10 @@ div#embedCode span { margin-bottom: 5px; display: block;}
 }
 
 #widgetDirections {
-	background-color: #B2EAF7;
+  background-color: #B2EAF7;
   width: 450px;
   padding: 8px 0px 8px 10px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -473,8 +439,8 @@ ul#switcher li a:hover {
 
 .custom {
 	border-bottom: 1px dotted #1D77A0;
-	margin-bottom: 10px;
-	padding-bottom: 5px;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
 }
 
 .selectors {
@@ -685,18 +651,8 @@ a#freezeExplainShow {
 	width: 140px;
 }
 
-input.update {
-  font-size: 100%;
-  padding: 5px 20px;
-  margin-top: -10px;
-  margin-bottom: 20px;
-}
-
-#primaryColorText {
-  padding: 5px 5px;
-  font-size: 12pt;
-  width: 210px;
-}
+button.noImage { text-indent: 0; padding: 7px 20px 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; margin-top: 20px;}
+.rtColumnInput { padding: 5px; font-size: 12pt; width: 210px;}
 
 #futureBubble {
 	background: #B2EAF7 url(/images/site/img-bottom-futurebubble.jpg) top left no-repeat;
@@ -964,7 +920,7 @@ div#footerWrapper{
 div#footer {
 	margin: 0 auto;
 	width: 960px;
-	padding-top: 30px;
+	padding-top: 15px;
 }
 
 #footerBubble {

@@ -32,12 +32,5 @@ body.lg a.opencongress:hover { background: transparent url(images/social_icons_l
 body.lg a.youtube { background: transparent url(images/social_icons_lg-8.png) -72px top no-repeat; margin-right: 8px;}
 body.lg a.youtube:hover { background: transparent url(images/social_icons_lg-8.png) -72px -36px no-repeat;}
 
-body.lg #sources a { margin-left: 50px;}
-body.med #sources a { margin-left: 25px;}
-body.sm #sources a { margin-left: 5px;}
-
 #contributor_names {padding-left: 23px;}
 body.contributions_sm h2 {background: url(/images/widgets/contributions/top-five-sm-8.png) top center no-repeat;}
-body.contributions_sm #sources a {margin-left: 6px;}
-body.contributions_med #sources a {margin-left: 25px;}
-body.contributions_lg #sources a { margin-left: 50px;}
