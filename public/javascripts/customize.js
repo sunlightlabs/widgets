@@ -25,6 +25,8 @@ function setEventHandlers() {
       widget_size = new_size;
       updateFrame();
     }
+    $("li.switcherbtn a").removeClass("active");
+    $(this).addClass("active");
     return false;
   });
   

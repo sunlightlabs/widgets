@@ -395,20 +395,17 @@ div#embedCode span { margin-bottom: 5px; display: block;}
 ul#switcher li a {
   width: 68px;
   height: 18px;
-  padding: 5px 5px 2px;
+  padding: 2px 5px 2px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
-}
-
-ul#switcher li a {
   text-indent: -9999em;
   color: white;
 }
 
-ul#switcher li a:hover {
+ul#switcher li a:hover, ul#switcher li a.active{
   text-indent: -9999em;
-  color: #027FA7;
+  color: #fff;
   background-color: #02B9E3;
 }
 
