@@ -1,11 +1,3 @@
-body{
-    color:#5A5A5A;
-    font-size: 76%;
-    line-height: 20px;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    border: 4px solid #919191;
-}
-
 #header { background: url(/images/widgets/district/gradient.png) bottom left repeat-x; height:55px; padding: 15px;}
 body.med #header { height:55px; padding: 10px; }
 body.sm #header { height:45px; padding:10px; }

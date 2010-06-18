@@ -1,12 +1,3 @@
-body {
-    background-color:white;
-    color:#5A5A5A;
-    font-size: 76%;
-    line-height: 20px;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    border: 4px solid #919191;
-}
-
 body.contractors_sm div#chart-container-1 { width: 142px; height: 100px;}
 body.contractors_med div#chart-container-1 { width: 282px; height: 150px;}
 
