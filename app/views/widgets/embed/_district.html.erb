@@ -1,0 +1,47 @@
+<div id="headerWrapper">
+  <div id="header">
+    <img alt="Picture of " src="" class="pic@src full_name@alt+" />
+    <h1>
+      <small class="title"></small><big class="full_name"></big>
+    </h1>
+    <div class="state_downcase@class" id="lawmakerMetadata">
+      <span class="party"></span>
+      <span class="state"></span>
+    </div>
+  </div>
+</div>
+<div id="mainContent">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+  var description = "Maps created by <a href=\"http://www.govtrack.us/embed/googlemaps.xpd\">GovTrack.us</a>.";
+  
+  loadWidget("legislator", ["basic"], {bioguide_id: bioguide_id}, function(data) {
+    var legislator = data.legislator;
+  
+    var legislator_district = "";
+    if (legislator.district == '0')
+      legislator_district = "AL";
+    else
+      legislator_district = legislator.district;
+  
+    var legislator_state = "";
+    if (legislator.title == "Sen")
+      legislator_state = legislator.state;
+    else
+      legislator_state = legislator.state + "-" + legislator_district;
+    
+    var widget_data = {
+      title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
+      full_name: legislator.first_name + " " + legislator.last_name,
+      pic: profileImage(legislator.bioguide_id, "40x50"),
+      state_downcase: legislator.state.toLowerCase(),
+      state: legislator_state,
+      party: "(" + legislator.party + ")"
+    };
+
+    $('div#pageMain').autoRender(widget_data);
+    updateSource(legislator.last_updated, description);
+  });
+</script>

@@ -1,0 +1,45 @@
+body{
+    color:#5A5A5A;
+    font-size: 76%;
+    line-height: 20px;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    border: 4px solid #919191;
+}
+
+#header { background: url(/images/widgets/district/gradient.png) bottom left repeat-x; height:55px; padding: 15px;}
+body.med #header { height:55px; padding: 10px; }
+body.sm #header { height:45px; padding:10px; }
+
+#headerWrapper { background-color:#F6F5E8; height:65px; }
+body.med div#headerWrapper { height:75px; }
+body.lg div#headerWrapper { height: 85px; }
+
+#mainContent { height: 215px; background:#FFF; }
+body.med div#mainContent { height:155px; }
+body.lg div#mainContent { height:195px; }
+
+body.sm h1 { margin-bottom: 4px; }
+body.med h1 { margin-bottom: 3px; float: left; width: auto;}
+body.lg h1 { text-align: left; width: auto; float: left; }
+
+h1 small { display: block; font-style: oblique; color: #5A5A5A; font-size: 105%; line-height: 16px; font-family: Georgia, Times New Roman, Times, serif; }
+body.lg h1 small { font-size: 120%; margin-bottom: 2px;}
+body.sm h1 small { width: 30px; float: left; font-size: 100%; line-height: 12px; }
+
+h1 big { text-transform: uppercase; font-weight: bold; font-size: 110%; color: #000; line-height: 16px;}
+body.sm h1 big { height: 29px; display: block; font-size: 100%; line-height: 15px;}
+body.med h1 big { line-height: 18px;}
+body.lg h1 big { font-size: 150%; line-height: 20px;}
+
+div#lawmakerMetadata { font-weight: bold; }
+body.sm div#lawmakerMetadata { line-height: 13px;}
+body.med div#lawmakerMetadata { width: 175px; float: left; margin-left: 14px; padding: 15px 0; }
+body.med div#lawmakerMetadata, body.lg div#lawmakerMetadata { margin-left: 0px; padding: 0 0; float: left;}
+body.lg div#lawmakerMetadata { text-align: left; width: 240px;}
+
+img { border: 2px solid #E0DEDE; float: left; margin-right: 10px;}
+body.med img { max-width: 80px; }
+
+body.lg #mainContent li { padding: 0 15px; width: 362px; line-height: 230%; }
+body.med #mainContent li { padding: 0 10px; width: 272px; line-height: 190%; }
+body.sm #mainContent li { padding: 2px 45px 2px 10px; width: 97px;  line-height: 140%; position: relative; display: block; }
