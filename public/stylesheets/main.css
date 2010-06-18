@@ -205,7 +205,8 @@ h3 a:active{outline: none; color: #C96F2A; font-weight: normal; text-decoration:
 h2 {
 	color: #C96F2A;
 	font-size: 220%;
-	margin-bottom: 20px;
+	margin-bottom: 30px;
+	line-height: 30px;
 }
 
 h2 span { 
@@ -292,7 +293,7 @@ a.start:hover {
 
 div#pageMain{
 	width: 940px;
-	margin: 35px auto 0;
+	margin: 10px auto 0;
 	padding: 0 10px;
 }
 
@@ -606,7 +607,7 @@ a#freezeExplainShow {
 }
 
 .widgetHome.odd {
-	border-right: 2px dotted #1D77A0;
+	border-right: 1px dotted #1D77A0;
 	padding-left: 10px;
 }
 
@@ -616,7 +617,7 @@ a#freezeExplainShow {
 	height: 152px;
 	padding-top: 30px;
 	padding-bottom: 30px;
-	border-bottom: 2px dotted #1D77A0;
+	border-bottom: 1px dotted #1D77A0;
 }
 
 .widgetHome img {
@@ -715,7 +716,7 @@ tr.lawMaker {
 	padding-right: 10px;
 	height: 65px;
 	background: url(/images/site/img-list-bg.jpg) top left repeat-x;
-	border-bottom: 2px dotted #1D77A0;
+	border-bottom: 1px dotted #1D77A0;
 	color: #1D77A0;
 	font-weight: bold;
   cursor: pointer;
@@ -741,14 +742,14 @@ td {
 /* --------------------------------- for revised Widget page*/
 
 #pageTop { border-bottom: #1D77A0 1px solid; margin-bottom: 30px; padding-bottom: 15px; }
-#pageTop h2 { float: left;}
+#pageTop h2 { float: left; margin-bottom: 0px;}
 
 #pageTop h2 a:link {color: #C96F2A;}
 #pageTop h2 a:visited {outline: none; color: #C96F2A; text-decoration: none;}
 #pageTop h2 a:hover{outline: none; color: #1D77A0; text-decoration: none; }
 
-#selectNew { float: right; display: block; margin-top: -2px; }
-#change label { font-weight: bold; float: left; margin-top: 3px; }
+#selectNew { float: right; display: block; margin-top: 2px; }
+#change label { font-weight: bold; float: left; margin-top: 4px; }
 #changeLawmaker { float: left; margin: 0 10px; padding-left: 10px; width: 150px ; height: 24px; color: #406C78; background: #FFF url(/images/site/img-searchbarfade.jpg) top left repeat-x; border: 1px solid #666; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; font-family: Georgia,Times,"Times New Roman",serif; font-size: 90%; }
 div.changeResults {
   background-color: white;
