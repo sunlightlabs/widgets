@@ -563,8 +563,8 @@ a#freezeExplainShow {
 }
 
 .customizer, .customize {
-    background: url(/images/site/button-customize-small.jpg) top left no-repeat;
-    display: block;
+  background: url(/images/site/button-customize-small.jpg) top left no-repeat;
+  display: block;
   font-family: "museo-slab-1","museo-slab-2", serif;
   font-weight: normal;
   font-size: 120%;
