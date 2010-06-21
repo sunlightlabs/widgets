@@ -43,5 +43,10 @@
   :name: Interest Group Ratings
   :description: Rating received from a specific interest group.
   :custom: 
-    :sig_id: 657
+    :color: F6F5E8
+:district:
+  :order: 8
+  :name: District Map
+  :description: See a map of a legislator's district.
+  :custom:
     :color: F6F5E8
