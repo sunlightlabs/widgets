@@ -1,4 +1,5 @@
 <% content_for :title, "Political Widgets for #{titled_name_for @legislator}" %>
+<% content_for :hide_sidebar, true %>
 
 <h2><%= full_name_for @legislator %></h2>
 
@@ -9,7 +10,7 @@
       
       <div class="widget">
         <a href="<%= widget_path :id => slug, :bioguide_id => @legislator.bioguide_id %>"></a>
-        <script type="text/javascript" src="<%= embed_url_for slug, @legislator.bioguide_id, :size => 'med', :title => @legislator.title %>"></script>
+        <script type="text/javascript" src="<%= embed_url_for slug, @legislator.bioguide_id, :size => 'lg', :title => @legislator.title %>"></script>
       </div>
       
       <a class="customizer" href="<%= widget_path :id => slug, :bioguide_id => @legislator.bioguide_id %>">Customize</a>
