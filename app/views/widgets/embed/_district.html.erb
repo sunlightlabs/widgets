@@ -1,6 +1,8 @@
 <div id="headerWrapper" style="background-color: #<%= params[:color] || "F6F5E8" %>">
   <div id="header">
-    <img alt="Picture of " src="" class="pic@src full_name@alt+" />
+    <% if params[:size] != 'sm' %>
+      <img alt="Picture of " src="" class="pic@src full_name@alt+" />
+    <% end %>
     <h1>
       <small class="title"></small><big class="full_name"></big>
     </h1>
@@ -53,7 +55,7 @@
     });
   }
   
-  function displayMap(legislator) {  
+  function displayMap(legislator) {      
     var map = new google.maps.Map(document.getElementById("mainContent"), {
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       zoom: 1,
