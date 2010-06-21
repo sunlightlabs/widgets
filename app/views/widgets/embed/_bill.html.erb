@@ -60,7 +60,7 @@
   var roll_id = "<%= roll_id %>";
   var sections = ["basic", "bill", "party_vote_breakdown", "voters." + bioguide_id];
   
-  var description = "Data provided by <a href=\"http://govtrack.us\">GovTrack.us</a> through the <a href=\"http://thomas.loc.gov\">Library of Congress</a>.<br/>Bill code and vote data applies to legislative activity in the " + currentSession() + "th Congress.";
+  var description = "Data provided by <a href=\"http://govtrack.us\" target=\"_blank\">GovTrack.us</a> through the <a href=\"http://thomas.loc.gov\" target=\"_blank\">Library of Congress</a>.<br/>Bill code and vote data applies to legislative activity in the " + currentSession() + "th Congress.";
   
   loadWidget("roll", sections, {roll_id: roll_id}, function(data) {
     

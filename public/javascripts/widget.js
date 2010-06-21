@@ -11,7 +11,7 @@ function loadWidget(method, sections, options, callback) {
     else
       callback(data);
     
-    $("div#sources a").toggle(
+    $("div#sources a.sourceText").toggle(
       function(){
         $(this).addClass("active");
         $("div#sourceArea").slideDown("slow");
