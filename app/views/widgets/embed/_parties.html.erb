@@ -1,0 +1,128 @@
+<div id="headerWrapper">
+  <div id="header">
+    <% if params[:size] == 'lg' %>
+      <img alt="Picture of " src="" class="full_name@alt+ pic@src" />
+    <% end %>
+    
+    <h1>
+      <small class="title"></small><big class="full_name">Stephanie Herseth Sandlin</big>
+    </h1>
+    
+    <div class="state_downcase@class" id="lawmakerMetadata">
+      <span class="party"></span>
+      <span class="state"></span>
+    </div>
+    
+    <div class="clear"></div>
+    <div id="nav">
+      <ul>
+        <li class="active"><a class="upcoming_tab" href="#">
+          <%= params[:size] == 'sm' ? "New" : "Upcoming" %> Parties
+        </a></li>
+        <li><a class="recent_tab" href="#">
+          Recent Parties
+        </a></li>
+      </ul> 
+      <div class="clear"></div>
+    </div>
+    
+  </div>
+</div>
+
+<div id="mainContent">
+  <ol>
+  </ol>
+</div>
+
+<script type="text/javascript" src="/javascripts/strftime.js"></script>
+<script type="text/javascript" charset="utf-8">
+
+  var description = "Party details taken from Sunlight's <a href=\"http://politicalpartytime.org/\" target=\"_blank\">Party Time</a>.";
+
+
+  loadWidget("legislator", ["basic", "parties"], {bioguide_id: bioguide_id}, function(data) {
+    var legislator = data.legislator;
+    
+    var legislator_district = "";
+    if (legislator.district == '0')
+      legislator_district = "AL";
+    else
+      legislator_district = legislator.district;
+    
+    var legislator_state = "";
+    if (legislator.title == "Sen")
+      legislator_state = legislator.state;
+    else
+      legislator_state = legislator.state + "-" + legislator_district;
+    
+    var widget_data = {
+      title: shortTitle(legislator),
+      full_name: legislator.first_name + " " + legislator.last_name,
+      pic: profileImage(legislator.bioguide_id, "40x50"),
+      state_downcase: legislator.state.toLowerCase(),
+      state: legislator_state,
+      party: partyFor(legislator)
+    };
+    
+    var upcoming = [];
+    var recent = [];
+    
+    var now = globalizedDate(new Date());
+    
+    $.each(legislator.parties.events, function(i, event) {
+      // combine date and start_time into the moment of the event
+      var date = globalizedDate(event.date);
+      var pieces = event.start_time.split(":");
+      
+      // separate into upcoming and recent
+      // hinge how many are kept for each one on the size (3 for large, otherwise 2)
+      
+      // if both are empty, display empty message
+      // for each that's not empty, make a tab, and an <ol>
+      // arm each tab <li> with the right click event
+      
+      // make the first tab <li> have the class "active"
+      // make the first events list's <ol> visible
+      // make any second events list's <ol> invisible
+      
+      
+      // move this into its own loop for each kind of party
+      $("#mainContent ol").append(partyItemFor(event, size));
+    });
+
+    $('div#pageMain').autoRender(widget_data);
+    updateSource(legislator.parties.last_updated, description);
+  });
+  
+  function partyItemFor(event, size) {
+    var date = globalizedDate(event.date);
+    
+    var month = monthShort(date.getMonth());
+    var day = date.getDate();
+    
+    var pieces = event.start_time.split(":");
+    var hours = parseInt(pieces[0]);
+    var minutes = pieces[1];
+    var meridian = (hours < 12) ? "am" : "pm";
+    
+    if (hours == 0)
+      hours = 12;
+    else if (hours > 12)
+      hours -= 12;
+      
+    var time = hours + ":" + minutes + meridian;
+    
+    return "<li>" +
+      "<div class=\"date\">" +
+        "<span class=\"month\">" + month + "</span>" + 
+        "<span class=\"day\">" + day + "</span>" +
+      "</div>" +
+      "<div class=\"details\">" +
+        "<span class=\"time\">" + time + " -</span>" +
+        "<span>" + event.type + " at " + event.venue + "</span>" +
+        (size == 'sm' ? "" : "<span class=\"contribution\">" + event.contribution_info + "</span>") + 
+      "</div>" +
+      "<div class=\"clear\"></div>" +
+      "</li>";
+  }
+</script>

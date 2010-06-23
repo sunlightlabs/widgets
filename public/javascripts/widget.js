@@ -125,6 +125,51 @@ function longTitle(legislator) {
   return titles[legislator.title] || titles.def;
 }
 
+function partyFor(legislator) {
+  var parties = {
+    D: "Democrat",
+    R: "Republican",
+    I: "Independent",
+    def: "Unknown"
+  }
+  return parties[legislator.party] || parties.def  ;
+}
+
+function monthShort(number) {
+  if (number == 0)
+    return "Jan";
+  if (number == 1)
+    return "Feb";
+  if (number == 2)
+    return "Mar";
+  if (number == 3)
+    return "Apr";
+  if (number == 4)
+    return "May";
+  if (number == 5)
+    return "Jun";
+  if (number == 6)
+    return "Jul";
+  if (number == 7)
+    return "Aug";
+  if (number == 8)
+    return "Sep";
+  if (number == 9)
+    return "Oct";
+  if (number == 10)
+    return "Nov";
+  if (number == 11)
+    return "Dec";
+}
+
+// adjust a timezone-less date to the actual date in UTC, 
+// so it's not pulled back to the day prior in local time
+// appropriate for dates where the time doesn't matter, only the date
+function globalizedDate(localDate) {
+  var date = new Date(localDate);
+  return new Date(date.getTime() + (date.getTimezoneOffset() * 60 * 1000));
+}
+
 function decimal_format(num, places) {
   if (Math.floor(num) == num) {
     return num;
