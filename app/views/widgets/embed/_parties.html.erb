@@ -16,12 +16,16 @@
     <div class="clear"></div>
     <div id="nav">
       <ul>
-        <li class="active"><a class="upcoming_tab" href="#">
-          <%= params[:size] == 'sm' ? "New" : "Upcoming" %> Parties
-        </a></li>
-        <li><a class="recent_tab" href="#">
-          Recent Parties
-        </a></li>
+        <li class="upcoming" style="display: none">
+          <a href="#">
+            <%= params[:size] == 'sm' ? "New" : "Upcoming" %> Parties
+          </a>
+        </li>
+        <li class="recent" style="display: none">
+          <a href="#">
+            Recent Parties
+          </a>
+        </li>
       </ul> 
       <div class="clear"></div>
     </div>
@@ -30,11 +34,11 @@
 </div>
 
 <div id="mainContent">
-  <ol>
-  </ol>
+  <ol class="upcoming" style="display: none"></ol>
+  <ol class="recent" style="display: none"></ol>
 </div>
 
-<script type="text/javascript" src="/javascripts/strftime.js"></script>
+
 <script type="text/javascript" charset="utf-8">
 
   var description = "Party details taken from Sunlight's <a href=\"http://politicalpartytime.org/\" target=\"_blank\">Party Time</a>.";
@@ -64,35 +68,84 @@
       party: partyFor(legislator)
     };
     
+    $("div#pageMain").autoRender(widget_data);
+    
+    // set up the tab contents and interaction
     var upcoming = [];
     var recent = [];
     
-    var now = globalizedDate(new Date());
-    
+    var now = new Date();
     $.each(legislator.parties.events, function(i, event) {
       // combine date and start_time into the moment of the event
-      var date = globalizedDate(event.date);
+      var date = globalizedDate(event.date); // UTCify just the date portion
       var pieces = event.start_time.split(":");
+      date.setHours(parseInt(pieces[1]));
+      date.setMinutes(parseInt(pieces[2]));
       
-      // separate into upcoming and recent
-      // hinge how many are kept for each one on the size (3 for large, otherwise 2)
-      
-      // if both are empty, display empty message
-      // for each that's not empty, make a tab, and an <ol>
-      // arm each tab <li> with the right click event
-      
-      // make the first tab <li> have the class "active"
-      // make the first events list's <ol> visible
-      // make any second events list's <ol> invisible
-      
-      
-      // move this into its own loop for each kind of party
-      $("#mainContent ol").append(partyItemFor(event, size));
+      if (date.getTime() < now)
+        recent.unshift(event);
+      else
+        upcoming.unshift(event);
     });
-
-    $('div#pageMain').autoRender(widget_data);
+    
+    // slice each array, hing it on the size (3 for large, otherwise 2)
+    var n = size == 'lg' ? 3 : 2;
+    upcoming = upcoming.slice(0, n);
+    recent = recent.slice(0, n);
+    
+    // if both are empty, display empty message
+    if (upcoming.length == 0 && recent.length == 0)
+      $("#mainContent").append("<p>No recent or upcoming parties for this legislator.</p>");
+    else {
+      if (upcoming.length > 0) {
+        $.each(upcoming, function(i, event) {
+          $("#mainContent ol.upcoming").append(partyItemFor(event, size));
+        });
+        
+        $("#nav li.upcoming").show();
+        
+        $("#mainContent ol.upcoming").show();
+        $("#nav li.upcoming").addClass("active");
+        
+        $("#nav li.upcoming a").click(function() {
+          $("#mainContent ol.recent").hide();
+          $("#nav li.recent").removeClass("active");
+          
+          $("#mainContent ol.upcoming").show();
+          $("#nav li.upcoming").addClass("active");
+          return false;
+        });
+        
+      }
+      
+      if (recent.length > 0) {
+        $.each(recent, function(i, event) {
+          $("#mainContent ol.recent").append(partyItemFor(event, size));
+        });
+        
+        $("#nav li.recent").show();
+        
+        // if there's no upcoming tab, this one needs to be visible and active
+        if (upcoming.length == 0) {
+          $("#mainContent ol.recent").show();
+          $("#nav li.recent").addClass("active");
+        }
+        
+        $("#nav li.recent a").click(function() {
+          $("#mainContent ol.upcoming").hide();
+          $("#nav li.upcoming").removeClass("active");
+          
+          $("#mainContent ol.recent").show();
+          $("#nav li.recent").addClass("active");
+          return false;
+        });
+        
+      }
+    }
+    
     updateSource(legislator.parties.last_updated, description);
   });
+  
   
   function partyItemFor(event, size) {
     var date = globalizedDate(event.date);
