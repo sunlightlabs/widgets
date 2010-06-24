@@ -46,7 +46,7 @@
     
     $('div#pageMain').autoRender({
       title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
-      full_name: legislator.first_name + " " + legislator.last_name,
+      full_name: fullName(legislator),
       pic: profileImage(legislator.bioguide_id, "40x50"),
       state: legislator_state,
       party: "(" + legislator.party + ")",

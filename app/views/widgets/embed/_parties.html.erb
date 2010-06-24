@@ -61,7 +61,7 @@
     
     var widget_data = {
       title: shortTitle(legislator),
-      full_name: legislator.first_name + " " + legislator.last_name,
+      full_name: fullName(legislator),
       pic: profileImage(legislator.bioguide_id, "40x50"),
       state_downcase: legislator.state.toLowerCase(),
       state: legislator_state,

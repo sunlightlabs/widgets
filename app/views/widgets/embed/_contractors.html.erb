@@ -43,7 +43,7 @@
       pic_filename = "/images/districts/" + legislator.state + legislator.district + "-small.gif";
 
     var widget_data = {
-      full_name: legislator.first_name + " " + legislator.last_name,
+      full_name: fullName(legislator),
       pic: pic_filename,
       state_downcase: legislator.state.toLowerCase(),
       state: legislator_state,

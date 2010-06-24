@@ -135,6 +135,10 @@ function partyFor(legislator) {
   return parties[legislator.party] || parties.def  ;
 }
 
+function fullName(legislator) {
+  return (legislator.nickname || legislator.first_name) + " " + legislator.last_name;
+}
+
 function monthShort(number) {
   if (number == 0)
     return "Jan";
