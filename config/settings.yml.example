@@ -23,3 +23,6 @@
   :secret_key: 
   :bucket: # e.g. "data.politiwidgets.com"
   :path: # e.g. "production/" (Include the trailing slash [but not the prefacing slash!]!)
+  
+:google_analytics:
+  :key: # e.g. UA-XXXXXX-XX

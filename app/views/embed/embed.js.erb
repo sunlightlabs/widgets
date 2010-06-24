@@ -1,1 +1,1 @@
-document.write("<iframe src='http://<%= settings[:frontend_hostname] %>/widgets/<%= params[:w] %>/embed?<%= param_string %>' width='<%= @width %>' height='<%= @height %>' frameborder='0'></iframe>");
+document.write("<iframe src='http://<%= settings[:frontend_hostname] %>/widgets/<%= params[:w] %>/embed?embedder=" + encodeURIComponent(location.href) + "&embedder_host=" + encodeURIComponent(location.host) + "&<%= param_string %>' width='<%= @width %>' height='<%= @height %>' frameborder='0'></iframe>");
