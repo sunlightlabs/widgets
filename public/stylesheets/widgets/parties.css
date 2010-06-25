@@ -38,7 +38,7 @@ body.sm div#nav li a { }
 div#nav li a { color: #8E8D8B; text-decoration: none; }
 div#nav li.active { background-color: #fff; padding: 3px 10px 5px; color: #B22302;}
 
-body.sm div#topWrapper { height: 29px; }
+body.sm div#topWrapper { height: 42px; }
 
 span.time { color: #51514E; margin-bottom: 3px;}
 div.date { width: 35px; float: left; text-align: center;}
