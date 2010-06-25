@@ -51,6 +51,7 @@ body.sm div.date span{ display: inline;}
 body.sm div.date { width: auto;}
 span.day { font-size: 130%; font-weight: bold; color: #B22302;}
 body.sm span.day { font-size: 100%; font-weight: bold; color: #B22302;}
+body.sm span.month { margin-right: 5px;}
 span.month { color: #CE4D05;}
 span.contribution { font-style: Georgia, "Times New Roman", Times, serif; font-style: oblique; color: #999893;}
 
