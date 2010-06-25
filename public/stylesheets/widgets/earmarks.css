@@ -121,11 +121,7 @@ h1 small {
 	text-transform: uppercase;
 }	
 
-span#party {
-	color: #606161;
-	font-weight: normal;
-	text-transform: none;
-	font-weight: bold;
+span.party {
 	margin-right: 5px;
 }
 

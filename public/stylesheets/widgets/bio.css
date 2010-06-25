@@ -76,6 +76,7 @@ body.bio_sm img { max-width: 62px; }
 body.bio_med img { max-width: 80px; }
 img { border: 2px solid #E0DEDE; float: left;}
 
+span.party { margin-right: 5px;}
 
 body.bio_sm div#mainContent { margin-top: -30px; height: 150px;}
 div#mainContent { background-color: #1F83B5;}

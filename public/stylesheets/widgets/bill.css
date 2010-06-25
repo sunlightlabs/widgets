@@ -42,6 +42,8 @@ body.bill_sm div#voteTotals h2 { display: block; width: 132px;}
 
 span.democrat { color: #0797C9;}
 
+span.party { margin-right: 5px;}
+
 img { border: 2px solid #E0DEDE; float: left; margin-right: 15px;}
 body.bill_med img { margin-right: 10px;}
 

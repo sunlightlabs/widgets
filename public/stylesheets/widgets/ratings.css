@@ -20,7 +20,7 @@ body.lg h1 big { font-size: 150%; line-height: 20px;}
 
 body.sm div#lawmakerMetadata { line-height: 19px; text-align: center; margin-top: 8px; width: 50px; margin-right: 10px; }
 body.med div#lawmakerMetadata { width: 170px;}
-div#lawmakerMetadata { width: 240px; font-weight: bold; float: left;  float: right;}
+div#lawmakerMetadata { width: 240px; float: right;}
 
 h2 { font-size: 150%; line-height: 23px; margin-bottom: 10px;}
 body.med h2 { font-size: 130%; line-height: 20px; }
