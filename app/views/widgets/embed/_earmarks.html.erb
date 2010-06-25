@@ -19,21 +19,33 @@
     <% if @size == 'sm' -%>
     <div id="chart-container-1"></div> <!-- end chart-container -->
     <div id="leftBox">
-      <h3>Granted <span>to</span> Lawmaker</h3>
-      <span id="granted" class="earmarks_granted"></span>
+      <dl>
+        <dd>Granted <span>to Lawmaker</span></dd>
+        <dt id="granted" class="earmarks_granted"></dt>
+      </dl>
     </div>
     <div id="rightBox">
-      <h3>Average <span>for</span> <span class="chamber"></span></h3>
-      <span id="average" class="earmark_avg"></span>
+      <dl>
+        <dd>Average <span>for</span> <span class="chamber"></span></dd>
+        <dt id="average" class="earmark_avg"></dt>
+      </dl>
     </div>
     <div class="clear"></div>
+    
     <% else -%>
-    <span id="granted" class="earmarks_granted"></span>
-    <h3>Granted <span>to</span> <span class="full_name"></span></h3>
+    
+    <dl>
+      <dt id="granted" class="earmarks_granted"></dt>
+      <dd>Granted <span>to</span> <span class="full_name"></span></dd>
+    </dl>  
     <div class="clear"></div>
+    
     <div id="chart-container-1"></div>
-    <span id="average" class="earmark_avg"></span>
-    <h3>Average <span>for</span> <span class="chamber"></span></h3>
+    
+    <dl>
+      <dt id="average" class="earmark_avg"></dt>
+      <dd>Average <span>for</span> <span class="chamber"></span></dd>
+    </dl>  
     <% end -%>
   </div> <!-- end mainContent -->
 </div> <!-- end headerWrapper -->
@@ -100,7 +112,7 @@
       y_label_offset = -3;
     } else {      
       dimensions.width = 132;
-      dimensions.height = 135;
+      dimensions.height = 115;
       dimensions.margin = [4, 0, 10, 0];
       y_label_offset = -5;
       series_type = 'column';
