@@ -88,10 +88,9 @@
         upcoming.unshift(event);
     });
     
-    // slice each array, hing it on the size (3 for large, otherwise 2)
-    var n = size == 'lg' ? 3 : 2;
-    upcoming = upcoming.slice(0, n);
-    recent = recent.slice(0, n);
+    // slice each array to the last 2
+    upcoming = upcoming.slice(0, 2);
+    recent = recent.slice(0, 2);
     
     // if both are empty, display empty message
     if (upcoming.length == 0 && recent.length == 0)
@@ -173,7 +172,7 @@
       "<div class=\"details\">" +
         "<span class=\"time\">" + time + " -</span>" +
         "<span>" + event.type + " at " + event.venue + "</span>" +
-        (size == 'sm' ? "" : "<span class=\"contribution\">" + event.contribution_info + "</span>") + 
+        //(size == 'sm' ? "" : "<span class=\"contribution\">" + event.contribution_info + "</span>") + 
       "</div>" +
       "<div class=\"clear\"></div>" +
       "</li>";
