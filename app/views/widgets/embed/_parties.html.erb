@@ -96,50 +96,49 @@
     if (upcoming.length == 0 && recent.length == 0)
       $("#mainContent").append("<p>No recent or upcoming parties for this legislator.</p>");
     else {
+    
+      // upcoming parties
       if (upcoming.length > 0) {
         $.each(upcoming, function(i, event) {
           $("#mainContent ol.upcoming").append(partyItemFor(event, size));
         });
-        
-        $("#nav li.upcoming").show();
+      } else
+        $("#mainContent ol.upcoming").append("<p>No upcoming parties for this legislator.</p>");
+      
+      $("#nav li.upcoming").show();
+      
+      $("#mainContent ol.upcoming").show();
+      $("#nav li.upcoming").addClass("active");
+      
+      $("#nav li.upcoming a").click(function() {
+        $("#mainContent ol.recent").hide();
+        $("#nav li.recent").removeClass("active");
         
         $("#mainContent ol.upcoming").show();
         $("#nav li.upcoming").addClass("active");
-        
-        $("#nav li.upcoming a").click(function() {
-          $("#mainContent ol.recent").hide();
-          $("#nav li.recent").removeClass("active");
-          
-          $("#mainContent ol.upcoming").show();
-          $("#nav li.upcoming").addClass("active");
-          return false;
-        });
-        
-      }
+        return false;
+      });
       
+      
+      // recent parties
       if (recent.length > 0) {
         $.each(recent, function(i, event) {
           $("#mainContent ol.recent").append(partyItemFor(event, size));
         });
+      } else
+        $("#mainContent ol.recent").append("<p>No recent parties for this legislator.</p>");
+      
+      $("#nav li.recent").show();
+      
+      $("#nav li.recent a").click(function() {
+        $("#mainContent ol.upcoming").hide();
+        $("#nav li.upcoming").removeClass("active");
         
-        $("#nav li.recent").show();
+        $("#mainContent ol.recent").show();
+        $("#nav li.recent").addClass("active");
+        return false;
+      });
         
-        // if there's no upcoming tab, this one needs to be visible and active
-        if (upcoming.length == 0) {
-          $("#mainContent ol.recent").show();
-          $("#nav li.recent").addClass("active");
-        }
-        
-        $("#nav li.recent a").click(function() {
-          $("#mainContent ol.upcoming").hide();
-          $("#nav li.upcoming").removeClass("active");
-          
-          $("#mainContent ol.recent").show();
-          $("#nav li.recent").addClass("active");
-          return false;
-        });
-        
-      }
     }
     
     updateSource(legislator.parties.last_updated, description);
