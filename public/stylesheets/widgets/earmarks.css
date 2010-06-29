@@ -121,11 +121,7 @@ h1 small {
 	text-transform: uppercase;
 }	
 
-span#party {
-	color: #606161;
-	font-weight: normal;
-	text-transform: none;
-	font-weight: bold;
+span.party {
 	margin-right: 5px;
 }
 
@@ -134,13 +130,14 @@ h2 {
 	font-size: 150%;
 	font-weight: bold;
 	text-align: center;
-	letter-spacing: .25em;
+	letter-spacing: .15em;
 	line-height: 100%;
 }
 
 body.earmarks_sm h2 {
 	font-size: 105%;
 	letter-spacing: .125em;
+	line-height: 15px;
 }
 
 body.earmarks_lg #chart-container {
@@ -157,7 +154,7 @@ body.earmarks_med #chart-container-1 {
 
 body.earmarks_sm #chart-container-1 {
 	width: 132px;
-	height: 130px;
+	height: 115px;
 	overflow: hidden;
 }
 
@@ -173,18 +170,20 @@ body.earmarks_sm #chart-container-1 {
 	margin-right: 2px;
 }
 
-h3 {
+dd {
 	font-weight: bold;
 	color: #919191;
-	font-size: 93%;
 	line-height: 100%;
+	padding-top: 13px;
 }
 
-h3 span {
+body.earmarks_sm dd { padding-top: 0px;}
+
+dd span {
 	font-family: Georgia, Times New Roman, Times, serif;
 	font-style: italic;
-	font-size: 90%;
 	color: #BBBDBF;
+	font-size: 90%;
 }
 
 body.earmarks_med h3, body.earmarks_lg h3 {
@@ -210,6 +209,7 @@ body.earmarks_sm #granted, body.earmarks_sm #average {
 	display: block;
 	width: 25px;
 	float: left;
+	margin-right: 5px;
 }
 
 #granted {

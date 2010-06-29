@@ -1,24 +1,23 @@
-#header { background:url(/images/widgets/parties/gradient.png) bottom left repeat-x; height: 84px; padding: 10px 10px 0;}
+#header { background:url(/images/widgets/parties/gradient.png) bottom left repeat-x; height: 89px; padding: 10px 10px 0;}
 body.med #header { height: 66px; }
 body.sm #header { height: 85px; }
 
 #headerWrapper { background-color:#CFD1D1; height:95px; }
 body.med div#headerWrapper { height:76px; }
-body.lg div#headerWrapper { height: 94px; }
+body.lg div#headerWrapper { height: 99px; }
 
 #mainContent { height: 175px; background:#FFF; margin: 10px 10px 0; }
 body.med div#mainContent { height:145px; }
 body.lg div#mainContent { height: 176px; }
 
-h1 { margin-bottom: 3px; }
-body.lg h1 { text-align: left; float: left; margin-top: 7px;}
+body.lg h1 { text-align: left; float: left; margin-top: 7px; margin-bottom: 0px;}
 
 h1 small { font-style: oblique; color: #5A5A5A; font-size: 105%; line-height: 16px; font-family: Georgia, Times New Roman, Times, serif; margin-right: 5px;}
 body.lg h1 small { font-size: 120%; margin-bottom: 2px;}
 body.sm h1 small { width: 30px; float: left; font-size: 100%; line-height: 12px; }
 
 h1 big { text-transform: uppercase; font-weight: bold; font-size: 110%; color: #000; line-height: 16px;}
-body.sm h1 big { height: 29px; display: block; font-size: 100%; line-height: 15px;}
+body.sm h1 big { display: block; font-size: 100%; line-height: 15px;}
 body.med h1 big { line-height: 18px;}
 body.lg h1 big { font-size: 135%; line-height: 20px;}
 
@@ -27,29 +26,31 @@ body.med div#lawmakerMetadata { width: 175px; float: left; margin-left: 14px; pa
 body.med div#lawmakerMetadata, body.lg div#lawmakerMetadata { margin-left: 0px; padding: 0 0; float: left;}
 body.lg div#lawmakerMetadata { text-align: left; width: 240px;}
  
-span.party { margin-right: 10px;}
+span.party { margin-right: 5px;}
 
-img { border: 2px solid #E0DEDE; float: left; margin-right: 10px;}
-body.med img { max-width: 80px; }
+img { border: 2px solid #E0DEDE; float: left; margin-right: 10px; width: 40px; height: 50px;}
 
-div#nav { margin-top: 2px;}
+div#nav { margin-top: 6px;}
 div#nav li { float: left; margin-right: 5px; background-color: #DDDCD4; padding: 3px 10px; border-top: 1px solid #A3A5A8; border-right: 1px solid #A3A5A8; border-left: 1px solid #A3A5A8; -moz-border-radius-topright: 3px; -moz-border-radius-topleft: 3px; -webkit-border-top-left-radius: 3px; -webkit-border-top-right-radius: 3px; }
 body.sm div#nav li { text-align: center; width: 38px; line-height: 14px;}
 body.sm div#nav li a { }
 div#nav li a { color: #8E8D8B; text-decoration: none; }
 div#nav li.active { background-color: #fff; padding: 3px 10px 5px; color: #B22302;}
 
+body.sm div#topWrapper { height: 42px; }
+
 span.time { color: #51514E; margin-bottom: 3px;}
 div.date { width: 35px; float: left; text-align: center;}
 div.date span, div.details span { display: block;}
 body.sm div.date span { display: inline;}
-div.details { float: left; border-left: 1px solid #CCCCCC; padding-left: 10px; margin-left: 5px; line-height: 15px; color: #7A7A74;}
-body.sm div.details { border-left: none; padding-left: 0; margin-left: 0;}
+div.details { float: left; border-left: 1px solid #CCCCCC; padding-left: 10px; margin-left: 5px; line-height: 15px; color: #7A7A74; width: 320px;}
+body.sm div.details { border-left: none; padding-left: 0; margin-left: 0; width: 132px;}
 body.med div.details { width: 215px;}
 body.sm div.date span{ display: inline;}
 body.sm div.date { width: auto;}
 span.day { font-size: 130%; font-weight: bold; color: #B22302;}
 body.sm span.day { font-size: 100%; font-weight: bold; color: #B22302;}
+body.sm span.month { margin-right: 5px;}
 span.month { color: #CE4D05;}
 span.contribution { font-style: Georgia, "Times New Roman", Times, serif; font-style: oblique; color: #999893;}
 

@@ -23,11 +23,12 @@ body.sm h1 big { height: 29px; display: block; font-size: 100%; line-height: 15p
 body.med h1 big { line-height: 18px;}
 body.lg h1 big { font-size: 150%; line-height: 20px;}
 
-div#lawmakerMetadata { font-weight: bold; }
 body.sm div#lawmakerMetadata { line-height: 13px;}
 body.med div#lawmakerMetadata { width: 175px; float: left; margin-left: 14px; padding: 15px 0; }
 body.med div#lawmakerMetadata, body.lg div#lawmakerMetadata { margin-left: 0px; padding: 0 0; float: left;}
 body.lg div#lawmakerMetadata { text-align: left; width: 240px;}
+
+span.party { margin-right: 5px;}
 
 img { border: 2px solid #E0DEDE; float: left; margin-right: 10px;}
 body.med img { max-width: 80px; }
