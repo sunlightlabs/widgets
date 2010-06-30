@@ -78,9 +78,11 @@
     $.each(legislator.parties.events, function(i, event) {
       // combine date and start_time into the moment of the event
       var date = globalizedDate(event.date); // UTCify just the date portion
-      var pieces = event.start_time.split(":");
-      date.setHours(parseInt(pieces[1]));
-      date.setMinutes(parseInt(pieces[2]));
+      if (event.start_time) {
+        var pieces = event.start_time.split(":");
+        date.setHours(parseInt(pieces[1]));
+        date.setMinutes(parseInt(pieces[2]));
+      }
       
       if (date.getTime() < now)
         recent.unshift(event);
@@ -151,17 +153,20 @@
     var month = monthShort(date.getMonth());
     var day = date.getDate();
     
-    var pieces = event.start_time.split(":");
-    var hours = parseInt(pieces[0]);
-    var minutes = pieces[1];
-    var meridian = (hours < 12) ? "am" : "pm";
-    
-    if (hours == 0)
-      hours = 12;
-    else if (hours > 12)
-      hours -= 12;
+    var time;
+    if (event.start_time) {
+      var pieces = event.start_time.split(":");
+      var hours = parseInt(pieces[0]);
+      var minutes = pieces[1];
+      var meridian = (hours < 12) ? "am" : "pm";
       
-    var time = hours + ":" + minutes + meridian;
+      if (hours == 0)
+        hours = 12;
+      else if (hours > 12)
+        hours -= 12;
+      
+      time = hours + ":" + minutes + meridian;
+    }
     
     return "<li>" +
       "<div class=\"date\">" +
@@ -169,7 +174,7 @@
         "<span class=\"day\">" + day + "</span>" +
       "</div>" +
       "<div class=\"details\">" +
-        "<span class=\"time\">" + time + " -</span>" +
+        (time ? ("<span class=\"time\">" + time + " -</span>") : "") +
         "<span>" + event.type + " at " + event.venue + "</span>" +
         //(size == 'sm' ? "" : "<span class=\"contribution\">" + event.contribution_info + "</span>") + 
       "</div>" +
