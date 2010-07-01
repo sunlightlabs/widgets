@@ -73,16 +73,19 @@
     var dimensions = {};
     if (size == 'lg') {
       dimensions.width = 350;
-      dimensions.height = 165;
+      dimensions.height = 155;
+      dimensions.maxPadding = 0.3;
       dimensions.margin = [10, 15, 0, 120];
     } else if (size == 'med') {
       dimensions.width = 260;
       dimensions.height = 115;
+      dimensions.maxPadding = 0.3;
       dimensions.margin = [10, 10, 10, 120];
     } else {      
-      dimensions.width = 160;
+      dimensions.width = 110;
       dimensions.height = 115;
-      dimensions.margin = [10, 20, 15, 15];
+      dimensions.margin = [10, 5, 15, 15];
+      dimensions.maxPadding = 0.7;
       categories = ['1', '2', '3', '4', '5'];
     }    
     
@@ -118,7 +121,7 @@
 
         yAxis: {
           title: null,
-          maxPadding: 0.35,
+          maxPadding: dimensions.maxPadding,
           gridLineWidth: 0,
           labels: {
             enabled: false
