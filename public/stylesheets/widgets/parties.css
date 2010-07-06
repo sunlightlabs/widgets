@@ -44,6 +44,7 @@ div.date { width: 35px; float: left; text-align: center;}
 div.date span, div.details span { display: block;}
 body.sm div.date span { display: inline;}
 div.details { float: left; border-left: 1px solid #CCCCCC; padding-left: 10px; margin-left: 5px; line-height: 15px; color: #7A7A74; width: 320px;}
+div.details a {color: #7A7A74;}
 body.sm div.details { border-left: none; padding-left: 0; margin-left: 0; width: 132px;}
 body.med div.details { width: 215px;}
 body.sm div.date span{ display: inline;}

@@ -148,6 +148,7 @@
   
   
   function partyItemFor(event, size) {
+    var party_id = event.party_id;
     var date = globalizedDate(event.date);
     
     var month = monthShort(date.getMonth());
@@ -175,7 +176,7 @@
       "</div>" +
       "<div class=\"details\">" +
         (time ? ("<span class=\"time\">" + time + " -</span>") : "") +
-        "<span>" + event.type + " at " + event.venue + "</span>" +
+        "<a href=\"http://politicalpartytime.org/party/" + party_id + "/\" target=\"_blank\"><span>" + event.type + " at " + event.venue + "</span></a>" +
         //(size == 'sm' ? "" : "<span class=\"contribution\">" + event.contribution_info + "</span>") + 
       "</div>" +
       "<div class=\"clear\"></div>" +
