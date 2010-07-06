@@ -45,8 +45,6 @@
 
 <script type="text/javascript" charset="utf-8">
 
-  var description = "Data provided by <a href=\"http://govtrack.us\" target=\"_blank\">GovTrack</a> through the <a href=\"http://thomas.loc.gov\" target=\"_blank\">Library of Congress</a>.<br/>Statistics apply to legislative activity for the " + currentSession() + "th Congress.";
-
   loadWidget("legislator", ["basic", "sponsorships"], {bioguide_id: bioguide_id}, function(data) {
     var legislator = data.legislator;
   
@@ -74,6 +72,9 @@
     };
 
     $('div#pageMain').autoRender(widget_data);
+    
+    var govtrack_url = govtrackLegislatorUrl(legislator.govtrack_id);
+    var description = "Data provided by <a href=\"" + govtrack_url + "\" target=\"_blank\">GovTrack</a> through the <a href=\"http://thomas.loc.gov\" target=\"_blank\">Library of Congress</a>.<br/>Statistics apply to legislative activity for the " + currentSession() + "th Congress.";
     updateSource(legislator.last_updated, description);
     
     var dimensions = {};
