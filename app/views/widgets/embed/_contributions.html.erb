@@ -29,7 +29,6 @@
 
 <script type="text/javascript">
 
-  var description = "Data calculated from numbers provided by the <a href=\"http://opensecrets.org\" target=\"_blank\">Center for Responsive Politics</a>.";
   var cycle = currentCycle();
   
   loadWidget("legislator", ["basic", "contributions.last_updated", "contributions." + cycle + ".top_contributors"], {bioguide_id: bioguide_id}, function(data) {
@@ -68,6 +67,12 @@
       names = ['1', '2', '3', '4', '5'];
       $('ol#key').autoRender({"contributors": name_objects});
     }
+    
+    window.legislator = legislator;
+    var crp_url = "http://www.opensecrets.org/politicians/summary.php?cid=" + legislator.crp_id;
+    
+    var description = "Data calculated from numbers provided by the <a href=\"" + crp_url + "\" target=\"_blank\">Center for Responsive Politics</a>.";
+    
     updateSource(legislator.contributions.last_updated, description);
         
     var dimensions = {};
