@@ -3,7 +3,8 @@ class LegislatorsController < ApplicationController
   caches_action :index, :cache_path => Proc.new { |controller| controller.params }, :expires_in => 1.day
 
   def show
-    unless @legislator = Drumbone::Legislator.find(:bioguide_id => params[:bioguide_id])
+    bioguide_id = params[:bioguide_id].present? ? params[:bioguide_id].upcase : nil
+    unless bioguide_id and @legislator = Drumbone::Legislator.find(:bioguide_id => bioguide_id)
       head :not_found and return false
     end
   end

@@ -52,7 +52,8 @@ class WidgetsController < ApplicationController
   end
   
   def load_legislator
-    unless @legislator = Drumbone::Legislator.find(:bioguide_id => params[:bioguide_id])
+    bioguide_id = params[:bioguide_id].present? ? params[:bioguide_id].upcase : nil
+    unless bioguide_id and @legislator = Drumbone::Legislator.find(:bioguide_id => bioguide_id)
       head :not_found and return false
     end
   end
