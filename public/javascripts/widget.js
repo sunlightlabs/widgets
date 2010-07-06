@@ -140,30 +140,7 @@ function fullName(legislator) {
 }
 
 function monthShort(number) {
-  if (number == 0)
-    return "Jan";
-  if (number == 1)
-    return "Feb";
-  if (number == 2)
-    return "Mar";
-  if (number == 3)
-    return "Apr";
-  if (number == 4)
-    return "May";
-  if (number == 5)
-    return "Jun";
-  if (number == 6)
-    return "Jul";
-  if (number == 7)
-    return "Aug";
-  if (number == 8)
-    return "Sep";
-  if (number == 9)
-    return "Oct";
-  if (number == 10)
-    return "Nov";
-  if (number == 11)
-    return "Dec";
+  return ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][number] || "Unk";
 }
 
 // adjust a timezone-less date to the actual date in UTC, 
@@ -175,14 +152,34 @@ function globalizedDate(localDate) {
 }
 
 function decimal_format(num, places) {
-  if (Math.floor(num) == num) {
+  if (Math.floor(num) == num)
     return num;
-  } else {
+  else
     return Highcharts.numberFormat(num, places);
-  }
 }
 
-// not currently doing any http encoding
+// turns Drumbone's type codes into GovTrack's
+function govtrackType(type) {
+  return {
+    hr: "h",
+    hres: "hr",
+    hjres: "hj",
+    hcres: "hc",
+    s: "s",
+    sres: "sr",
+    sjres: "sj",
+    scres: "sc"
+  }[type] || "unknown";
+}
+
+function govtrackBillUrl(type, number, session) {
+  return "http://www.govtrack.us/congress/bill.xpd?bill=" + govtrackType(type) + session + "-" + number;
+}
+
+function govtrackLegislatorUrl(govtrack_id) {
+}
+
+//TODO: do proper http encoding
 function queryString(object) {
   var query = "";
   $.each(object, function(k, v) {

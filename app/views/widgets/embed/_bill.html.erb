@@ -60,8 +60,6 @@
   var roll_id = "<%= roll_id %>";
   var sections = ["basic", "bill", "party_vote_breakdown", "voters." + bioguide_id];
   
-  var description = "Data provided by <a href=\"http://govtrack.us\" target=\"_blank\">GovTrack.us</a> through the <a href=\"http://thomas.loc.gov\" target=\"_blank\">Library of Congress</a>.<br/>Bill code and vote data applies to legislative activity in the " + currentSession() + "th Congress.";
-  
   loadWidget("roll", sections, {roll_id: roll_id}, function(data) {
     
     // legislator info
@@ -133,8 +131,6 @@
       };
     $('div#voteTotals').autoRender(roll_data);
     
-    updateSource(bill.last_updated, description);
-
     var vote = data.roll.voters[bioguide_id].vote;
     var vote_map = {
       '+': {legislator_vote_value: "Aye", legislator_vote_class: "aye"},
@@ -144,6 +140,9 @@
     }
     
     $('div#lawmakerVote').autoRender(vote_map[vote]);
+    
+    var description = "Data provided by <a href=\"" + govtrackBillUrl(bill.type, bill.number, bill.session) + "\" target=\"_blank\">GovTrack.us</a> through the <a href=\"http://thomas.loc.gov\" target=\"_blank\">Library of Congress</a>.<br/>Bill code and vote data applies to legislative activity in the " + currentSession() + "th Congress.";
+    updateSource(bill.last_updated, description);
 
 
     var dimensions = {};
