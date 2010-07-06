@@ -41,9 +41,6 @@
 
 <script type="text/javascript" charset="utf-8">
 
-  var description = "Party details taken from Sunlight's <a href=\"http://politicalpartytime.org/\" target=\"_blank\">Party Time</a>.";
-
-
   loadWidget("legislator", ["basic", "parties"], {bioguide_id: bioguide_id}, function(data) {
     var legislator = data.legislator;
     
@@ -143,6 +140,8 @@
         
     }
     
+    var partytime_url = "http://politicalpartytime.org/pol/" + legislator.crp_id + "/";
+    var description = "Party details taken from Sunlight's <a href=\"" + partytime_url + "\" target=\"_blank\">Party Time</a>.";
     updateSource(legislator.parties.last_updated, description);
   });
   
@@ -177,7 +176,6 @@
       "<div class=\"details\">" +
         (time ? ("<span class=\"time\">" + time + " -</span>") : "") +
         "<a href=\"http://politicalpartytime.org/party/" + party_id + "/\" target=\"_blank\"><span>" + event.type + " at " + event.venue + "</span></a>" +
-        //(size == 'sm' ? "" : "<span class=\"contribution\">" + event.contribution_info + "</span>") + 
       "</div>" +
       "<div class=\"clear\"></div>" +
       "</li>";
