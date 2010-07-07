@@ -72,6 +72,7 @@
     var recent = [];
     
     var now = new Date();
+    window.events = legislator.parties.events;
     $.each(legislator.parties.events, function(i, event) {
       // combine date and start_time into the moment of the event
       var date = globalizedDate(event.date); // UTCify just the date portion
@@ -156,7 +157,7 @@
     var time;
     if (event.start_time) {
       var pieces = event.start_time.split(":");
-      var hours = parseInt(pieces[0]);
+      var hours = parseInt(pieces[0].replace(/^0/, ""));
       var minutes = pieces[1];
       var meridian = (hours < 12) ? "am" : "pm";
       
