@@ -21,8 +21,12 @@
     }
     
     function updateFrame() {
+      //TODO: have this run on startup, and if the array is empty make sure it stays clear
+      
       var url = "http://" + frontend_hostname + "/embed/tabs?element=widgetContent";
-      url += "&embeds=" + embeds[0];
+      
+      for (var i=0; i<embeds.length; i++)
+        url += "&embeds[" + i + "][url]=" + embeds[0];
       
       var script = "<script type='text/javascript' src='" + url + "'></" + "script>";
       $("#widgetContent").html(script);

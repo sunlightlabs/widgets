@@ -5,15 +5,18 @@
   
   <script type="text/javascript">
     var data_endpoint = "<%= settings[:data_endpoint] %>";
-    
     var sizes = {med: [300, 250], lg: [400,300]};
     
-    //TODO: load all embeds
-    var embeds = [decode("<%= params[:embeds] %>")];
+    var embeds = [];
+    <% params[:embeds].keys.map {|k| k.to_i}.sort.each do |i| %>
+      embeds[embeds.length] = decode("<%= params[:embeds][i.to_s]["url"] %>");
+    <% end %>
     
     $(function() {
-      //TODO: add tabs dynamically
-    
+      $.each(embeds, function(i, url) {
+        $("table.tabs tr").append("<td id=\"tab-" + i + ">Tab " + i + "</td>");
+      });
+      
       $("td").click(function() {
         activateTab(parseInt(this.id.replace("tab-", "")));
       });
@@ -54,7 +57,6 @@
 
 <table class="tabs">
   <tr>
-    <td id="tab-0">First</td>
   </tr>
 </table>
 

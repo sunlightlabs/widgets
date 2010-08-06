@@ -1,7 +1,11 @@
 //TODO: load all embeds
-var embed = "<%= params[:embeds] %>";
+var embeds = [];
 
-var iframe = "<iframe src='http://<%= settings[:frontend_hostname] %>/widget/embed_tabs?embeds=" + encodeURIComponent(embed) + "' width='<%= @width %>' height='<%= @height %>' frameborder='0'></iframe>";
+<% params[:embeds].keys.each do |key| %>
+  embeds[embeds.length] = "embeds[<%= key %>][url]=" + encodeURIComponent("<%= params[:embeds][key]["url"] %>");
+<% end %>
+
+var iframe = "<iframe src='http://<%= settings[:frontend_hostname] %>/widget/embed_tabs?" + embeds.join("&") + "' width='<%= @width %>' height='<%= @height %>' frameborder='0'></iframe>";
 
 var element = "<%= params[:element] %>";
 if (element)
