@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+  <%= javascript_include_tag 'jquery-1.4.2.min' %>
+  
+  <script type="text/javascript">
+    var data_endpoint = "<%= settings[:data_endpoint] %>";
+    
+    var sizes = {med: [300, 250], lg: [400,300]};
+    
+    //TODO: load all embeds
+    var embeds = [decode("<%= params[:embeds] %>")];
+    
+    $(function() {
+      //TODO: add tabs dynamically
+    
+      $("td").click(function() {
+        activateTab(parseInt(this.id.replace("tab-", "")));
+      });
+      
+      activateTab(0);
+    });
+    
+    function activateTab(index) {
+      $("table.tabs td").each(function(i, element) {
+        if (i == index)
+          $(element).addClass("active");
+        else
+          $(element).removeClass("active");
+      });
+      
+      var url = embeds[index] + "&element=contents";
+      var embed = "<script type='text/javascript' src='" + url + "'></" + "script>"
+      $("#contents").html(embed);
+    }
+    
+    function decode(url) {
+      return url.replace(/&amp;amp;/g, "&");
+    }
+    
+  </script>
+  <style>
+  
+    table.tabs td {
+      border: 1px solid black;
+      background-color: #99AACC;
+      padding: 5px;
+    }
+      
+  </style>
+</head>
+
+<body class="<%= params[:size] %>">
+
+<table class="tabs">
+  <tr>
+    <td id="tab-0">First</td>
+  </tr>
+</table>
+
+<!-- Place current embed in here -->
+<div id="contents"></div>
+
+</body>
+</html>

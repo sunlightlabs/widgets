@@ -1,0 +1,10 @@
+//TODO: load all embeds
+var embed = "<%= params[:embeds] %>";
+
+var iframe = "<iframe src='http://<%= settings[:frontend_hostname] %>/widget/embed_tabs?embeds=" + encodeURIComponent(embed) + "' width='<%= @width %>' height='<%= @height %>' frameborder='0'></iframe>";
+
+var element = "<%= params[:element] %>";
+if (element)
+  document.getElementById(element).innerHTML = iframe;
+else
+  document.write(iframe);

@@ -40,8 +40,8 @@ class ApplicationController < ActionController::Base
         @width = 400
         @height = 300
       else
-        @width = 300
-        @height = 250
+        @width = 400
+        @height = 300
     end    
   end
 end

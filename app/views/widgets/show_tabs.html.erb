@@ -1,0 +1,88 @@
+<% content_for :head do %>
+  <script type="text/javascript">
+    var frontend_hostname = "<%= settings[:frontend_hostname] %>";
+    
+    // does not account for height of tabs
+    var sizes = {sm: [160, 300], med: [300, 250], lg: [400,300]};
+    
+    // default size
+    var widget_size = 'lg';
+    
+    // keep a running store of the embed urls
+    var embeds = [];
+    
+    
+    function addToFrame(embed) {
+      var url = extractUrl(embed);
+      if (url)
+        embeds[embeds.length] = encodeURIComponent(url);
+        
+      updateFrame();
+    }
+    
+    function updateFrame() {
+      var url = "http://" + frontend_hostname + "/embed/tabs?element=widgetContent";
+      url += "&embeds=" + embeds[0];
+      
+      var script = "<script type='text/javascript' src='" + url + "'></" + "script>";
+      $("#widgetContent").html(script);
+      
+      //$("iframe").attr("src", url).attr("width", sizes[widget_size][0]).attr("height", sizes[widget_size][1] + 50);
+    }
+    
+    function extractUrl(embed) {
+      return embed.replace("<script type='text/javascript' src='", "").replace("&'></" + "script>", "");
+    }
+    
+    $(function() {
+      $("#addTab").click(function() {
+        addToFrame($("#newEmbed").val());
+      });
+    });
+    
+  </script>
+<% end %>
+
+<div id="leftWidgetColumn">
+
+  <div id="widgetDirections">
+    <p id="directions">
+      To add a widget to the tabbed frame below, paste in the embed code into the text box on the right, and click "Add a tab".  Only medium and large size widgets can be embedded this way.
+    </p>
+  </div>
+  
+  <div id="widgetStage">
+    <div class="widgetSizes">
+      <h3>Choose Size</h3>
+      
+      <ul id="switcher">
+        <li class="switcherbtn"><%= link_to "300 x 250", '#', :id => "med" %></li>
+        <li class="switcherbtn"><%= link_to "400 x 300", '#', :id => "lg", :class => "active" %></li>
+      </ul>
+      
+      <div class="clear"></div>
+    </div>
+    
+    <div id="widgetConstruct">
+      <div style="text-align: center;" id="widgetContent">
+        <iframe frameborder='0'></iframe>
+      </div>
+    </div>
+        
+  </div>
+  
+</div>
+
+<div id="rightWidgetColumn">
+
+  <p style="padding: 10px 0">
+    Enter in a widget's embed code:
+  </p>
+  <fieldset class="custom">
+    <input type="text" name="embed" id="newEmbed" class="rtColumnInput" />
+    <button type="button" value="Add a tab" class="noImage" id="addTab">
+      <span>Add a tab</span>
+    </button>
+  </fieldset>
+
+</div>
