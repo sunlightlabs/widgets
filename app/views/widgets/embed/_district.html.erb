@@ -14,46 +14,48 @@
 </div>
 <div id="mainContent"></div>
 
-
 <script type="text/javascript" charset="utf-8">
 
   var description = "Information is from the US Census, and turned into map data by <a href=\"http://www.govtrack.us/embed/googlemaps.xpd\" target=\"_blank\">GovTrack.us</a>.";
   
-  // The map is wildly distorted, in different ways on different browsers, 
-  // at medium size, for unknown reasons
-  if (size == 'med') 
-    setAlert("This widget cannot be used at this size.");
-  else {
-    loadWidget("legislator", ["basic"], {bioguide_id: bioguide_id}, function(data) {
-      var legislator = data.legislator;
-    
-      var legislator_district = "";
-      if (legislator.district == '0')
-        legislator_district = "AL";
-      else
-        legislator_district = legislator.district;
-    
-      var legislator_state = "";
-      if (legislator.title == "Sen")
-        legislator_state = legislator.state;
-      else
-        legislator_state = legislator.state + "-" + legislator_district;
+  
+  function doneLoadingMap() {
+    // The map is wildly distorted, in different ways on different browsers, 
+    // at medium size, for unknown reasons
+    if (size == 'med') 
+      setAlert("This widget cannot be used at this size.");
+    else {
+      loadWidget("legislator", ["basic"], {bioguide_id: bioguide_id}, function(data) {
+        var legislator = data.legislator;
       
-      var widget_data = {
-        title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
-        full_name: fullName(legislator),
-        pic: profileImage(legislator.bioguide_id, "40x50"),
-        state_downcase: legislator.state.toLowerCase(),
-        state: legislator_state,
-        party: "(" + legislator.party + ")"
-      };
+        var legislator_district = "";
+        if (legislator.district == '0')
+          legislator_district = "AL";
+        else
+          legislator_district = legislator.district;
+      
+        var legislator_state = "";
+        if (legislator.title == "Sen")
+          legislator_state = legislator.state;
+        else
+          legislator_state = legislator.state + "-" + legislator_district;
+        
+        var widget_data = {
+          title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
+          full_name: fullName(legislator),
+          pic: profileImage(legislator.bioguide_id, "40x50"),
+          state_downcase: legislator.state.toLowerCase(),
+          state: legislator_state,
+          party: "(" + legislator.party + ")"
+        };
 
-      $('div#pageMain').autoRender(widget_data);
-      
-      displayMap(legislator);
-      
-      updateSource(legislator.last_updated, description);
-    });
+        $('div#pageMain').autoRender(widget_data);
+        
+        displayMap(legislator);
+        
+        updateSource(legislator.last_updated, description);
+      });
+    }
   }
   
   function displayMap(legislator) {      

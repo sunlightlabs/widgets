@@ -31,8 +31,6 @@
   <%= stylesheet_link_tag 'widget.css' %>
   <%= stylesheet_link_tag "widgets/#{params[:id]}.css" %>
   
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-  
 </head>
 
 <body class="<%= params[:id] %>_<%= params[:size] %> <%= params[:size] %>">
@@ -59,6 +57,7 @@
   
   <%= render :partial => "layouts/analytics" %>
   
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&callback=doneLoadingMap"></script>
 </body>
 
 </html>
