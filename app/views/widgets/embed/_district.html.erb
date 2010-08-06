@@ -58,14 +58,14 @@
   }
   
   function displayMap(legislator) {      
-    var map = new google.maps.Map(document.getElementById("mainContent"), {
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
+    var map = new window.google.maps.Map(document.getElementById("mainContent"), {
+      mapTypeId: window.google.maps.MapTypeId.ROADMAP,
       zoom: 1,
       mapTypeControlOptions: {
-        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+        style: window.google.maps.MapTypeControlStyle.DROPDOWN_MENU
       }
     });
-    var layer = new google.maps.KmlLayer(mapUrl(legislator));
+    var layer = new window.google.maps.KmlLayer(mapUrl(legislator));
     layer.setMap(map);
   }
   
