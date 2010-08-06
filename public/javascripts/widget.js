@@ -79,7 +79,8 @@ function currentSession() {
 }
 
 function currentCycle() {
-  var year = new Date().getYear() + 1900;
+  var year = new Date().getYear();
+  if (year < 1000) year += 1900; // this code will stop working in the year 2900
   return (year % 2 == 0 ? year : year + 1);
 }
 
