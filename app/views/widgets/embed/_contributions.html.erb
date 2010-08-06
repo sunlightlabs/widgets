@@ -48,7 +48,7 @@
       full_name: fullName(legislator),
       pic: profileImage(legislator.bioguide_id, "40x50"),
       state: legislator_state,
-      party: "(" + legislator.party + ")",
+      party: "(" + legislator.party + ")"
     });
     
     var top_contributors = legislator.contributions[cycle].top_contributors;
@@ -102,7 +102,7 @@
           defaultSeriesType: 'bar',
           width: dimensions.width,
           height: dimensions.height,
-          margin: dimensions.margin,
+          margin: dimensions.margin
         },
 
         title: {

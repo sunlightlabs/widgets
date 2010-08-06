@@ -95,7 +95,7 @@
                          data: [earmarks.average_amount]
                        }; 
     var lawmaker_data = { name: legislator.first_name + " " + legislator.last_name,
-                          data: [earmarks.total_amount],
+                          data: [earmarks.total_amount]
                         };
     var series = [chamber_data, lawmaker_data];
     var line_width = 0;
@@ -143,7 +143,7 @@
       xAxis: {
         categories: [legislator.first_name + " " + legislator.last_name, chamberFor(legislator.title)],
         labels: {
-          enabled: false,
+          enabled: false
         },
         lineWidth: line_width,
         lineColor: '#CCC'
@@ -154,7 +154,7 @@
         maxPadding: 0.35,
         gridLineWidth: 0,
         labels: {
-          enabled: false,
+          enabled: false
         }
       },
 
