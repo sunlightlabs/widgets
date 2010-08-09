@@ -75,7 +75,7 @@
     window.events = legislator.parties.events;
     $.each(legislator.parties.events, function(i, event) {
       // combine date and start_time into the moment of the event
-      var date = globalizedDate(event.date); // UTCify just the date portion
+      var date = parseShortDate(event.date); // UTCify just the date portion
       if (event.start_time) {
         var pieces = event.start_time.split(":");
         date.setHours(parseInt(pieces[1]));
@@ -149,7 +149,7 @@
   
   function partyItemFor(event, size) {
     var party_id = event.party_id;
-    var date = globalizedDate(event.date);
+    var date = parseShortDate(event.date);
     
     var month = monthShort(date.getMonth());
     var day = date.getDate();

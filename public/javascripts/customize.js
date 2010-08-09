@@ -212,7 +212,16 @@ function queryString(object) {
 
 // automatically slides the session up based on the year
 function currentSession() {
-  return Math.floor(((new Date().getYear() + 1900 + 1) / 2) - 894)
+  return Math.floor(((standardYear(new Date()) + 1) / 2) - 894)
+}
+
+// takes a date object and gets the year from it in a way that's okay with IE and the rest
+// IE gives the full 4-digit year
+// the rest give the number of years since 1900
+function standardYear(date) {
+  var year = date.getYear();
+  if (year < 1000) year += 1900; // this code will stop working in the year 2900
+  return year;
 }
 
 function profileImage(bioguide, size) {
