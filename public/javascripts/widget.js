@@ -75,13 +75,38 @@ function profileImage(bioguide, size) {
 
 // automatically slides the session up based on the year
 function currentSession() {
-  return Math.floor(((new Date().getYear() + 1900 + 1) / 2) - 894)
+  return Math.floor(((standardYear(new Date()) + 1) / 2) - 894)
 }
 
 function currentCycle() {
-  var year = new Date().getYear();
-  if (year < 1000) year += 1900; // this code will stop working in the year 2900
+  var year = standardYear(new Date());
   return (year % 2 == 0 ? year : year + 1);
+}
+
+// parses dates in the form of YYYY-MM-DD, across all browsers
+// and ensures it will be midnight UTC, unlike Date's default parsing
+function parseShortDate(dateString) {
+  var isoExp = /^\s*(\d{4})-(\d\d)-(\d\d)\s*$/,
+      date = new Date(NaN), month,
+      parts = isoExp.exec(dateString);
+
+  if (parts) {
+    month = +parts[2];
+    date.setFullYear(parts[1], month - 1, parts[3]);
+    if (month != date.getMonth() + 1) {
+      date.setTime(NaN);
+    }
+  }
+  return date;
+}
+
+// takes a date object and gets the year from it in a way that's okay with IE and the rest
+// IE gives the full 4-digit year
+// the rest give the number of years since 1900
+function standardYear(date) {
+  var year = date.getYear();
+  if (year < 1000) year += 1900; // this code will stop working in the year 2900
+  return year;
 }
 
 // returns a string suitable for feeding into JQuery's $.getJSON function (using a ? for the JSONP callback)
@@ -99,7 +124,7 @@ function updateSource(date, text) {
 }
 
 function formatDate(date) {
-  return (zeroPrefix(date.getMonth() + 1)) + "/" + zeroPrefix(date.getDate()) + "/" + (zeroPrefix(date.getYear() + 1900));
+  return (zeroPrefix(date.getMonth() + 1)) + "/" + zeroPrefix(date.getDate()) + "/" + (zeroPrefix(standardYear(date)));
 }
 
 function zeroPrefix(n) {
@@ -142,14 +167,6 @@ function fullName(legislator) {
 
 function monthShort(number) {
   return ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][number] || "Unk";
-}
-
-// adjust a timezone-less date to the actual date in UTC, 
-// so it's not pulled back to the day prior in local time
-// appropriate for dates where the time doesn't matter, only the date
-function globalizedDate(localDate) {
-  var date = new Date(localDate);
-  return new Date(date.getTime() + (date.getTimezoneOffset() * 60 * 1000));
 }
 
 function decimal_format(num, places) {
