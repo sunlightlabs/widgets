@@ -17,7 +17,7 @@
     
     $(function() {
       $.each(embeds, function(i, object) {
-        $("table.tabs tr").append("<td id=\"tab-" + i + ">" + object.title + "</td>");
+        $("table.tabs tr").append("<td id=\"tab-" + i + (i == 0 ? "class=\"active\"" : "") + ">" + object.title + "</td>");
       });
       
       $("td").click(function() {
@@ -51,6 +51,11 @@
       border: 1px solid black;
       background-color: #99AACC;
       padding: 5px;
+    }
+    
+    table.tabs td.active {
+      border-bottom: 0px;
+      background-color: #AACCFF;
     }
       
   </style>
