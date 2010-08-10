@@ -1,8 +1,9 @@
-//TODO: load all embeds
 var embeds = [];
 
 <% params[:embeds].keys.each do |key| %>
-  embeds[embeds.length] = "embeds[<%= key %>][url]=" + encodeURIComponent("<%= params[:embeds][key]["url"] %>");
+  embeds[embeds.length] = "embeds[<%= key %>][url]=" + 
+    encodeURIComponent("<%= params[:embeds][key]["url"] %>") +
+    "&embeds[<%= key %>][title]=" + encodeURIComponent("<%= params[:embeds][key]["title"] %>");
 <% end %>
 
 var iframe = "<iframe src='http://<%= settings[:frontend_hostname] %>/widget/embed_tabs?" + embeds.join("&") + "' width='<%= @width %>' height='<%= @height %>' frameborder='0'></iframe>";

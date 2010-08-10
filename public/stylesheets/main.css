@@ -649,6 +649,14 @@ a#freezeExplainShow {
 button.noImage { text-indent: 0; padding: 7px 20px 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; margin-top: 20px;}
 .rtColumnInput { padding: 5px; font-size: 12pt; width: 210px;}
 
+/** Tabbed widget form **/
+.rtColumnInput.tabField {padding: 2px;}
+.tabLabel {margin-right: 6px;}
+.rtColumnInput.tabField.title {margin-bottom: 10px; width: 80px;}
+.rtColumnInput.tabField.embed {width: 100px;}
+.tabFields {padding: 10px 0;}
+button.updateTabs {margin-bottom: 10px;}
+
 #futureBubble {
 	background: #B2EAF7 url(/images/site/img-bottom-futurebubble.jpg) top left no-repeat;
 	float: left;

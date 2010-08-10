@@ -8,30 +8,35 @@
     // default size
     var widget_size = 'lg';
     
-    // keep a running store of the embed urls
-    var embeds = [];
-    
-    
-    function addToFrame(embed) {
-      var url = extractUrl(embed);
-      if (url)
-        embeds[embeds.length] = encodeURIComponent(url);
-        
-      updateFrame();
-    }
     
     function updateFrame() {
-      //TODO: have this run on startup, and if the array is empty make sure it stays clear
+      var embeds = [];
       
-      var url = "http://" + frontend_hostname + "/embed/tabs?element=widgetContent";
+      $('input.tabField.embed').each(function(i, elem) {
+        var code = $(elem).val();
+        var title = $(elem).siblings('input.title').val();
+        
+        if (code && title) {
+          embeds[embeds.length] = {
+            url: encodeURIComponent(extractUrl(code)),
+            title: title
+          };
+        };
+      });
       
-      for (var i=0; i<embeds.length; i++)
-        url += "&embeds[" + i + "][url]=" + embeds[0];
+      
+      var url = "http://" + frontend_hostname + "/embed/tabs?";
+      
+      // for dynamic embedding
+      url += "element=widgetContent";
+      
+      for (var i=0; i<embeds.length; i++) {
+        url += "&embeds[" + i + "][url]=" + embeds[i].url;
+        url += "&embeds[" + i + "][title]=" + embeds[i].title;
+      }
       
       var script = "<script type='text/javascript' src='" + url + "'></" + "script>";
       $("#widgetContent").html(script);
-      
-      //$("iframe").attr("src", url).attr("width", sizes[widget_size][0]).attr("height", sizes[widget_size][1] + 50);
     }
     
     function extractUrl(embed) {
@@ -39,8 +44,8 @@
     }
     
     $(function() {
-      $("#addTab").click(function() {
-        addToFrame($("#newEmbed").val());
+      $("button.updateTabs").click(function() {
+        updateFrame();
       });
     });
     
@@ -51,21 +56,11 @@
 
   <div id="widgetDirections">
     <p id="directions">
-      To add a widget to the tabbed frame below, paste in the embed code into the text box on the right, and click "Add a tab".  Only medium and large size widgets can be embedded this way.
+      To add widgets to the tabbed frame below, paste in the embed codes into the fields on the right, along with a very short title for each tab, and click "Update widget".  Only medium and large size widgets can be embedded this way.
     </p>
   </div>
   
   <div id="widgetStage">
-    <div class="widgetSizes">
-      <h3>Choose Size</h3>
-      
-      <ul id="switcher">
-        <li class="switcherbtn"><%= link_to "300 x 250", '#', :id => "med" %></li>
-        <li class="switcherbtn"><%= link_to "400 x 300", '#', :id => "lg", :class => "active" %></li>
-      </ul>
-      
-      <div class="clear"></div>
-    </div>
     
     <div id="widgetConstruct">
       <div style="text-align: center;" id="widgetContent">
@@ -77,16 +72,27 @@
   
 </div>
 
+<% n = 5 %>
 <div id="rightWidgetColumn">
 
-  <p style="padding: 10px 0">
-    Enter in a widget's embed code:
-  </p>
   <fieldset class="custom">
-    <input type="text" name="embed" id="newEmbed" class="rtColumnInput" />
-    <button type="button" value="Add a tab" class="noImage" id="addTab">
-      <span>Add a tab</span>
+  
+    <button type="button" value="Update widget" class="noImage updateTabs" id="addTab">
+      <span>Update widget</span>
     </button>
+  
+    <% n.times do %>
+      <hr/>
+      
+      <div class="tabFields">
+        <label name="title" class="tabLabel">Tab text:</label>
+        <input type="text" class="title rtColumnInput tabField" /><br/>
+        <label name="embed" class="tabLabel embed">Embed code:</label>
+        <input type="text" class="embed rtColumnInput tabField" />
+      </div>
+      
+    <% end %>
+    
   </fieldset>
 
 </div>

@@ -9,12 +9,15 @@
     
     var embeds = [];
     <% params[:embeds].keys.map {|k| k.to_i}.sort.each do |i| %>
-      embeds[embeds.length] = decode("<%= params[:embeds][i.to_s]["url"] %>");
+      embeds[embeds.length] = {
+        url: decode("<%= params[:embeds][i.to_s]["url"] %>"),
+        title: "<%= params[:embeds][i.to_s]["title"] %>"
+      };
     <% end %>
     
     $(function() {
-      $.each(embeds, function(i, url) {
-        $("table.tabs tr").append("<td id=\"tab-" + i + ">Tab " + i + "</td>");
+      $.each(embeds, function(i, object) {
+        $("table.tabs tr").append("<td id=\"tab-" + i + ">" + object.title + "</td>");
       });
       
       $("td").click(function() {
@@ -32,7 +35,7 @@
           $(element).removeClass("active");
       });
       
-      var url = embeds[index] + "&element=contents";
+      var url = embeds[index].url + "&element=contents";
       var embed = "<script type='text/javascript' src='" + url + "'></" + "script>"
       $("#contents").html(embed);
     }
