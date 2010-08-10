@@ -206,3 +206,6 @@ function queryString(object) {
   });
   return query;
 }
+
+// stub to be overridden
+function doneLoadingMap() {}
