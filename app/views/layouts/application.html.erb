@@ -13,6 +13,16 @@
   <%= javascript_include_tag 'underscore.min' %>
   <%= javascript_include_tag 'politiwidgets' %>
   
+  <script type="text/javascript">
+    $(function() {
+      var original = "Search a lawmaker or state";
+      $('#searchField').focus(function() {
+        if ($(this).val() == original)
+          $(this).val('');
+      });
+    });
+  </script>
+  
   <!--[if IE 6]>
     <%= stylesheet_link_tag 'buggy' %>
   <![endif]-->
