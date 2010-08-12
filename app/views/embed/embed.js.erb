@@ -1,1 +1,7 @@
-document.write("<iframe src='http://<%= settings[:frontend_hostname] %>/widgets/<%= params[:w] %>/embed?embedder=" + encodeURIComponent(location.href) + "&embedder_host=" + encodeURIComponent(location.host) + "&<%= param_string %>' width='<%= @width %>' height='<%= @height %>' frameborder='0'></iframe>");
+var iframe = "<iframe src='http://<%= settings[:frontend_hostname] %>/widgets/<%= params[:w] %>/embed?embedder=" + encodeURIComponent(location.href) + "&embedder_host=" + encodeURIComponent(location.host) + "&<%= param_string %>' width='<%= @width %>' height='<%= @height %>' frameborder='0'></iframe>";
+
+var element = "<%= params[:element] %>";
+if (element)
+  document.getElementById(element).innerHTML = iframe;
+else
+  document.write(iframe);
