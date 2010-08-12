@@ -25,7 +25,7 @@
     </div>
     <div id="buttons">
       <a class="twitter twitter@href+ evenButton" target="_blank" href="http://twitter.com/">Twitter</a>
-      <a class="youtube@href oddButton" target="_blank" href="#">YouTube</a>
+      <a class="youtube youtube@href oddButton" target="_blank" href="#">YouTube</a>
       <a class="opencongress govtrack@href+ evenButton" target="_blank" href="http://www.opencongress.org/person/show/">Open Congress</a>
     </div>
   </div>
@@ -56,8 +56,18 @@
       legislator_state = legislator.state;
     else
       legislator_state = legislator.state + "-" + legislator_district;
+      
+    if (legislator.youtube_url)
+      $("#buttons a.youtube").show();
+    else
+      $("#buttons a.youtube").hide();
+      
+    if (legislator.twitter_id)
+      $("#buttons a.twitter").show();
+    else
+      $("#buttons a.twitter").hide();
     
-    var widget_data = {
+    $('div#pageMain').autoRender({
       title: legislator_title,
       full_name: fullName(legislator),
       pic: profileImage(legislator.bioguide_id),
@@ -70,9 +80,8 @@
       twitter: legislator.twitter_id,
       youtube: legislator.youtube_url,
       govtrack: legislator.govtrack_id
-    };
-
-    $('div#pageMain').autoRender(widget_data);
+    });
+    
     updateSource(legislator.last_updated, description);
   });
 </script>
