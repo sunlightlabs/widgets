@@ -60,7 +60,7 @@
   var roll_id = "<%= roll_id %>";
   var sections = ["basic", "bill", "party_vote_breakdown", "voters." + bioguide_id];
   
-  loadWidget("roll", sections, {roll_id: roll_id}, function(data) {
+  loadDrumboneWidget("roll", sections, {roll_id: roll_id}, function(data) {
     
     // legislator info
     var legislator;

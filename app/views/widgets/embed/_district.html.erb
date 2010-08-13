@@ -25,7 +25,7 @@
     if (size == 'med') 
       setAlert("This widget cannot be used at this size.");
     else {
-      loadWidget("legislator", ["basic"], {bioguide_id: bioguide_id}, function(data) {
+      loadDrumboneWidget("legislator", ["basic"], {bioguide_id: bioguide_id}, function(data) {
         var legislator = data.legislator;
       
         var legislator_district = "";

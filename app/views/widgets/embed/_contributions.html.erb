@@ -31,7 +31,7 @@
 
   var cycle = currentCycle();
   
-  loadWidget("legislator", ["basic", "contributions.last_updated", "contributions." + cycle + ".top_contributors"], {bioguide_id: bioguide_id}, function(data) {
+  loadDrumboneWidget("legislator", ["basic", "contributions.last_updated", "contributions." + cycle + ".top_contributors"], {bioguide_id: bioguide_id}, function(data) {
   
     var legislator = data.legislator;
       

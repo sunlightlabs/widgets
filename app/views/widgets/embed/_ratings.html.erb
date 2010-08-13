@@ -26,7 +26,7 @@
     setAlert("No special interest group ratings for this legislator.");
     
   else {
-    loadWidget("legislator", ["basic","ratings.last_updated","ratings." + sig_id], {bioguide_id: bioguide_id}, function(data) {
+    loadDrumboneWidget("legislator", ["basic","ratings.last_updated","ratings." + sig_id], {bioguide_id: bioguide_id}, function(data) {
       var legislator = data.legislator;
       var ratings = legislator.ratings;
       var rating = ratings[sig_id];

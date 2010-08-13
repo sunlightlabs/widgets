@@ -54,7 +54,7 @@
 
   var description = "Data provided by <a href=\"http://www.taxpayer.net\" target=\"_blank\">Taxpayers for Common Sense</a>.";
 
-  loadWidget("legislator", ["basic", "earmarks"], {bioguide_id: bioguide_id}, function(data) {
+  loadDrumboneWidget("legislator", ["basic", "earmarks"], {bioguide_id: bioguide_id}, function(data) {
     var legislator = data.legislator;
     var earmarks = legislator.earmarks;
   
