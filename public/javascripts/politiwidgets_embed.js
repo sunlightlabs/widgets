@@ -146,5 +146,5 @@ function govtrackLegislatorUrl(govtrack_id) {
   return "http://www.govtrack.us/congress/person.xpd?id=" + govtrack_id;
 }
 
-// stub to be overridden
+// stub to be overridden, this whole thing is a big IE hack
 function doneLoadingMap() {}
