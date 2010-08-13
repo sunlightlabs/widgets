@@ -25,7 +25,13 @@
   
   // load interest groups
   manualUpdate = true;
-  var url = drumboneUrl(data_endpoint, sunlight_api_key, "legislator", ["ratings"], {bioguide_id: bioguide_id});
+  var url = drumboneUrl(data_endpoint, "legislator", {
+    apikey: sunlight_api_key, 
+    sections: "ratings", 
+    bioguide_id: bioguide_id,
+    callback: "?"
+  });
+  
   $.getJSON(url, function(data) {
     
     if (data.error) {

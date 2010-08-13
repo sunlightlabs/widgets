@@ -163,41 +163,8 @@ function fetchSnapshot() {
   });
 }
 
-// not currently doing any http encoding
-function queryString(object) {
-  var query = "";
-  $.each(object, function(k, v) {
-    query += k + "=" + v + "&";
-  });
-  return query;
-}
-
-// automatically slides the session up based on the year
-function currentSession() {
-  return Math.floor(((standardYear(new Date()) + 1) / 2) - 894)
-}
-
-// takes a date object and gets the year from it in a way that's okay with IE and the rest
-// IE gives the full 4-digit year
-// the rest give the number of years since 1900
-function standardYear(date) {
-  var year = date.getYear();
-  if (year < 1000) year += 1900; // this code will stop working in the year 2900
-  return year;
-}
-
-function profileImage(bioguide, size) {
-  if (!size) size = "100x125";
-  return "http://assets.sunlightfoundation.com/moc/" + size + "/" + bioguide + ".jpg";
-}
-
 function legislatorName(legislator) {
   var first_name = legislator.nickname ? legislator.nickname : legislator.firstname;
   var suffix = legislator.name_suffix ? " " + legislator.name_suffix : "";
   return legislator.title + ". " + first_name + " " + legislator.lastname + suffix;
-}
-
-// returns a string suitable for feeding into JQuery's $.getJSON function (using a ? for the JSONP callback)
-function drumboneUrl(endpoint, api_key, method, sections, options) {
-  return endpoint + method + ".json?apikey=" + api_key + "&sections=" + sections.join(",") + "&" + queryString(options) + "&callback=?";
 }

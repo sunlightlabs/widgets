@@ -37,7 +37,13 @@
       
       var bill_id = billIdFor($("#bill_code").val());
       
-      var url = drumboneUrl(data_endpoint, sunlight_api_key, "bill", ["basic", "votes"], {bill_id: bill_id});
+      var url = drumboneUrl(data_endpoint, "bill", {
+        apikey: sunlight_api_key, 
+        sections: "basic,votes",
+        bill_id: bill_id,
+        callback: "?"
+      });
+      
       $.getJSON(url, function(data) {
         
         if (data.error) {
