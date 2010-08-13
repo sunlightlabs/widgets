@@ -3,8 +3,6 @@
   <%= stylesheet_link_tag 'farbtastic' %>
   <%= javascript_include_tag 'farbtastic' %>
 
-  <%= javascript_include_tag 'politiwidgets_quicksearch' %>
-  
   <script type="text/javascript">
     var frontend_hostname = "<%= settings[:frontend_hostname] %>";
     var widget_id = "<%= params[:id] %>";
@@ -47,6 +45,7 @@
   </script>
   
   <%= javascript_include_tag 'politiwidgets_customize' %>
+  <%= javascript_include_tag 'politiwidgets_quicksearch' %>
 <% end %>
 
 <% content_for :title, h(@widget[:name] + " for " + titled_name_for(@legislator)) %>
