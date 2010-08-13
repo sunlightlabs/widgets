@@ -45,7 +45,7 @@
   </script>
   
   <%= javascript_include_tag 'politiwidgets_customize' %>
-  <%= javascript_include_tag 'politiwidgets_quicksearch' %>
+  
 <% end %>
 
 <% content_for :title, h(@widget[:name] + " for " + titled_name_for(@legislator)) %>
@@ -62,15 +62,6 @@
         </a>
       </span>
     </h2>
-    
-    <div id="selectNew">
-      <form id="change" action="." method="get">
-        <label>Change Lawmaker</label>
-        <input id="changeLawmaker" name="changeLawmaker" type="text" />
-      </form>
-      <div id="changeResults_wrapper">
-      </div>
-    </div>
     
     <div class="clear"></div>
   </div>
