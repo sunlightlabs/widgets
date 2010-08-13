@@ -2,6 +2,12 @@ class WidgetsController < ApplicationController
   before_filter :load_widget, :except => :snapshot
   before_filter :load_legislator, :only => :show
   
+  def embed
+    render :layout => "embed"
+  end
+  
+  def show; end
+  
   def snapshot
     return unless params[:method] and params[:sections]
     
@@ -37,10 +43,6 @@ class WidgetsController < ApplicationController
       head 500
     end
     
-  end
-  
-  def embed
-    render :layout => false
   end
 
   private
