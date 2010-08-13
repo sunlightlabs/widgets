@@ -1,5 +1,3 @@
-// helper functions (that do not make use of global variables)
-
 function setAlert(message) {
   $("#pageMain").hide();
   $("#widgetAlert p").html(message);
