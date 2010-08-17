@@ -1,3 +1,49 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'transparency_data' %>
+  <script type="text/javascript">
+    TransparencyData.api_key = sunlight_api_key;
+    var cycle = currentCycle();
+    
+    TransparencyData.getEntityId(bioguide_id, function(entity_id) {
+      if (entity_id == null)
+        setError("There was a problem loading contributions for this lawmaker.");
+      
+      else {
+        TransparencyData.topContributors(entity_id, cycle, function(top_contributors) {
+          if (top_contributors == null)
+            setError("There was a problem loading contributions for this lawmaker.");
+          else {
+          
+            $.ajax({
+              url: drumboneUrl(data_endpoint, "legislator"),
+              data: {
+                bioguide_id: bioguide_id,
+                apikey: sunlight_api_key,
+                sections: "basic,contributions.last_updated"
+              },
+              dataType: "jsonp",
+              jsonpCallback: "politiwidgetsCallback",
+              
+              success: function(data) {
+                if (!(data && data.legislator))
+                  setError("There was a problem loading this lawmaker's information.");
+                  
+                else {
+                  populateWidget(data.legislator, top_contributors);
+                  showWidget();
+                }
+              }
+            });
+          }
+          
+        });
+      }
+      
+    });
+    
+  </script>
+<% end %>
+
 <div id="headerWrapper" style="background-color: #<%= params[:color] || "EBE9D4" %>">
   <div id="header">
     <% if params[:size] != 'sm' %>
@@ -29,13 +75,15 @@
 
 <script type="text/javascript">
 
-  var cycle = currentCycle();
+  function populateWidget(legislator, top_contributors) {
   
-  
-  loadDrumboneWidget("legislator", ["basic", "contributions.last_updated", "contributions." + cycle + ".top_contributors"], {bioguide_id: bioguide_id}, function(data) {
-  
-    var legislator = data.legislator;
-      
+    var crp_url = "http://www.opensecrets.org/politicians/summary.php?cid=" + legislator.crp_id;
+    
+    var description = "Data provided by <a href=\"http://transparencydata.com\" target=\"_blank\">TransparencyData</a>, calculated from numbers provided by the <a href=\"" + crp_url + "\" target=\"_blank\">Center for Responsive Politics</a>.";
+    
+    updateSource(legislator.contributions.last_updated, description);
+    
+    
     var legislator_district = "";
     if (legislator.district == '0')
       legislator_district = "AL";
@@ -52,7 +100,6 @@
       party: "(" + legislator.party + ")"
     });
     
-    var top_contributors = legislator.contributions[cycle].top_contributors;
     var top_names = [];
     var top_amounts = [];
     var name_objects = [];
@@ -69,12 +116,6 @@
       $('ol#key').autoRender({"contributors": name_objects});
     }
     
-    var crp_url = "http://www.opensecrets.org/politicians/summary.php?cid=" + legislator.crp_id;
-    
-    var description = "Data calculated from numbers provided by the <a href=\"" + crp_url + "\" target=\"_blank\">Center for Responsive Politics</a>.";
-    
-    updateSource(legislator.contributions.last_updated, description);
-        
     var dimensions = {};
     if (size == 'lg') {
       dimensions.width = 350;
@@ -158,6 +199,6 @@
         }]
       });
     });    
-  });
+  }
   
 </script>

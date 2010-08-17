@@ -29,24 +29,7 @@
           else
             callback(data);
           
-          $("div#sources a.sourceText").toggle(
-            function(){
-              $(this).addClass("active");
-              $("div#sourceArea").slideDown("slow");
-              $(".highcharts-container").hide();
-              return false;
-            },
-            function() {
-              $(this).removeClass("active");
-              $("div#sourceArea").slideUp("slow", function() {
-                $(".highcharts-container").show();        
-              });
-              
-              return false;
-            } 
-          );
-        
-          $("body").show();
+          showWidget();
         }
         
       });
@@ -59,6 +42,44 @@
       }));
       
       loadWidget(url, callback);
+    }
+    
+    function showWidget() {
+      $("div#sources a.sourceText").toggle(
+        function(){
+          $(this).addClass("active");
+          $("div#sourceArea").slideDown("slow");
+          $(".highcharts-container").hide();
+          return false;
+        },
+        function() {
+          $(this).removeClass("active");
+          $("div#sourceArea").slideUp("slow", function() {
+            $(".highcharts-container").show();        
+          });
+          
+          return false;
+        } 
+      );
+
+      $("body").show();
+    }
+
+    function setAlert(message) {
+      $("#pageMain").hide();
+      $("#widgetAlert p").html(message);
+      $("#widgetAlert").show();
+      $("body").show();
+    }
+
+    function setError(message) {
+      $("#widgetAlert").addClass("error");
+      setAlert(message);
+    }
+
+    function updateSource(date, text) {
+      $("#last_updated").html(formatSourceDate(new Date(date)));
+      $("#sourceContent").html(text);
     }
     
     // stub to be overridden, this whole thing is a big IE hack

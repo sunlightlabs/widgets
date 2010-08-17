@@ -1,20 +1,3 @@
-function setAlert(message) {
-  $("#pageMain").hide();
-  $("#widgetAlert p").html(message);
-  $("#widgetAlert").show();
-  $("body").show();
-}
-
-function setError(message) {
-  $("#widgetAlert").addClass("error");
-  setAlert(message);
-}
-
-function updateSource(date, text) {
-  $("#last_updated").html(formatSourceDate(new Date(date)));
-  $("#sourceContent").html(text);
-}
-
 function formatSourceDate(date) {
   return (zeroPrefix(date.getMonth() + 1)) + "/" + zeroPrefix(date.getDate()) + "/" + (zeroPrefix(standardYear(date)));
 }
@@ -38,9 +21,9 @@ function longTitle(legislator) {
     Sen: "Senator",
     Rep: "Representative",
     Del: "Delegate",
-    def: "Honorable"
+    default: "Honorable"
   }
-  return titles[legislator.title] || titles.def;
+  return titles[legislator.title] || titles.default;
 }
 
 function partyFor(legislator) {
@@ -48,9 +31,9 @@ function partyFor(legislator) {
     D: "Democrat",
     R: "Republican",
     I: "Independent",
-    def: "Unknown"
+    default: "Unknown"
   }
-  return parties[legislator.party] || parties.def  ;
+  return parties[legislator.party] || parties.default;
 }
 
 function fullName(legislator) {

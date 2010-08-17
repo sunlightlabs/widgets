@@ -110,22 +110,24 @@
       </button>  
     </fieldset>
     
-    <ul id="freezeBox"><li>
-      <label id="checkBoxType">
-        <input class="checkbox" type="checkbox" id="freeze" name="freezeDate"/>Freeze data from updating
-      </label>
-      <a id="freezeExplainShow" href="#">more</a>
-      <div id="freezeExplain">
-        Check this box to preserve the information you see right now. If the box is unchecked, the widget will always display the most recent data, including any changes that have occurred since you embedded it.
+    <% unless @widget[:custom] and @widget[:custom][:disable_snapshot] %>
+      <ul id="freezeBox"><li>
+        <label id="checkBoxType">
+          <input class="checkbox" type="checkbox" id="freeze" name="freezeDate"/>Freeze data from updating
+        </label>
+        <a id="freezeExplainShow" href="#">more</a>
+        <div id="freezeExplain">
+          Check this box to preserve the information you see right now. If the box is unchecked, the widget will always display the most recent data, including any changes that have occurred since you embedded it.
+        </div>
+      </li></ul>
+      
+      <div id="loadingBox">
+        <%= image_tag "site/spinner.gif" %>
+        <span>Freezing the data...</span>
       </div>
-    </li></ul>
-    
-    <div id="loadingBox">
-      <%= image_tag "site/spinner.gif" %>
-      <span>Freezing the data...</span>
-    </div>
-    
-    <div id="errorBox"></div>
+      
+      <div id="errorBox"></div>
+    <% end %>
   
   <div id="embedCode">
     <span>Embed Code</span>

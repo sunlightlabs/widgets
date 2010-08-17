@@ -3,7 +3,6 @@
 var TransparencyData = {
   api_key: null,
   base_url: "http://transparencydata.com/api/1.0",
-  jsonpCallback: null,
 
   // takes a CRP ID, gets an entity id
   // takes in a callback which will get passed a 
@@ -20,7 +19,7 @@ var TransparencyData = {
   },
 
   // takes an entity id, gets top contributors
-  getContributors: function(entity_id, cycle, top, callback) {
+  topContributors: function(entity_id, cycle, callback) {
     return TransparencyData.getJSON("/aggregates/pol/" + entity_id + "/contributors.json", {
       data: {cycle: cycle},
       success: function(data) {
@@ -38,7 +37,6 @@ var TransparencyData = {
       data: {
         apikey: TransparencyData.api_key
       },
-      jsonpCallback: TransparencyData.jsonpCallback,
       dataType: "jsonp"
     }));
   }
