@@ -31,6 +31,7 @@
 
   var cycle = currentCycle();
   
+  
   loadDrumboneWidget("legislator", ["basic", "contributions.last_updated", "contributions." + cycle + ".top_contributors"], {bioguide_id: bioguide_id}, function(data) {
   
     var legislator = data.legislator;
@@ -68,7 +69,6 @@
       $('ol#key').autoRender({"contributors": name_objects});
     }
     
-    window.legislator = legislator;
     var crp_url = "http://www.opensecrets.org/politicians/summary.php?cid=" + legislator.crp_id;
     
     var description = "Data calculated from numbers provided by the <a href=\"" + crp_url + "\" target=\"_blank\">Center for Responsive Politics</a>.";
