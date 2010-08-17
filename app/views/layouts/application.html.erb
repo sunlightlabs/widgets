@@ -57,7 +57,7 @@
               <span>Search</span>
             </button>
           </form>
-          
+          <div class="clear"></div>
           <% if yield(:featured).present? %>
             <%= render :partial => "layouts/featured" %>
           <% end %>
@@ -71,15 +71,12 @@
       <%= yield :page_header %>
     <% end %>
     
-    <div id="ltColumn" class="<%= yield(:hide_sidebar).present? ? "wide" : "" %>">
-      <%= yield %>
-    </div>
+    <%= yield %>
     
     <% unless yield(:hide_sidebar).present? %>
       <div id="rtColumn">
         <%= render :partial => "layouts/sidebar/#{yield(:sidebar).present? ? yield(:sidebar) : 'nav'}" %>
         
-        <!--<div class="adspace"></div>-->
       </div>
     <% end %>
     
@@ -88,13 +85,9 @@
 
   <div id="footerWrapper">
     <div id="footer">
-      <h4 id="knight"><a href="http://www.knightfoundation.org/"><big>John S. and James L. Knight Foundation</big><small>Informed, engaged communities</small></a></h4>
-      <h4 id="sunlight">Sunlight Foundation</h4>
-      <div id="footerBubble">
-        <p id="footerText">
-          The Sunlight Foundation uses cutting-edge technology and ideas to make government transparent and accountable. Through its projects and grant-making, Sunlight serves as a catalyst to create greater political transparency and to foster more openness and accountability in government. Visit <a href="http://sunlightfoundation.com">SunlightFoundation.com</a> to learn more. This project is funded with generous support from the <a href="http://www.knightfoundation.org">John S. and James L. Knight Foundation</a>.
-        </p>
-      </div>
+      <a id="knight" href="http://www.knightfoundation.org/"><big>John S. and James L. Knight Foundation</big><small>Informed, engaged communities</small></a>
+      <a id="sunlight" href="http://www.sunlightfoundation.com">Sunlight Foundation</a>
+        <p id="footerText">The Sunlight Foundation uses cutting-edge technology and ideas to make government transparent and accountable. Through its projects and grant-making, Sunlight serves as a catalyst to create greater political transparency and to foster more openness and accountability in government. Visit <a href="http://sunlightfoundation.com">SunlightFoundation.com</a> to learn more. This project is funded with generous support from the <a href="http://www.knightfoundation.org">John S. and James L. Knight Foundation</a>.</p>
     </div>
   </div>
   

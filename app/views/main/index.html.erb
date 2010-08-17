@@ -2,39 +2,26 @@
 <% content_for :featured, true %>
 <% content_for :sidebar, 'future' %>
 <% content_for :title, "Free Political Widgets" %>
-
-<div id="chooseBubble">
-  <h3 class="withTip">Check out our free widgets</h3>
-  <span class="tipText">or search for a lawmaker or state above.</span>
-</div>
-
-<ul>
-  <% widgets.each do |slug, widget| %>
-    <li class="widgetHome <%= cycle 'odd', 'even' %> <%= 'last' if slug == widgets.keys.last %>">
-      <a href="<%= widget_path :id => slug, :bioguide_id => settings[:featured][:legislator] %>">
-        <img src="images/widgets/<%= slug %>/icon.jpg" alt="<%= h widget[:name] %>"/>
-      </a>
-      
-      <% if widget[:new] %>
-        <span class="new">NEW</span>
-      <% end %>
-      
-      <div class="moduleInsideLeft">
+<div id="ltColumn">
+  <ul id="widgetList">
+    <% widgets.each do |slug, widget| %>
+      <li class="<%= cycle 'odd', 'even' %> <%= 'last' if slug == widgets.keys.last %>">
         <h3><a href="<%= widget_path :id => slug, :bioguide_id => settings[:featured][:legislator] %>">
           <%= h widget[:name] %>
         </a></h3>
-        <p class="moduleText">
-          <%= h widget[:description] %>
-        </p>
-        <a class="customize" href="<%= widget_path :id => slug, :bioguide_id => settings[:featured][:legislator] %>">Customize</a>
-      </div>
-    </li>
-  <% end %>
-  
-  <!--<li id="futureBubble" class="<%= widgets.size % 2 == 1 ? 'even' : 'odd' %>">
-    <h3>Future Politiwidgets</h3>
-    <p>
-      The Sunlight Foundation will roll out new and informative widgets that will continue to give you the best information possible on elected officials. On deck is information about campaign contributions, what lawmakers say in the Congressional Record and what kind of fundraiser events lobbyists host for members of Congress. Keep checking back for the latest widgets.
-    </p>
-  </li>-->
-</ul>
+        <a href="<%= widget_path :id => slug, :bioguide_id => settings[:featured][:legislator] %>">
+          <img src="images/widgets/<%= slug %>/icon_2.jpg" alt="<%= h widget[:name] %>"/>
+        </a>
+      
+        <!--<% if widget[:new] %>
+          <span class="new">NEW</span>
+        <% end %>-->
+        
+          <p>
+            <%= h widget[:description] %>
+          </p>
+          <a class="customize" href="<%= widget_path :id => slug, :bioguide_id => settings[:featured][:legislator] %>">Customize</a>
+      </li>
+    <% end %>
+  </ul>
+</div>

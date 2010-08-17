@@ -52,93 +52,89 @@
 <% content_for :sidebar, 'legislator' %>
 
 <% content_for :page_header do %>
-  <div id="pageTop">
-    <h2>
-      <%= h @widget[:name] %>
-      for
-      <span>
-        <a href="<%= legislator_path :bioguide_id => @legislator.bioguide_id %>">
-          <%= titled_name_for @legislator %>
-        </a>
-      </span>
-    </h2>
+  <div id="fullColumn">
+    <div id="pageTop">
+      <h2 class="withSearch">
+        <%= h @widget[:name] %>
+        for
+        <span>
+          <a href="<%= legislator_path :bioguide_id => @legislator.bioguide_id %>">
+            <%= titled_name_for @legislator %>
+          </a>
+        </span>
+      </h2>
     
-    <div id="selectNew">
-      <form id="change" action="." method="get">
-        <label>Change Lawmaker</label>
-        <input id="changeLawmaker" name="changeLawmaker" type="text" />
-      </form>
-      <div id="changeResults_wrapper">
+      <div id="selectNew">
+        <form id="change" action="." method="get">
+          <label>Change Lawmaker</label>
+          <input id="changeLawmaker" name="changeLawmaker" type="text" />
+        </form>
+        <div id="changeResults_wrapper">
+        </div>
       </div>
+      <div class="clear"></div>
     </div>
-    
-    <div class="clear"></div>
+    <p class="tipText">Pick from the sizes below<%= ", and use the controls to the right to customize your widget" if @widget[:custom] %>.  Copy the embed code at any time to place the widget on your website.</p>
   </div>
 <% end %>
 
 
-<div id="leftWidgetColumn">
-
-  <div id="widgetDirections">
-    <p id="directions">
-      Pick from the sizes below<%= ", and use the controls to the right to customize your widget" if @widget[:custom] %>.  Copy the embed code at any time to place the widget on your website.
-    </p>
-  </div>
+<div id="ltColumn">
+  <div id="leftWidgetColumn">
   
-  <div id="widgetStage">
-    <div class="widgetSizes">
-      <h3>Choose Size</h3>
-      
-      <ul id="switcher">
-        <li class="switcherbtn"><%= link_to "160 x 300", '#', :id => "sm" %></li>
-        <li class="switcherbtn"><%= link_to "300 x 250", '#', :id => "med" %></li>
-        <li class="switcherbtn"><%= link_to "400 x 300", '#', :id => "lg", :class => "active" %></li>
-      </ul>
-      
-      <div class="clear"></div>
-    </div>
-    
-    <div id="widgetConstruct">
-      <div style="text-align: center;">
-        <iframe frameborder='0'></iframe>
+    <div id="widgetStage">
+      <div class="widgetSizes">
+        <h3>Choose Size</h3>
+        <ul id="switcher">
+          <li class="switcherbtn"><%= link_to "160 x 300", '#', :id => "sm" %></li>
+          <li class="switcherbtn"><%= link_to "300 x 250", '#', :id => "med" %></li>
+          <li class="switcherbtn"><%= link_to "400 x 300", '#', :id => "lg", :class => "active" %></li>
+        </ul>
+        <div class="clear"></div>
       </div>
-    </div>
+    
+      <div id="widgetConstruct">
+        <div style="text-align: center;">
+          <iframe frameborder='0'></iframe>
+        </div>
+      </div>
         
-  </div>
-  
-</div>
-
-<div id="rightWidgetColumn">
-    <%= render :partial => "widgets/show/#{params[:id]}" %>
-    
-    <fieldset class="custom">
-      <div id="primaryColor"></div>
-      <input type="text" id="primaryColorText" class="rtColumnInput" />
-      <button type="button" value="Update Color" class="noImage" id="updateColor">
-        <span>Update Color</span>
-      </button>  
-    </fieldset>
-    
-    <ul id="freezeBox"><li>
-      <label id="checkBoxType">
-        <input class="checkbox" type="checkbox" id="freeze" name="freezeDate"/>Freeze data from updating
-      </label>
-      <a id="freezeExplainShow" href="#">more</a>
-      <div id="freezeExplain">
-        Check this box to preserve the information you see right now. If the box is unchecked, the widget will always display the most recent data, including any changes that have occurred since you embedded it.
-      </div>
-    </li></ul>
-    
-    <div id="loadingBox">
-      <%= image_tag "site/spinner.gif" %>
-      <span>Freezing the data...</span>
     </div>
-    
-    <div id="errorBox"></div>
   
-  <div id="embedCode">
-    <span>Embed Code</span>
-    <input id="grabCode" name="widgetCode" type="text"/>
   </div>
+
+  <div id="rightWidgetColumn">
+      <%= render :partial => "widgets/show/#{params[:id]}" %>
+    
+      <fieldset class="custom">
+        <div id="primaryColor"></div>
+        <input type="text" id="primaryColorText" class="rtColumnInput" />
+        <button type="button" value="Update Color" class="noImage" id="updateColor">
+          <span>Update Color</span>
+        </button>  
+      </fieldset>
+    
+      <ul id="freezeBox"><li>
+        <label id="checkBoxType">
+          <input class="checkbox" type="checkbox" id="freeze" name="freezeDate"/>Freeze data from updating
+        </label>
+        <a id="freezeExplainShow" href="#">more</a>
+        <div id="freezeExplain">
+          Check this box to preserve the information you see right now. If the box is unchecked, the widget will always display the most recent data, including any changes that have occurred since you embedded it.
+        </div>
+      </li></ul>
+    
+      <div id="loadingBox">
+        <%= image_tag "site/spinner.gif" %>
+        <span>Freezing the data...</span>
+      </div>
+    
+      <div id="errorBox"></div>
   
+    <div id="embedCode">
+      <span>Embed Code</span>
+      <input id="grabCode" name="widgetCode" type="text"/>
+    </div>
+  
+  </div>
 </div>

@@ -1,40 +1,39 @@
 <% content_for :title, "Contact" %>
 <% content_for :hide_sidebar, true %>
+<div id="ltColumn">
+  <h2>Contact Us</h2>
 
-<h2>Contact Us</h2>
-<form id="contactForm" method="post">
-  <p>
-    Have an idea for how to make Politiwidgets better? Want to learn more about Politiwidgets or have a brilliant thought to share? Send us a note here. We love new people and ideas!
-  </p>
+  <p>Have an idea for how to make Politiwidgets better? Want to learn more about Politiwidgets or have a brilliant thought to share? Send us a note here. We love new people and ideas!</p>
+
+  <form id="contactForm" method="post">
+    <% if @notice %>
+      <div class="notice">
+        <%= @notice %>
+      </div>
+    <% end %>
   
-  <% if @notice %>
-    <div class="notice">
-      <%= @notice %>
-    </div>
-  <% end %>
+    <ul>
+      <li>
+        <label for="name" id="nameLabel">Name</label>
+        <%= text_field_tag :name, params[:name], :class => "text", :id => "name" %>
+      </li>
+      <li>
+        <label for="email" id="emailLabel">Email</label>
+        <%= text_field_tag :email, params[:email], :class => "text", :id => "email" %>
+      </li>
+      <li>
+        <label for="message" id="messageLabel">Your Inquiry</label>
+        <%= text_area_tag :message, params[:message], :class => "textarea", :id => "message" %>
+      </li>
+      <li>
+        <button class="submitBtn" type="submit">
+          <span>Submit</span>
+        </button>
+      </li>  
+    </ul>
+  </form>
   
-  <ul>
-    <li>
-      <label for="name" id="nameLabel">Name</label>
-      <%= text_field_tag :name, params[:name], :class => "text", :id => "name" %>
-    </li>
-    <li>
-      <label for="email" id="emailLabel">Email</label>
-      <%= text_field_tag :email, params[:email], :class => "text", :id => "email" %>
-    </li>
-    <li>
-      <label for="message" id="messageLabel">Your Inquiry</label>
-      <%= text_area_tag :message, params[:message], :class => "textarea", :id => "message" %>
-    </li>
-  </ul>
-  
-  <div class="info">
-    Or contact Lacey Maffettone, Media Partnerships Manager<br/>
-    <a href="mailto:lmaffettone@sunlightfoundation.com">lmaffettone@sunlightfoundation.com</a><br/>
-    202-742-1520 ext. 233
+  <div class="tipText">Or contact Lacey Maffettone, Media Partnerships Manager <a href="mailto:lmaffettone@sunlightfoundation.com">lmaffettone@sunlightfoundation.com</a> 202-742-1520 ext. 233
   </div>
+</div>
   
-  <button class="submitBtn" type="submit">
-    <span>Submit</span>
-  </button>
-</form>

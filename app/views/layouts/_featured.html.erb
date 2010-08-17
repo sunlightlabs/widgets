@@ -1,19 +1,6 @@
-<div id="aboutBubble">
-  <h3>About Politiwidgets</h3>
-  <p>
-    You should be able to insert information on a member of Congress into a blog post as easily as you can embed a video. These free widgets can help you display lawmakers' top campaign contributors, earmarks they have requested, their voting record on any current bill, where their fundraisers are, and much more! 
-  </p>
-</div>
 
-<div id="featureShadow">
-  <div id="featureBox">
-    
-    <a href="<%= widget_path :id => settings[:featured][:widget], :bioguide_id => settings[:featured][:legislator] %>"><%= image_tag 'site/img-feature.jpg', :alt => 'featured widget', :id => 'featuredImage' %></a>
-    <h2><a href="<%= widget_path :id => settings[:featured][:widget], :bioguide_id => settings[:featured][:legislator] %>">Featured</a></h2>
-    
-    <p id="featuredText">
-      Featured is the <%= h @widget[:name] %> widget, which you can make for any lawmaker in Congress.
-    </p>
-    <a class="start" href="<%= widget_path :id => settings[:featured][:widget], :bioguide_id => settings[:featured][:legislator] %>">Start Building</a>
-  </div>
+<div id="featureBox">
+    <p id="about">Insert information on a member of Congress into a blog post as easily as you can embed a video. These free widgets can help you display lawmakers' top campaign contributors, earmarks they have requested, their voting record on any current bill, where their fundraisers are, and much more! </p>
+  <a class="start" href="<%= widget_path :id => settings[:featured][:widget], :bioguide_id => settings[:featured][:legislator] %>">Start Building</a>
+
 </div>

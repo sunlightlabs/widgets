@@ -1,28 +1,29 @@
 <% content_for :title, "Political Widgets for #{titled_name_for @legislator}" %>
 <% content_for :hide_sidebar, true %>
+<div id="fullColumn">
+  <h2><%= full_name_for @legislator %></h2>
 
-<h2><%= full_name_for @legislator %></h2>
-
-<ul>
-  <% widgets.each do |slug, widget| %>
-    <li class="widgetView <%= cycle 'odd', 'even' %> <%= 'last' if slug == widgets.keys.last %>">
-      <h3><a href="<%= widget_path :id => slug, :bioguide_id => @legislator.bioguide_id %>"><%= h widget[:name] %></a></h3>
+  <ul>
+    <% widgets.each do |slug, widget| %>
+      <li class="widgetView <%= cycle 'odd', 'even' %> <%= 'last' if slug == widgets.keys.last %>">
+        <h3><a href="<%= widget_path :id => slug, :bioguide_id => @legislator.bioguide_id %>"><%= h widget[:name] %></a></h3>
       
-      <div class="widget">
-        <a href="<%= widget_path :id => slug, :bioguide_id => @legislator.bioguide_id %>"></a>
-        <script type="text/javascript" src="<%= embed_url_for slug, @legislator.bioguide_id, :size => 'lg', :title => @legislator.title %>"></script>
-      </div>
+        <div class="widget">
+          <a href="<%= widget_path :id => slug, :bioguide_id => @legislator.bioguide_id %>"></a>
+          <script type="text/javascript" src="<%= embed_url_for slug, @legislator.bioguide_id, :size => 'lg', :title => @legislator.title %>"></script>
+        </div>
       
-      <a class="customizer" href="<%= widget_path :id => slug, :bioguide_id => @legislator.bioguide_id %>">Customize</a>
-    </li>
-  <% end %>
+        <a class="customizer" href="<%= widget_path :id => slug, :bioguide_id => @legislator.bioguide_id %>">Customize</a>
+      </li>
+    <% end %>
   
-  <li class="widgetView future">
-    <div id="futureLawBubble">
-      <h3>Future Politiwidgets</h3>
-        <p id="lawText">
-          Always innovating and creating new tools for a transparent government for reporters, bloggers and other writers about government policy and lawmakers. Future politiwidgets will include dynamic infographics for Top Contributors, Top Contractors, Earmark Stats, Interest Group Ratings and the Batting Average for any lawmaker in Congress.
-        </p>
-    </div>
-  </li>
-</ul>
+    <li class="widgetView future">
+      <div id="futureLawBubble">
+        <h3>Future Politiwidgets</h3>
+          <p id="lawText">
+            Always innovating and creating new tools for a transparent government for reporters, bloggers and other writers about government policy and lawmakers. Future politiwidgets will include dynamic infographics for Top Contributors, Top Contractors, Earmark Stats, Interest Group Ratings and the Batting Average for any lawmaker in Congress.
+          </p>
+      </div>
+    </li>
+  </ul>
+</div>
