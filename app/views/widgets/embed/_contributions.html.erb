@@ -19,7 +19,7 @@
               data: {
                 bioguide_id: bioguide_id,
                 apikey: sunlight_api_key,
-                sections: "basic,contributions.last_updated"
+                sections: "basic"
               },
               dataType: "jsonp",
               jsonpCallback: "politiwidgetsCallback",
@@ -81,7 +81,7 @@
     
     var description = "Data provided by <a href=\"http://transparencydata.com\" target=\"_blank\">TransparencyData</a>, calculated from numbers provided by the <a href=\"" + crp_url + "\" target=\"_blank\">Center for Responsive Politics</a>.";
     
-    updateSource(legislator.contributions.last_updated, description);
+    updateSource("2010-07-03", description);
     
     
     var legislator_district = "";
