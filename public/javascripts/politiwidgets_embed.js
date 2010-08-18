@@ -21,9 +21,9 @@ function longTitle(legislator) {
     Sen: "Senator",
     Rep: "Representative",
     Del: "Delegate",
-    default: "Honorable"
+    def: "Honorable"
   }
-  return titles[legislator.title] || titles.default;
+  return titles[legislator.title] || titles.def;
 }
 
 function partyFor(legislator) {
@@ -31,9 +31,9 @@ function partyFor(legislator) {
     D: "Democrat",
     R: "Republican",
     I: "Independent",
-    default: "Unknown"
+    def: "Unknown"
   }
-  return parties[legislator.party] || parties.default;
+  return parties[legislator.party] || parties.def;
 }
 
 function fullName(legislator) {
