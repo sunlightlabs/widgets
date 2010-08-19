@@ -21,6 +21,9 @@ body{
   	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
+body.page #brandingbar, body.home #brandingbar { border-bottom: 2px solid #1D77A0; padding: 5px 0;}
+body.page #brandingbar a#sllink, body.home #brandingbar a#sllink { margin-top: 2px;}
+
 body.page div#ltColumn {
   min-height: 825px;
 }
@@ -80,12 +83,16 @@ h1 a{
 	text-indent: -9999em;
 }
 
-h3, legend {
-	color: #C96F2A;
+h3 {
+	color: #706767;
 	font-size: 180%;
 	margin-bottom: 15px;
-	line-height: 28px;
+	line-height: 26px;
 }
+
+.withLine { border-bottom:1px solid #B8CED8; padding-bottom: 5px; margin-bottom: 20px;}
+
+legend { color: #C96F2A; font-size: 135%; margin-bottom: 15px; line-height: 24px;}
 
 h3.withTip, legend.withTip { margin-bottom: 3px;}
 
@@ -94,8 +101,10 @@ h3 a:visited{outline: none; color: #C96F2A; font-weight: normal; text-decoration
 h3 a:hover{outline: none; color: #1D77A0; font-weight: normal; text-decoration: none; }
 h3 a:active{outline: none; color: #C96F2A; font-weight: normal; text-decoration: none;}
 
+.floated { float: left; width: 320px;}
+
 h2 {
-	color: #C96F2A;
+	color: #585151;
 	font-size: 220%;
 	margin-bottom: 30px;
 	line-height: 30px;
@@ -105,7 +114,7 @@ h2 span { font-weight: 900; }
 
 body.home h2 {
 	font-size: 250%;
-	color: #C96F2A;
+	color: #585151;
 	margin-bottom: 10px;
 }
 
@@ -174,34 +183,38 @@ body.home #rtColumn { margin-top: 30px; }
 #leftWidgetColumn {
 	float: left;
 	width: 450px;
-	margin-right: 20px;
+	margin-right: 15px;
 }
 
 #rightWidgetColumn {
 	float: left;
 	width: 195px;
-	margin-left: 20px;
-}
-
-.widgetView {
-	width: 400px;
-	float: left;
-	margin-bottom: 15px;
-	padding-bottom: 15px;
-	border-bottom: 1px dotted #1D77A0;
-	margin-right: 30px;
+	margin-left: 15px;
 }
 
 .widgetView.odd.last, .widgetView.future {
 	border-bottom: none;
 }
 
+/*#widget {
+	background-color: #000;
+	display: block;
+	width: 420px;
+	height: 300px;
+	text-align: center;
+}*/
+
 .widget {
-  width: 400px;
+  width: 444px;
   height: 300px;
-  border: 1px solid #1D77A0;
-  margin: 0 auto 15px;
+  text-align: center;
 }
+#fullColumn li { width: 444px; float: left; border-bottom:1px dotted #B8CED8; padding: 30px 0;}
+#fullColumn li.odd{ padding-right: 25px; border-right:1px dotted #B8CED8;}
+#fullColumn li.even{ padding-left: 25px;}
+
+div.widget>a { width: 400px; height: 300px; display: block; position: absolute;}
+
 
 ul#switcher li a {
   width: 68px;
@@ -210,12 +223,9 @@ ul#switcher li a {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  text-indent: -9999em;
-  color: white;
 }
 
 ul#switcher li a:hover, ul#switcher li a.active{
-  text-indent: -9999em;
   color: #fff;
   background-color: #02B9E3;
 }
@@ -223,24 +233,14 @@ ul#switcher li a:hover, ul#switcher li a.active{
 .switcherbtn {
   float: left;
   display: block;
-  margin-left: 50px;
+  margin-left: 30px;
 }
 
-#widgetStage { background-color: #E3EFF2; }
-
-#widgetConstruct { text-align: center; padding-bottom: 25px; }
-
-#widget {
-	background-color: #000;
-	display: block;
-	width: 400px;
-	height: 300px;
-}
-
+#widgetConstruct { text-align: center; padding-bottom: 25px; background-color: #E3EFF2; padding-top: 20px;}
 .custom {
-	border-bottom: 1px dotted #1D77A0;
-	margin-bottom: 20px;
-	padding-bottom: 20px;
+	border-bottom: 1px dotted #B8CED8;
+	margin-bottom: 25px;
+	padding-bottom: 25px;
 }
 
 .selectors {
@@ -251,19 +251,19 @@ ul#switcher li a:hover, ul#switcher li a.active{
 }
 
 .widgetSizes {
-	background: #1D77A0;
 	height: 25px;
 	display: block;
-	padding-top: 5px;
-	padding-left: 10px;
+	padding: 5px 10px;
+	border-bottom: 1px solid #B8CED8; 
 }
 
 .widgetSizes h3 {
 	font-size: 130%;
-  color: #FFF;
   display: block;
   font-weight: normal;
   float: left;
+  line-height: 20px;
+  margin-bottom: 0px;
 }
 
 #primaryColor, #secondaryColor, #lawmaker, #cycle {
@@ -272,25 +272,8 @@ ul#switcher li a:hover, ul#switcher li a.active{
 	font-size: 90%;
 }
 
-#primaryHex, #secondaryHex {
-	width: 193px;
-	height: 15px;
-	margin-bottom: 10px;
-	color: #1D77A0;
-	padding-top: 3px;
-	padding-left: 3px;
-	border: 1px solid #1D77A0;
-	background: #FFF url(/images/site/img-searchbarfade.jpg) top left repeat-x;
-  float: right;
-}
-
 .or {
 	display: block;
-	float: left;
-}
-
-#checkbox {
-	display: inline;
 	float: left;
 }
 
@@ -342,7 +325,7 @@ a#freezeExplainShow {
   padding-top: 4px;
 }
 .customize { margin-top: 15px; }
-.customizer { margin-right: 34px; float: right;}
+.customizer { float: right; margin-top: 3px;}
 
 .customizer:hover, .customize:hover {
 	color: #C96F2A;
@@ -395,17 +378,10 @@ a#freezeExplainShow {
   margin-bottom: 30px;
 }
 
-thead {
-	background-color: #1D77A0;
-}
-
 tr#titles th{
-	font-size: 115%;
-	padding: 6px 0px 6px 15px;
-}
-
-table#mainTable th {
-  color: #FFF;
+	font-size: 130%;
+	padding: 0 0 10px 20px;
+	border-bottom:1px solid #B8CED8;
 }
 
 table#mainTable th.asc, table#mainTable th.desc {
@@ -413,11 +389,11 @@ table#mainTable th.asc, table#mainTable th.desc {
 }
 
 table#mainTable th.desc {
-	background: url(/images/site/img-arrow-down.png) left 11px no-repeat;
+	background: url(/images/site/img-arrow-down.png) left 5px no-repeat;
 }
 
 table#mainTable th.asc {
-	background: url(/images/site/img-arrow-up.png) left 11px no-repeat;
+	background: url(/images/site/img-arrow-up.png) left 5px no-repeat;
 }
 
 #photoLabel {
@@ -455,7 +431,7 @@ td { padding-left: 20px; }
 
 #selectNew { float: right; display: block; margin-top: 2px; }
 #change label { font-weight: bold; float: left; margin-top: 4px; }
-#changeLawmaker { float: left; margin: 0 10px; padding-left: 10px; width: 150px ; height: 24px; color: #406C78; background: #FFF url(/images/site/img-searchbarfade.jpg) top left repeat-x; border: 1px solid #666; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; font-family: Georgia,Times,"Times New Roman",serif; font-size: 90%; }
+#changeLawmaker { float: left; margin: 0 10px; padding-left: 10px; width: 150px ; height: 24px; color: #406C78; border: 1px solid #666; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; font-family: Georgia,Times,"Times New Roman",serif; font-size: 90%; }
 div.changeResults {
   background-color: white;
   width: 156px;
@@ -586,6 +562,6 @@ p#footerText a{
   color: #003244;
 }
 
-div.widget>a { width: 400px; height: 300px; display: block; position: absolute;}
+
 
 .tipText { font-family:Georgia,Times,Times New Roman,Serif; font-style: italic; margin-bottom: 15px; display: block; line-height: 16px;}

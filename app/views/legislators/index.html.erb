@@ -34,25 +34,25 @@
 <% end %>
 
 <% content_for :hide_sidebar, true %>
-<% content_for :title, (@query.blank? ? "All Members of Congress" : "Search Results for #{@query}") %>
+<% content_for :title, (@query.blank? ? "All Members of Congress" : "Search Results for &#8220;#{@query}&#8221;".html_safe) %>
 
 <div id="ltColumn">
-  <h2><%= @query.blank? ? "All Members of Congress" : "Search Results for #{@query}" %></h2>
+  <h2><%= @query.blank? ? "All Members of Congress" : "Search Results for &#8220;#{@query}&#8221;".html_safe %></h2>
   <table id="mainTable">
     <thead>
       <tr id="titles">
         <th id="repPhoto">Photo</th>
-        <th class="column">Position</th>
-        <th class="column">Name</th>
-        <th class="column">Party</th>
-        <th class="column">District</th>
+        <th>Position</th>
+        <th>Name</th>
+        <th>Party</th>
+        <th>District</th>
       </tr>
     </thead>
   
     <tbody>
       <% @legislators.each do |legislator| %>
         <tr class="lawMaker"> 
-          <td class="headshot">
+          <td>
             <img src="<%= photo_url_for legislator%>" alt="headshot"/>
           </td>
           <td class="lawPosition"><%= title_for legislator %></td>
