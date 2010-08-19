@@ -159,7 +159,7 @@ form#searchForm {
 	background-color: #e3eff2;
 }
 
-#featureBox { background: url(/images/site/featureBox.png) top left no-repeat; width: 940px; height: 300px; color: #fff; padding: 60px 30px 0; margin-top: 30px;}
+#featureBox { background: url(/images/site/featureBox.png) top left no-repeat; width: 940px; height: 190px; color: #fff; padding: 60px 30px 0; margin-top: 30px;}
 #featureBox h3 { margin-bottom: 15px; }
 #about { float: left; width: 580px; margin-right: 25px; padding-right: 25px; border-right: 1px dotted #fff; }
 p#about { font-size: 135%; line-height: 27px;}
@@ -522,12 +522,13 @@ button.noImage { text-indent: 0; padding: 7px 20px 5px; -moz-border-radius: 5px;
 div#footerWrapper{
 	background: url(/images/site/bg-footer.jpg) top left repeat-x;
 	height: 165px;
+	margin-top: 50px;
 }
 
 div#footer {
-	margin: 60px auto;
+	margin: 0 auto;
 	width: 960px;
-	padding-top: 50px;
+	padding-top: 45px;	
 }
 
 div#footer a#sunlight, div#footer a#knight { margin-right: 30px; text-indent: -9999em; display: block; float: left;}

@@ -1,13 +1,7 @@
 #headerWrapper { background: url(/images/site/bg-pge-fade.jpg) top left repeat-x; height: 196px; }
 #headerContainer{ background: url(/images/site/bg-page.jpg) top left no-repeat; height: 171px; }
 h1 a{ background:transparent url(/images/site/logo-h1-8.png) top left no-repeat;}
-div#nav, div#nav ul {width: 150px; height: 13px;}
-#aboutUs {width: 54px; padding-left: 45px; padding-right: 2px; margin-right: 7px; }
-#contact {width: 46px;}
 
-#aboutBubble {	background: transparent url(/images/site/img-about-bubble-8.png) top left no-repeat; width: 300px; margin-top: 25px; padding: 0; color: #FFF;	font-family: Georgia, Times, Times New Roman, serif;	font-size: 105%; line-height: 140%;}
-#aboutBubble h3{ background: #38B3DB; padding: 0px 10px 5px 15px; margin-top: 48px;}
-#aboutBubble p {background: #38B3DB; padding: 0 15px 15px 15px; margin-top: -10px;}
 .new {display: none;}
 .even, .evenLast {padding: 20px 0 15px 0;}
 .odd, .oddLast {padding: 25px 0 30px 0;}
@@ -15,16 +9,21 @@ div#nav, div#nav ul {width: 150px; height: 13px;}
 .even, .evenLast { padding-left: 20px;}
 #futureLawBubble {padding-right: 9px;}
 
-td {border-bottom: 2px dotted #1D77A0;}
-.sorted { background:#1D77A0 url(/images/site/img-arrow-down-8.png) left 11px no-repeat;}
-.unsorted {	background:#1D77A0 url(/images/site/img-arrow-up-8.png) left 11px no-repeat;}
+#rightWidgetColumn {overflow: hidden;}
+#embedCode { width: 175px;}
+
+#featureBox { background: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/site/featureBox.png", sizingMethod="crop"); }
+
+#widgetList li { overflow: hidden; padding: 30px 18px;}
+
+td {border-bottom: 1px dotted #B8CED8;}
+.sorted { background: url(/images/site/img-arrow-down-8.png) left 5px no-repeat;}
+.unsorted {	background: url(/images/site/img-arrow-up-8.png) left 5px no-repeat;}
 
 ul#switcher li {margin-top: 2px;}
 
-div#footerWrapper {margin-top: 50px;}
-div#footer {padding-top: 30px; }
-h4#knight {margin-left: 10px;}
-h4#sunlight { background:transparent url(/images/site/logo-sunlight-8.png) top left no-repeat;}
-h4#knight a { background: transparent url(/images/site/logo-knight-8.png) top left no-repeat;}
+div#footer { margin-top: 0px; padding-top: 30px;}
+#sunlight { background: url(/images/site/logo-sunlight-8.png) top left no-repeat;}
+#knight { background: url(/images/site/logo-knight-8.png) top left no-repeat;}
 
 div#header {  background: none; border-bottom: #CCC 1px solid;}
