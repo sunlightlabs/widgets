@@ -1,7 +1,11 @@
 class LegislatorsController < ApplicationController
 
-  caches_action :index, :cache_path => Proc.new { |controller| controller.params }, :expires_in => 1.day
+  caches_action :all, :cache_path => Proc.new { |controller| controller.params }, :expires_in => 1.day
 
+  def all
+    index
+  end
+  
   def show
     bioguide_id = params[:bioguide_id].present? ? params[:bioguide_id].upcase : nil
     unless bioguide_id and @legislator = Drumbone::Legislator.find(:bioguide_id => bioguide_id)
@@ -52,7 +56,7 @@ class LegislatorsController < ApplicationController
       redirect_to legislator_path(@legislators.first.bioguide_id)
       return
     end
-
+    render 'index'
   end
   
   private

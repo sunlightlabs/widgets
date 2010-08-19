@@ -4,7 +4,7 @@ Widgets::Application.routes.draw do |map|
   match 'about' => 'main#about', :as => 'about'
   match 'contact' => 'main#contact', :as => 'contact'
   
-  match 'all' => 'legislators#index', :as => 'all'
+  match 'all' => 'legislators#all', :as => 'all'
   match 'search' => 'legislators#index', :as => 'search'
   match 'legislator/:bioguide_id' => 'legislators#show', :as  => 'legislator'
 
