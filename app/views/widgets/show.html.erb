@@ -45,7 +45,7 @@
   </script>
   
   <%= javascript_include_tag 'politiwidgets_customize' %>
-  <%= javascript_include_tag 'politiwidgets_quicksearch' %>
+  
 <% end %>
 
 <% content_for :title, h(@widget[:name] + " for " + titled_name_for(@legislator)) %>
@@ -63,18 +63,8 @@
           </a>
         </span>
       </h2>
-    
-      <div id="selectNew">
-        <form id="change" action="." method="get">
-          <label>Change Lawmaker</label>
-          <input id="changeLawmaker" name="changeLawmaker" type="text" />
-        </form>
-        <div id="changeResults_wrapper">
-        </div>
-      </div>
       <div class="clear"></div>
-    </div>
-    <p class="tipText">Pick from the sizes below<%= ", and use the controls to the right to customize your widget" if @widget[:custom] %>.  Copy the embed code at any time to place the widget on your website.</p>
+      <p class="tipText">Pick from the sizes below<%= ", and use the controls to the right to customize your widget" if @widget[:custom] %>.  Copy the embed code at any time to place the widget on your website.</p>
   </div>
 <% end %>
 
@@ -114,6 +104,7 @@
         </button>  
       </fieldset>
     
+    <% unless @widget[:custom] and @widget[:custom][:disable_snapshot] %>
       <ul id="freezeBox"><li>
         <label id="checkBoxType">
           <input class="checkbox" type="checkbox" id="freeze" name="freezeDate"/>Freeze data from updating
@@ -123,7 +114,7 @@
           Check this box to preserve the information you see right now. If the box is unchecked, the widget will always display the most recent data, including any changes that have occurred since you embedded it.
         </div>
       </li></ul>
-    
+
       <div id="loadingBox">
         <%= image_tag "site/spinner.gif" %>
         <span>Freezing the data...</span>
@@ -131,6 +122,8 @@
     
       <div id="errorBox"></div>
   
+    <% end %>
+    
     <div id="embedCode">
       <span>Embed Code</span>
       <input id="grabCode" name="widgetCode" type="text"/>

@@ -1,20 +1,3 @@
-function setAlert(message) {
-  $("#pageMain").hide();
-  $("#widgetAlert p").html(message);
-  $("#widgetAlert").show();
-  $("body").show();
-}
-
-function setError(message) {
-  $("#widgetAlert").addClass("error");
-  setAlert(message);
-}
-
-function updateSource(date, text) {
-  $("#last_updated").html(formatSourceDate(new Date(date)));
-  $("#sourceContent").html(text);
-}
-
 function formatSourceDate(date) {
   return (zeroPrefix(date.getMonth() + 1)) + "/" + zeroPrefix(date.getDate()) + "/" + (zeroPrefix(standardYear(date)));
 }
@@ -50,7 +33,7 @@ function partyFor(legislator) {
     I: "Independent",
     def: "Unknown"
   }
-  return parties[legislator.party] || parties.def  ;
+  return parties[legislator.party] || parties.def;
 }
 
 function fullName(legislator) {
