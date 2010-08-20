@@ -1,3 +1,22 @@
+<% content_for :head do %>
+  <script type="text/javascript">
+    $(function() {
+      
+      Drumbone.getLegislator(bioguide_id, "basic,parties", function(legislator) {
+        if (legislator) {
+          if (legislator.parties) {
+            populateWidget(legislator);
+            showWidget();
+          } else
+            setAlert("We do not yet have any information on this legislator's fundraising parties.");
+        } else
+          setError("There was a problem loading this lawmaker's information.");
+      });
+      
+    });
+  </script>
+<% end %>
+
 <div id="headerWrapper" style="background-color: #<%= params[:color] || "CFD1D1" %>">
   <div id="header">
     <% if params[:size] == 'lg' %>
@@ -41,8 +60,7 @@
 
 <script type="text/javascript" charset="utf-8">
 
-  loadDrumboneWidget("legislator", ["basic", "parties"], {bioguide_id: bioguide_id}, function(data) {
-    var legislator = data.legislator;
+  function populateWidget(legislator) {
     
     var legislator_district = "";
     if (legislator.district == '0')
@@ -144,7 +162,7 @@
     var partytime_url = "http://politicalpartytime.org/pol/" + legislator.crp_id + "/";
     var description = "Party details taken from Sunlight's <a href=\"" + partytime_url + "\" target=\"_blank\">Party Time</a>.";
     updateSource(legislator.parties.last_updated, description);
-  });
+  }
   
   
   function partyItemFor(event, size) {
