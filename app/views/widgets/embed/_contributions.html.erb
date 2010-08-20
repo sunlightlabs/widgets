@@ -1,30 +1,32 @@
 <% content_for :head do %>  
   <script type="text/javascript">
-    var cycle = currentCycle();
-    
-    TransparencyData.getEntityId(bioguide_id, function(entity_id) {
-      if (entity_id == null)
-        setAlert("We do not have any contribution data for this lawmaker.");
-      else {
+    $(function() {
+      var cycle = currentCycle();
       
-        TransparencyData.topContributors(entity_id, cycle, function(top_contributors) {
-          if (top_contributors == null)
-            setError("There was a problem loading contributions for this lawmaker.");
-          else {
+      TransparencyData.getEntityId(bioguide_id, function(entity_id) {
+        if (entity_id == null)
+          setAlert("We do not have any contribution data for this lawmaker.");
+        else {
+        
+          TransparencyData.topContributors(entity_id, cycle, function(top_contributors) {
+            if (top_contributors == null)
+              setError("There was a problem loading contributions for this lawmaker.");
+            else {
+              
+              Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
+                if (!legislator)
+                  setError("There was a problem loading this lawmaker's information.");
+                  
+                else {
+                  populateWidget(legislator, top_contributors);
+                  showWidget();
+                }
+              });
+            }
             
-            Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
-              if (!legislator)
-                setError("There was a problem loading this lawmaker's information.");
-                
-              else {
-                populateWidget(legislator, top_contributors);
-                showWidget();
-              }
-            });
-          }
-          
-        });
-      }
+          });
+        }
+      });
       
     });
     
