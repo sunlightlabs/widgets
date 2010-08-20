@@ -23,7 +23,7 @@
   var sig_id = "<%= params[:sig_id] || ""%>";
   
   if (!sig_id)
-    setAlert("No special interest group ratings for this legislator.");
+    setAlert("This widget must be customized to a specific interest group before it can be displayed.");
     
   else {
     loadDrumboneWidget("legislator", ["basic","ratings.last_updated","ratings." + sig_id], {bioguide_id: bioguide_id}, function(data) {
