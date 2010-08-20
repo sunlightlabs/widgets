@@ -1,6 +1,6 @@
 div#header {  background: none; border-bottom: #CCC 1px solid;}
 div#vcard { background: none; border-top: #CCC 1px solid;}
-
+.bill_lg div#header, .bill_med div#header, .bill_sm div#header { background: none; border-bottom: #CCC 1px solid;}
 
 body.lg div#mainContent {height: 145px;}
 body.lg div#vcard { height: 125px;}
