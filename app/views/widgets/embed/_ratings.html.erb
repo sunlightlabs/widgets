@@ -3,10 +3,7 @@
     $(function() {
       var sig_id = "<%= params[:sig_id] || ""%>";
       
-      if (!sig_id)
-        setAlert("This widget must be customized to a specific interest group before it can be displayed.");
-        
-      else {
+      if (sig_id) {
         var sections = ["basic","ratings.last_updated","ratings." + sig_id];
         Drumbone.getLegislator(bioguide_id, sections, function(legislator) {
           if (legislator) {
@@ -16,7 +13,34 @@
             setError("There was a problem loading this lawmaker's information.");
         });
       }
+      
+      else {
+        Drumbone.getLegislator(bioguide_id, "basic,ratings", function(legislator) {
+          if (legislator) {
+            sig_id = getFirstSigId(legislator);
+            
+            if (sig_id) {
+              populateWidget(legislator, sig_id);
+              showWidget();
+            } else
+              setAlert("This legislator has no known recent interest group ratings.");
+          } 
+          
+          else
+            setError("There was a problem loading this lawmaker's information.");
+        });
+      }
     });
+    
+    function getFirstSigId(legislator) {
+      var sig_ids = [];
+      $.each(legislator.ratings, function(sig_id, group) {
+        if (sig_id != "last_updated")
+          sig_ids[sig_ids.length] = sig_id;
+      });
+      
+      return sig_ids[0]; // could be null
+    }
   </script>
 <% end %>
 

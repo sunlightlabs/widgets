@@ -55,10 +55,10 @@
       return;
     }
     
+    group_names = group_names.sort();
+    
     $("#interest_groups option").attr("value", "-1").html("Select a group:");
     $("#interest_groups").removeAttr("disabled");
-    
-    group_names = group_names.sort();
     
     $.each(group_names, function(i) {
       $("#interest_groups").append("<option value=\"" + groups_by_name[group_names[i]] + "\">" + group_names[i] + "</option>");
