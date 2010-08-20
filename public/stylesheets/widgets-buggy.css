@@ -1,5 +1,15 @@
 div#header {  background: none; border-bottom: #CCC 1px solid;}
-div#header img {position: relative;}
+.bio_lg div#vcard, .bio_med div#vcard, .bio_sm div#vcard { background: none; border-top: #CCC 1px solid;}
+.bill_lg div#header, .bill_med div#header, .bill_sm div#header { background: none; border-bottom: #CCC 1px solid;}
+.contractors_lg div#header, .contractors_med div#header, .contractors_sm div#header { background: none; border-bottom: #CCC 1px solid; }
+.ratings_lg div#header, .ratings_med div#header, .ratings_sm div#header { background: none; border-bottom: #CCC 1px solid; }
+
+.bio_lg img, .bio_med img, .bio_sm img { position: absolute; }
+.bio_lg img { top: 15px;}
+.bio_sm img { top: 55px; left: 10px;}
+.bio_med img { top: 10px;}
+body.bio_sm div#lawmakerMetadata { margin-left: 38px;}
+
 body.lg div#mainContent {height: 145px;}
 body.lg div#vcard { height: 125px;}
 body.med div#vcard { height: 106px;}
@@ -34,3 +44,16 @@ body.lg a.youtube:hover { background: transparent url(images/social_icons_lg-8.p
 
 #contributor_names {padding-left: 23px;}
 body.contributions_sm h2 {background: url(/images/widgets/contributions/top-five-sm-8.png) top center no-repeat;}
+
+body.earmarks_lg div#mainContent, body.earmarks_med div#mainContent, body.earmarks_sm div#mainContent, body.sponsorships_lg div#mainContent, body.sponsorships_med div#mainContent, body.sponsorships_sm div#mainContent { background: #fff;}
+body.sponsorships_lg div#repInfo { width: 50px; border: 1px solid red; margin-left: 10px; position: absolute;}
+body.sponsorships_lg h1, body.sponsorships_lg #lawmakerMetadata { width: 50px;}
+body.sponsorships_lg div#header img { margin-left: 30px;}
+body.sponsorships_lg #bills-sponsored { background: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/widgets/sponsorships/bills-sponsored.png", sizingMethod="crop");}
+body.sponsorships_lg #header { height: 83px;}
+
+.bill_lg div#header div#voteKey dt, .bill_med div#header div#voteKey dt, .bill_sm div#header div#voteKey dt { margin-top: 0px;}
+
+div#repInfo span.aye, div#billResult span.passed { background:url("/images/widgets/bill/icon_ayeLg-8.png") center top no-repeat;}
+
+.contractors_lg h1 big, .contractors_med h1 big, .contractors_sm h1 big { background: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/widgets/contractors/header_title.png", sizingMethod="crop");}

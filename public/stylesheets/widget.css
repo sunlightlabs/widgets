@@ -74,8 +74,8 @@ body.lg #sources {
 }
 
 #sourceArea {
-  position: absolute;
-  bottom: 10px;
+  position: fixed;
+  bottom: 16px;
   background: #606161;
   color: #FFF;
   padding: 10px;
