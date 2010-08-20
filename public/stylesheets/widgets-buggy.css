@@ -8,7 +8,7 @@ div#header {  background: none; border-bottom: #CCC 1px solid;}
 .bio_lg img { top: 15px;}
 .bio_sm img { top: 55px; left: 10px;}
 .bio_med img { top: 10px;}
-body.bio_sm div#lawmakerMetadata { margin-left: 45px;}
+body.bio_sm div#lawmakerMetadata { margin-left: 38px;}
 
 body.lg div#mainContent {height: 145px;}
 body.lg div#vcard { height: 125px;}
