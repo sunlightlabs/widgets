@@ -1,5 +1,5 @@
 div#header {  background: none; border-bottom: #CCC 1px solid;}
-div#vcard { background: none; border-top: #CCC 1px solid;}
+.bio_lg div#vcard, .bio_med div#vcard, .bio_sm div#vcard { background: none; border-top: #CCC 1px solid;}
 .bill_lg div#header, .bill_med div#header, .bill_sm div#header { background: none; border-bottom: #CCC 1px solid;}
 .contractors_lg div#header, .contractors_med div#header, .contractors_sm div#header { background: none; border-bottom: #CCC 1px solid; }
 .ratings_lg div#header, .ratings_med div#header, .ratings_sm div#header { background: none; border-bottom: #CCC 1px solid; }
@@ -48,3 +48,5 @@ body.sponsorships_lg #header { height: 83px;}
 .bill_lg div#header div#voteKey dt, .bill_med div#header div#voteKey dt, .bill_sm div#header div#voteKey dt { margin-top: 0px;}
 
 div#repInfo span.aye, div#billResult span.passed { background:url("/images/widgets/bill/icon_ayeLg-8.png") center top no-repeat;}
+
+h1 big { background: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/widgets/contractors/header_title.png", sizingMethod="crop");}
