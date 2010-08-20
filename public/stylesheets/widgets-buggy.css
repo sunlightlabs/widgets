@@ -37,4 +37,5 @@ body.lg a.youtube:hover { background: transparent url(images/social_icons_lg-8.p
 #contributor_names {padding-left: 23px;}
 body.contributions_sm h2 {background: url(/images/widgets/contributions/top-five-sm-8.png) top center no-repeat;}
 
-body.earmarks_lg div#mainContent, body.earmarks_med div#mainContent, body.earmarks_sm div#mainContent { background: #fff;}
+body.earmarks_lg div#mainContent, body.earmarks_med div#mainContent, body.earmarks_sm div#mainContent, body.sponsorships_lg div#mainContent, body.sponsorships_med div#mainContent, body.sponsorships_sm div#mainContent { background: #fff;}
+body.sponsorships_lg div#mainContent { width: 230px;}
