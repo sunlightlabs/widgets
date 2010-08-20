@@ -384,8 +384,12 @@ tr#titles th{
 	border-bottom:1px solid #B8CED8;
 }
 
-table#mainTable th.asc, table#mainTable th.desc {
+table#mainTable th.asc, table#mainTable th.desc, table#mainTable th.hover {
   color: #5FB9E2;
+}
+
+table#mainTable th.sortable {
+  background: url(/images/site/sortArrows.png) left 5px no-repeat;
 }
 
 table#mainTable th.desc {
