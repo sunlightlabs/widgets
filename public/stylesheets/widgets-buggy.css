@@ -4,7 +4,7 @@ div#header {  background: none; border-bottom: #CCC 1px solid;}
 .contractors_lg div#header, .contractors_med div#header, .contractors_sm div#header { background: none; border-bottom: #CCC 1px solid; }
 .ratings_lg div#header, .ratings_med div#header, .ratings_sm div#header { background: none; border-bottom: #CCC 1px solid; }
 
-.bio_lg img, .bio_med img, .bio_sm img { position: fixed;}
+.bio_lg img, .bio_med img, .bio_sm img { position: fixed; z-index: 2;}
 
 body.lg div#mainContent {height: 145px;}
 body.lg div#vcard { height: 125px;}
