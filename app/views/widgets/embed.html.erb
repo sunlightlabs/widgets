@@ -1,6 +1,9 @@
 <% content_for :head do %>
   <%= stylesheet_link_tag "widgets/#{params[:id]}" %>
   
+  <%= javascript_include_tag 'transparency_data' %>
+  <%= javascript_include_tag 'drumbone' %>
+  
   <script type="text/javascript">
     var data_endpoint = "<%= settings[:data_endpoint] %>";
     var sunlight_api_key = "<%= settings[:sunlight_api_key] %>";
@@ -9,6 +12,10 @@
     var bioguide_id = "<%= params[:bioguide_id] %>".toUpperCase();
     var size = "<%= @size %>";
     var snapshot_id = "<%= params[:snapshot_id] %>";
+    
+    Drumbone.base_url = data_endpoint;
+    Drumbone.api_key = sunlight_api_key;
+    TransparencyData.api_key = sunlight_api_key;
     
     
     // The main widget loading function. If a snapshot_id is set, it'll use that, otherwise, 
