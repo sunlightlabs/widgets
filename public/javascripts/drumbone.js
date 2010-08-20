@@ -4,7 +4,7 @@ var Drumbone = {
   api_key: null,
   // default to production API
   base_url: "http://drumbone.services.sunlightlabs.com/v1/api/",
-  
+  jsonpCallback: null,
 
   // takes a CRP ID, gets an entity id
   // takes in a callback which will get passed a 
@@ -37,6 +37,9 @@ var Drumbone = {
   getJSON: function(path, sections, options) {
     if (typeof(sections) == "object")
       sections = sections.join(",");
+    
+    if (Drumbone.jsonpCallback && !options.jsonpCallback)
+      options.jsonpCallback = Drumbone.jsonpCallback;
     
     return $.ajax($.extend(true, options, {
       url: Drumbone.base_url + path,

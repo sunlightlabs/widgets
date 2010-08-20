@@ -24,7 +24,6 @@
   }
   
   // load interest groups
-  manualUpdate = true;
   var url = drumboneUrl(data_endpoint, "legislator", {
     apikey: sunlight_api_key, 
     sections: "ratings", 
@@ -64,8 +63,6 @@
     $.each(group_names, function(i) {
       $("#interest_groups").append("<option value=\"" + groups_by_name[group_names[i]] + "\">" + group_names[i] + "</option>");
     });
-    
-    updateSig(groups_by_name[group_names[0]]);
   });
   
   $("#interest_groups").change(function() {

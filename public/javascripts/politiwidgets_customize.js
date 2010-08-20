@@ -5,13 +5,10 @@ var disabledEmbed = false;
 
 // if the custom form will do a network request, trigger this to avoid a race condition between that network request and the document.ready callback below
 // make sure to call setupWidget at the end of that network request though
-var manualUpdate = false;
 
 $(function() {
   setEventHandlers();
-  
-  if (!manualUpdate)
-    updateFrame();
+  updateFrame();
 });
 
 

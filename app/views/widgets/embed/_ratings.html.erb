@@ -1,3 +1,25 @@
+<% content_for :head do %>
+  <script type="text/javascript" charset="utf-8">
+    $(function() {
+      var sig_id = "<%= params[:sig_id] || ""%>";
+      
+      if (!sig_id)
+        setAlert("This widget must be customized to a specific interest group before it can be displayed.");
+        
+      else {
+        var sections = ["basic","ratings.last_updated","ratings." + sig_id];
+        Drumbone.getLegislator(bioguide_id, sections, function(legislator) {
+          if (legislator) {
+            populateWidget(legislator, sig_id);
+            showWidget();
+          } else
+            setError("There was a problem loading this lawmaker's information.");
+        });
+      }
+    });
+  </script>
+<% end %>
+
 <div id="headerWrapper" style="background-color: #<%= params[:color] || "F6F5E8" %>">
   <div id="header">
     <h1>
@@ -19,56 +41,47 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-
-  var sig_id = "<%= params[:sig_id] || ""%>";
   
-  if (!sig_id)
-    setAlert("This widget must be customized to a specific interest group before it can be displayed.");
-    
-  else {
-    loadDrumboneWidget("legislator", ["basic","ratings.last_updated","ratings." + sig_id], {bioguide_id: bioguide_id}, function(data) {
-      var legislator = data.legislator;
-      var ratings = legislator.ratings;
-      var rating = ratings[sig_id];
-    
-      var legislator_district = "";
-      if (legislator.district == '0')
-        legislator_district = "AL";
-      else
-        legislator_district = legislator.district;
-    
-      var legislator_state = "";
-      if (legislator.title == "Sen")
-        legislator_state = legislator.state;
-      else
-        legislator_state = legislator.state + "-" + legislator_district;
-      
-      var legislator_party = "";
-      if (legislator.party == "R")
-        legislator_party = "Republican";
-      else if (legislator.party == "D")
-        legislator_party = "Democrat";
-      else
-        legislator_party = "Independent";
-      
-      var widget_data = {
-        title: longTitle(legislator),
-        full_name: fullName(legislator),
-        pic: profileImage(legislator.bioguide_id),
-        state_downcase: legislator.state.toLowerCase(),
-        state: legislator_state,
-        party: legislator_party,
-        rating_name: rating.name,
-        rating: rating.rating
-      };
-
-      $('div#pageMain').autoRender(widget_data);
-      
-      var votesmart_url = "http://votesmart.org/summary.php?can_id=" + legislator.votesmart_id;
-      var description = "Data provided by <a href=\"" + votesmart_url + "\" target=\"_blank\">Project Vote Smart</a>.  All ratings are for <%= Time.now.year - 1 %> or <%= Time.now.year %>.";
+  function populateWidget(legislator, sig_id) {
+    var ratings = legislator.ratings;
+    var rating = ratings[sig_id];
   
-      updateSource(ratings.last_updated, description);
-      
-    });
+    var legislator_district = "";
+    if (legislator.district == '0')
+      legislator_district = "AL";
+    else
+      legislator_district = legislator.district;
+  
+    var legislator_state = "";
+    if (legislator.title == "Sen")
+      legislator_state = legislator.state;
+    else
+      legislator_state = legislator.state + "-" + legislator_district;
+    
+    var legislator_party = "";
+    if (legislator.party == "R")
+      legislator_party = "Republican";
+    else if (legislator.party == "D")
+      legislator_party = "Democrat";
+    else
+      legislator_party = "Independent";
+    
+    var widget_data = {
+      title: longTitle(legislator),
+      full_name: fullName(legislator),
+      pic: profileImage(legislator.bioguide_id),
+      state_downcase: legislator.state.toLowerCase(),
+      state: legislator_state,
+      party: legislator_party,
+      rating_name: rating.name,
+      rating: rating.rating
+    };
+
+    $('div#pageMain').autoRender(widget_data);
+    
+    var votesmart_url = "http://votesmart.org/summary.php?can_id=" + legislator.votesmart_id;
+    var description = "Data provided by <a href=\"" + votesmart_url + "\" target=\"_blank\">Project Vote Smart</a>.  All ratings are for <%= Time.now.year - 1 %> or <%= Time.now.year %>.";
+
+    updateSource(ratings.last_updated, description);
   }
 </script>
