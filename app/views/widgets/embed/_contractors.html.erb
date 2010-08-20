@@ -1,3 +1,22 @@
+<% content_for :head do %>
+
+  <script type="text/javascript">
+    $(function() {
+      Drumbone.getLegislator(bioguide_id, ["basic", "contracts"], function(legislator) {
+        if (legislator) {
+          if (legislator.contracts) {
+            populateWidget(legislator);
+            showWidget();
+          } else
+            setAlert("We do not yet have any information on this lawmaker's district's federal contracts.");
+        } else
+          setError("There was a problem loading this lawmaker's information.");
+      });
+    });
+  </script>
+  
+<% end %>
+
 <div id="headerWrapper" style="background-color: #<%= params[:color] || "DDD9D7" %>">
   <div id="header">
     <h1>
@@ -24,10 +43,8 @@
 
   var description = "Data provided by <a href=\"http://www.usaspending.gov\" target=\"_blank\">USASpending.gov</a>.";
 
-  loadDrumboneWidget("legislator", ["basic", "contracts"], {bioguide_id: bioguide_id}, function(data) {
+  function populateWidget(legislator) {
 
-    var legislator = data.legislator;
-      
     var legislator_district = "";
     if (legislator.district == '0')
       legislator_district = "AL";
@@ -131,5 +148,5 @@
         data: top_amounts
         }]
       });
-  });
+  }
 </script>
