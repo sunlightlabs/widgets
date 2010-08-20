@@ -1,4 +1,6 @@
 div#header {  background: none; border-bottom: #CCC 1px solid;}
+div#vcard { background: none; border-top: #CCC 1px solid;}
+
 div#header img {position: relative;}
 body.lg div#mainContent {height: 145px;}
 body.lg div#vcard { height: 125px;}
@@ -34,3 +36,5 @@ body.lg a.youtube:hover { background: transparent url(images/social_icons_lg-8.p
 
 #contributor_names {padding-left: 23px;}
 body.contributions_sm h2 {background: url(/images/widgets/contributions/top-five-sm-8.png) top center no-repeat;}
+
+body.earmarks_lg div#mainContent, body.earmarks_med div#mainContent, body.earmarks_sm div#mainContent { background: #fff;}
