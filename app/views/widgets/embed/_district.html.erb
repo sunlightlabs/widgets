@@ -1,3 +1,29 @@
+<% content_for :bottom do %>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&callback=doneLoadingMap"></script>
+<% end %>
+
+<% content_for :head do %>
+  <script type="text/javascript">
+    
+    function doneLoadingMap() {
+      // The map is wildly distorted, in different ways on different browsers, 
+      // at medium size, for unknown reasons
+      if (size == 'med') 
+        setAlert("This widget cannot be used at this size.");
+      else {
+        Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
+          if (legislator) {
+            populateWidget(legislator);
+            showWidget();
+          } else
+            setError("There was a problem loading this lawmaker's information.");
+        });
+      }
+    }
+    
+  </script>
+<% end %>
+
 <div id="headerWrapper" style="background-color: #<%= params[:color] || "F6F5E8" %>">
   <div id="header">
     <% if params[:size] != 'sm' %>
@@ -19,43 +45,33 @@
   var description = "Information is from the US Census, and turned into map data by <a href=\"http://www.govtrack.us/embed/googlemaps.xpd\" target=\"_blank\">GovTrack.us</a>.";
   
   
-  function doneLoadingMap() {
-    // The map is wildly distorted, in different ways on different browsers, 
-    // at medium size, for unknown reasons
-    if (size == 'med') 
-      setAlert("This widget cannot be used at this size.");
-    else {
-      loadDrumboneWidget("legislator", ["basic"], {bioguide_id: bioguide_id}, function(data) {
-        var legislator = data.legislator;
-      
-        var legislator_district = "";
-        if (legislator.district == '0')
-          legislator_district = "AL";
-        else
-          legislator_district = legislator.district;
-      
-        var legislator_state = "";
-        if (legislator.title == "Sen")
-          legislator_state = legislator.state;
-        else
-          legislator_state = legislator.state + "-" + legislator_district;
-        
-        var widget_data = {
-          title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
-          full_name: fullName(legislator),
-          pic: profileImage(legislator.bioguide_id, "40x50"),
-          state_downcase: legislator.state.toLowerCase(),
-          state: legislator_state,
-          party: "(" + legislator.party + ")"
-        };
+  function populateWidget(legislator) {  
+    var legislator_district = "";
+    if (legislator.district == '0')
+      legislator_district = "AL";
+    else
+      legislator_district = legislator.district;
+  
+    var legislator_state = "";
+    if (legislator.title == "Sen")
+      legislator_state = legislator.state;
+    else
+      legislator_state = legislator.state + "-" + legislator_district;
+    
+    var widget_data = {
+      title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
+      full_name: fullName(legislator),
+      pic: profileImage(legislator.bioguide_id, "40x50"),
+      state_downcase: legislator.state.toLowerCase(),
+      state: legislator_state,
+      party: "(" + legislator.party + ")"
+    };
 
-        $('div#pageMain').autoRender(widget_data);
-        
-        displayMap(legislator);
-        
-        updateSource(legislator.last_updated, description);
-      });
-    }
+    $('div#pageMain').autoRender(widget_data);
+    
+    displayMap(legislator);
+    
+    updateSource(legislator.last_updated, description);
   }
   
   function displayMap(legislator) {      
