@@ -46,7 +46,7 @@ body.lg a.youtube:hover { background: transparent url(images/social_icons_lg-8.p
 body.contributions_sm h2 {background: url(/images/widgets/contributions/top-five-sm-8.png) top center no-repeat;}
 
 body.earmarks_lg div#mainContent, body.earmarks_med div#mainContent, body.earmarks_sm div#mainContent, body.sponsorships_lg div#mainContent, body.sponsorships_med div#mainContent, body.sponsorships_sm div#mainContent { background: #fff;}
-body.sponsorships_lg div#repInfo { width: 50px; border: 1px solid red; margin-left: 10px; max-width: auto; zoom: 1;}
+body.sponsorships_lg div#repInfo { width: 50px; border: 1px solid red; margin-left: 10px; max-width: 50px; }
 body.sponsorships_lg h1, body.sponsorships_lg #lawmakerMetadata { width: 50px;}
 body.sponsorships_lg div#header img { margin-left: 30px;}
 body.sponsorships_lg #bills-sponsored { background: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/widgets/sponsorships/bills-sponsored.png", sizingMethod="crop");}
