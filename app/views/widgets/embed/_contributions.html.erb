@@ -5,7 +5,7 @@
       
       TransparencyData.getEntityId(bioguide_id, function(entity_id) {
         if (entity_id == null)
-          setAlert("We do not have any contribution data for this lawmaker.");
+          setAlert("We do not yet have any information on this lawmaker's campaign contributions.");
         else {
         
           TransparencyData.topContributors(entity_id, cycle, function(top_contributors) {
