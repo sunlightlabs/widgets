@@ -1,16 +1,16 @@
-body.contributions_sm { 
+body.top_contributions_sm { 
 	width: 152px; 
 	height: 292px;
 	position: relative; 
 }
 
-body.contributions_med { 
+body.top_contributions_med { 
 	width: 292px; 
 	height: 242px; 
 	position: relative;
 }
 
-body.contributions_lg { 
+body.top_contributions_lg { 
 	width: 392px; 
 	height: 292px; 
 	position: relative;
@@ -22,11 +22,11 @@ body.contributions_lg {
 	background: #FFF;
 }
 
-body.contributions_med div#mainContent {
+body.top_contributions_med div#mainContent {
 	height: 135px;
 }
 
-body.contributions_lg div#mainContent { 
+body.top_contributions_lg div#mainContent { 
 	padding: 15px;
 	height: 165px;
 }
@@ -36,54 +36,54 @@ body.contributions_lg div#mainContent {
 }
 
 #header { 
-	background: url(/images/widgets/contributions/gradient_bill.png) bottom left repeat-x;
+	background: url(/images/widgets/top_contributions/gradient_bill.png) bottom left repeat-x;
 	padding: 15px; 
 }
 
-body.contributions_sm div#header {
+body.top_contributions_sm div#header {
 	height: 45px;
 	padding: 10px;
 }
 
-body.contributions_sm div#headerWrapper { 
+body.top_contributions_sm div#headerWrapper { 
 	height: 65px;
 }
 
-body.contributions_med div#header {
+body.top_contributions_med div#header {
 	height: 55px;
 	padding: 10px;
 }
 
-body.contributions_med div#headerWrapper{
+body.top_contributions_med div#headerWrapper{
 	height: 75px;
 }
 
-body.contributions_lg div#headerWrapper { 
+body.top_contributions_lg div#headerWrapper { 
 	height: 85px;
 }
 
-body.contributions_lg div#header {
+body.top_contributions_lg div#header {
 	height: 55px;
 }
 
-body.contributions_lg div#header img {
+body.top_contributions_lg div#header img {
 	border: 1px solid #BBBDBF;
 	margin-right: 10px;
 	float: left;
 }
 
-body.contributions_med div#header img {
+body.top_contributions_med div#header img {
 	border: 1px solid #BBBDBF;
 	margin: 0px 10px 0px 0px;
 	float: left;
 }
 
 
-body.contributions_sm #header span {
+body.top_contributions_sm #header span {
 	display: inline;
 }
 
-body.contributions_med h1 {
+body.top_contributions_med h1 {
 	line-height: 150%;
 }
 
@@ -91,7 +91,7 @@ h1 small, h1 big {
 	display: block;
 }
 
-body.contributions_sm h1 {
+body.top_contributions_sm h1 {
 	line-height: 100%;
 }
 
@@ -99,15 +99,15 @@ header span {
 	float: left;
 }
 
-body.contributions_med #lawmakerMetadata {
+body.top_contributions_med #lawmakerMetadata {
 	line-height: 150%;
 }
 
-body.contributions_sm #lawmakerMetadata {
+body.top_contributions_sm #lawmakerMetadata {
 	line-height: 115%;
 }
 
-body.contributions_sm h1 big {
+body.top_contributions_sm h1 big {
 	font-size: 100%;
 	font-weight: bold;
 	color: #191919;
@@ -115,11 +115,11 @@ body.contributions_sm h1 big {
 	text-transform: uppercase;
 }
 
-body.contributions_sm h1 small, body.contributions_sm h1 big {
+body.top_contributions_sm h1 small, body.top_contributions_sm h1 big {
 	display: inline;
 }
 
-body.contributions_lg #lawmakerMetadata {
+body.top_contributions_lg #lawmakerMetadata {
 	line-height: 140%;
 }
 
@@ -139,7 +139,7 @@ h1 small {
 	text-transform: uppercase;
 }	
 
-body.contributions_med h1 big {
+body.top_contributions_med h1 big {
 	font-size: 105%;
 }
 
@@ -148,30 +148,30 @@ span.party {
 }
 
 h2 {
-	background: url(/images/widgets/contributions/top-five.png) top center no-repeat;
+	background: url(/images/widgets/top_contributions/top-five.png) top center no-repeat;
 	height: 13px;
 	text-indent: -9999em;
 }
 
-body.contributions_sm h2 {
-	background: url(/images/widgets/contributions/top-five-sm.png) top center no-repeat;
+body.top_contributions_sm h2 {
+	background: url(/images/widgets/top_contributions/top-five-sm.png) top center no-repeat;
 	height: 10px;
 	text-indent: -9999em;
 }
 
-body.contributions_lg #chart-container-1 {
+body.top_contributions_lg #chart-container-1 {
 	width: 362px;
 	height: 157px;
 	overflow: hidden;
 }
 
-body.contributions_med #chart-container-1 {
+body.top_contributions_med #chart-container-1 {
 	width: 272px;
 	height: 135px;
 	overflow: hidden;
 }
 
-body.contributions_sm #chart-container-1 {
+body.top_contributions_sm #chart-container-1 {
 	width: 132px;
 	height: 120px;
 	overflow: hidden;

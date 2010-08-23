@@ -26,27 +26,39 @@
   :description: Some statistics on the bills a legislator has sponsored or cosponsored, relative to their colleagues.
   :custom: 
     :color: EBE9D4
-:earmarks:
+:contributions:
   :order: 5
+  :name: Campaign Contributions
+  :description: How much a particular person or organization contributed to a lawmaker, in the current election cycle.
+  :custom:
+    :color: E5EAE6
+:top_contributions:
+  :order: 6
+  :name: Top Contributions
+  :description: The top 5 contributors to a lawmaker, in the current election cycle.
+  :custom:
+    :color: EBE9D4
+:earmarks:
+  :order: 7
   :name: Earmarks
   :description: How many earmarks a lawmaker has received, relative to their colleagues.
   :custom: 
     :color: ECF9E9
-:contributions:
-  :order: 6
-  :name: Campaign Contributions
-  :description: The top 5 contributors to a lawmaker, in the current election cycle.
-  :custom:
-    :color: EBE9D4
 :ratings:
-  :order: 7
+  :order: 8
   :name: Interest Group Ratings
   :description: Rating received from a specific interest group.
   :custom: 
     :color: F6F5E8
 :district:
-  :order: 8
+  :order: 9
   :name: District Map
   :description: See a map of a legislator's district.
   :custom:
     :color: F6F5E8
+:parties:
+  :order: 10
+  :name: Party Time
+  :description: Past and upcoming fundraisers, courtesy of Party Time.
+  :custom:
+    :color: CFD1D1
