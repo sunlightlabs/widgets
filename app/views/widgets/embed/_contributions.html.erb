@@ -1,7 +1,7 @@
 <% content_for :head do %>  
   <script type="text/javascript">
     $(function() {
-      var contributing_entity = "<%= params[:contributing_entity] %>";
+      var contributor_entity = "<%= params[:contributor_entity] %>";
       
       var cycle = currentCycle();
       
@@ -15,16 +15,26 @@
               setAlert("We do not yet have any information on this lawmaker's campaign contributions.");
             else {
               
-              // load from top_contributors API by default
-              if (contributing_entity) {
-                setAlert(contributing_entity);
+              // load from pairwise API if entity id given for contributor
+              if (contributor_entity) {
+                TransparencyData.pairwiseContributionInfo(entity_id, contributor_entity, cycle, function(pairwise) {
+                  if (pairwise == null)
+                    setError("There was a problem loading contribution information for this lawmaker.");
+                  else {
+                  
+                    var entity_name = pairwise.contributor_name;
+                    var amount = pairwise.amount;
+                    populateWidget(legislator, cycle, entity_name, amount);
+                    showWidget();
+                  }
+                });
               } 
              
-              // load from pairwise API if entity id given for contributor
-              else { 
+              // load from top_contributors API otherwise
+              else {
                 TransparencyData.topContributors(entity_id, cycle, function(top_contributors) {
                   if (top_contributors == null || !top_contributors.length)
-                    setError("There was a problem loading contributions for this lawmaker.");
+                    setError("There was a problem loading contribution information for this lawmaker.");
                   else {
                   
                     var entity_name = top_contributors[0].name;
@@ -88,7 +98,6 @@
       legislator_district = legislator.district;
     
     var legislator_state = legislator.state + "-" + legislator_district;
-    
     
     
     $('div#pageMain').autoRender({

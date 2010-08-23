@@ -31,6 +31,18 @@ var TransparencyData = {
     });
   },
   
+  pairwiseContributionInfo: function(recipient_id, contributor_id, cycle, callback) {
+    return TransparencyData.getJSON("/aggregates/recipient/" + recipient_id + "/contributor/" + contributor_id + "/amount.json", {
+      data: {cycle: cycle},
+      success: function(data) {
+        if (data && data.contributor_entity && data.recipient_entity)
+          callback(data);
+        else
+          callback(null);
+      }
+    });
+  },
+  
   getJSON: function(path, options) {
     return $.ajax($.extend(true, options, {
       url: TransparencyData.base_url + path,
