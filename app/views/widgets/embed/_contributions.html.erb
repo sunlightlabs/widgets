@@ -1,0 +1,73 @@
+<% content_for :head do %>  
+  <script type="text/javascript">
+    $(function() {
+      var cycle = currentCycle();
+      
+      Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
+        if (legislator) {
+          populateWidget(legislator, null);
+          showWidget();
+        } else
+          setError("There was a problem loading this lawmaker's information.");
+      });
+      
+    });
+    
+  </script>
+<% end %>
+
+<div id="headerWrapper">
+  <div id="header">
+    <h1>
+      <small class="title"></small> 
+      <big class="full_name"></big>
+    </h1>
+    
+    <img alt="Picture of " src="" class="pic@src full_name@alt+" />
+    
+    <div class="california" id="lawmakerMetadata">
+      <span id="party" class="party"></span>
+      <span id="state" class="state"></span>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<div class="clear"></div>
+<div id="mainContent">
+  <h2>
+    Campaign Contributions from 
+    <strong class="entity_name">BP</strong>
+  </h2>
+  <span class="cycle">
+    <span class="year">2010</span>
+    Election Cycle
+  </span>
+  <span class="amount">$300,123</span>
+</div>
+
+<script type="text/javascript">
+  
+  function populateWidget(legislator) {
+    var crp_url = "http://www.opensecrets.org/politicians/summary.php?cid=" + legislator.crp_id;
+    
+    var description = "Data provided by <a href=\"http://transparencydata.com\" target=\"_blank\">TransparencyData</a>, calculated from numbers provided by the <a href=\"" + crp_url + "\" target=\"_blank\">Center for Responsive Politics</a>.";
+    
+    updateSource("2010-07-03", description);
+    
+    var legislator_district = "";
+    if (legislator.district == '0')
+      legislator_district = "AL";
+    else
+      legislator_district = legislator.district;
+    
+    var legislator_state = legislator.state + "-" + legislator_district;
+    
+    $('div#pageMain').autoRender({
+      title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
+      full_name: fullName(legislator),
+      pic: profileImage(legislator.bioguide_id, "100x125"),
+      state: legislator_state,
+      party: "(" + legislator.party + ")"
+    });
+  }
+</script>
