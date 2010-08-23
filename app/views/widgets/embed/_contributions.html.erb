@@ -1,16 +1,43 @@
 <% content_for :head do %>  
   <script type="text/javascript">
     $(function() {
+      var contributing_entity = "<%= params[:contributing_entity] %>";
+      
       var cycle = currentCycle();
       
       Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
-        if (legislator) {
-          populateWidget(legislator, null);
-          showWidget();
-        } else
+        if (legislator == null)
           setError("There was a problem loading this lawmaker's information.");
+        else {
+          
+          TransparencyData.getEntityId(bioguide_id, function(entity_id) {
+            if (entity_id == null)
+              setAlert("We do not yet have any information on this lawmaker's campaign contributions.");
+            else {
+              
+              // load from top_contributors API by default
+              if (contributing_entity) {
+                setAlert(contributing_entity);
+              } 
+             
+              // load from pairwise API if entity id given for contributor
+              else { 
+                TransparencyData.topContributors(entity_id, cycle, function(top_contributors) {
+                  if (top_contributors == null || !top_contributors.length)
+                    setError("There was a problem loading contributions for this lawmaker.");
+                  else {
+                  
+                    var entity_name = top_contributors[0].name;
+                    var amount = top_contributors[0].total_amount;
+                    populateWidget(legislator, cycle, entity_name, amount);
+                    showWidget();
+                  }
+                });
+              }
+            }
+          });
+        }
       });
-      
     });
     
   </script>
@@ -47,10 +74,10 @@
 
 <script type="text/javascript">
   
-  function populateWidget(legislator) {
+  function populateWidget(legislator, cycle, entity_name, amount) {
     var crp_url = "http://www.opensecrets.org/politicians/summary.php?cid=" + legislator.crp_id;
     
-    var description = "Data provided by <a href=\"http://transparencydata.com\" target=\"_blank\">TransparencyData</a>, calculated from numbers provided by the <a href=\"" + crp_url + "\" target=\"_blank\">Center for Responsive Politics</a>.";
+    var description = "Data provided by <a href=\"http://transparencydata.com\" target=\"_blank\">TransparencyData</a>, calculated from numbers provided by the <a href=\"" + crp_url + "\" target=\"_blank\">Center for Responsive Politics</a>, for the " + cycle + "election cycle.";
     
     updateSource("2010-07-03", description);
     
@@ -62,12 +89,18 @@
     
     var legislator_state = legislator.state + "-" + legislator_district;
     
+    
+    
     $('div#pageMain').autoRender({
       title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
       full_name: fullName(legislator),
       pic: profileImage(legislator.bioguide_id, "100x125"),
       state: legislator_state,
-      party: "(" + legislator.party + ")"
+      party: "(" + legislator.party + ")",
+      year: cycle,
+      amount: Highcharts.numberFormat(amount),
+      entity_name: entity_name
     });
+    
   }
 </script>

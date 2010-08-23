@@ -14,14 +14,14 @@
             else {
               
               Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
-                if (legislator) {
-                  populateWidget(legislator, top_contributors);
-                  showWidget();
-                } else
+                if (legislator == null)
                   setError("There was a problem loading this lawmaker's information.");
+                else {
+                  populateWidget(legislator, top_contributors);
+                  showWidget();     
+                }   
               });
             }
-            
           });
         }
       });
