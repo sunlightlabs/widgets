@@ -43,6 +43,21 @@ var TransparencyData = {
     });
   },
   
+  entitySearch: function(name, cycle, callback) {
+    return TransparencyData.getJSON("/entities.json", {
+      data: {
+          cycle: cycle, 
+          search: name
+      },
+      success: function(data) {
+        if (data)
+          callback(data);
+        else
+          callback(null);
+      }
+    });  
+  },
+  
   getJSON: function(path, options) {
     return $.ajax($.extend(true, options, {
       url: TransparencyData.base_url + path,

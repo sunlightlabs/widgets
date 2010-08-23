@@ -34,7 +34,7 @@
     :color: E5EAE6
 :top_contributions:
   :order: 6
-  :name: Top Contributions
+  :name: Top Contributors
   :description: The top 5 contributors to a lawmaker, in the current election cycle.
   :custom:
     :color: EBE9D4

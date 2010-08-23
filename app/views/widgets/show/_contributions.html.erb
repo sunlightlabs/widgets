@@ -1,7 +1,80 @@
-<script type="text/javascript">
+<fieldset class="custom">
+  <legend class="withTip">Search for a contributor:</legend>
+  <span class="tipText">e.g. "BP", "John Smith"</span>
+  <input type="text" id="entity_name" class="rtColumnInput" />
   
-  snapshot.method = "legislator";
-  snapshot.sections = ["basic", "contributions"];
-  snapshot.options = {bioguide_id: bioguide_id};
+  <button type="button" id="search_contributions" value="Search" class="noImage">
+    <span>Search</span>
+  </button>
+  
+  <div class="contributions_alert" style="display: none; color: #f00; font-size: 10pt; margin-bottom: 10px;"></div>
+  
+  <ul class="contributions_results" style="display: none">
+    <!-- example list item:
+    <li>
+      <input type="radio" name="entity_id" value="{ID of Entity}" class="entity_id" />
+      <label>
+        {Name of Entity}
+        <span>{Type of Entity}</span>
+      </label>
+    </li>
+    -->
+  </ul>
+</fieldset>
+
+<%= javascript_include_tag 'transparency_data' %>
+<script type="text/javascript">
+  TransparencyData.api_key = sunlight_api_key;
+  var cycle = currentCycle();
+  
+  
+  function updateContributor(contributor_entity) {
+    custom.contributor_entity = contributor_entity;
+    updateFrame();
+  }
+  
+  function setAlert(message) {
+    $("div.contributions_alert").html(message).show();
+  }
+  
+  $(function() {
+    $("#search_contributions").click(function() {
+      
+      $("div.contributions_alert").hide();
+      $("ul.contributions_results").html("");
+      
+      var name = $("#entity_name").val();
+      
+      TransparencyData.entitySearch(name, cycle, function(entities) {
+        if (entities == null)
+          setAlert("There was a problem loading contribution information.");
+        
+        else if (entities.length == 0)
+          setAlert("No matches found.");
+          
+        else {
+          
+          $.each(entities, function(i, entity) {
+            $("ul.contributions_results").append(itemFor(entity));
+          });
+          $("ul.contributions_results").show();
+        }
+      });
+    });
+    
+    $(".entity_id").live("click", function() {
+      updateContributor($(this).val());
+    });
+  });
+  
+  function itemFor(entity) {
+    return "<li>" + 
+      "<input type=\"radio\" name=\"entity_id\" id=\"entity_" + entity.id + "\" value=\"" + entity.id + "\" class=\"entity_id\" />" +
+      "<label for=\"entity_" + entity.id + "\">" +
+        entity.name + " " + 
+        "<span>" + entity.type + "</span>" +
+      "</label>" +
+    "</li>";
+  }
   
 </script>
