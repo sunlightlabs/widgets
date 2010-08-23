@@ -33,6 +33,19 @@ var Drumbone = {
       failure: function() {callback(null);}
     });
   },
+  
+  getRoll: function(roll_id, sections, callback) {
+    return Drumbone.getJSON("roll.json", sections, {
+      data: {roll_id: roll_id},
+      success: function(data) {
+        if (data && data.roll)
+          callback(data.roll);
+        else
+          callback(null);
+      },
+      failure: function() {callback(null);}
+    });
+  },
 
   getJSON: function(path, sections, options) {
     if (typeof(sections) == "object")

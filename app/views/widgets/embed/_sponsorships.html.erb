@@ -1,3 +1,22 @@
+<% content_for :head do %>
+
+  <script type="text/javascript">
+    $(function() {
+      Drumbone.getLegislator(bioguide_id, ["basic", "sponsorships"], function(legislator) {
+        if (legislator) {
+          if (legislator.sponsorships) {
+            populateWidget(legislator);
+            showWidget();
+          } else
+            setAlert("There was a problem loading this lawmaker's bill sponsorship information.");
+        } else
+          setError("There was a problem loading this lawmaker's information.");
+      });
+    });
+  </script>
+  
+<% end %>
+
 <div id="headerWrapper" style="background-color: #<%= params[:color] || "EBE9D4" %>">
   <div id="header">
     <% if @size == 'lg' -%>
@@ -45,9 +64,7 @@
 
 <script type="text/javascript" charset="utf-8">
 
-  loadDrumboneWidget("legislator", ["basic", "sponsorships"], {bioguide_id: bioguide_id}, function(data) {
-    var legislator = data.legislator;
-  
+  function populateWidget(legislator) {
     var legislator_district = "";
     if (legislator.district == '0')
       legislator_district = "AL";
@@ -172,7 +189,7 @@
         ]
     });
     
-  });
+  }
   
   function chamberFor(title) {
     return (title == 'Sen') ? "Senate" : "House";

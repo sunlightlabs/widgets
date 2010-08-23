@@ -93,9 +93,6 @@ function updateEmbedCode() {
 }
 
 /** 
- * Similar to the loadWidgets function in widget.js, this fetches JSON from Drumbone and 
- * posts it to the app server-side, for storage into S3.
- *
  * Depends on the "snapshot" hash being filled in with method, sections, and options in the 
  * widget-specific form partial.
  */

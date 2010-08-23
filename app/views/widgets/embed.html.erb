@@ -17,40 +17,6 @@
     Drumbone.api_key = sunlight_api_key;
     TransparencyData.api_key = sunlight_api_key;
     
-    
-    // The main widget loading function. If a snapshot_id is set, it'll use that, otherwise, 
-    // it'll use the given Drumbone parameters to pull from the live site.
-    function loadWidget(url, callback) {
-      // override URL if a snapshot ID is present
-      if (snapshot_id)
-        url = snapshotUrl(snapshot_directory, snapshot_id);
-        
-      return $.ajax({
-        url: url,
-        dataType: "jsonp",
-        jsonpCallback: "politiwidgetsCallback",
-        
-        success: function(data) {
-          if (data.error)
-            setError("Error loading widget.<br/><br/>Error message: " + data.error.code + " - " + data.error.message);
-          else
-            callback(data);
-          
-          showWidget();
-        }
-        
-      });
-    }
-    
-    function loadDrumboneWidget(method, sections, options, callback) {
-      var url = drumboneUrl(data_endpoint, method, $.extend(options, {
-        apikey: sunlight_api_key,
-        sections: sections.join(",")
-      }));
-      
-      loadWidget(url, callback);
-    }
-    
     function showWidget() {
       $("div#sources a.sourceText").toggle(
         function(){

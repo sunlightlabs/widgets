@@ -1,3 +1,19 @@
+<% content_for :head do %>
+
+  <script type="text/javascript">
+    $(function() {
+      Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
+        if (legislator && legislator.bioguide_id) {
+          populateWidget(legislator);
+          showWidget();
+        } else
+          setError("There was a problem loading this lawmaker's information.");
+      });
+    });
+  </script>
+  
+<% end %>
+
 <div id="header">
   <h1>
     <small class="title"></small><big class="full_name"></big>
@@ -35,9 +51,7 @@
 
   var description = "Data by <a href=\"http://sunlightlabs.com\" target=\"_blank\">Sunlight Labs</a>, collected through the <a href=\"http://services.sunlightlabs.com/docs/Sunlight_Congress_API/\" target=\"_blank\">Sunlight Labs Congress API</a>.";
   
-  loadDrumboneWidget("legislator", ["basic"], {bioguide_id: bioguide_id}, function(data) {
-    var legislator = data.legislator;
-  
+  function populateWidget(legislator) {
     var legislator_title = "";
     switch (legislator.title) {
       case 'Sen': legislator_title = "Senator"; break;
@@ -83,5 +97,5 @@
     });
     
     updateSource(legislator.last_updated, description);
-  });
+  }
 </script>
