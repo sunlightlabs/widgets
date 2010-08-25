@@ -28,6 +28,8 @@ body.sm h2 { font-size: 100%; line-height: 15px; }
 
 strong { font-weight: bold; display: block; font-size: 120%; margin-top: 5px; line-height: 18px;}
 
+a.ie_url {color: #5A5A5A}
+
 body.sm img { max-width: 62px; margin-right: 0px;}
 body.med img { max-width: 80px; }
 img { border: 2px solid #E0DEDE; float: left; margin-right: 15px;}
