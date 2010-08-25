@@ -9,10 +9,9 @@
   <div id="vote_error" style="display: none; color: #f00; font-size: 10pt; margin-bottom: 10px;"></div>
   
   <div id="vote_results" style="display: none">
-    <span id="bill_title" style="font-size: 10pt; font-weight: bold"></span>
-    <br/><br/>
+    <h4 id="bill_title"></h4>
     <span id="bill_chamber" style="font-size: 10pt"></span>
-    <ul id="vote_list" style="margin-top: 5px"></ul>
+    <ul id="vote_list" class="refineResults"></ul>
   </div>
 </fieldset>
 
@@ -107,6 +106,7 @@
             html += "<li>";
             html += "<input " + disabled + "type=\"radio\" name=\"roll_id\" class=\"roll_id\" value=\"" + vote.roll_id + "\" id=\"roll_" + vote.roll_id + "\"/> ";
             html += "<label " + greyed + "for=\"roll_" + vote.roll_id + "\">" + date + " - " + result + " by " + how + "</label>";
+            html += "<div class='clear'></div>";
             html += "</li>";
           });
           

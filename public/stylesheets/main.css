@@ -118,6 +118,8 @@ body.home h2 {
 	margin-bottom: 10px;
 }
 
+h4 { font-size: 115%; color: #C96F2A; margin-top: 30px; margin-bottom: 15px;}
+
 
 #nav { padding-top: 36px; text-transform: uppercase;}
 div#nav li { float: right; }
@@ -331,6 +333,11 @@ a#freezeExplainShow {
 	color: #C96F2A;
 }
 
+#rightWidgetColumn .refineResults input.entity_id, #rightWidgetColumn .refineResults input.roll_id { float: left; width: 15px; margin-right: 10px; margin-top: 3px;}
+#rightWidgetColumn .refineResults label { display: block; font-weight: normal; width: 160px;}
+#rightWidgetColumn .refineResults li { margin-bottom: 10px; }
+#rightWidgetColumn .refineResults label span { font-style: oblique; font-size: 90%; display: block; color: #9d9999;}
+
 .new {
   background: url(/images/site/img-new.png) top left no-repeat;
   display: block;
@@ -374,7 +381,7 @@ a#freezeExplainShow {
 }
 
 #mainTable {
-	width: 700px;
+  width: 700px;
   margin-bottom: 30px;
 }
 
@@ -384,29 +391,13 @@ tr#titles th{
 	border-bottom:1px solid #B8CED8;
 }
 
-table#mainTable th.asc, table#mainTable th.desc, table#mainTable th.hover {
-  color: #5FB9E2;
-}
+table#mainTable th.asc, table#mainTable th.desc, table#mainTable th.hover { color: #5FB9E2; }
+table#mainTable th.sortable { background: url(/images/site/sortArrows.png) left 5px no-repeat; }
+table#mainTable th.desc { background: url(/images/site/img-arrow-down.png) left 5px no-repeat; }
+table#mainTable th.asc { background: url(/images/site/img-arrow-up.png) left 5px no-repeat; }
 
-table#mainTable th.sortable {
-  background: url(/images/site/sortArrows.png) left 5px no-repeat;
-}
-
-table#mainTable th.desc {
-	background: url(/images/site/img-arrow-down.png) left 5px no-repeat;
-}
-
-table#mainTable th.asc {
-	background: url(/images/site/img-arrow-up.png) left 5px no-repeat;
-}
-
-#photoLabel {
-	color: #1D77A0;
-}
-
-#repPhoto {
-	text-indent: -9999em;
-}
+#photoLabel { color: #1D77A0; }
+#repPhoto { text-indent: -9999em; }
 
 tr.lawMaker {
 	padding-right: 10px;
@@ -417,10 +408,8 @@ tr.lawMaker {
 	font-weight: bold;
   cursor: pointer;
 }
-
 tr.lawMaker.hover { background: url(/images/site/img-list-hover-bg.jpg) top left repeat-x; }
 .lawName a:hover { color: #1D77A0; font-weight: bold; text-decoration: none;}
-
 td { padding-left: 20px; }
 
 
@@ -512,10 +501,8 @@ button { text-indent: -9999em; display: block; border: none; cursor: pointer; }
 a.start { background: url(/images/site/button-startbuilding.png) top left no-repeat; display: block; height: 81px; width: 240px; margin-top: 10px; text-indent: -9999em; float: left;}
 a.start:hover { background: url(/images/site/button-startbuilding.png) left -81px no-repeat; }
 
-button.noImage { text-indent: 0; padding: 7px 20px 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; margin-top: 20px;}
-
-#updateColor, #find_bill { color: #FFF; background-color: #E26E1E; cursor: pointer; font-weight: bold; }
-#updateColor:hover, #find_bill:hover { background-color: #0178A2; }
+button.noImage { text-indent: 0; padding: 7px 20px 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; margin-top: 20px; color: #FFF; background-color: #E26E1E; cursor: pointer; font-weight: bold;}
+button.noImage:hover { background-color: #0178A2;}
 
 .submit { background: url(/images/site/btn-search.jpg) top left no-repeat; width: 88px; height: 26px; float: left; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
 .submit:hover { background: url(/images/site/btn-search.jpg) left -27px no-repeat; }
