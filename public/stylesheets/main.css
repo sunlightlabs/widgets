@@ -333,7 +333,7 @@ a#freezeExplainShow {
 	color: #C96F2A;
 }
 
-#rightWidgetColumn .refineResults input.entity_id, #rightWidgetColumn .refineResults input.roll_id { float: left; width: 15px; margin-right: 10px; margin-top: 3px;}
+#rightWidgetColumn .refineResults input.entity_id, #rightWidgetColumn .refineResults input.roll_id { float: left; width: 15px; margin-right: 10px; margin-top: 3px; border: none;}
 #rightWidgetColumn .refineResults label { display: block; font-weight: normal; width: 160px;}
 #rightWidgetColumn .refineResults li { margin-bottom: 10px; }
 #rightWidgetColumn .refineResults label span { font-style: oblique; font-size: 90%; display: block; color: #9d9999;}
