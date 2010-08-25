@@ -3,7 +3,7 @@ class WidgetsController < ApplicationController
   before_filter :load_legislator, :only => :show
   
   def embed
-    render :layout => "embed"
+    render :layout => "widget"
   end
   
   def show; end

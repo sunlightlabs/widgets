@@ -1,7 +1,26 @@
+<% content_for :head do %>
+
+  <script type="text/javascript">
+    $(function() {
+      Drumbone.getLegislator(bioguide_id, ["basic", "contracts"], function(legislator) {
+        if (legislator) {
+          if (legislator.contracts) {
+            populateWidget(legislator);
+            showWidget();
+          } else
+            setAlert("We do not yet have any information on this lawmaker's district's federal contracts.");
+        } else
+          setError("There was a problem loading this lawmaker's information.");
+      });
+    });
+  </script>
+  
+<% end %>
+
 <div id="headerWrapper" style="background-color: #<%= params[:color] || "DDD9D7" %>">
   <div id="header">
     <h1>
-      <big>Top 5 Contractors</big><small>in <span class="state"></span><span id="year"> for FY2009</span></small>
+      <big>Top 5 Contractors</big><small>in <span class="state"></span><span class="fiscal_year" id="year"></span></small>
     </h1>
     <div id="districtMap">
       <% if params[:size] != 'sm' -%>
@@ -22,12 +41,10 @@
 
 <script type="text/javascript" charset="utf-8">
 
-  var description = "Data provided by <a href=\"http://www.usaspending.gov\" target=\"_blank\">USASpending.gov</a>.";
-
-  loadDrumboneWidget("legislator", ["basic", "contracts"], {bioguide_id: bioguide_id}, function(data) {
-
-    var legislator = data.legislator;
-      
+  function populateWidget(legislator) {
+    var fiscal_year = legislator.contracts.fiscal_year;
+    var description = "Data valid for FY" + fiscal_year + ", provided by <a href=\"http://www.usaspending.gov\" target=\"_blank\">USASpending.gov</a>.";
+    
     var legislator_district = "";
     if (legislator.district == '0')
       legislator_district = "AL";
@@ -47,8 +64,8 @@
       pic: pic_filename,
       state_downcase: legislator.state.toLowerCase(),
       state: legislator_state,
-      party: "(" + legislator.party + ")"
-      // fiscal_year: legislator.contracts.fiscal_year
+      party: "(" + legislator.party + ")",
+      fiscal_year: " for FY" + fiscal_year
     };
 
     $('div#header').autoRender(widget_data);
@@ -131,5 +148,5 @@
         data: top_amounts
         }]
       });
-  });
+  }
 </script>

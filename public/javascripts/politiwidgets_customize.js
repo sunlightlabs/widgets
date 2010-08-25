@@ -5,13 +5,10 @@ var disabledEmbed = false;
 
 // if the custom form will do a network request, trigger this to avoid a race condition between that network request and the document.ready callback below
 // make sure to call setupWidget at the end of that network request though
-var manualUpdate = false;
 
 $(function() {
   setEventHandlers();
-  
-  if (!manualUpdate)
-    updateFrame();
+  updateFrame();
 });
 
 
@@ -96,9 +93,6 @@ function updateEmbedCode() {
 }
 
 /** 
- * Similar to the loadWidgets function in widget.js, this fetches JSON from Drumbone and 
- * posts it to the app server-side, for storage into S3.
- *
  * Depends on the "snapshot" hash being filled in with method, sections, and options in the 
  * widget-specific form partial.
  */

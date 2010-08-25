@@ -4,14 +4,20 @@
   <script type="text/javascript">
     $().ready(function() {  
 
-      $('tr.lawMaker').mouseenter(function() {
+      $('tr.lawMaker').hover(function() {
         $(this).addClass('hover');
-      }).mouseleave(function() {
+      }, function() {
         $(this).removeClass('hover');
       }).click(function() {
         var url = $(this).find('a').attr('href');
         if (url)
             window.location = url;
+      });
+      
+      $("th.sortable").hover(function() {
+        $(this).addClass('hover');
+      }, function() {
+        $(this).removeClass('hover');
       });
       
       $('#mainTable').tablesorter({
@@ -20,11 +26,10 @@
         cssDesc: "desc",
         textExtraction: function(node) {
           var contents = _.compact($.trim($(node).text()).split(' '));
-          if ($(node).hasClass("lawName")) {
+          if ($(node).hasClass("lawName"))
             return _.last(contents) + " " + _.first(contents);
-          } else {
+          else
             return _.first(contents) + " ";
-          }
         },
         headers: {0: {sorter: false}}
       });
@@ -42,10 +47,10 @@
     <thead>
       <tr id="titles">
         <th id="repPhoto">Photo</th>
-        <th>Position</th>
-        <th>Name</th>
-        <th>Party</th>
-        <th>District</th>
+        <th class="sortable">Position</th>
+        <th class="sortable">Name</th>
+        <th class="sortable">Party</th>
+        <th class="sortable">District</th>
       </tr>
     </thead>
   

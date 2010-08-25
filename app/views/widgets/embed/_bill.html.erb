@@ -1,3 +1,40 @@
+<% content_for :head do %>
+
+  <script type="text/javascript">
+    <% # done here because it's widget-specific, can't be done in the controller
+      roll_id = nil
+      if params[:roll_id]
+        roll_id = params[:roll_id]
+      elsif params[:title] == 'Sen'
+        roll_id = @widget[:custom][:roll_id][:senate]
+      else
+        roll_id = @widget[:custom][:roll_id][:house]
+      end
+    %>
+    
+    var roll_id = "<%= roll_id %>";
+    var sections = ["basic", "bill", "party_vote_breakdown", "voters." + bioguide_id];
+    
+    $(function() {
+      Drumbone.getRoll(roll_id, sections, function(roll) {
+        if (roll) {
+          if (roll.voters && roll.voters[bioguide_id]) {
+            legislator = roll.voters[bioguide_id].voter;
+            vote = roll.voters[bioguide_id].vote;
+            populateWidget(vote, roll, roll.bill, legislator);
+            showWidget();
+          }
+          else
+            setAlert("This representative has no recorded vote for this bill.");
+          
+        } else
+          setError("There was a problem loading this lawmaker's information.");
+      });
+    });
+  </script>
+  
+<% end %>
+
 <div id="headerWrapper" style="background-color: #<%= params[:color] || "DDD9D7" %>">
   <div id="header">
     <h1 class="right">
@@ -46,30 +83,7 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-  <% # done here because it's widget-specific, can't be done in the controller
-    roll_id = nil
-    if params[:roll_id]
-      roll_id = params[:roll_id]
-    elsif params[:title] == 'Sen'
-      roll_id = @widget[:custom][:roll_id][:senate]
-    else
-      roll_id = @widget[:custom][:roll_id][:house]
-    end
-  %>
-  
-  var roll_id = "<%= roll_id %>";
-  var sections = ["basic", "bill", "party_vote_breakdown", "voters." + bioguide_id];
-  
-  loadDrumboneWidget("roll", sections, {roll_id: roll_id}, function(data) {
-    
-    // legislator info
-    var legislator;
-    if (data.roll.voters[bioguide_id])
-      legislator = data.roll.voters[bioguide_id].voter;
-    else {
-      setAlert("This representative has no recorded vote for this bill.");
-      return;
-    }
+  function populateWidget(vote, roll, bill, legislator) {
     var legislator_district = "";
     if (legislator.district == '0')
       legislator_district = "AL";
@@ -102,18 +116,12 @@
 
     $('div#repInfo').autoRender(legislator_data);
     
-    // bill info
-    var bill = data.roll.bill;
-    
     var bill_data = {
       short_title: bill.short_title,
       bill_code: bill.type.toUpperCase() + " " + bill.number
     };
     $('div#header').autoRender(bill_data);
     
-    
-    // roll info
-    var roll = data.roll;
     
     var roll_data = {
         ayes: roll.vote_breakdown.ayes,
@@ -131,7 +139,6 @@
       };
     $('div#voteTotals').autoRender(roll_data);
     
-    var vote = data.roll.voters[bioguide_id].vote;
     var vote_map = {
       '+': {legislator_vote_value: "Aye", legislator_vote_class: "aye"},
       '-': {legislator_vote_value: "Nay", legislator_vote_class: "nay"},
@@ -223,6 +230,7 @@
       }, 
       series: series
     });
-  });
+    
+  }
   
 </script>

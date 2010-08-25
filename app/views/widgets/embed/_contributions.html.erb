@@ -1,88 +1,95 @@
-<% content_for :head do %>
-  <%= javascript_include_tag 'transparency_data' %>
+<% content_for :head do %>  
   <script type="text/javascript">
-    TransparencyData.api_key = sunlight_api_key;
-    var cycle = currentCycle();
-    
-    TransparencyData.getEntityId(bioguide_id, function(entity_id) {
-      if (entity_id == null)
-        setAlert("We do not have any contribution data for this lawmaker.");
+    $(function() {
+      var contributor_entity = "<%= params[:contributor_entity] %>";
       
-      else {
-        TransparencyData.topContributors(entity_id, cycle, function(top_contributors) {
-          if (top_contributors == null)
-            setError("There was a problem loading contributions for this lawmaker.");
-          else {
+      var cycle = currentCycle();
+      
+      Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
+        if (legislator == null)
+          setError("There was a problem loading this lawmaker's information.");
+        else {
           
-            $.ajax({
-              url: drumboneUrl(data_endpoint, "legislator"),
-              data: {
-                bioguide_id: bioguide_id,
-                apikey: sunlight_api_key,
-                sections: "basic"
-              },
-              dataType: "jsonp",
-              jsonpCallback: "politiwidgetsCallback",
+          TransparencyData.getEntityId(bioguide_id, function(entity_id) {
+            if (entity_id == null)
+              setAlert("We do not yet have any information on this lawmaker's campaign contributions.");
+            else {
               
-              success: function(data) {
-                if (!(data && data.legislator))
-                  setError("There was a problem loading this lawmaker's information.");
+              // load from pairwise API if entity id given for contributor
+              if (contributor_entity) {
+                TransparencyData.pairwiseContributionInfo(entity_id, contributor_entity, cycle, function(pairwise) {
+                  if (pairwise == null)
+                    setError("There was a problem loading contribution information for this lawmaker.");
+                  else {
                   
-                else {
-                  populateWidget(data.legislator, top_contributors);
-                  showWidget();
-                }
+                    var entity_name = pairwise.contributor_name;
+                    var amount = pairwise.amount;
+                    populateWidget(legislator, cycle, entity_name, amount);
+                    showWidget();
+                  }
+                });
+              } 
+             
+              // load from top_contributors API otherwise
+              else {
+                TransparencyData.topContributors(entity_id, cycle, function(top_contributors) {
+                  if (top_contributors == null || !top_contributors.length)
+                    setError("There was a problem loading contribution information for this lawmaker.");
+                  else {
+                  
+                    var entity_name = top_contributors[0].name;
+                    var amount = top_contributors[0].total_amount;
+                    populateWidget(legislator, cycle, entity_name, amount);
+                    showWidget();
+                  }
+                });
               }
-            });
-          }
-          
-        });
-      }
-      
+            }
+          });
+        }
+      });
     });
     
   </script>
 <% end %>
 
-<div id="headerWrapper" style="background-color: #<%= params[:color] || "EBE9D4" %>">
+<div id="headerWrapper">
   <div id="header">
-    <% if params[:size] != 'sm' %>
-      <img alt="Picture of " src="" class="pic@src full_name@alt+" />
-    <% end %>
-    
     <h1>
       <small class="title"></small> 
       <big class="full_name"></big>
     </h1>
     
+    <img alt="Picture of " src="" class="pic@src full_name@alt+" />
+    
     <div class="california" id="lawmakerMetadata">
       <span id="party" class="party"></span>
       <span id="state" class="state"></span>
     </div>
-    
     <div class="clear"></div>
-  </div> <!-- end header -->
-  <div id="mainContent">
-    <h2>Top 5 Contributors</h2>
-    <div id="chart-container-1"></div>
-    <% if params[:size] == 'sm' %>
-      <ol id="key">
-        <li class="contributors name"></li>
-      </ol>
-    <% end %>
   </div>
+</div>
+<div class="clear"></div>
+<div id="mainContent">
+  <h2>
+    Campaign Contributions from 
+    <strong class="entity_name">BP</strong>
+  </h2>
+  <span class="cycle">
+    <span class="year">2010</span>
+    Election Cycle
+  </span>
+  <span class="amount">$300,123</span>
 </div>
 
 <script type="text/javascript">
-
-  function populateWidget(legislator, top_contributors) {
   
+  function populateWidget(legislator, cycle, entity_name, amount) {
     var crp_url = "http://www.opensecrets.org/politicians/summary.php?cid=" + legislator.crp_id;
     
-    var description = "Data provided by <a href=\"http://transparencydata.com\" target=\"_blank\">TransparencyData</a>, calculated from numbers provided by the <a href=\"" + crp_url + "\" target=\"_blank\">Center for Responsive Politics</a>.";
+    var description = "Data provided by <a href=\"http://transparencydata.com\" target=\"_blank\">TransparencyData</a>, calculated from numbers provided by the <a href=\"" + crp_url + "\" target=\"_blank\">Center for Responsive Politics</a>, for the " + cycle + " election cycle.";
     
     updateSource("2010-07-03", description);
-    
     
     var legislator_district = "";
     if (legislator.district == '0')
@@ -92,113 +99,17 @@
     
     var legislator_state = legislator.state + "-" + legislator_district;
     
+    
     $('div#pageMain').autoRender({
       title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
       full_name: fullName(legislator),
-      pic: profileImage(legislator.bioguide_id, "40x50"),
+      pic: profileImage(legislator.bioguide_id, "100x125"),
       state: legislator_state,
-      party: "(" + legislator.party + ")"
+      party: "(" + legislator.party + ")",
+      year: cycle,
+      amount: Highcharts.numberFormat(amount),
+      entity_name: entity_name
     });
     
-    var top_names = [];
-    var top_amounts = [];
-    var name_objects = [];
-    
-    for (var i = 0; i < 5; i++) {
-      top_names[i] = top_contributors[i].name;
-      name_objects[i] = {name: top_contributors[i].name.substring(0,15)};
-      top_amounts[i] = parseFloat(top_contributors[i].total_amount);
-    }
-    
-    var names = top_names;
-    if (size == 'sm') {
-      names = ['1', '2', '3', '4', '5'];
-      $('ol#key').autoRender({"contributors": name_objects});
-    }
-    
-    var dimensions = {};
-    if (size == 'lg') {
-      dimensions.width = 350;
-      dimensions.height = 155;
-      dimensions.maxPadding = 0.3;
-      dimensions.margin = [10, 15, 0, 120];
-    } else if (size == 'med') {
-      dimensions.width = 260;
-      dimensions.height = 115;
-      dimensions.maxPadding = 0.3;
-      dimensions.margin = [10, 10, 10, 120];
-    } else {      
-      dimensions.width = 110;
-      dimensions.height = 115;
-      dimensions.margin = [10, 5, 15, 15];
-      dimensions.maxPadding = 0.7;
-      categories = ['1', '2', '3', '4', '5'];
-    }    
-    
-
-    $(document).ready(function() {
-      var chart1 = new Highcharts.Chart({
-        chart: {
-          renderTo: 'chart-container-1',
-          defaultSeriesType: 'bar',
-          width: dimensions.width,
-          height: dimensions.height,
-          margin: dimensions.margin
-        },
-
-        title: {
-          text: " ",
-          style: {
-            display: 'none',
-            position: 'absolute',
-            left: '0',
-            top: '0'
-          }
-        },
-
-        xAxis: {
-          categories: names,
-          labels: {
-            formatter: function() {
-              return this.value.substring(0,17);
-            }
-          }
-        },
-
-        yAxis: {
-          title: null,
-          maxPadding: dimensions.maxPadding,
-          gridLineWidth: 0,
-          labels: {
-            enabled: false
-          }          
-        },
-        colors: ['#96BD6A'],
-        credits: { enabled: false },
-        plotOptions: {
-          bar: {
-            dataLabels: {
-              enabled: true,
-              color: 'auto',
-              y: 0,
-              formatter: function() {
-                return '$' + Highcharts.numberFormat(this.y, 0);
-              }
-            }
-          }
-        },
-        tooltip: {
-          formatter: function() {
-            return '<b>' + this.x +'</b><br/>$' + Highcharts.numberFormat(this.y, 0) + '';
-          }
-        }, 
-        legend: { enabled: false },
-        series: [{
-          name: '',
-          data: top_amounts
-        }]
-      });
-    });    
   }
-  
 </script>

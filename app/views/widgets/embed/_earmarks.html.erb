@@ -1,3 +1,22 @@
+<% content_for :head do %>
+  <script type="text/javascript">
+    $(function() {
+      
+      Drumbone.getLegislator(bioguide_id, "basic,earmarks", function(legislator) {
+        if (legislator) {
+          if (legislator.earmarks) {
+            populateWidget(legislator);
+            showWidget();
+          } else
+            setAlert("We do not yet have any information on this legislator's earmarks.");
+        } else
+          setError("There was a problem loading this lawmaker's information."); 
+      });
+      
+    });
+  </script>
+<% end %>
+
 <div id="headerWrapper" style="background-color: #<%= params[:color] || "ECF9E9" %>">
   <div id="header">
     <% unless @size == 'sm' -%>
@@ -17,35 +36,36 @@
   <div id="mainContent">
     <h2>FY<span class="fiscal_year"></span> EARMARKS</h2>
     <% if @size == 'sm' -%>
-    <div id="chart-container-1"></div> <!-- end chart-container -->
-    <div id="leftBox">
-      <dl>
-        <dd>Granted <span>to Lawmaker</span></dd>
-        <dt id="granted" class="earmarks_granted"></dt>
-      </dl>
-    </div>
-    <div id="rightBox">
-      <dl>
-        <dd>Average <span>for</span> <span class="chamber"></span></dd>
-        <dt id="average" class="earmark_avg"></dt>
-      </dl>
-    </div>
-    <div class="clear"></div>
+      <div id="chart-container-1"></div> <!-- end chart-container -->
+      <div id="leftBox">
+        <dl>
+          <dd>Granted <span>to Lawmaker</span></dd>
+          <dt id="granted" class="earmarks_granted"></dt>
+        </dl>
+      </div>
+      <div id="rightBox">
+        <dl>
+          <dd>Average <span>for</span> <span class="chamber"></span></dd>
+          <dt id="average" class="earmark_avg"></dt>
+        </dl>
+      </div>
+      <div class="clear"></div>
     
     <% else -%>
     
-    <dl>
-      <dt id="granted" class="earmarks_granted"></dt>
-      <dd>Granted <span>to</span> <span class="full_name"></span></dd>
-    </dl>  
-    <div class="clear"></div>
-    
-    <div id="chart-container-1"></div>
-    
-    <dl>
-      <dt id="average" class="earmark_avg"></dt>
-      <dd>Average <span>for</span> <span class="chamber"></span></dd>
-    </dl>  
+      <dl>
+        <dt id="granted" class="earmarks_granted"></dt>
+        <dd>Granted <span>to</span> <span class="full_name"></span></dd>
+      </dl>  
+      <div class="clear"></div>
+      
+      <div id="chart-container-1"></div>
+      
+      <dl>
+        <dt id="average" class="earmark_avg"></dt>
+        <dd>Average <span>for</span> <span class="chamber"></span></dd>
+      </dl>
+      
     <% end -%>
   </div> <!-- end mainContent -->
 </div> <!-- end headerWrapper -->
@@ -54,10 +74,8 @@
 
   var description = "Data provided by <a href=\"http://www.taxpayer.net\" target=\"_blank\">Taxpayers for Common Sense</a>.";
 
-  loadDrumboneWidget("legislator", ["basic", "earmarks"], {bioguide_id: bioguide_id}, function(data) {
-    var legislator = data.legislator;
+  function populateWidget(legislator) {
     var earmarks = legislator.earmarks;
-  
   
     var legislator_district = "";
     if (legislator.district == '0')
@@ -198,11 +216,10 @@
       legend: { enabled: false },
       series: series
     });
-  });
+  }
   
   function chamberFor(title) {
     return (title == 'Sen') ? "Senate" : "House";
   }
   
 </script>
-
