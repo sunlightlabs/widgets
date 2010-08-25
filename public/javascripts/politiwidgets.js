@@ -3,6 +3,11 @@ function profileImage(bioguide, size) {
   return "http://assets.sunlightfoundation.com/moc/" + size + "/" + bioguide + ".jpg";
 }
 
+function influenceExplorerUrl(entity_name, entity_id, cycle) {
+  var entity_slug = entity_name.replace(/[^a-zA-Z]/g, "-");
+  return "http://influenceexplorer.com/organization/" + entity_slug + "/" + entity_id + "?cycle=" + cycle;
+}
+
 // automatically slides the session up based on the year
 function currentSession() {
   return Math.floor(((standardYear(new Date()) + 1) / 2) - 894)

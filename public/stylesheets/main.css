@@ -457,6 +457,7 @@ div.changeResults img { margin-right: 10px; float: left; border: 1px solid #E0DE
 
 #lawText { width: 280px; }
 
+a.underline {text-decoration: underline}
 
 /* forms */
 

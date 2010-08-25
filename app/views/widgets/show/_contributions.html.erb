@@ -15,7 +15,9 @@
       <li>
         <input type="radio" name="entity_id" value="{ID of Entity}" class="entity_id" />
         <label>
-          {Name of Entity}
+          <a href="{Influence Explorer URL for Entity}">
+            {Name of Entity}
+          </a>
           <span>{Type of Entity}</span>
         </label>
       </li>
@@ -74,7 +76,9 @@
     return "<li>" + 
       "<input type=\"radio\" name=\"entity_id\" id=\"entity_" + entity.id + "\" value=\"" + entity.id + "\" class=\"entity_id\" />" +
       "<label for=\"entity_" + entity.id + "\">" +
-        entity.name + " " + 
+        "<a class=\"underline\" href=\"" + influenceExplorerUrl(entity.name, entity.id, cycle) + "\">" +
+          entity.name + 
+        "</a> " + 
         "<span>" + entity.type + "</span>" +
       "</label>" +
       "<div class='clear'></div>" +
