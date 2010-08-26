@@ -50,21 +50,26 @@
   </div>  
 </div>
 <div id="mainContent">
-  <div id="repInfo">
-    <div id="lamaker_metaData" class="right">
-      <% unless params[:size] == 'sm' %>
-        <img alt="Picture of " src="" class="pic@src full_name@alt+" width="40px" />
-      <% end %>
-      
-      <h2><small class="title"></small> <big class="full_name"></big></h2>
-      <span id="party" class="party party_long@class"></span>
-      <span id="stateDistrict" class="state"></span>
+  <div id="rep" class="right">
+    <% unless params[:size] == 'sm' %>
+      <img alt="Picture of " src="" class="pic@src full_name@alt+" width="40px" />
+    <% end %>
+    <div id="repInfo">
+      <h1>
+        <small class="title"></small>
+        <big class="full_name"></big>
+      </h1>
+      <div id="lawmakerMetadata">
+        <span id="party" class="party party_long@class"></span>
+        <span id="stateDistrict" class="state"></span>
+      </div>
+      <div class="clear"></div>
     </div>
-    <div id="lawmakerVote" class="left">
-      <span class="legislator_vote_value legislator_vote_class@class"></span>
-    </div>
-    <div class="clear"></div>
   </div>
+  <div id="lawmakerVote" class="left">
+    <span class="legislator_vote_value legislator_vote_class@class"></span>
+  </div>
+  <div class="clear"></div>
   <div id="voteTotals">
     <h2>Vote Totals</h2>
     <div id="voteKey">
@@ -114,7 +119,7 @@
       party_long: party_long
     };
 
-    $('div#repInfo').autoRender(legislator_data);
+    $('div#rep').autoRender(legislator_data);
     
     var bill_data = {
       short_title: bill.short_title,

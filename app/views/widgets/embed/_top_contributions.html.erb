@@ -34,32 +34,34 @@
 
 <div id="headerWrapper" style="background-color: #<%= params[:color] || "EBE9D4" %>">
   <div id="header">
-    <% if params[:size] != 'sm' %>
-      <img alt="Picture of " src="" class="pic@src full_name@alt+" />
-    <% end %>
-    
-    <h1>
-      <small class="title"></small> 
-      <big class="full_name"></big>
-    </h1>
-    
-    <div class="california" id="lawmakerMetadata">
-      <span id="party" class="party"></span>
-      <span id="state" class="state"></span>
+    <div id="rep">
+      <% if params[:size] != 'sm' %>
+        <img alt="Picture of " src="" class="pic@src full_name@alt+" />
+      <% end %>
+      <div id="repInfo">
+        <h1>
+          <small class="title"></small> 
+          <big class="full_name"></big>
+        </h1>
+        <div class="california" id="lawmakerMetadata">
+          <span class="party"></span>
+          <span class="state"></span>
+        </div>
+        <div class="clear"></div>
+      </div>
     </div>
-    
-    <div class="clear"></div>
   </div> <!-- end header -->
-  <div id="mainContent">
-    <h2>Top 5 Contributors</h2>
-    <div id="chart-container-1"></div>
-    <% if params[:size] == 'sm' %>
-      <ol id="key">
-        <li class="contributors name"></li>
-      </ol>
-    <% end %>
-  </div>
 </div>
+<div id="mainContent">
+  <h2>Top 5 Contributors</h2>
+  <div id="chart-container-1"></div>
+  <% if params[:size] == 'sm' %>
+    <ol id="key">
+      <li class="contributors name"></li>
+    </ol>
+  <% end %>
+</div>
+
 
 <script type="text/javascript">
 

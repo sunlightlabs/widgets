@@ -26,15 +26,20 @@
 
 <div id="headerWrapper" style="background-color: #<%= params[:color] || "F6F5E8" %>">
   <div id="header">
-    <% if params[:size] != 'sm' %>
-      <img alt="Picture of " src="" class="pic@src full_name@alt+" />
-    <% end %>
-    <h1>
-      <small class="title"></small><big class="full_name"></big>
-    </h1>
-    <div class="state_downcase@class" id="lawmakerMetadata">
-      <span class="party"></span>
-      <span class="state"></span>
+    <div id="rep">
+      <% if params[:size] != 'sm' %>
+        <img alt="Picture of " src="" class="pic@src full_name@alt+" />
+      <% end %>
+      <div id="repInfo">
+        <h1>
+          <small class="title"></small>
+          <big class="full_name"></big>
+        </h1>
+        <div class="state_downcase@class" id="lawmakerMetadata">
+          <span class="party"></span>
+          <span class="state"></span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

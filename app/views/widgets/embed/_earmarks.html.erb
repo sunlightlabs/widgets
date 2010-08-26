@@ -19,56 +19,59 @@
 
 <div id="headerWrapper" style="background-color: #<%= params[:color] || "ECF9E9" %>">
   <div id="header">
-    <% unless @size == 'sm' -%>
-      <img alt="Picture of " src="" class="pic@src full_name@alt+" width="40px" />
-    <% end -%>      
-    <h1>
-      <small class="title"></small> 
-      <big class="full_name"></big>
-    </h1>
-    <div class="" id="lawmakerMetadata">
-      <span class="party"></span>
-      <span class="state"></span>
+    <div id="rep">
+      <% unless @size == 'sm' -%>
+        <img alt="Picture of " src="" class="pic@src full_name@alt+" width="40px" />
+      <% end -%>  
+      <div id="repInfo">    
+        <h1>
+          <small class="title"></small> 
+          <big class="full_name"></big>
+        </h1>
+        <div class="" id="lawmakerMetadata">
+          <span class="party"></span>
+          <span class="state"></span>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div> <!-- end header -->
+</div>
+<div id="mainContent">
+  <h2>FY<span class="fiscal_year"></span>Earmarks</h2>
+  <% if @size == 'sm' -%>
+    <div id="chart-container-1"></div> <!-- end chart-container -->
+    <div id="leftBox">
+      <dl>
+        <dd>Granted <span>to Lawmaker</span></dd>
+        <dt id="granted" class="earmarks_granted"></dt>
+      </dl>
+    </div>
+    <div id="rightBox">
+      <dl>
+        <dd>Average <span>for</span> <span class="chamber"></span></dd>
+        <dt id="average" class="earmark_avg"></dt>
+      </dl>
     </div>
     <div class="clear"></div>
-  </div> <!-- end header -->
   
-  <div id="mainContent">
-    <h2>FY<span class="fiscal_year"></span> EARMARKS</h2>
-    <% if @size == 'sm' -%>
-      <div id="chart-container-1"></div> <!-- end chart-container -->
-      <div id="leftBox">
-        <dl>
-          <dd>Granted <span>to Lawmaker</span></dd>
-          <dt id="granted" class="earmarks_granted"></dt>
-        </dl>
-      </div>
-      <div id="rightBox">
-        <dl>
-          <dd>Average <span>for</span> <span class="chamber"></span></dd>
-          <dt id="average" class="earmark_avg"></dt>
-        </dl>
-      </div>
-      <div class="clear"></div>
+  <% else -%>
+  
+    <dl>
+      <dt id="granted" class="earmarks_granted"></dt>
+      <dd>Granted <span>to</span> <span class="full_name"></span></dd>
+    </dl>  
+    <div class="clear"></div>
     
-    <% else -%>
+    <div id="chart-container-1"></div>
     
-      <dl>
-        <dt id="granted" class="earmarks_granted"></dt>
-        <dd>Granted <span>to</span> <span class="full_name"></span></dd>
-      </dl>  
-      <div class="clear"></div>
-      
-      <div id="chart-container-1"></div>
-      
-      <dl>
-        <dt id="average" class="earmark_avg"></dt>
-        <dd>Average <span>for</span> <span class="chamber"></span></dd>
-      </dl>
-      
-    <% end -%>
-  </div> <!-- end mainContent -->
-</div> <!-- end headerWrapper -->
+    <dl>
+      <dt id="average" class="earmark_avg"></dt>
+      <dd>Average <span>for</span> <span class="chamber"></span></dd>
+    </dl>
+    
+  <% end -%>
+</div> <!-- end mainContent -->
 
 <script type="text/javascript" charset="utf-8">
 

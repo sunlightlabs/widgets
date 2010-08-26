@@ -15,15 +15,20 @@
 <% end %>
 
 <div id="header">
-  <h1>
-    <small class="title"></small><big class="full_name"></big>
-  </h1>
-  <img alt="Picture of " src="" class="pic@src full_name@alt+" />
-  <div class="state_downcase@class" id="lawmakerMetadata">
-    <span class="party"></span>
-    <span class="state"></span>
-  </div>
-  <div class="clear"></div>
+  <div id="rep">
+    <img alt="Picture of " src="" class="pic@src full_name@alt+" />
+    <div id="repInfo">
+      <h1>
+        <small class="title"></small>
+        <big class="full_name"></big>
+      </h1>
+      <div class="state_downcase@class" id="lawmakerMetadata">
+        <span class="party"></span>
+        <span class="state"></span>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>  
 </div>
 
 <div id="mainContent" style="background-color: #<%= params[:color] || "1F83B5" %>">
@@ -40,9 +45,17 @@
       <div class="url even"><a class="website@href" target="_blank" href="#">Website</a></div>
     </div>
     <div id="buttons">
-      <a class="twitter twitter@href+ evenButton" target="_blank" href="http://twitter.com/">Twitter</a>
-      <a class="youtube youtube@href oddButton" target="_blank" href="#">YouTube</a>
-      <a class="opencongress govtrack@href+ evenButton" target="_blank" href="http://www.opencongress.org/person/show/">Open Congress</a>
+      <ul>
+        <li class="Twitter evenButton">
+          <a class="twitter@href+" target="_blank" href="http://twitter.com/">Twitter</a>
+        </li>
+        <li class="youTube oddButton">
+          <a class="youtube@href" target="_blank" href="#">YouTube</a>
+        </li>
+        <li class="opencongress evenButton">
+          <a class="govtrack@href+" target="_blank" href="http://www.opencongress.org/person/show/">Open Congress</a>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
@@ -72,14 +85,14 @@
       legislator_state = legislator.state + "-" + legislator_district;
       
     if (legislator.youtube_url)
-      $("#buttons a.youtube").show();
+      $("#buttons li.youTube").show();
     else
-      $("#buttons a.youtube").hide();
+      $("#buttons li.youTube").hide();
       
     if (legislator.twitter_id)
-      $("#buttons a.twitter").show();
+      $("#buttons li.Twitter").show();
     else
-      $("#buttons a.twitter").hide();
+      $("#buttons li.Twitter").hide();
     
     $('div#pageMain').autoRender({
       title: legislator_title,

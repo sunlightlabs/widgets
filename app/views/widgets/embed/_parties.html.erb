@@ -19,20 +19,23 @@
 
 <div id="headerWrapper" style="background-color: #<%= params[:color] || "CFD1D1" %>">
   <div id="header">
-    <% if params[:size] == 'lg' %>
-      <img alt="Picture of " src="" class="full_name@alt+ pic@src" />
-    <% end %>
-    <div id="topWrapper">
-      <h1>
-        <small class="title"></small><big class="full_name">Stephanie Herseth Sandlin</big>
-      </h1>
-    
-      <div class="state_downcase@class" id="lawmakerMetadata">
-        <span class="party"></span>
-        <span class="state"></span>
+    <div id="rep">
+      <% if params[:size] == 'lg' %>
+        <img alt="Picture of " src="" class="full_name@alt+ pic@src" />
+      <% end %>
+      <div id="repInfo">
+        <h1>
+          <small class="title"></small>
+          <big class="full_name">Stephanie Herseth Sandlin</big>
+        </h1>
+        <div class="state_downcase@class" id="lawmakerMetadata">
+          <span class="party"></span>
+          <span class="state"></span>
+        </div>
+        <div class="clear"></div>
       </div>
     </div>
-    <div class="clear"></div>
+  
     <div id="nav">
       <ul>
         <li class="upcoming" style="display: none">
@@ -41,9 +44,7 @@
           </a>
         </li>
         <li class="recent" style="display: none">
-          <a href="#">
-            Recent Parties
-          </a>
+          <a href="#">Recent Parties</a>
         </li>
       </ul> 
       <div class="clear"></div>

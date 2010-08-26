@@ -19,16 +19,16 @@ h2 small, h1 big { display: block;}
 h1 big { font-size: 150%; font-weight: bold; color: #191919;}
 body.bill_sm h1 big { font-size: 120%;}
 h1 small { font-size: 105%; line-height: 16px;}
-h2 small { font-size: 110%;}
+h2 small, #repInfo h1 small { font-size: 110%;}
 body.bill_med h2 small, body.bill_sm h2 small { display: inline;}
-h2 big, div#voteTotals h2 { color: #191919; text-transform: uppercase; font-weight: bold; font-size: 115%; line-height:18px;}
+h2 big, div#voteTotals h2, #repInfo h1 big { color: #191919; text-transform: uppercase; font-weight: bold; font-size: 115%; line-height:18px;}
 
-div#repInfo span.present, div#billResult span.present { background: url(/images/widgets/bill/icon_presLg.png) center top no-repeat; font-size: 120%; color: #191919; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
-div#repInfo span.notvoting, div#billResult span.notvoting { background: url(/images/widgets/bill/icon_notactLg.png) center top no-repeat; font-size: 120%; color: #191919; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
+div#lawmakerVote span.present, div#billResult span.present { background: url(/images/widgets/bill/icon_presLg.png) center top no-repeat; font-size: 120%; color: #191919; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
+div#lawmakerVote span.notvoting, div#billResult span.notvoting { background: url(/images/widgets/bill/icon_notactLg.png) center top no-repeat; font-size: 120%; color: #191919; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
 
-body.bill_sm div#repInfo span.present, body.bill_sm div#billResult span.present { background: url(/images/widgets/bill/icon_presSm.png) left 1px no-repeat; padding-top: 0px; padding-left: 20px;}
+body.bill_sm div#lawmakerVote span.present, body.bill_sm div#billResult span.present { background: url(/images/widgets/bill/icon_presSm.png) left 1px no-repeat; padding-top: 0px; padding-left: 20px;}
 
-body.bill_sm div#repInfo span.notvoting, body.bill_sm div#billResult span.notvoting { background: url(/images/widgets/bill/icon_notactSm.png) left 1px no-repeat; padding-top: 0px; padding-left: 20px;}
+body.bill_sm div#lawmakerVote span.notvoting, body.bill_sm div#billResult span.notvoting { background: url(/images/widgets/bill/icon_notactSm.png) left 1px no-repeat; padding-top: 0px; padding-left: 20px;}
 
 
 div#voteTotals h2 { float: left; margin-bottom:5px; margin-right: 20px;}
@@ -47,12 +47,12 @@ span#party { margin-right: 5px;}
 img { border: 2px solid #E0DEDE; float: left; margin-right: 15px;}
 body.bill_med img { margin-right: 10px;}
 
-div#lamaker_metaData span { font-size: 95%; }
+div#lawmakerMetadata span { font-size: 95%; }
 span#stateDistrict { color: #606060; }
 
-div#repInfo { border-bottom: 1px solid #D2D2D2; padding-bottom: 10px; margin-bottom: 10px;}
-body.bill_med div#repInfo { padding-bottom: 8px; margin-bottom: 8px;}
-body.bill_sm div#repInfo { padding-bottom: 5px;}
+div#voteTotals { border-top: 1px solid #D2D2D2; padding-top: 10px; margin-top: 10px;}
+body.bill_med div#voteTotals { padding-top: 8px; margin-top: 8px;}
+body.bill_sm div#voteTotals { padding-top: 5px;}
 
 dt { text-indent: -9999em; display: block; width: 17px; height: 17px; margin-right: 8px; margin-bottom: 15px; float: left;}
 body.bill_med dt { margin-bottom: 18px; }
@@ -76,16 +76,16 @@ div#chart-container-1 {overflow: hidden;}
 body.bill_lg div#chart-container-1 {width: 350px;}
 body.bill_med div#chart-container-1 {width: 275px;}
 
-div#repInfo span.aye, div#billResult span.passed { background: url(/images/widgets/bill/icon_ayeLg.png) center top no-repeat; font-size: 140%; color: #409744; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
-div#repInfo span.nay, div#billResult span.failed { background: url(/images/widgets/bill/icon_nayLg.png) center top no-repeat; font-size: 140%; color: #191919; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
+div#lawmakerVote span.aye, div#billResult span.passed { background: url(/images/widgets/bill/icon_ayeLg.png) center top no-repeat; font-size: 140%; color: #409744; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
+div#lawmakerVote span.nay, div#billResult span.failed { background: url(/images/widgets/bill/icon_nayLg.png) center top no-repeat; font-size: 140%; color: #191919; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
 
-body.bill_med div#repInfo span.nay, body.bill_med div#billResult span.failed, body.bill_med div#repInfo span.aye, body.bill_med div#billResult span.passed  { font-size: 125%; padding-top: 32px;}
+body.bill_med div#lawmakerVote span.nay, body.bill_med div#billResult span.failed, body.bill_med div#lawmakerVote span.aye, body.bill_med div#billResult span.passed  { font-size: 125%; padding-top: 32px;}
 
-body.bill_sm div#repInfo span.aye, body.bill_sm div#billResult span.passed { background: url(/images/widgets/bill/icon_ayeSm.png) left 1px no-repeat; padding-top: 0px; padding-left: 20px;}
+body.bill_sm div#lawmakerVote span.aye, body.bill_sm div#billResult span.passed { background: url(/images/widgets/bill/icon_ayeSm.png) left 1px no-repeat; padding-top: 0px; padding-left: 20px;}
 
-body.bill_sm div#repInfo span.nay, body.bill_sm div#billResult span.failed { background: url(/images/widgets/bill/icon_naySm.png) left 1px no-repeat; padding-top: 0px; padding-left: 20px;}
+body.bill_sm div#lawmakerVote span.nay, body.bill_sm div#billResult span.failed { background: url(/images/widgets/bill/icon_naySm.png) left 1px no-repeat; padding-top: 0px; padding-left: 20px;}
 
-body.bill_sm div#repInfo span.aye, body.bill_sm div#billResult span.passed, body.bill_sm div#repInfo span.nay, body.bill_sm div#billResult span.failed { font-size: 105%; text-align: left;}
+body.bill_sm div#lawmakerVote span.aye, body.bill_sm div#billResult span.passed, body.bill_sm div#lawmakerVote span.nay, body.bill_sm div#billResult span.failed { font-size: 105%; text-align: left;}
 
 div#voteKey { line-height: 16px; }
 div#voteKey span { margin-left: 15px; padding-left: 14px; }

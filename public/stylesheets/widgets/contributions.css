@@ -30,7 +30,7 @@ strong { font-weight: bold; display: block; font-size: 120%; margin-top: 5px; li
 
 a.ie_url {color: #5A5A5A}
 
-body.sm img { max-width: 62px; margin-right: 0px;}
+body.sm img { max-width: 62px; margin-right: 0px; position: absolute; top: 62px;}
 body.med img { max-width: 80px; }
 img { border: 2px solid #E0DEDE; float: left; margin-right: 15px;}
 
@@ -45,6 +45,6 @@ span.party { margin-right: 5px;}
 body.sm span.party { margin-right: 0px; display: block;}
 
 div#mainContent {  height: 118px; padding: 0 15px; text-align: center; margin-top: 8px;} 
-body.sm div#mainContent { padding: 0 10px;}
+body.sm div#mainContent { padding: 0 10px; margin-top: 18px;}
 body.med div#mainContent { height: 111px; margin-top: 5px;} 
 body.lg div#mainContent { height: 126px; margin-top: 8px;} 

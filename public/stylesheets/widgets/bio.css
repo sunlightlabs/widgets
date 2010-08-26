@@ -16,7 +16,7 @@ body.bio_med h1 big { font-size: 130%; line-height: 18px;}
 body.bio_lg h1 big { font-size: 150%; line-height: 20px;}
 
 div#lawmakerMetadata { float: left; margin-left: 14px; padding: 15px 0;}
-body.bio_sm div#lawmakerMetadata { line-height: 14px; text-align: center; margin-top: 8px; width: 50px;}
+body.bio_sm div#lawmakerMetadata { line-height: 14px; text-align: center; margin-top: 8px; width: 50px; margin-left: 75px;}
 body.bio_med div#lawmakerMetadata { width: 175px;}
 body.bio_med div#lawmakerMetadata, body.bio_lg div#lawmakerMetadata { margin-left: 0px; padding: 0 0; float: right;}
 body.bio_lg div#lawmakerMetadata { text-align: left; width: 240px;}
@@ -72,9 +72,9 @@ body.bio_sm div.wv { background: url(/images/states/WV.png) top center no-repeat
 body.bio_sm div.wi { background: url(/images/states/WI.png) top center no-repeat;}
 body.bio_sm div.wy { background: url(/images/states/WY.png) top center no-repeat;}
 
-body.bio_sm img { max-width: 62px; }
+body.bio_sm img { max-width: 62px; position: absolute; top: 62px;}
 body.bio_med img { max-width: 80px; }
-img { border: 2px solid #E0DEDE; float: left;}
+img { border: 2px solid #E0DEDE; float: left; }
 
 span.party { margin-right: 5px;}
 
@@ -95,38 +95,38 @@ div.even { padding: 3px; background: rgba(250, 250, 250); background: rgba(250, 
 body.bio_med div.even { padding: 5px; }
 body.bio_lg div.even { padding: 8px;}
 
-div#buttons { margin-left: 15px; }
-body.bio_sm div#buttons a, body.bio_lg div#buttons a { float: left; }
-body.bio_sm div#buttons {margin-top: -6px}
-body.bio_med div#buttons { float: left; margin-left: 8px; margin-top: 15px; }
-body.bio_med div#buttons a { margin-top: 0px; margin-bottom: 10px; }
-body.bio_lg div#buttons a { margin-bottom: 15px; margin-right: 15px; margin-top: 0px;}
-body.bio_lg div#buttons { margin-left: 8px; margin-top: 10px;}
-a.evenButton, a.oddButton { width: 28px; height: 28px; text-indent: -9999em; display: block; margin-top: 12px; }
-body.bio_lg a.evenButton, body.bio_lg a.oddButton { width: 36px; height: 36px;}
-body.bio_med a.evenButton { float: left;}
-body.bio_med a.oddButton { margin-left: 40px;}
 
-a.twitter { background: url(/images/widgets/bio/social_icons.png) top left no-repeat; margin-right: 8px;}
-a.twitter:hover { background: url(/images/widgets/bio/social_icons.png) left -28px no-repeat;}
+div#buttons li{ width: 36px; height: 36px; float: left; margin-left: 15px; margin-top: 12px;}
+div#buttons a { text-indent: -9999em; display: block; height: 36px;  width: 36px;}
 
-a.opencongress { background: url(/images/widgets/bio/social_icons.png) -28px top no-repeat;}
-a.opencongress:hover { background: url(/images/widgets/bio/social_icons.png) -28px -28px no-repeat;}
+body.bio_sm div#buttons li, body.bio_sm div#buttons li a, body.bio_med div#buttons li, body.bio_med div#buttons li a { width: 28px; height: 28px;}
 
-a.youtube { background: url(/images/widgets/bio/social_icons.png) -56px top no-repeat; margin-right: 8px;}
-a.youtube:hover { background: url(/images/widgets/bio/social_icons.png) -56px -28px no-repeat;}
+body.bio_sm div#buttons li { margin-left: 5px; margin-top: 5px;}
+body.bio_med div#buttons li { margin-top: 15px; margin-left: 10px; }
+body.bio_lg div#buttons li { margin-left: 8px; margin-top: 10px;}
+div#buttons li.oddButton { margin-right: 0px;}
+
+li.Twitter a { background: url(/images/widgets/bio/social_icons.png) top left no-repeat; }
+li.Twitter a:hover  { background: url(/images/widgets/bio/social_icons.png) left -28px no-repeat;}
+
+li.opencongress a { background: url(/images/widgets/bio/social_icons.png) -28px top no-repeat;}
+li.opencongress a:hover { background: url(/images/widgets/bio/social_icons.png) -28px -28px no-repeat;}
+
+li.youTube a { background: url(/images/widgets/bio/social_icons.png) -56px top no-repeat; }
+li.youTube a:hover { background: url(/images/widgets/bio/social_icons.png) -56px -28px no-repeat;}
 
 a.website, a.website:visited {color: #DDD;}
 a.website:hover {color: #FFF;}
 
-body.bio_lg a.twitter { background: url(/images/widgets/bio/social_icons_lg.png) top left no-repeat; margin-right: 8px;}
-body.bio_lg a.twitter:hover { background: url(/images/widgets/bio/social_icons_lg.png) left -36px no-repeat;}
+body.bio_lg li.Twitter a { background: url(/images/widgets/bio/social_icons_lg.png) top left no-repeat; }
+body.bio_lg li.Twitter a:hover { background: url(/images/widgets/bio/social_icons_lg.png) left -36px no-repeat;}
 
-body.bio_lg a.opencongress { background: url(/images/widgets/bio/social_icons_lg.png) -72px top no-repeat;}
-body.bio_lg a.opencongress:hover { background: url(/images/widgets/bio/social_icons_lg.png) -72px -36px no-repeat;}
+body.bio_lg li.opencongress a { background: url(/images/widgets/bio/social_icons_lg.png) -72px top no-repeat;}
+body.bio_lg li.opencongress a:hover { background: url(/images/widgets/bio/social_icons_lg.png) -72px -36px no-repeat;}
 
-body.bio_lg a.youtube { background: url(/images/widgets/bio/social_icons_lg.png) -36px top no-repeat; margin-right: 8px;}
-body.bio_lg a.youtube:hover { background: url(/images/widgets/bio/social_icons_lg.png) -36px -36px no-repeat;}
+body.bio_lg li.youTube a { background: url(/images/widgets/bio/social_icons_lg.png) -36px top no-repeat; }
+body.bio_lg li.youTube a:hover { background: url(/images/widgets/bio/social_icons_lg.png) -36px -36px no-repeat;}
+
 
 body.bio_med div#mainVcard { width: 175px; float: right; }
 body.bio_lg div#mainVcard { width: 240px; float: right; }

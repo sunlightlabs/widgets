@@ -1,9 +1,9 @@
 #header { background:url(/images/widgets/parties/gradient.png) bottom left repeat-x; height: 89px; padding: 10px 10px 0;}
-body.med #header { height: 66px; }
-body.sm #header { height: 85px; }
+body.med #header { height: 68px; }
+body.sm #header { height: 86px; }
 
-#headerWrapper { background-color:#CFD1D1; height:95px; }
-body.med div#headerWrapper { height:76px; }
+#headerWrapper { background-color:#CFD1D1; height:96px; }
+body.med div#headerWrapper { height:78px; }
 body.lg div#headerWrapper { height: 99px; }
 
 #mainContent { height: 175px; background:#FFF; margin: 10px 10px 0; }
@@ -16,8 +16,8 @@ h1 small { font-style: oblique; color: #5A5A5A; font-size: 105%; line-height: 16
 body.lg h1 small { font-size: 120%; margin-bottom: 2px;}
 body.sm h1 small { width: 30px; float: left; font-size: 100%; line-height: 12px; }
 
-h1 big { text-transform: uppercase; font-weight: bold; font-size: 110%; color: #000; line-height: 16px;}
-body.sm h1 big { display: block; font-size: 100%; line-height: 15px;}
+h1 big { text-transform: uppercase; font-weight: bold; font-size: 110%; color: #000; line-height: 16px; }
+body.sm h1 big { display: block; font-size: 100%; line-height: 15px; height: 30px;}
 body.med h1 big { line-height: 18px;}
 body.lg h1 big { font-size: 135%; line-height: 20px;}
 

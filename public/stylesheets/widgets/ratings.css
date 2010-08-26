@@ -11,14 +11,14 @@ body.med h1 { margin-top: 5px; margin-bottom: 3px; width: 170px;}
 h1 { width: 240px; margin-top: 10px; margin-bottom: 3px; float: right;}
 
 h1 small { display: block; font-style: oblique; color: #606161; font-size: 105%; line-height: 16px; font-family: Georgia, Times New Roman, Times, serif; margin-bottom: 2px;}
-body.lg h1 small { font-size: 120%; margin-bottom: 5px;}
+body.lg h1 small { font-size: 115%; margin-bottom: 5px;}
 
 h1 big { text-transform: uppercase; font-weight: bold; font-size: 110%; color: #000; line-height: 16px;}
 body.sm h1 big { height: 29px; display: block; font-size: 100%;}
 body.med h1 big { font-size: 130%; line-height: 18px;}
 body.lg h1 big { font-size: 150%; line-height: 20px;}
 
-body.sm div#lawmakerMetadata { line-height: 19px; text-align: center; margin-top: 8px; width: 50px; margin-right: 10px; }
+body.sm div#lawmakerMetadata { line-height: 19px; text-align: center; margin-top: 8px; margin-left: 70px; float: none; width: 70px;}
 body.med div#lawmakerMetadata { width: 170px;}
 div#lawmakerMetadata { width: 240px; float: right;}
 
@@ -26,7 +26,7 @@ h2 { font-size: 150%; line-height: 23px; margin-bottom: 10px;}
 body.med h2 { font-size: 130%; line-height: 20px; }
 body.sm h2 { font-size: 130%; line-height: 18px; }
 
-body.sm img { max-width: 62px; margin-right: 0px;}
+body.sm img { max-width: 62px; margin-right: 0px; position: absolute; top: 65px;}
 body.med img { max-width: 80px; }
 img { border: 2px solid #E0DEDE; float: left; margin-right: 15px;}
 
@@ -36,6 +36,6 @@ body.sm span.rating { font-size: 300%; line-height: 45px; }
 span.party { margin-right: 5px;}
 body.sm span.party { margin-right: 0px; display: block;}
 
-div#mainContent {  height: 118px; padding: 0 15px; text-align: center; margin-top: 15px;} 
+div#mainContent {  height: 118px; padding: 0 15px; text-align: center; margin-top: 25px;} 
 body.med div#mainContent { height: 106px; margin-top: 10px;} 
 body.lg div#mainContent { height: 121px; } 

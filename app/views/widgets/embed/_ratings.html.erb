@@ -46,19 +46,24 @@
 
 <div id="headerWrapper" style="background-color: #<%= params[:color] || "F6F5E8" %>">
   <div id="header">
-    <h1>
-      <small class="title"></small> 
-      <big class="full_name"></big>
-    </h1>
-    <img alt="Picture of " src="" class="pic@src full_name@alt+" />
-    <div class="california" id="lawmakerMetadata">
-      <span class="party"></span>
-      <span class="state"></span>
+    <div id="rep">
+      <img alt="Picture of " src="" class="pic@src full_name@alt+" />
+      <div id="repInfo">
+        <h1>
+          <small class="title"></small> 
+          <big class="full_name"></big>
+        </h1>
+        <div class="california" id="lawmakerMetadata">
+          <span class="party"></span>
+          <span class="state"></span>
+        </div>
+      </div>
+      <div class="clear"></div>
     </div>
-    <div class="clear"></div>
   </div>
 </div>
 <div class="clear"></div>
+
 <div id="mainContent">
   <h2 class="rating_name"></h2>
   <span class="rating"></span>
