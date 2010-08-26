@@ -55,7 +55,7 @@
   :name: District Map
   :description: See a map of a legislator's district.
   :custom:
-    :color: CFD1D1
+    :color: eaf3f4
 :parties:
   :order: 10
   :name: Party Time

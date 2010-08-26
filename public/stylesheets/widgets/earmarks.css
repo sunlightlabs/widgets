@@ -1,51 +1,12 @@
-#mainContent {
-	height: 205px;
-	padding: 10px 10px 0 10px;
-}
+#headerWrapper { background-color: #f4f8e9; height: 85px;}
+body.earmarks_sm div#headerWrapper { height: 65px; }
+body.earmarks_med div#headerWrapper{ height: 75px; }
 
-body.earmarks_med div#mainContent {
-	height: 145px;
-}
+#header { background: url(/images/widgets/earmarks/gradient_bill.png) bottom left repeat-x; padding: 15px; height: 55px;}
 
-body.earmarks_lg div#mainContent { 
-	padding: 15px;
-	height: 165px;
-}
+body.earmarks_sm div#header { height: 45px; padding: 10px; }
+body.earmarks_med div#header { height: 55px; padding: 10px; }
 
-#headerWrapper { 
-	 background-color: #f4f8e9;
-}
-
-#header { 
-	background: url(/images/widgets/earmarks/gradient_bill.png) bottom left repeat-x;
-	padding: 15px; 
-}
-
-body.earmarks_sm div#header {
-	height: 45px;
-	padding: 10px;
-}
-
-body.earmarks_sm div#headerWrapper { 
-	height: 65px;
-}
-
-body.earmarks_med div#header {
-	height: 55px;
-	padding: 10px;
-}
-
-body.earmarks_med div#headerWrapper{
-	height: 75px;
-}
-
-body.earmarks_lg div#headerWrapper { 
-	height: 85px;
-}
-
-body.earmarks_lg div#header {
-	height: 55px;
-}
 
 body.earmarks_lg div#header img {
 	border: 1px solid #BBBDBF;
@@ -58,72 +19,35 @@ body.earmarks_med div#header img {
 	margin: 0px 10px 0px 0px;
 	float: left;
 }
-
-
-body.earmarks_sm #header span {
-	display: inline;
-}
-
-body.earmarks_med h1 {
-	width: 275px;
-	line-height: 150%;
-}
-
-h1 small, h1 big {
-	display: block;
-}
-
-body.earmarks_sm h1 {
-	line-height: 100%;
-}
-
-header span {
-	float: left;
-}
-
-body.earmarks_med #lawmakerMetadata {
-	line-height: 150%;
-}
-
-body.earmarks_sm #lawmakerMetadata {
-	line-height: 115%;
-}
-
-body.earmarks_sm h1 big {
-	font-size: 100%;
-	font-weight: bold;
-	color: #191919;
-	line-height: 130%;
-	text-transform: uppercase;
-}
-
-body.earmarks_sm h1 small, body.earmarks_sm h1 big {
-	display: inline;
-}
-
-body.earmarks_lg #lawmakerMetadata {
-	line-height: 140%;
-}
+body.earmarks_sm h1 { line-height: 15px;}
+body.earmarks_sm #header span { display: inline; }
+h1 small, h1 big { display: block;}
 
 h1 small {
 	font-family: Georgia, Times New Roman, Times, serif;
-	font-size: 105%;
+	font-size: 120%;
 	font-style: italic;
 	color: #606161;
 	font-weight: normal;
 	text-transform: none;
+	line-height: 16px;
+	margin-bottom: 2px;
 }
+body.earmarks_med h1 small{ font-size: 110%;}
+body.earmarks_sm h1 small { font-size: 100%; display: inline;}
 
  h1 big {
-	font-size: 110%;
+	font-size: 130%;
 	font-weight: bold;
 	color: #191919;
 	text-transform: uppercase;
 }	
+body.earmarks_sm h1 big { font-size: 100%; line-height: 130%; display: inline;}
+body.earmarks_med h1 big { font-size: 110%;}
 
-span.party {
-	margin-right: 5px;
-}
+body.earmarks_med #lawmakerMetadata { line-height: 150%; }
+body.earmarks_sm #lawmakerMetadata { line-height: 115%; }
+span.party { margin-right: 5px; }
 
 h2 {
 	color: #5A5A5A;
@@ -134,31 +58,13 @@ h2 {
 	line-height: 100%;
 	text-transform: uppercase;
 }
-body.earmarks_sm h2 { font-size: 110%;}
+body.earmarks_med h2 { font-size: 125%;}
+body.earmarks_sm h2 { font-size: 105%; line-height: 15px;}
 
-body.earmarks_sm h2 {
-	font-size: 105%;
-	letter-spacing: .125em;
-	line-height: 15px;
-}
+#mainContent { height: 205px; padding: 10px 10px 0 10px; }
+body.earmarks_med div#mainContent { height: 145px; }
+body.earmarks_lg div#mainContent { padding: 15px; height: 165px; }
 
-body.earmarks_lg #chart-container {
-	width: 362px;
-	height: 157px;
-	overflow: hidden;
-}
-
-body.earmarks_med #chart-container-1 {
-	width: 272px;
-	height: 65px;
-	overflow: hidden;
-}
-
-body.earmarks_sm #chart-container-1 {
-	width: 132px;
-	height: 115px;
-	overflow: hidden;
-}
 
 #leftBox, #rightBox {
 	height: 57px;
@@ -188,22 +94,6 @@ dd span {
 	font-size: 90%;
 }
 
-body.earmarks_med h3, body.earmarks_lg h3 {
-	margin-top: 15px;
-	float: left;
-	margin-left: 5px;
-}
-
-body.earmarks_sm #granted, body.earmarks_sm #average {
-	font-size: 175%;
-	font-weight: bold;
-	margin-top: 7px;
-	margin-right: 5px;
-	display: block;
-	float: none;
-	width: 64px;
-}
-
 dt {
 	font-size: 190%;
 	font-weight: bold;
@@ -212,13 +102,8 @@ dt {
 	float: left;
 	margin-right: 5px;
 }
-
 body.earmarks_med dt { font-size: 150%;}
+body.earmarks_sm dt { font-size: 175%; float: none; width: 64px; }
 
-#granted {
-	color: #73B745;
-}
-
-#average {
-	color: #bfe941;
-}
+#granted { color: #73B745; }
+#average { color: #bfe941; }

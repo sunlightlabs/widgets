@@ -1,70 +1,11 @@
-body.top_contributions_sm { 
-	width: 152px; 
-	height: 292px;
-	position: relative; 
-}
+#headerWrapper {  background-color: #EBE9D4; height: 85px;}
+body.top_contributions_sm div#headerWrapper { height: 65px; }
+body.top_contributions_med div#headerWrapper{ height: 75px;}
 
-body.top_contributions_med { 
-	width: 292px; 
-	height: 242px; 
-	position: relative;
-}
+#header { background: url(/images/widgets/top_contributions/gradient_bill.png) bottom left repeat-x; padding: 15px; height: 55px;}
+body.top_contributions_sm div#header { height: 45px; padding: 10px; }
+body.top_contributions_med div#header { height: 55px; padding: 10px; }
 
-body.top_contributions_lg { 
-	width: 392px; 
-	height: 292px; 
-	position: relative;
-}
-
-#mainContent {
-	padding: 12px 10px 0 10px;
-	height: 195px;
-	background: #FFF;
-}
-
-body.top_contributions_med div#mainContent {
-	height: 135px;
-}
-
-body.top_contributions_lg div#mainContent { 
-	padding: 15px;
-	height: 165px;
-}
-
-#headerWrapper { 
-	 background-color: #EBE9D4;
-}
-
-#header { 
-	background: url(/images/widgets/top_contributions/gradient_bill.png) bottom left repeat-x;
-	padding: 15px; 
-}
-
-body.top_contributions_sm div#header {
-	height: 45px;
-	padding: 10px;
-}
-
-body.top_contributions_sm div#headerWrapper { 
-	height: 65px;
-}
-
-body.top_contributions_med div#header {
-	height: 55px;
-	padding: 10px;
-}
-
-body.top_contributions_med div#headerWrapper{
-	height: 75px;
-}
-
-body.top_contributions_lg div#headerWrapper { 
-	height: 85px;
-}
-
-body.top_contributions_lg div#header {
-	height: 55px;
-}
 
 body.top_contributions_lg div#header img {
 	border: 1px solid #BBBDBF;
@@ -83,72 +24,38 @@ body.top_contributions_sm #header span {
 	display: inline;
 }
 
-body.top_contributions_med h1 {
-	line-height: 150%;
-}
+body.top_contributions_sm h1 { line-height: 15px;}
 
-h1 small, h1 big {
-	display: block;
-}
+h1 small, h1 big { display: block;}
+body.top_contributions_sm h1 small, body.top_contributions_sm h1 big { display: inline;}
 
-body.top_contributions_sm h1 {
-	line-height: 100%;
-}
-
-header span {
-	float: left;
-}
-
-body.top_contributions_med #lawmakerMetadata {
-	line-height: 150%;
-}
-
-body.top_contributions_sm #lawmakerMetadata {
-	line-height: 115%;
-}
-
-body.top_contributions_sm h1 big {
-	font-size: 100%;
-	font-weight: bold;
-	color: #191919;
-	line-height: 130%;
-	text-transform: uppercase;
-}
-
-body.top_contributions_sm h1 small, body.top_contributions_sm h1 big {
-	display: inline;
-}
-
-body.top_contributions_lg #lawmakerMetadata {
-	line-height: 140%;
-}
+h1 big { font-size: 145%; font-weight: bold; color: #191919; text-transform: uppercase; }	
+body.top_contributions_med h1 big { font-size: 115%;}
+body.top_contributions_sm h1 big { font-size: 100%; line-height: 130%; }
 
 h1 small {
 	font-family: Georgia, Times New Roman, Times, serif;
-	font-size: 105%;
+	font-size: 120%;
 	font-style: italic;
 	color: #606161;
 	font-weight: normal;
 	text-transform: none;
+	line-height: 16px;
+	margin-bottom: 2px;
 }
+body.top_contributions_med h1 small{ font-size: 110%;}
+body.top_contributions_sm h1 small { font-size: 100%; display: inline;}
 
- h1 big {
-	font-size: 110%;
-	font-weight: bold;
-	color: #191919;
-	text-transform: uppercase;
-}	
-
-body.top_contributions_med h1 big {
-	font-size: 105%;
-}
-
-span.party {
-	margin-right: 5px;
-}
+body.top_contributions_med #lawmakerMetadata { line-height: 150%; }
+body.top_contributions_sm #lawmakerMetadata { line-height: 115%;}
+span.party { margin-right: 5px; }
 
 h2 { letter-spacing: 0.05em; color: #96BD6A; text-transform: uppercase; font-size: 130%; font-weight: bold; text-align: center; line-height: 15px;}
 body.top_contributions_sm h2 { font-size: 100%; letter-spacing: -0.02em; font-weight: normal;}
+
+#mainContent { padding: 12px 10px 0 10px; height: 195px; background: #FFF; }
+body.top_contributions_med div#mainContent { height: 135px; }
+body.top_contributions_lg div#mainContent { padding: 15px; height: 165px; }
 
 #key {
 	line-height: 120%;

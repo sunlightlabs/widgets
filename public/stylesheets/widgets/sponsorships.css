@@ -1,45 +1,37 @@
-#mainContent {
-	padding: 10px;
-	height: 195px;
-}
+#mainContent { padding: 10px; height: 195px; }
+body.sponsorships_med div#mainContent { height: 135px; }
+body.sponsorships_lg div#mainContent {  padding: 15px; height: 165px;}
 
-body.sponsorships_med div#mainContent {
-	height: 135px;
-}
+#headerWrapper { background-color: #EBE9D4; height: 85px;}
+body.sponsorships_sm div#headerWrapper { height: 65px; }
+body.sponsorships_med div#headerWrapper { height: 75px;}
 
-body.sponsorships_lg div#mainContent { 
-	padding: 15px;
-	height: 165px;
-}
+#header { background: url(/images/widgets/sponsorships/gradient_bill.png) bottom left repeat-x; height: 85px; }
+body.sponsorships_med #header { height: 75px; }
+body.sponsorships_sm #header { height: 45px; padding: 10px; }
 
-#headerWrapper { 
-	 background-color: #EBE9D4;
-}
+h1 small, h1 big { display: block; }
+body.sponsorships_sm h1 small, body.sponsorships_sm h1 big { display: inline; }
 
-#header { 
-	background: url(/images/widgets/sponsorships/gradient_bill.png) bottom left repeat-x;
-	height: 85px;
-}
+body.sponsorships_lg h1 { width: 230px; }
+body.sponsorships_sm h1 { line-height: 100%; }
 
-body.sponsorships_med #header { 
-	height: 75px; 
+h1 big {
+	font-size: 110%;
+	font-weight: bold;
+	color: #191919;
+	text-transform: uppercase;
 }
+body.sponsorships_sm h1 big { font-size: 100%; line-height: 130%; }
+body.sponsorships_med h1 big { line-height: 110%; }
 
-body.sponsorships_sm #header { 
-	height: 45px;
-	padding: 10px; 
-}
-
-body.sponsorships_sm div#headerWrapper { 
-	height: 65px;
-}
-
-body.sponsorships_med div#headerWrapper { 
-	height: 75px;
-}
-
-body.sponsorships_lg div#headerWrapper { 
-	height: 85px;
+h1 small {
+	font-family: Georgia, Times New Roman, Times, serif;
+	font-size: 105%;
+	font-style: italic;
+	color: #606161;
+	font-weight: normal;
+	text-transform: none;
 }
 
 #repInfo {
@@ -69,21 +61,9 @@ body.sponsorships_sm #header span {
 	display: inline;
 }
 
-body.sponsorships_lg h1 {
-	width: 230px;
-}
 
-h1 small, h1 big {
-	display: block;
-}
 
-body.sponsorships_sm h1 {
-	line-height: 100%;
-}
 
-body.sponsorships_sm h1 small, body.sponsorships_sm h1 big {
-	display: inline;
-}
 
 body.sponsorships_med .title { line-height: 18px;}
 
@@ -96,53 +76,25 @@ body.sponsorships_med #lawmakerMetadata {
 	font-size: 95%;
 }
 
-body.sponsorships_med big {
-	line-height: 110%;
-}
+
 
 body.sponsorships_sm #lawmakerMetadata {
 	line-height: 115%;
 }
 
-body.contributors_sm h1 {
-	line-height: 100%;
-}
 
-body.sponsorships_sm h1 big {
-	font-size: 100%;
-	font-weight: bold;
-	color: #191919;
-	line-height: 130%;
-	text-transform: uppercase;
-}
 
-h1 small {
-	font-family: Georgia, Times New Roman, Times, serif;
-	font-size: 105%;
-	font-style: italic;
-	color: #606161;
-	font-weight: normal;
-	text-transform: none;
-}
 
- h1 big {
-	font-size: 110%;
-	font-weight: bold;
-	color: #191919;
-	text-transform: uppercase;
-}	
+
+
+
+	
 
 span.party {
 	margin-right: 5px;
 }
 
-body.sponsorships_sm span#party {
-	line-height: 115%;
-}
 
-body.sponsorships_med span#party {
-	line-height: 130%;
-}
 
 body.sponsorships_lg #counter {
 	height: 54px;

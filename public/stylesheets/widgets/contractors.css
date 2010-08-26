@@ -1,30 +1,31 @@
-body.contractors_sm div#chart-container-1 { width: 142px; height: 100px;}
-body.contractors_med div#chart-container-1 { width: 282px; height: 150px;}
+div#headerWrapper { background-color: #DDD9D7; }
+
+div#header { background: url(/images/widgets/contractors/gradient_bill.png) bottom left repeat-x; height: 75px;}
+body.contractors_med div#header { height: 65px;}
+body.contractors_sm div#header { height: 80px;}
+
+h1 { float: left; padding: 10px;}
+
+h1 big { text-indent: -9999em; display: block; background: url(/images/widgets/contractors/header_title.png) top left no-repeat; height: 45px; float: left; width: 73px;}
+body.contractors_sm h1 small { float: none; margin-left: 3px; margin-top: 46px; font-size: 90%; }
+body.contractors_med h1 small { margin-top: 16px; line-height: 15px;}
+h1 small { display: block; float: left; margin-left: 15px; margin-top: 29px; font-size: 100%; font-family: Georgia, Times New Roman, Times, serif; font-style: oblique;}
+
+body.contractors_lg h1 { padding: 15px 15px 0;}
+
+.state { margin-right: 5px;}
+body.contractors_med span#year { display: block;}
+
+div#districtMap { float: right; background: #fff; width: 45px; height: 34px; padding: 15px; border-left: 1px solid #BCBCBC;}
+body.contractors_sm div#districtMap { padding: 5px; height: 69px;}
+body.contractors_lg div#districtMap { height: 44px;}
 
 div#mainContent { padding: 10px; }
 body.contractors_sm div#mainContent { padding: 12px 10px 10px; }
 body.contractors_lg div#mainContent { padding: 15px }
 
-div#header { background: url(/images/widgets/contractors/gradient_bill.png) bottom left repeat-x; }
-body.contractors_lg div#header { height: 75px;}
-body.contractors_med div#header { height: 65px;}
-body.contractors_sm div#header { height: 80px;}
-
-div#headerWrapper { background-color: #DDD9D7; }
-
-h1 big { text-indent: -9999em; display: block; background: url(/images/widgets/contractors/header_title.png) top left no-repeat; height: 45px; float: left; width: 73px;}
-body.contractors_sm h1 small { float: none; margin-left: 3px; margin-top: 46px; font-size: 90%; }
-.state { margin-right: 5px;}
-
-body.contractors_med h1 small { margin-top: 16px; line-height: 15px;}
-body.contractors_med span#year { display: block;}
-
-h1 small { display: block; float: left; margin-left: 15px; margin-top: 29px; font-size: 100%; font-family: Georgia, Times New Roman, Times, serif; font-style: oblique;}
-h1 { float: left; padding: 10px;}
-body.contractors_lg h1 { padding: 15px 15px 0;}
-div#districtMap { float: right; background: #fff; width: 45px; height: 34px; padding: 15px; border-left: 1px solid #BCBCBC;}
-body.contractors_sm div#districtMap { padding: 5px; height: 69px;}
-body.contractors_lg div#districtMap { height: 44px;}
+body.contractors_sm div#chart-container-1 { width: 142px; height: 100px;}
+body.contractors_med div#chart-container-1 { width: 282px; height: 150px;}
 
 li { font-size: 90%; line-height: 17px; color: #878787;}
 ol { list-style-type: decimal; padding-left: 20px; margin-top: 5px;}

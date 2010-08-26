@@ -2,7 +2,7 @@
 body.med #header { height:55px; padding: 10px; }
 body.sm #header { height:45px; padding:10px; }
 
-#headerWrapper { background-color:#F6F5E8; height:65px; }
+#headerWrapper { background-color:#eaf3f4; height:65px; }
 body.med div#headerWrapper { height:75px; }
 body.lg div#headerWrapper { height: 85px; }
 
@@ -21,7 +21,7 @@ body.sm h1 small { width: 30px; float: left; font-size: 100%; line-height: 12px;
 h1 big { text-transform: uppercase; font-weight: bold; font-size: 110%; color: #000; line-height: 16px;}
 body.sm h1 big { height: 29px; display: block; font-size: 100%; line-height: 15px;}
 body.med h1 big { line-height: 18px;}
-body.lg h1 big { font-size: 150%; line-height: 20px;}
+body.lg h1 big { font-size: 145%; line-height: 20px;}
 
 body.sm div#lawmakerMetadata { line-height: 13px;}
 body.med div#lawmakerMetadata { width: 175px; float: left; margin-left: 14px; padding: 15px 0; }
