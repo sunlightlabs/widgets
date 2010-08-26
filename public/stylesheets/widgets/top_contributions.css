@@ -17,7 +17,7 @@ body.top_contributions_lg {
 }
 
 #mainContent {
-	padding: 10px;
+	padding: 12px 10px 0 10px;
 	height: 195px;
 	background: #FFF;
 }
@@ -147,41 +147,14 @@ span.party {
 	margin-right: 5px;
 }
 
-h2 {
-	background: url(/images/widgets/top_contributions/top-five.png) top center no-repeat;
-	height: 13px;
-	text-indent: -9999em;
-}
-
-body.top_contributions_sm h2 {
-	background: url(/images/widgets/top_contributions/top-five-sm.png) top center no-repeat;
-	height: 10px;
-	text-indent: -9999em;
-}
-
-body.top_contributions_lg #chart-container-1 {
-	width: 362px;
-	height: 157px;
-	overflow: hidden;
-}
-
-body.top_contributions_med #chart-container-1 {
-	width: 272px;
-	height: 135px;
-	overflow: hidden;
-}
-
-body.top_contributions_sm #chart-container-1 {
-	width: 132px;
-	height: 120px;
-	overflow: hidden;
-}
+h2 { letter-spacing: 0.05em; color: #96BD6A; text-transform: uppercase; font-size: 130%; font-weight: bold; text-align: center; line-height: 15px;}
+body.top_contributions_sm h2 { font-size: 100%; letter-spacing: -0.02em; font-weight: normal;}
 
 #key {
 	line-height: 120%;
-	border-top: 1px solid #BBBDBF;
-	padding-top: 5px;
+	border-top: 1px solid #e2e0de;
+	padding-top: 8px;
 	list-style: decimal;
 	padding-left: 17px;
-	font-size: 92%;
+	font-size: 90%;
 }

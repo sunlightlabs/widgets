@@ -43,7 +43,7 @@
   :name: Earmarks
   :description: How many earmarks a lawmaker has received, relative to their colleagues.
   :custom: 
-    :color: ECF9E9
+    :color: f4f8e9
 :ratings:
   :order: 8
   :name: Interest Group Ratings

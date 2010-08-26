@@ -214,17 +214,17 @@ body.sponsorships_sm dl dd {
 }
 
 body.sponsorships_sm dl {
-	margin-bottom: 4px;
-	font-size: 95%;
+	margin-bottom: 5px;
+	font-size: 90%;
 }
 
 #lawmaker-color, #house-color {
 	background: url(/images/widgets/sponsorships/lawmaker-color.jpg) top left no-repeat;
-	width: 10px;
-	height: 10px;
+	width: 7px;
+	height: 7px;
 	text-indent: -9999em;
 	margin-right: 5px;
-	margin-top: 1px;
+	margin-top: 4px;
 }
 
 #house-color {
@@ -244,9 +244,9 @@ dl dd {
 
 #key {
 	line-height: 120%;
-	border-top: 1px solid #BBBDBF;
-	padding-top: 3px;
+	border-top: 1px solid #e2e0de;
+	padding-top: 5px;
 	list-style: decimal;
 	padding-left: 17px;
-	font-size: 95%;
+	font-size: 90%;
 }

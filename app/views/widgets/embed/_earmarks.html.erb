@@ -38,7 +38,7 @@
   </div> <!-- end header -->
 </div>
 <div id="mainContent">
-  <h2>FY<span class="fiscal_year"></span>Earmarks</h2>
+  <h2>FY<span class="fiscal_year"></span> Earmarks</h2>
   <% if @size == 'sm' -%>
     <div id="chart-container-1"></div> <!-- end chart-container -->
     <div id="leftBox">
@@ -111,7 +111,7 @@
     var dimensions = {};
     var y_label_offset = -5;
     var series_type = 'bar';
-    var colors = ['#157C3E', '#73B745'];
+    var colors = ['#bfe941', '#73B745'];
     var chamber_data = { name: chamberFor(legislator.title),
                          data: [earmarks.average_amount]
                        }; 
@@ -137,7 +137,7 @@
       dimensions.margin = [4, 0, 10, 0];
       y_label_offset = -5;
       series_type = 'column';
-      colors = ['#73B745','#157C3E'];
+      colors = ['#73B745','#bfe941'];
       series = [lawmaker_data, chamber_data];
       line_width = 1;
     }

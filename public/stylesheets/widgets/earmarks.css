@@ -13,7 +13,7 @@ body.earmarks_lg div#mainContent {
 }
 
 #headerWrapper { 
-	 background-color: #ECF9E9;
+	 background-color: #f4f8e9;
 }
 
 #header { 
@@ -126,13 +126,15 @@ span.party {
 }
 
 h2 {
-	color: #157C3E;
+	color: #5A5A5A;
 	font-size: 150%;
 	font-weight: bold;
 	text-align: center;
-	letter-spacing: .15em;
+	letter-spacing: .05em;
 	line-height: 100%;
+	text-transform: uppercase;
 }
+body.earmarks_sm h2 { font-size: 110%;}
 
 body.earmarks_sm h2 {
 	font-size: 105%;
@@ -202,20 +204,21 @@ body.earmarks_sm #granted, body.earmarks_sm #average {
 	width: 64px;
 }
 
-#granted, #average {
+dt {
 	font-size: 190%;
 	font-weight: bold;
 	margin-top: 7px;
 	display: block;
-	width: 25px;
 	float: left;
 	margin-right: 5px;
 }
+
+body.earmarks_med dt { font-size: 150%;}
 
 #granted {
 	color: #73B745;
 }
 
 #average {
-	color: #157C3E;
+	color: #bfe941;
 }
