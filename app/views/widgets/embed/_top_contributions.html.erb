@@ -2,32 +2,33 @@
   <script type="text/javascript">
     var cycle = currentCycle();
     
-    $(function() {
+    Widget.load = function(bioguide_id) {
       
-      TransparencyData.getEntityId(bioguide_id, function(entity_id) {
-        if (entity_id == null)
-          setAlert("We do not yet have any information on this lawmaker's campaign contributions.");
+      Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
+        if (legislator == null)
+          Widget.error("There was a problem loading this lawmaker's information.");
         else {
-        
-          TransparencyData.topContributors(entity_id, cycle, function(top_contributors) {
-            if (top_contributors == null)
-              setError("There was a problem loading contributions for this lawmaker.");
+          
+          TransparencyData.getEntityId(bioguide_id, function(entity_id) {
+            if (entity_id == null)
+              Widget.alert("We do not yet have any information on this lawmaker's campaign contributions.");
             else {
-              
-              Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
-                if (legislator == null)
-                  setError("There was a problem loading this lawmaker's information.");
+            
+              TransparencyData.topContributors(entity_id, cycle, function(top_contributors) {
+                if (top_contributors == null)
+                  Widget.error("There was a problem loading contributions for this lawmaker.");
                 else {
+                
                   populateWidget(legislator, top_contributors);
-                  showWidget();     
-                }   
+                  Widget.onLoad();
+                }
               });
             }
           });
         }
       });
       
-    });
+    };
     
   </script>
 <% end %>

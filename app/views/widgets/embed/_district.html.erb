@@ -9,14 +9,14 @@
       // The map is wildly distorted, in different ways on different browsers, 
       // at medium size, for unknown reasons
       if (size == 'med') 
-        setAlert("This widget cannot be used at this size.");
+        Widget.alert("This widget cannot be used at this size.");
       else {
         Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
           if (legislator) {
             populateWidget(legislator);
             showWidget();
           } else
-            setError("There was a problem loading this lawmaker's information.");
+            Widget.error("There was a problem loading this lawmaker's information.");
         });
       }
     }
@@ -76,7 +76,7 @@
     
     displayMap(legislator);
     
-    updateSource(legislator.last_updated, description);
+    Widget.source(legislator.last_updated, description);
   }
   
   function displayMap(legislator) {      

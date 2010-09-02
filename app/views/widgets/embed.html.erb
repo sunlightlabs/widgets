@@ -1,10 +1,8 @@
 <% content_for :head do %>
   <%= stylesheet_link_tag "widgets/#{params[:id]}" %>
   
-  <%= javascript_include_tag 'transparency_data' %>
-  <%= javascript_include_tag 'drumbone' %>
-  
   <script type="text/javascript">
+    // config variables
     var data_endpoint = "<%= settings[:data_endpoint] %>";
     var sunlight_api_key = "<%= settings[:sunlight_api_key] %>";
     var snapshot_directory = "<%= settings[:snapshot_directory] %>";
@@ -13,9 +11,28 @@
     var size = "<%= @size %>";
     var snapshot_id = "<%= params[:snapshot_id] %>";
     
+    
+    // geolocation
+    var geolocate = false;
+    <% if @location %>
+      geolocate = true;
+      
+      var latitude = "<%= @location[:latitude] %>";
+      var longitude = "<%= @location[:longitude] %>";
+      
+      latitude = "30.267";
+      longitude = "-97.685";
+    <% end %>
+    
+    
+    // api keys
+    Sunlight.api_key = sunlight_api_key;
     Drumbone.base_url = data_endpoint;
     Drumbone.api_key = sunlight_api_key;
     TransparencyData.api_key = sunlight_api_key;
+    
+    
+    // helper functions for each widget setup process
     
     function showWidget() {
       $("div#sources a.sourceText").toggle(
@@ -54,6 +71,46 @@
       $("#last_updated").html(formatSourceDate(new Date(date)));
       $("#sourceContent").html(text);
     }
+    
+    // widgets will override set Widget.load to a new function that accepts a bioguide_id
+    var Widget = {
+      load: function(bioguide_id) {}, // overwritten by each child widget before document is done loading
+      onLoad: function() {
+        showWidget(); // will get more complicated when we introduce overlay for geolocated widgets
+      },
+      error: setError,
+      alert: setAlert,
+      source: updateSource
+    };
+    
+    $(function() {
+      if (geolocate && latitude && longitude) {
+          
+        Sunlight.allForLatLong(latitude, longitude, function(legislators) {
+          if (legislators != null && legislators.length)
+            Widget.load(legislators[0].legislator.bioguide_id);
+            
+          else // 
+            Widget.load(bioguide_id);
+        });
+        
+      } else
+        Widget.load(bioguide_id);
+    });
+    
+    // pull out the first legislator whose title is not 'Sen', 
+    // and if there is none (i.e. open seat) then just return the first one
+    function pullOutRep(legislators) {
+      var index = -1;
+      $.each(legislators, function(i, legislator) {
+        if (legislator.title != 'Sen') {
+          index = i;
+          return false; // jQuery's way of doing a "break"
+        }
+      });
+      index > -1 ? index : 0;
+    }
+    
   </script>
 <% end %>
 

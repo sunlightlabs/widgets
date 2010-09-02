@@ -1,20 +1,20 @@
 <% content_for :head do %>
-
   <script type="text/javascript">
-    $(function() {
+    Widget.load = function(bioguide_id) {
+      
       Drumbone.getLegislator(bioguide_id, ["basic", "sponsorships"], function(legislator) {
         if (legislator) {
           if (legislator.sponsorships) {
             populateWidget(legislator);
-            showWidget();
+            Widget.onLoad();
           } else
-            setAlert("There was a problem loading this lawmaker's bill sponsorship information.");
+            Widget.alert("There was a problem loading this lawmaker's bill sponsorship information.");
         } else
-          setError("There was a problem loading this lawmaker's information.");
+          Widget.error("There was a problem loading this lawmaker's information.");
       });
-    });
+      
+    };
   </script>
-  
 <% end %>
 
 <div id="headerWrapper" style="background-color: #<%= params[:color] || "EBE9D4" %>">
@@ -94,7 +94,7 @@
     
     var govtrack_url = govtrackLegislatorUrl(legislator.govtrack_id);
     var description = "Data provided by <a href=\"" + govtrack_url + "\" target=\"_blank\">GovTrack</a> through the <a href=\"http://thomas.loc.gov\" target=\"_blank\">Library of Congress</a>.<br/>Statistics apply to legislative activity for the " + currentSession() + "th Congress.";
-    updateSource(legislator.last_updated, description);
+    Widget.source(legislator.last_updated, description);
     
     var dimensions = {};
     if (size == 'lg') {

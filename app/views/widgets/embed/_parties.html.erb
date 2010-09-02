@@ -1,19 +1,23 @@
 <% content_for :head do %>
   <script type="text/javascript">
-    $(function() {
+    Widget.load = function(bioguide_id) {
       
       Drumbone.getLegislator(bioguide_id, "basic,parties", function(legislator) {
         if (legislator) {
           if (legislator.parties) {
             populateWidget(legislator);
-            showWidget();
-          } else
-            setAlert("We do not yet have any information on this legislator's fundraising parties.");
-        } else
-          setError("There was a problem loading this lawmaker's information.");
+            Widget.onLoad();
+          } 
+          
+          else
+            Widget.alert("We do not yet have any information on this legislator's fundraising parties.");
+        } 
+        
+        else
+          Widget.error("There was a problem loading this lawmaker's information.");
       });
       
-    });
+    };
   </script>
 <% end %>
 
@@ -162,7 +166,7 @@
     
     var partytime_url = "http://politicalpartytime.org/pol/" + legislator.crp_id + "/";
     var description = "Party details taken from Sunlight's <a href=\"" + partytime_url + "\" target=\"_blank\">Party Time</a>.";
-    updateSource(legislator.parties.last_updated, description);
+    Widget.source(legislator.parties.last_updated, description);
   }
   
   

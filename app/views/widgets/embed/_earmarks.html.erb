@@ -1,19 +1,21 @@
 <% content_for :head do %>
   <script type="text/javascript">
-    $(function() {
-      
+    Widget.load = function(bioguide_id) {
+    
       Drumbone.getLegislator(bioguide_id, "basic,earmarks", function(legislator) {
         if (legislator) {
           if (legislator.earmarks) {
             populateWidget(legislator);
-            showWidget();
-          } else
-            setAlert("We do not yet have any information on this legislator's earmarks.");
+            Widget.onLoad();
+          }
+          
+          else
+            Widget.alert("We do not yet have any information on this legislator's earmarks.");
         } else
-          setError("There was a problem loading this lawmaker's information."); 
+          Widget.error("There was a problem loading this lawmaker's information."); 
       });
       
-    });
+    };
   </script>
 <% end %>
 
@@ -106,7 +108,7 @@
     };
 
     $('div#pageMain').autoRender(widget_data);
-    updateSource(earmarks.last_updated, description);
+    Widget.source(earmarks.last_updated, description);
     
     var dimensions = {};
     var y_label_offset = -5;

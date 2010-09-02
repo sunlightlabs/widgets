@@ -8,16 +8,16 @@ dependencies:
     group: 
     - :development
     version: ">= 0"
-  rails: 
-    group: 
-    - :default
-    version: = 3.0.0.beta3
   sunlight: 
     group: 
     - :default
     version: ">= 0"
     require: 
     - sunlight
+  rails: 
+    group: 
+    - :default
+    version: = 3.0.0.beta3
   rspec: 
     group: 
     - :test
@@ -34,6 +34,10 @@ dependencies:
     group: 
     - :default
     version: ">= 0.2.0"
+  geo_ip: 
+    group: 
+    - :default
+    version: ">= 0"
   capistrano: 
     group: 
     - :development
@@ -60,7 +64,7 @@ specs:
 - rack: 
     version: 1.1.0
 - rack-mount: 
-    version: 0.6.10
+    version: 0.6.13
 - rack-test: 
     version: 0.5.4
 - actionpack: 
@@ -118,7 +122,7 @@ specs:
 - daemons: 
     version: 1.1.0
 - hashie: 
-    version: 0.3.1
+    version: 0.4.0
 - httparty: 
     version: 0.6.1
 - drumbone: 
@@ -127,6 +131,8 @@ specs:
     version: 1.0.7
 - gem_plugin: 
     version: 0.2.3
+- geo_ip: 
+    version: 0.2.0
 - json: 
     version: 1.4.6
 - mongrel: 
@@ -151,7 +157,7 @@ specs:
     version: 1.0.7
 - webrat: 
     version: 0.7.1
-hash: e3aaf206e9db22fad868c5e1967227d796a7f666
+hash: 0c281155e61113ba85dcc7169716cd1d4ab4f04e
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org

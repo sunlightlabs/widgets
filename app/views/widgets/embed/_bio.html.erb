@@ -1,15 +1,16 @@
 <% content_for :head do %>
 
   <script type="text/javascript">
-    $(function() {
+    Widget.load = function(bioguide_id) {
       Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
         if (legislator && legislator.bioguide_id) {
           populateWidget(legislator);
-          showWidget();
+          Widget.onLoad();
         } else
-          setError("There was a problem loading this lawmaker's information.");
+          Widget.error("There was a problem loading this lawmaker's information.");
       });
-    });
+      
+    };
   </script>
   
 <% end %>
@@ -109,6 +110,6 @@
       govtrack: legislator.govtrack_id
     });
     
-    updateSource(legislator.last_updated, description);
+    Widget.source(legislator.last_updated, description);
   }
 </script>

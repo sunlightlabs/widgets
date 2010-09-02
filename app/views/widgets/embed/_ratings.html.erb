@@ -1,16 +1,19 @@
 <% content_for :head do %>
   <script type="text/javascript" charset="utf-8">
-    $(function() {
+    Widget.load = function(bioguide_id) {
       var sig_id = "<%= params[:sig_id] || ""%>";
       
       if (sig_id) {
+      
         var sections = ["basic","ratings.last_updated","ratings." + sig_id];
         Drumbone.getLegislator(bioguide_id, sections, function(legislator) {
           if (legislator) {
             populateWidget(legislator, sig_id);
-            showWidget();
-          } else
-            setError("There was a problem loading this lawmaker's information.");
+            Widget.onLoad();
+          } 
+          
+          else
+            Widget.error("There was a problem loading this lawmaker's information.");
         });
       }
       
@@ -21,16 +24,18 @@
             
             if (sig_id) {
               populateWidget(legislator, sig_id);
-              showWidget();
-            } else
-              setAlert("This legislator has no known recent interest group ratings.");
+              Widget.onLoad();
+            } 
+            
+            else
+              Widget.alert("This legislator has no known recent interest group ratings.");
           } 
           
           else
-            setError("There was a problem loading this lawmaker's information.");
+            Widget.error("There was a problem loading this lawmaker's information.");
         });
       }
-    });
+    };
     
     function getFirstSigId(legislator) {
       var sig_ids = [];
@@ -109,8 +114,9 @@
     $('div#pageMain').autoRender(widget_data);
     
     var votesmart_url = "http://votesmart.org/summary.php?can_id=" + legislator.votesmart_id;
+    
     var description = "Data provided by <a href=\"" + votesmart_url + "\" target=\"_blank\">Project Vote Smart</a>.  All ratings are for <%= Time.now.year - 1 %> or <%= Time.now.year %>.";
 
-    updateSource(ratings.last_updated, description);
+    Widget.source(ratings.last_updated, description);
   }
 </script>
