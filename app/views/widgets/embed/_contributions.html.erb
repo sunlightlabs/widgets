@@ -26,7 +26,7 @@
                     var entity_id = pairwise.contributor_id;
                     var amount = pairwise.amount;
                     populateWidget(legislator, cycle, entity_id, entity_name, amount);
-                    showWidget();
+                    Widget.onLoad();
                   }
                 });
               } 
@@ -42,7 +42,7 @@
                     var entity_id = top_contributors[0].id;
                     var amount = top_contributors[0].total_amount;
                     populateWidget(legislator, cycle, entity_id, entity_name, amount);
-                    showWidget();
+                    Widget.onLoad();
                   }
                 });
               }

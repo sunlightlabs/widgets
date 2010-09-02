@@ -14,7 +14,7 @@
         Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
           if (legislator) {
             populateWidget(legislator);
-            showWidget();
+            Widget.onLoad();
           } else
             Widget.error("There was a problem loading this lawmaker's information.");
         });
