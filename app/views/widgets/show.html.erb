@@ -102,28 +102,28 @@
         </button>  
       </fieldset>
     
-    <% unless @widget[:custom] and @widget[:custom][:disable_geolocate] %>
-      <ul id="geolocateBox"><li>
-        <label class="checkBoxType">
-          <input class="checkbox" type="checkbox" id="geolocate" name="geolocate"/>Automatically choose legislator based on reader's location
+      <ul id="widgetOptions">
+        <% unless @widget[:custom] and @widget[:custom][:disable_geolocate] %>
+        <li id="geolocateBox">
+          <label class="checkBoxType">
+            <input class="checkbox" type="checkbox" id="geolocate" name="geolocate" />Automatically choose legislator based on reader's location
+          </label>
+          <div class="clear"></div>
           <a id="geolocateExplainShow" href="#">more</a>
-          <div id="geolocateExplain">
-            If you check this box, we'll attempt to geographically locate users viewing the widget (using <a href="http://ipinfodb.com" target="_blank">IPInfoDB</a>), and show them their own elected official. <strong>This does not always work</strong>, and if it doesn't, the widget will default to the legislator you originally selected (<%= titled_name_for @legislator %>).
-          </div>
-        </label>
-      </li></ul>
-    <% end %>
+          <p id="geolocateExplain">If you check this box, we'll attempt to geographically locate users viewing the widget (using <a href="http://ipinfodb.com" target="_blank">IPInfoDB</a>), and show them their own elected official. <strong>This does not always work</strong>, and if it doesn't, the widget will default to the legislator you originally selected (<%= titled_name_for @legislator %>).</p>
+        </li>
+        <% end %>
     
-    <% unless @widget[:custom] and @widget[:custom][:disable_snapshot] %>
-      <ul id="freezeBox"><li>
-        <label class="checkBoxType">
-          <input class="checkbox" type="checkbox" id="freeze" name="freezeDate"/>Freeze data from updating
-        </label>
-        <a id="freezeExplainShow" href="#">more</a>
-        <div id="freezeExplain">
-          Check this box to preserve the information you see right now. If the box is unchecked, the widget will always display the most recent data, including any changes that have occurred since you embedded it.
-        </div>
-      </li></ul>
+        <% unless @widget[:custom] and @widget[:custom][:disable_snapshot] %>
+        <li id="freezeBox">
+          <label class="checkBoxType">
+            <input class="checkbox" type="checkbox" id="freeze" name="freezeDate"/>Freeze data from updating
+          </label>
+          <div class="clear"></div>
+          <a id="freezeExplainShow" href="#">more</a>
+          <p id="freezeExplain">Check this box to preserve the information you see right now. If the box is unchecked, the widget will always display the most recent data, including any changes that have occurred since you embedded it.</p>
+        </li>
+      </ul>
 
       <div id="loadingBox">
         <%= image_tag "site/spinner.gif" %>
