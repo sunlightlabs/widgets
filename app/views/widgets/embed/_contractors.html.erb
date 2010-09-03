@@ -1,18 +1,23 @@
 <% content_for :head do %>
-
   <script type="text/javascript">
-    $(function() {
+    Widget.load = function(bioguide_id) {
+    
       Drumbone.getLegislator(bioguide_id, ["basic", "contracts"], function(legislator) {
         if (legislator) {
           if (legislator.contracts) {
             populateWidget(legislator);
-            showWidget();
-          } else
-            setAlert("We do not yet have any information on this lawmaker's district's federal contracts.");
-        } else
-          setError("There was a problem loading this lawmaker's information.");
+            Widget.onLoad();
+          }
+          
+          else
+            Widget.alert("We do not yet have any information on this lawmaker's district's federal contracts.");
+        }
+        
+        else
+          Widget.error("There was a problem loading this lawmaker's information.");
       });
-    });
+      
+    };
   </script>
   
 <% end %>
@@ -70,7 +75,7 @@
     };
 
     $('div#header').autoRender(widget_data);
-    updateSource(legislator.contracts.last_updated, description);
+    Widget.source(legislator.contracts.last_updated, description);
     
     var top_contractors = legislator.contracts.top_contractors;
     var top_names = [];

@@ -279,13 +279,25 @@ ul#switcher li a:hover, ul#switcher li a.active{
 	float: left;
 }
 
-#checkBoxType {
+.checkBoxType {
 	display: inline;
 	font-size: 92%;
 	line-height: 110%;	
 }
 
 .checkbox { margin-right: 5px;}
+
+#geolocateExplain {
+  display: none;
+  margin: 10px 0;
+}
+
+a#geolocateExplainShow {
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 8pt;
+  margin-left: 10px;
+}
 
 #freezeExplain {
   display: none;
@@ -295,7 +307,7 @@ ul#switcher li a:hover, ul#switcher li a.active{
 a#freezeExplainShow {
   font-weight: bold;
   text-decoration: underline;
-  font-size: 92%;
+  font-size: 8pt;
   margin-left: 10px;
 }
 

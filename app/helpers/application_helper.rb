@@ -1,5 +1,5 @@
 module ApplicationHelper
-
+  
   def embed_url_for(widget_id, bioguide_id, options = {})
     options[:s] ||= options.delete(:size) || 'lg'
     options[:w] = widget_id

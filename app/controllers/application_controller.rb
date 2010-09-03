@@ -3,6 +3,16 @@ class ApplicationController < ActionController::Base
   helper_method :settings, :widgets, :featured
   
   
+  def location_for_ip(ip)
+    GeoIp.geolocation ip
+  rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError, Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError, RuntimeError => e
+    nil
+  end
+  
+  def get_location
+    location_for_ip request.env['REMOTE_ADDR']
+  end
+  
   def load_settings
     Sunlight::Base.api_key = settings[:sunlight_api_key]
     Drumbone.api_key = settings[:sunlight_api_key]

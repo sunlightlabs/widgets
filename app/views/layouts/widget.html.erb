@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
+  <!-- jQuery and utilities -->
   <%= javascript_include_tag 'jquery-1.4.2.min' %>
   <%= javascript_include_tag 'pure.min' %>
   <%= javascript_include_tag 'underscore.min' %>
@@ -9,8 +10,17 @@
     <script src="/javascripts/excanvas.compiled.js" type="text/javascript"></script>
   <![endif]-->
   
+  
+  <!-- API clients -->
+  <%= javascript_include_tag 'sunlight' %>
+  <%= javascript_include_tag 'drumbone' %>
+  <%= javascript_include_tag 'transparency_data' %>
+  
+  
+  <!-- Site code -->
   <%= javascript_include_tag 'politiwidgets' %>
   <%= javascript_include_tag 'politiwidgets_embed' %>
+  
   
   <!--[if IE 6]>
     <%= stylesheet_link_tag 'widgets-buggy' %>

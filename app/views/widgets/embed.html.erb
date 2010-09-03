@@ -1,10 +1,8 @@
 <% content_for :head do %>
   <%= stylesheet_link_tag "widgets/#{params[:id]}" %>
   
-  <%= javascript_include_tag 'transparency_data' %>
-  <%= javascript_include_tag 'drumbone' %>
-  
   <script type="text/javascript">
+    // config variables
     var data_endpoint = "<%= settings[:data_endpoint] %>";
     var sunlight_api_key = "<%= settings[:sunlight_api_key] %>";
     var snapshot_directory = "<%= settings[:snapshot_directory] %>";
@@ -13,47 +11,102 @@
     var size = "<%= @size %>";
     var snapshot_id = "<%= params[:snapshot_id] %>";
     
+    
+    // geolocation
+    var geolocate = false;
+    var latitude, longitude, located_legislator;
+    <% if params[:geolocate] %>
+      geolocate = true;
+      
+      <% if @location %>
+        latitude = "<%= @location[:latitude] %>";
+        longitude = "<%= @location[:longitude] %>";
+      <% end %>
+    <% end %>
+    
+    
+    // api keys
+    Sunlight.api_key = sunlight_api_key;
     Drumbone.base_url = data_endpoint;
     Drumbone.api_key = sunlight_api_key;
     TransparencyData.api_key = sunlight_api_key;
     
-    function showWidget() {
-      $("div#sources a.sourceText").toggle(
-        function(){
-          $(this).addClass("active");
-          $("div#sourceArea").slideDown("slow");
-          $(".highcharts-container").hide();
-          return false;
-        },
-        function() {
-          $(this).removeClass("active");
-          $("div#sourceArea").slideUp("slow", function() {
-            $(".highcharts-container").show();        
+    
+    var Widget = {
+      load: function(bioguide_id) {}, // overwritten by each child widget before document is done loading
+      
+      onLoad: function() {
+        $("div#sources a.sourceText").toggle(
+          function(){
+            $(this).addClass("active");
+            $("div#sourceArea").slideDown("slow");
+            $(".highcharts-container").hide();
+            return false;
+          },
+          function() {
+            $(this).removeClass("active");
+            $("div#sourceArea").slideUp("slow", function() {
+              $(".highcharts-container").show();        
+            });
+            
+            return false;
+          } 
+        );
+
+        $("body").show();
+      },
+      
+      alert: function(message) {
+        $("#pageMain").hide();
+        $("#widgetAlert p").html(message);
+        $("#widgetAlert").show();
+        $("body").show();
+      },
+      
+      error: function(message) {
+        $("#widgetAlert").addClass("error");
+        Widget.alert(message);
+      },
+      
+      source: function(date, text) {
+        $("#last_updated").html(formatSourceDate(new Date(date)));
+        $("#sourceContent").html(text);
+      }
+    };
+    
+    $(function() {
+      if (geolocate) {
+        if (latitude && longitude) {
+          Sunlight.allForLatLong(latitude, longitude, function(legislators) {
+            if (legislators != null && legislators.length) {
+              located_legislator = pullOutRep(legislators);
+              Widget.load(located_legislator.bioguide_id);
+            }
+            else 
+              Widget.load(bioguide_id);
           });
           
-          return false;
-        } 
-      );
-
-      $("body").show();
+        } else
+          Widget.load(bioguide_id);
+        
+      } else
+        Widget.load(bioguide_id);
+    });
+    
+    // pull out the first legislator whose title is not 'Sen', 
+    // and if there is none (i.e. open seat) then just return the first one
+    function pullOutRep(legislators) {
+      var index = -1;
+      $.each(legislators, function(i, legislator_object) {
+        var legislator = legislator_object.legislator;
+        if (legislator.title != 'Sen') {
+          index = i;
+          return false; // jQuery's way of doing a "break"
+        }
+      });
+      return legislators[index > -1 ? index : 0].legislator;
     }
-
-    function setAlert(message) {
-      $("#pageMain").hide();
-      $("#widgetAlert p").html(message);
-      $("#widgetAlert").show();
-      $("body").show();
-    }
-
-    function setError(message) {
-      $("#widgetAlert").addClass("error");
-      setAlert(message);
-    }
-
-    function updateSource(date, text) {
-      $("#last_updated").html(formatSourceDate(new Date(date)));
-      $("#sourceContent").html(text);
-    }
+    
   </script>
 <% end %>
 

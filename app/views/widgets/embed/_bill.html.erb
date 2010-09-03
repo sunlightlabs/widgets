@@ -1,36 +1,48 @@
 <% content_for :head do %>
-
   <script type="text/javascript">
-    <% # done here because it's widget-specific, can't be done in the controller
-      roll_id = nil
-      if params[:roll_id]
-        roll_id = params[:roll_id]
-      elsif params[:title] == 'Sen'
-        roll_id = @widget[:custom][:roll_id][:senate]
-      else
-        roll_id = @widget[:custom][:roll_id][:house]
-      end
-    %>
+    // does not support geolocation as of yet
     
-    var roll_id = "<%= roll_id %>";
-    var sections = ["basic", "bill", "party_vote_breakdown", "voters." + bioguide_id];
+    Widget.load = function(bioguide_id) {
     
-    $(function() {
-      Drumbone.getRoll(roll_id, sections, function(roll) {
-        if (roll) {
-          if (roll.voters && roll.voters[bioguide_id]) {
-            legislator = roll.voters[bioguide_id].voter;
-            vote = roll.voters[bioguide_id].vote;
-            populateWidget(vote, roll, roll.bill, legislator);
-            showWidget();
-          }
-          else
-            setAlert("This representative has no recorded vote for this bill.");
+      Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
+        if (legislator && legislator.bioguide_id == bioguide_id) {
+        
+          <%
+            roll_id = nil
+            if params[:roll_id]
+              roll_id = params[:roll_id]
+            elsif params[:title] == 'Sen'
+              roll_id = @widget[:custom][:roll_id][:senate]
+            else
+              roll_id = @widget[:custom][:roll_id][:house]
+            end
+          %>
+          var roll_id = "<%= roll_id %>";
+    
+          var sections = ["basic", "bill", "party_vote_breakdown", "voter_ids." + bioguide_id];
           
-        } else
-          setError("There was a problem loading this lawmaker's information.");
+          Drumbone.getRoll(roll_id, sections, function(roll) {
+            if (roll) {
+              if (roll.voter_ids && roll.voter_ids[bioguide_id]) {
+                vote = roll.voter_ids[bioguide_id];
+                populateWidget(vote, roll, roll.bill, legislator);
+                Widget.onLoad();
+              }
+              
+              else {
+                window.voter_ids = roll.voter_ids;
+                Widget.alert("This representative has no recorded vote for this bill.");
+              }
+              
+            } else
+              Widget.error("There was a problem loading this lawmaker's information.");
+          });
+        }
+        
+        else
+          Widget.error("There was a problem loading this lawmaker's information.");
       });
-    });
+    };
   </script>
   
 <% end %>
@@ -89,6 +101,11 @@
 
 <script type="text/javascript" charset="utf-8">
   function populateWidget(vote, roll, bill, legislator) {
+    var description = "Data provided by <a href=\"" + govtrackBillUrl(bill.type, bill.number, bill.session) + "\" target=\"_blank\">GovTrack.us</a> through the <a href=\"http://thomas.loc.gov\" target=\"_blank\">Library of Congress</a>.<br/>Bill code and vote data applies to legislative activity in the " + currentSession() + "th Congress.";
+    
+    Widget.source(bill.last_updated, description);
+    
+    
     var legislator_district = "";
     if (legislator.district == '0')
       legislator_district = "AL";
@@ -153,10 +170,7 @@
     
     $('div#lawmakerVote').autoRender(vote_map[vote]);
     
-    var description = "Data provided by <a href=\"" + govtrackBillUrl(bill.type, bill.number, bill.session) + "\" target=\"_blank\">GovTrack.us</a> through the <a href=\"http://thomas.loc.gov\" target=\"_blank\">Library of Congress</a>.<br/>Bill code and vote data applies to legislative activity in the " + currentSession() + "th Congress.";
-    updateSource(bill.last_updated, description);
-
-
+    
     var dimensions = {};
     if (size == 'sm') {
       dimensions.width = 150;

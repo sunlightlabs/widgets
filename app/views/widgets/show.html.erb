@@ -10,6 +10,8 @@
     var sunlight_api_key = "<%= settings[:sunlight_api_key] %>";
     var data_endpoint = "<%= settings[:data_endpoint] %>";
     
+    var geolocate = false; // manage whether geolocation is on
+    
     // various globals to help out in keeping state of the widget during customization
     var sizes = {sm: [160, 300], med: [300, 250], lg: [400,300]};
     var widget_size = 'lg';
@@ -100,9 +102,21 @@
         </button>  
       </fieldset>
     
+    <% unless @widget[:custom] and @widget[:custom][:disable_geolocate] %>
+      <ul id="geolocateBox"><li>
+        <label class="checkBoxType">
+          <input class="checkbox" type="checkbox" id="geolocate" name="geolocate"/>Automatically choose legislator based on reader's location
+          <a id="geolocateExplainShow" href="#">more</a>
+          <div id="geolocateExplain">
+            If you check this box, we'll attempt to geographically locate users viewing the widget (using <a href="http://ipinfodb.com" target="_blank">IPInfoDB</a>), and show them their own elected official. <strong>This does not always work</strong>, and if it doesn't, the widget will default to the legislator you originally selected (<%= titled_name_for @legislator %>).
+          </div>
+        </label>
+      </li></ul>
+    <% end %>
+    
     <% unless @widget[:custom] and @widget[:custom][:disable_snapshot] %>
       <ul id="freezeBox"><li>
-        <label id="checkBoxType">
+        <label class="checkBoxType">
           <input class="checkbox" type="checkbox" id="freeze" name="freezeDate"/>Freeze data from updating
         </label>
         <a id="freezeExplainShow" href="#">more</a>

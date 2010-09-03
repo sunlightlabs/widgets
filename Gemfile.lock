@@ -1,5 +1,5 @@
 --- 
-hash: 62d0731f5f664790fd06eb190417d8a42ec0aea9
+hash: 726a49c10fac63216069f2f6a02664d16845d73f
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org
@@ -25,7 +25,7 @@ specs:
 - rack: 
     version: 1.1.0
 - rack-mount: 
-    version: 0.6.12
+    version: 0.6.13
 - rack-test: 
     version: 0.5.4
 - actionpack: 
@@ -81,13 +81,15 @@ specs:
 - daemons: 
     version: 1.0.10
 - hashie: 
-    version: 0.3.1
+    version: 0.4.0
 - httparty: 
     version: 0.6.1
 - drumbone: 
     version: 0.2.0
 - gem_plugin: 
     version: 0.2.3
+- geo_ip: 
+    version: 0.2.0
 - json: 
     version: 1.4.6
 - mongrel: 
@@ -129,6 +131,10 @@ dependencies:
     - :default
   drumbone: 
     version: ">= 0.2.0"
+    group: 
+    - :default
+  geo_ip: 
+    version: ">= 0"
     group: 
     - :default
   mongrel: 
