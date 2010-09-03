@@ -1,43 +1,8 @@
 --- 
-dependencies: 
-  s3: 
-    group: 
-    - :default
-    version: ">= 0"
-  mongrel: 
-    group: 
-    - :development
-    version: ">= 0"
-  rails: 
-    group: 
-    - :default
-    version: = 3.0.0.beta3
-  sunlight: 
-    group: 
-    - :default
-    version: ">= 0"
-    require: 
-    - sunlight
-  rspec: 
-    group: 
-    - :test
-    version: ">= 0"
-  webrat: 
-    group: 
-    - :test
-    version: ">= 0"
-  cucumber: 
-    group: 
-    - :test
-    version: ">= 0"
-  drumbone: 
-    group: 
-    - :default
-    version: ">= 0.2.0"
-  capistrano: 
-    group: 
-    - :development
-    version: ">= 0"
+hash: 62d0731f5f664790fd06eb190417d8a42ec0aea9
+sources: 
+- Rubygems: 
+    uri: http://gemcutter.org
 specs: 
 - rake: 
     version: 0.8.7
@@ -60,7 +25,7 @@ specs:
 - rack: 
     version: 1.1.0
 - rack-mount: 
-    version: 0.6.10
+    version: 0.6.12
 - rack-test: 
     version: 0.5.4
 - actionpack: 
@@ -99,8 +64,6 @@ specs:
     version: 1.0.1
 - capistrano: 
     version: 2.5.19
-- cgi_multipart_eof_fix: 
-    version: 2.5.0
 - crack: 
     version: 0.1.8
 - diff-lcs: 
@@ -116,21 +79,19 @@ specs:
 - cucumber: 
     version: 0.8.5
 - daemons: 
-    version: 1.1.0
+    version: 1.0.10
 - hashie: 
     version: 0.3.1
 - httparty: 
     version: 0.6.1
 - drumbone: 
     version: 0.2.0
-- fastthread: 
-    version: 1.0.7
 - gem_plugin: 
     version: 0.2.3
 - json: 
     version: 1.4.6
 - mongrel: 
-    version: 1.1.5
+    version: 1.2.0.pre2
 - nokogiri: 
     version: 1.4.3.1
 - proxies: 
@@ -151,7 +112,42 @@ specs:
     version: 1.0.7
 - webrat: 
     version: 0.7.1
-hash: e3aaf206e9db22fad868c5e1967227d796a7f666
-sources: 
-- Rubygems: 
-    uri: http://gemcutter.org
+dependencies: 
+  rails: 
+    version: = 3.0.0.beta3
+    group: 
+    - :default
+  sunlight: 
+    version: ">= 0"
+    group: 
+    - :default
+    require: 
+    - sunlight
+  s3: 
+    version: ">= 0"
+    group: 
+    - :default
+  drumbone: 
+    version: ">= 0.2.0"
+    group: 
+    - :default
+  mongrel: 
+    version: = 1.2.0.pre2
+    group: 
+    - :development
+  capistrano: 
+    version: ">= 0"
+    group: 
+    - :development
+  rspec: 
+    version: ">= 0"
+    group: 
+    - :test
+  cucumber: 
+    version: ">= 0"
+    group: 
+    - :test
+  webrat: 
+    version: ">= 0"
+    group: 
+    - :test

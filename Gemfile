@@ -7,7 +7,7 @@ gem "s3"
 gem "drumbone", ">=0.2.0"
 
 group :development do
-  gem "mongrel"
+  gem "mongrel", "1.2.0.pre2"
   gem "capistrano"
 end
 
