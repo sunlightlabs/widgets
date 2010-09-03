@@ -14,14 +14,14 @@
     
     // geolocation
     var geolocate = false;
-    <% if @location %>
+    var latitude, longitude, located_legislator;
+    <% if params[:geolocate] %>
       geolocate = true;
       
-      var latitude = "<%= @location[:latitude] %>";
-      var longitude = "<%= @location[:longitude] %>";
-      
-      latitude = "30.267";
-      longitude = "-97.685";
+      <% if @location %>
+        latitude = "<%= @location[:latitude] %>";
+        longitude = "<%= @location[:longitude] %>";
+      <% end %>
     <% end %>
     
     
@@ -32,67 +32,62 @@
     TransparencyData.api_key = sunlight_api_key;
     
     
-    // helper functions for each widget setup process
-    
-    function showWidget() {
-      $("div#sources a.sourceText").toggle(
-        function(){
-          $(this).addClass("active");
-          $("div#sourceArea").slideDown("slow");
-          $(".highcharts-container").hide();
-          return false;
-        },
-        function() {
-          $(this).removeClass("active");
-          $("div#sourceArea").slideUp("slow", function() {
-            $(".highcharts-container").show();        
-          });
-          
-          return false;
-        } 
-      );
-
-      $("body").show();
-    }
-
-    function setAlert(message) {
-      $("#pageMain").hide();
-      $("#widgetAlert p").html(message);
-      $("#widgetAlert").show();
-      $("body").show();
-    }
-
-    function setError(message) {
-      $("#widgetAlert").addClass("error");
-      setAlert(message);
-    }
-
-    function updateSource(date, text) {
-      $("#last_updated").html(formatSourceDate(new Date(date)));
-      $("#sourceContent").html(text);
-    }
-    
-    // widgets will override set Widget.load to a new function that accepts a bioguide_id
     var Widget = {
       load: function(bioguide_id) {}, // overwritten by each child widget before document is done loading
+      
       onLoad: function() {
-        showWidget(); // will get more complicated when we introduce overlay for geolocated widgets
+        $("div#sources a.sourceText").toggle(
+          function(){
+            $(this).addClass("active");
+            $("div#sourceArea").slideDown("slow");
+            $(".highcharts-container").hide();
+            return false;
+          },
+          function() {
+            $(this).removeClass("active");
+            $("div#sourceArea").slideUp("slow", function() {
+              $(".highcharts-container").show();        
+            });
+            
+            return false;
+          } 
+        );
+
+        $("body").show();
       },
-      error: setError,
-      alert: setAlert,
-      source: updateSource
+      
+      alert: function(message) {
+        $("#pageMain").hide();
+        $("#widgetAlert p").html(message);
+        $("#widgetAlert").show();
+        $("body").show();
+      },
+      
+      error: function(message) {
+        $("#widgetAlert").addClass("error");
+        Widget.alert(message);
+      },
+      
+      source: function(date, text) {
+        $("#last_updated").html(formatSourceDate(new Date(date)));
+        $("#sourceContent").html(text);
+      }
     };
     
     $(function() {
-      if (geolocate && latitude && longitude) {
+      if (geolocate) {
+        if (latitude && longitude) {
+          Sunlight.allForLatLong(latitude, longitude, function(legislators) {
+            if (legislators != null && legislators.length) {
+              located_legislator = pullOutRep(legislators);
+              Widget.load(located_legislator.bioguide_id);
+            }
+            else 
+              Widget.load(bioguide_id);
+          });
           
-        Sunlight.allForLatLong(latitude, longitude, function(legislators) {
-          if (legislators != null && legislators.length)
-            Widget.load(legislators[0].legislator.bioguide_id);
-            
-          else // 
-            Widget.load(bioguide_id);
-        });
+        } else
+          Widget.load(bioguide_id);
         
       } else
         Widget.load(bioguide_id);
@@ -102,13 +97,14 @@
     // and if there is none (i.e. open seat) then just return the first one
     function pullOutRep(legislators) {
       var index = -1;
-      $.each(legislators, function(i, legislator) {
+      $.each(legislators, function(i, legislator_object) {
+        var legislator = legislator_object.legislator;
         if (legislator.title != 'Sen') {
           index = i;
           return false; // jQuery's way of doing a "break"
         }
       });
-      index > -1 ? index : 0;
+      return legislators[index > -1 ? index : 0].legislator;
     }
     
   </script>

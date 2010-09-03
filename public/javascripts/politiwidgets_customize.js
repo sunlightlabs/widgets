@@ -34,6 +34,11 @@ function setEventHandlers() {
     }
   });
   
+  $("#geolocate").change(function() {
+    geolocate = this.checked;
+    updateFrame();
+  });
+  
   $("#freezeExplainShow").toggle(function() {
     $("#freezeExplain").show(); 
     $("#freezeExplainShow").html("hide");
@@ -41,6 +46,16 @@ function setEventHandlers() {
   }, function() {
     $("#freezeExplain").hide(); 
     $("#freezeExplainShow").html("more");
+    return false;
+  });
+  
+  $("#geolocateExplainShow").toggle(function() {
+    $("#geolocateExplain").show(); 
+    $("#geolocateExplainShow").html("hide");
+    return false;
+  }, function() {
+    $("#geolocateExplain").hide(); 
+    $("#geolocateExplainShow").html("more");
     return false;
   });
   
@@ -77,7 +92,7 @@ function updateFrame() {
     iframe_url += "&snapshot_id=" + snapshot_id;
   
   if (geolocate)
-    iframe_url += "&geolocate=" + geolocate;
+    iframe_url += "&geolocate=1";
   
   $("#widgetConstruct iframe").attr("src", iframe_url)
     .attr("width", sizes[widget_size][0])

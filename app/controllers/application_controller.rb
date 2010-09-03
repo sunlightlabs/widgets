@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   
   def location_for_ip(ip)
     GeoIp.geolocation ip
-  rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError, Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
+  rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError, Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError, RuntimeError => e
     nil
   end
   
