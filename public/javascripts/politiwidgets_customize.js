@@ -26,16 +26,24 @@ function setEventHandlers() {
   });
   
   $("#freeze").change(function() {
-    if (this.checked)
+    if (this.checked) {
+      $("#geolocateBox").hide();
       fetchSnapshot();
-    else {
+    } else {
+      $("#geolocateBox").show();
       snapshot_id = null;
       updateEmbedCode();
     }
   });
   
   $("#geolocate").change(function() {
-    geolocate = this.checked;
+    if (this.checked) {
+      $("#freezeBox").hide()
+      geolocate = true;
+    } else {
+      $("#freezeBox").show();
+      geolocate = false;
+    }
     updateFrame();
   });
   
