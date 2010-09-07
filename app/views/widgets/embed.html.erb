@@ -40,13 +40,11 @@
           function(){
             $(this).addClass("active");
             $("div#sourceArea").slideDown("slow");
-            $(".highcharts-container").hide();
             return false;
           },
           function() {
             $(this).removeClass("active");
-            $("div#sourceArea").slideUp("slow", function() {
-              $(".highcharts-container").show();        
+            $("div#sourceArea").slideUp("slow", function() {   
             });
             
             return false;
