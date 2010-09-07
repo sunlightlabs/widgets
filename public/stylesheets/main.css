@@ -284,6 +284,7 @@ ul#switcher li a:hover, ul#switcher li a.active{
 
 #widgetOptions p { display: none; margin: 10px 0; }
 #widgetOptions a { font-weight: bold; text-decoration: underline; display: block;}
+#widgetOptions a.inline {display: inline;}
 
 
 #loadingBox {display: none;}
