@@ -121,3 +121,17 @@ body.med .alert { width: 292px; height: 242px;}
 body.sm .alert { width: 152px; height: 292px; }
 .alert p { font-size: 120%; text-align: center; padding: 50px 20px 20px 20px;}
 .alert.error p {color: #a94b4b;}
+
+
+/* Legislator switcher code */
+
+#changeLawmaker { background-color: #020201; padding: 0 25px 25px 45px; z-index: 11; color: #e8e6e1; position: absolute; top: 157px; width: 322px; height: 110px; -moz-opacity: 0.85 !important; -webkit-opacity: 0.85!important; -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=85)" !important; filter: alpha(opacity=85) !important; opacity: 0.85 !important;}
+body.med #changeLawmaker { width: 222px; top: 77px; height: 140px;}
+body.sm #changeLawmaker { width: 132px; top: 112px; height: 180px; padding: 0 10px; }
+#changeLawmaker p { color: #cdcbc7; margin-bottom: 10px;}
+#lawmakerMetadata span, a.changeState { float: left;}
+#district { float: left;}
+h4 { font-weight: bold; padding: 15px 0 5px;}
+#closeBtn { background: url(images/btn_close.png) top right no-repeat; margin-top: -10px; width: 26px; height: 26px; text-indent: -9999em; display: block; cursor: pointer; float: right;}
+.changeState { text-indent: -9999em; display: block; width: 16px; height: 16px; cursor: pointer; background: url(images/icon_pencil_bw.png) top left no-repeat; margin-left: 5px;}
+.changeState:hover { background: url(images/icon_pencil.png) top left no-repeat; }
