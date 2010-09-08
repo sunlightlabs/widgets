@@ -80,6 +80,8 @@ body.lg #sources {
   color: #FFF;
   padding: 10px;
   display: none;
+  z-index: 10;
+  -moz-opacity: 0.9 !important; -webkit-opacity: 0.9!important; -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)" !important; filter: alpha(opacity=90) !important; opacity: 0.9 !important;
 }
 
 body.lg #sourceArea {
