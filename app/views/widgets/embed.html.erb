@@ -15,7 +15,7 @@
     // geolocation
     var geolocate = false;
     var latitude, longitude, located_legislator;
-    <% if params[:geolocate] %>
+    <% if params[:geolocate] == "true" %>
       geolocate = true;
       
       <% if @location %>
