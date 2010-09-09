@@ -129,6 +129,9 @@ body.bio_lg li.opencongress a:hover { background: url(/images/widgets/bio/social
 body.bio_lg li.youTube a { background: url(/images/widgets/bio/social_icons_lg.png) -36px top no-repeat; }
 body.bio_lg li.youTube a:hover { background: url(/images/widgets/bio/social_icons_lg.png) -36px -36px no-repeat;}
 
-
-body.bio_med div#mainVcard { width: 175px; float: right; }
+body.bio_med div#mainVcard { width: 175px; float: right; } 
 body.bio_lg div#mainVcard { width: 240px; float: right; }
+
+body.lg .alert { width: 392px; height: 162px; }
+body.med .alert { width: 292px; height: 147px; }
+body.sm .alert { width: 152px; height: 161px; }

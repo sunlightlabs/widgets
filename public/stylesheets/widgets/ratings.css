@@ -39,3 +39,7 @@ body.sm span.party { margin-right: 0px; display: block;}
 div#mainContent {  height: 118px; padding: 0 15px; text-align: center; margin-top: 25px;} 
 body.med div#mainContent { height: 106px; margin-top: 10px;} 
 body.lg div#mainContent { height: 121px; } 
+
+body.lg .alert { width: 392px; height: 165px; }
+body.med .alert { width: 292px; height: 141px; }
+body.sm .alert { width: 152px; height: 161px; }

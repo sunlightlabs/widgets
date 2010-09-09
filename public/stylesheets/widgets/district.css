@@ -36,3 +36,7 @@ body.med img { max-width: 80px; }
 body.lg #mainContent li { padding: 0 15px; width: 362px; line-height: 230%; }
 body.med #mainContent li { padding: 0 10px; width: 272px; line-height: 190%; }
 body.sm #mainContent li { padding: 2px 45px 2px 10px; width: 97px;  line-height: 140%; position: relative; display: block; }
+
+body.lg .alert { width: 392px; height: 207px; }
+body.med .alert { width: 292px; height: 166px; }
+body.sm .alert { width: 152px; height: 227px; }

@@ -118,13 +118,13 @@ body.sm {  position: relative; }
 body.med { width: 292px; height: 242px; position: relative; }
 body.lg { width: 392px; height: 292px; position: relative; }
 
-#widgetAlert {display: none;}
-.alert { background-color: #f8f6db; }
+#widgetAlert { display: none; position:absolute; bottom: 0; z-index: 10;  }
+.alert { background-color: #f1f2f2; }
+body.sm .alert.error { width: 152px; height: 292px;}
+body.med .alert.error { width: 292px; height: 242px; }
+body.lg .alert.error { width: 392px; height: 292px; }
 .alert.error { background-color: #FFCCCC; }
-body.lg .alert { width: 392px; height: 292px;}
-body.med .alert { width: 292px; height: 242px;}
-body.sm .alert { width: 152px; height: 292px; }
-.alert p { font-size: 120%; text-align: center; padding: 50px 20px 20px 20px;}
+.alert p { font-size: 140%; text-align: center; padding: 50px 20px 20px 20px; color: #e87a05; font-style: oblique; font-family: Georgia, "Times New Roman", Times, serif;}
 .alert.error p {color: #a94b4b;}
 
 

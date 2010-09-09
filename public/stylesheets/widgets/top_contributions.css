@@ -57,6 +57,10 @@ body.top_contributions_sm h2 { font-size: 100%; letter-spacing: -0.02em; font-we
 body.top_contributions_med div#mainContent { height: 135px; }
 body.top_contributions_lg div#mainContent { padding: 15px; height: 165px; }
 
+body.lg .alert { width: 392px; height: 207px; }
+body.med .alert { width: 292px; height: 166px; }
+body.sm .alert { width: 152px; height: 227px; }
+
 #key {
 	line-height: 120%;
 	border-top: 1px solid #e2e0de;

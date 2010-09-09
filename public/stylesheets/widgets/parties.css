@@ -56,3 +56,7 @@ span.month { color: #CE4D05;}
 span.contribution { font-style: Georgia, "Times New Roman", Times, serif; font-style: oblique; color: #999893;}
 
 ol li { margin-bottom: 10px;}
+
+body.lg .alert { width: 392px; height: 191px; }
+body.med .alert { width: 292px; height: 162px; }
+body.sm .alert { width: 152px; height: 194px; }

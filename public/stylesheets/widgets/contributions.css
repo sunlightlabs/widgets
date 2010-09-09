@@ -48,3 +48,7 @@ div#mainContent {  height: 118px; padding: 0 15px; text-align: center; margin-to
 body.sm div#mainContent { padding: 0 10px; margin-top: 18px;}
 body.med div#mainContent { height: 111px; margin-top: 5px;} 
 body.lg div#mainContent { height: 126px; margin-top: 8px;} 
+
+body.lg .alert { width: 392px; height: 165px; }
+body.med .alert { width: 292px; height: 141px; }
+body.sm .alert { width: 152px; height: 161px; }

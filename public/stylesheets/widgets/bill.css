@@ -98,3 +98,7 @@ div#voteKey dd { float: left; margin-right: 10px;}
 body.bill_sm div#voteKey dd { margin-right: 8px;}
 body.bill_sm div#voteKey span { margin-left: 0;}
 body.bill_sm div#voteKey span#democrat  { margin-left: 10px;}
+
+body.lg .alert { width: 392px; height: 208px; }
+body.med .alert { width: 292px; height: 166px; }
+body.sm .alert { width: 152px; height: 258px; }
