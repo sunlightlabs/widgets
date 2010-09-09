@@ -28,6 +28,9 @@ body.lg { width: 392px; height: 292px; position: relative; }
 
 .clear { clear: both;}
 
+h1 big select { font-size: 80%; padding: 2px 0; margin-bottom: 5px; display: block;}
+.sm h1 big select, .sm select.state { width: 132px;}
+
 #sources {
   background: #606161;
   height: 10px;
@@ -128,9 +131,9 @@ body.sm .alert { width: 152px; height: 292px; }
 /* Legislator switcher code */
 
 #changeLawmaker { background-color: #020201; padding: 0 25px 25px 45px; z-index: 11; color: #e8e6e1; position: absolute; top: 157px; width: 322px; height: 110px; -moz-opacity: 0.85 !important; -webkit-opacity: 0.85!important; -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=85)" !important; filter: alpha(opacity=85) !important; opacity: 0.85 !important;}
-body.med #changeLawmaker { width: 222px; top: 77px; height: 140px;}
-body.sm #changeLawmaker { width: 132px; top: 112px; height: 180px; padding: 0 10px; }
-#changeLawmaker p { color: #cdcbc7; margin-bottom: 10px;}
+body.med #changeLawmaker { width: 252px; top: 102px; height: 120px; padding: 0 20px 20px;}
+body.sm #changeLawmaker { width: 132px; top: 122px; height: 170px; padding: 0 10px; }
+#changeLawmaker p { color: #cdcbc7; margin-bottom: 10px; line-height: 16px;}
 #lawmakerMetadata span, a.changeState { float: left;}
 #district { float: left;}
 h4 { font-weight: bold; padding: 15px 0 5px;}
