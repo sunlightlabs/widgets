@@ -140,7 +140,7 @@
           $("small.title").hide();
           $("select.changeLawmakerSelect")
             .unbind("change")
-            .html(optionsForSwitcher(legislators))
+            .html(optionsForSwitcher(sortForSwitcher(legislators)))
             .val(legislator.bioguide_id)
             .change(switchLegislator)
             .show();
@@ -170,10 +170,11 @@
     function switchState() {
       var state = $(this).val();
       Sunlight.allForState(state, function(legislators) {
+        var sorted = sortForSwitcher(legislators);
         if (legislators == null)
           Widget.error("There was a problem loading legislators from " + state + ".");
         else
-          Widget.load(legislators[0].legislator.bioguide_id, onSwitchState);
+          Widget.load(sorted[0].legislator.bioguide_id, onSwitchState);
       });
     }
     
@@ -188,6 +189,18 @@
         options += "<option value=\"" + legislator.bioguide_id + "\">" + titledName(legislator, true) + "</option>";
       });
       return options;
+    }
+    
+    function sortForSwitcher(legislators) {
+      var senators = [];
+      var reps = [];
+      $.each(legislators, function(index, legislator) {
+        if (legislator.legislator.title == 'Sen')
+          senators[senators.length] = legislator;
+        else
+          reps[reps.length] = legislator;
+      });
+      return senators.concat(reps);
     }
     
   </script>
