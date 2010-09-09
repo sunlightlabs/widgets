@@ -100,7 +100,7 @@ function updateFrame() {
     iframe_url += "&snapshot_id=" + snapshot_id;
   
   if (geolocate)
-    iframe_url += "&geolocate=1";
+    iframe_url += "&geolocate=true";
   
   $("#widgetConstruct iframe").attr("src", iframe_url)
     .attr("width", sizes[widget_size][0])
