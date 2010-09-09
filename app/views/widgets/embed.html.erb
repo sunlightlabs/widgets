@@ -35,23 +35,13 @@
     var Widget = {
       load: function(bioguide_id) {}, // overwritten by each child widget before document is done loading
       
-      onLoad: function() {
-        $("div#sources a.sourceText").toggle(
-          function(){
-            $(this).addClass("active");
-            $("div#sourceArea").slideDown("slow");
-            return false;
-          },
-          function() {
-            $(this).removeClass("active");
-            $("div#sourceArea").slideUp("slow", function() {   
-            });
-            
-            return false;
-          } 
-        );
-
+      onLoad: function(legislator) {
+        prepareSource();
         $("body").show();
+      },
+      
+      onLoadSwitcher: function(legislator) {
+        prepareSwitcher(legislator, Widget.onLoad);
       },
       
       alert: function(message) {
@@ -78,17 +68,17 @@
           Sunlight.allForLatLong(latitude, longitude, function(legislators) {
             if (legislators != null && legislators.length) {
               located_legislator = pullOutRep(legislators);
-              Widget.load(located_legislator.bioguide_id);
+              Widget.load(located_legislator.bioguide_id, Widget.onLoadSwitcher);
             }
-            else 
-              Widget.load(bioguide_id);
+            else // geolocated the user, but found no legislator for that lat/long (user may be non-US)
+              Widget.load(bioguide_id, Widget.onLoadSwitcher);
           });
           
-        } else
-          Widget.load(bioguide_id);
+        } else // geolocation is enabled for the widget, but we couldn't figure out where the user is
+          Widget.load(bioguide_id, Widget.onLoadSwitcher);
         
-      } else
-        Widget.load(bioguide_id);
+      } else // geolocation is disabled for the widget
+        Widget.load(bioguide_id, Widget.onLoad);
     });
     
     // pull out the first legislator whose title is not 'Sen', 
@@ -103,6 +93,100 @@
         }
       });
       return legislators[index > -1 ? index : 0].legislator;
+    }
+    
+    function prepareSource() {
+      $("div#sources a.sourceText").toggle(
+        function(){
+          $(this).addClass("active");
+          $("div#sourceArea").slideDown("slow");
+          return false;
+        },
+        function() {
+          $(this).removeClass("active");
+          $("div#sourceArea").slideUp("slow");
+          return false;
+        } 
+      );
+    }
+    
+    // needs to be idempotent - may be called repeatedly as users switch states/legislators
+    function prepareSwitcher(legislator, showCallback) {
+      $("div#changeLawmaker a#closeBtn").click(function() {
+        $("div#changeLawmaker").hide();
+        return false;
+      });
+      
+      $("div#changeLawmaker span.current_name").html(fullName(legislator));
+      
+      $("div#changeLawmaker select.state")
+        .unbind('change')
+        .val(legislator.state)
+        .change(switchState);
+      
+      
+      $("div#changeLawmaker").show();
+      
+      $("a.changeState").click(function() {
+        $("div#changeLawmaker").toggle();
+        return false;
+      }).show();
+      
+      Sunlight.allForState(legislator.state, function(legislators) {
+        if (legislators == null)
+          Widget.error("There was a problem loading legislators from " + state + ".");
+        else {
+          $("span.full_name").hide();
+          $("select.changeLawmakerSelect")
+            .unbind("change")
+            .html(optionsForSwitcher(legislators))
+            .val(legislator.bioguide_id)
+            .change(switchLegislator)
+            .show();
+          
+          if (showCallback)
+            showCallback();
+        }
+      });
+    }
+    
+    function switchLegislator() {
+      Widget.load($(this).val(), onSwitchLegislator);
+    }
+    
+    function onSwitchLegislator(legislator) {
+      $("div#changeLawmaker span.current_name").html(fullName(legislator));
+      $("div#changeLawmaker").hide();
+      $("a.changeState").click(function() {
+        $("div#changeLawmaker").toggle();
+        return false;
+      })
+      $("select.changeLawmakerSelect")
+        .val(legislator.bioguide_id)
+        .change(switchLegislator);
+    }
+    
+    function switchState() {
+      var state = $(this).val();
+      Sunlight.allForState(state, function(legislators) {
+        if (legislators == null)
+          Widget.error("There was a problem loading legislators from " + state + ".");
+        else
+          Widget.load(legislators[0].legislator.bioguide_id, onSwitchState);
+      });
+    }
+    
+    function onSwitchState(legislator) {
+      prepareSwitcher(legislator);
+    }
+    
+    function optionsForSwitcher(legislators) {
+      var options = "";
+      $.each(legislators, function(index, l) {
+        var legislator = l.legislator;
+        options += "<option value=\"" + legislator.bioguide_id + "\">" + titledName(legislator, true) + "</option>";
+      });
+      return options;
     }
     
   </script>

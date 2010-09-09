@@ -134,6 +134,6 @@ body.sm #changeLawmaker { width: 132px; top: 112px; height: 180px; padding: 0 10
 #lawmakerMetadata span, a.changeState { float: left;}
 #district { float: left;}
 h4 { font-weight: bold; padding: 15px 0 5px;}
-#closeBtn { background: url(images/btn_close.png) top right no-repeat; margin-top: -10px; width: 26px; height: 26px; text-indent: -9999em; display: block; cursor: pointer; float: right;}
-.changeState { text-indent: -9999em; display: block; width: 16px; height: 16px; cursor: pointer; background: url(images/icon_pencil_bw.png) top left no-repeat; margin-left: 5px;}
-.changeState:hover { background: url(images/icon_pencil.png) top left no-repeat; }
+#closeBtn { background: url(/images/widgets/btn_close.png) top right no-repeat; margin-top: -10px; width: 26px; height: 26px; text-indent: -9999em; display: block; cursor: pointer; float: right;}
+.changeState { text-indent: -9999em; display: block; width: 16px; height: 16px; cursor: pointer; background: url(/images/widgets/icon_pencil_bw.png) top left no-repeat; margin-left: 5px;}
+.changeState:hover { background: url(/images/widgets/icon_pencil.png) top left no-repeat; }

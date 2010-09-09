@@ -4,6 +4,17 @@ var Sunlight = {
   api_key: null,
   base_url: "http://services.sunlightlabs.com/api/",
   
+  allForState: function(state, callback) {
+    return Sunlight.getJSON("legislators.getList", {
+      data: {state: state},
+      success: function(data) {
+        if (data && data.response && data.response.legislators && data.response.legislators.length > 0)
+          callback(data.response.legislators);
+        else
+          callback(null);
+      }
+    });
+  },
 
   allForLatLong: function(latitude, longitude, callback) {
     return Sunlight.getJSON("legislators.allForLatLong", {
@@ -20,9 +31,9 @@ var Sunlight = {
     });
   },
 
-  getJSON: function(path, options) {
+  getJSON: function(method, options) {
     return $.ajax($.extend(true, options, {
-      url: Sunlight.base_url + path,
+      url: Sunlight.base_url + method,
       data: {apikey: Sunlight.api_key},
       dataType: "jsonp",
       jsonp: "jsonp"

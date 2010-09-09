@@ -57,6 +57,19 @@
     
   </div>
   
+  <div id="changeLawmaker" style="display: none;">
+      <a id="closeBtn" href="#">Close</a>
+      <h4>Is <span class="current_name"></span> not your lawmaker?</h4>
+      <p>Select a new one from the dropdown above or select a new state</p>
+      
+      <% states_by_name = state_codes.invert %>
+      <select name="state" class="state">
+        <% states_by_name.keys.sort.map do |name| %>
+          <option value="<%= states_by_name[name] %>"><%= name %></option>
+        <% end %>
+      </select>
+  </div>
+  
   
   <%= render :partial => "layouts/analytics" %>
   

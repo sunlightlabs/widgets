@@ -36,8 +36,15 @@ function partyFor(legislator) {
   return parties[legislator.party] || parties.def;
 }
 
-function fullName(legislator) {
-  return (legislator.nickname || legislator.first_name) + " " + legislator.last_name;
+function fullName(legislator, fromSunlight) {
+  if (fromSunlight)
+    return (legislator.nickname || legislator.firstname) + " " + legislator.lastname;
+  else // drumbone (most cases)
+    return (legislator.nickname || legislator.first_name) + " " + legislator.last_name;
+}
+
+function titledName(legislator, fromSunlight) {
+  return legislator.title + ". " + fullName(legislator, fromSunlight);
 }
 
 function monthShort(number) {

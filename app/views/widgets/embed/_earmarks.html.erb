@@ -1,12 +1,12 @@
 <% content_for :head do %>
   <script type="text/javascript">
-    Widget.load = function(bioguide_id) {
+    Widget.load = function(bioguide_id, onLoad) {
     
       Drumbone.getLegislator(bioguide_id, "basic,earmarks", function(legislator) {
         if (legislator) {
           if (legislator.earmarks) {
             populateWidget(legislator);
-            Widget.onLoad();
+            onLoad(legislator);
           }
           
           else
@@ -23,16 +23,20 @@
   <div id="header">
     <div id="rep">
       <% unless @size == 'sm' -%>
-        <img alt="Picture of " src="" class="pic@src full_name@alt+" width="40px" />
+        <img alt="Picture of " src="" class="pic@src pic_alt@alt" width="40px" />
       <% end -%>  
       <div id="repInfo">    
         <h1>
           <small class="title"></small> 
-          <big class="full_name"></big>
+          <big>
+            <span class="full_name"></span>
+            <select class="changeLawmakerSelect" style="display: none;"></select>
+          </big>
         </h1>
         <div class="" id="lawmakerMetadata">
           <span class="party"></span>
           <span class="state"></span>
+          <a class="changeState" title="Change State" href="#" style="display: none;">Change State</a>
         </div>
         <div class="clear"></div>
       </div>
@@ -98,6 +102,7 @@
       title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
       full_name: fullName(legislator),
       pic: profileImage(legislator.bioguide_id),
+      pic_alt: "Picture of " + fullName(legislator),
       state_downcase: legislator.state.toLowerCase(),
       state: legislator_state,
       party: "(" + legislator.party + ")",
@@ -108,6 +113,8 @@
     };
 
     $('div#pageMain').autoRender(widget_data);
+    $("img.pic.pic_alt").attr("class", "pic@src pic_alt@alt");
+    
     Widget.source(earmarks.last_updated, description);
     
     var dimensions = {};
