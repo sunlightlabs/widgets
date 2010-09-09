@@ -93,7 +93,20 @@
   <div id="rightWidgetColumn">
     <h3 class="withLine">Customize</h3>
       <%= render :partial => "widgets/show/#{params[:id]}" %>
-    
+      
+      <fieldset class="custom">
+        <legend>Select a New Lawmaker</legend>
+        <select id="id_state" name="state">
+          <option value="california">California</option>
+        </select> 
+        <select id="id_lawmaker" name="lawmaker">
+          <option value="lawmaker">Lawmaker</option>
+        </select>
+        <button type="button" class="noImage" id="updateLawmaker">
+          <span>Update Lawmaker</span>
+        </button>
+      </fieldset>  
+        
       <fieldset class="custom">
         <div id="primaryColor"></div>
         <input type="text" id="primaryColorText" class="rtColumnInput" />

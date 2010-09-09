@@ -304,6 +304,8 @@ ul#switcher li a:hover, ul#switcher li a.active{
 	color: #FFF;
 }
 
+select#id_state { margin-bottom: 10px;}
+
 .customizer, .customize {
   background: url(/images/site/button-customize-small.jpg) top left no-repeat;
   display: block;
