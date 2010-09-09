@@ -1,58 +1,62 @@
+div#headerWrapper { background-color: #DDD9D7; }
 div#header { padding: 15px; background: url(/images/widgets/bill/gradient.png) bottom left repeat-x; margin-bottom: 15px;}
 body.bill_med div#header { padding: 10px; margin-bottom: 10px;}
 body.bill_sm div#header { margin-bottom: 7px; padding: 10px 10px 7px;}
+
 .right { width: 295px; margin-right: 7px; float: left;}
 body.bill_med .right { width: 205px;}
 body.bill_sm .right { width: 136px; margin-bottom: 4px; margin-right: 0px;}
+
 .left { float: left; width: 60px; margin: 0 auto;}
 body.bill_sm .left { width: 132px;}
 
-div#headerWrapper { background-color: #DDD9D7; }
 div#mainContent { padding: 0 15px; background: #FFF;}
-body.bill_med div#mainContent, body.bill_sm div#mainContent { padding: 0 10px;}
-body.bill_sm div#mainContent {height: 212px; width: 132px;} /*added*/
-body.bill_med div#mainContent {height: 152px;} /*added*/
-body.bill_lg div#mainContent {height: 180px;} /*added*/
+body.bill_sm div#mainContent { height: 212px; width: 132px; padding: 0 10px;}
+body.bill_med div#mainContent { height: 152px; padding: 0 10px; }
+body.bill_lg div#mainContent { height: 180px;} 
 
-h2 small, h1 small { font-family: Georgia, Times New Roman, Times, serif; font-style: oblique; }
-h2 small, h1 big { display: block;}
+small { font-family: Georgia, Times New Roman, Times, serif; font-style: oblique; }
+body.bill_lg big, body.bill_lg small { display: block;}
 h1 big { font-size: 150%; font-weight: bold; color: #191919;}
 body.bill_sm h1 big { font-size: 120%;}
 h1 small { font-size: 105%; line-height: 16px;}
-h2 small, #repInfo h1 small { font-size: 110%;}
-body.bill_med h2 small, body.bill_sm h2 small { display: inline;}
-h2 big, div#voteTotals h2, #repInfo h1 big { color: #191919; text-transform: uppercase; font-weight: bold; font-size: 115%; line-height:18px;}
+#repInfo h1 small { font-size: 110%;}
+body.bill_med h1 big { display: block;}
+body.bill_med #repInfo h1 big { display: inline;}
+body.bill_med #repInfo h1 { margin-bottom: 0;}
+
+body.bill_med h1, body.bill_sm h1, body.bill_med div#voteTotals h2 { margin-bottom: 3px; }
+body.bill_sm h1 big { font-size: 115%; line-height: 12px;}
+
+div#voteTotals h2, #repInfo h1 big { color: #191919; text-transform: uppercase; font-weight: bold; font-size: 115%; line-height:18px;}
+
+.sm #repInfo { margin-bottom: 3px;}
 
 div#lawmakerVote span.present, div#billResult span.present { background: url(/images/widgets/bill/icon_presLg.png) center top no-repeat; font-size: 120%; color: #191919; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
 div#lawmakerVote span.notvoting, div#billResult span.notvoting { background: url(/images/widgets/bill/icon_notactLg.png) center top no-repeat; font-size: 120%; color: #191919; font-weight: bold; padding-top: 35px; text-align: center; font-weight: bold; display: block; text-transform: uppercase;}
-
 body.bill_sm div#lawmakerVote span.present, body.bill_sm div#billResult span.present { background: url(/images/widgets/bill/icon_presSm.png) left 1px no-repeat; padding-top: 0px; padding-left: 20px;}
-
 body.bill_sm div#lawmakerVote span.notvoting, body.bill_sm div#billResult span.notvoting { background: url(/images/widgets/bill/icon_notactSm.png) left 1px no-repeat; padding-top: 0px; padding-left: 20px;}
 
+.party { margin-right: 5px;}
 
 div#voteTotals h2 { float: left; margin-bottom:5px; margin-right: 20px;}
 body.bill_sm div#voteTotals h2 {margin-right: 0px;}
 body.bill_sm div#chart-container-1 {width: 120px;}
 
-body.bill_med h2, body.bill_sm h2, body.bill_med div#voteTotals h2 { margin-bottom: 3px; }
-body.bill_med h2 big { line-height: 14px;}
-body.bill_sm h2 big, body.bill_sm div#voteTotals h2 { font-size: 105%; line-height: 12px;}
+
 body.bill_sm div#voteTotals h2 { display: block; width: 132px;}
 
 span.democrat { color: #0797C9;}
-
 span#party { margin-right: 5px;}
 
 img { border: 2px solid #E0DEDE; float: left; margin-right: 15px;}
 body.bill_med img { margin-right: 10px;}
 
-div#lawmakerMetadata span { font-size: 95%; }
+div#lawmakerMetadata { font-size: 95%; line-height: 13px;}
 span#stateDistrict { color: #606060; }
 
 div#voteTotals { border-top: 1px solid #D2D2D2; padding-top: 10px; margin-top: 10px;}
 body.bill_med div#voteTotals { padding-top: 8px; margin-top: 8px;}
-body.bill_sm div#voteTotals { padding-top: 5px;}
 
 dt { text-indent: -9999em; display: block; width: 17px; height: 17px; margin-right: 8px; margin-bottom: 15px; float: left;}
 body.bill_med dt { margin-bottom: 18px; }

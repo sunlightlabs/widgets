@@ -4,21 +4,25 @@ div#header { background: url(/images/widgets/contractors/gradient_bill.png) bott
 body.contractors_med div#header { height: 65px;}
 body.contractors_sm div#header { height: 80px;}
 
-h1 { float: left; padding: 10px;}
+h1#mainTitle { font-size: 150%; color: #191919; font-weight: bold; text-transform: uppercase; line-height: 21px;}
+h1 { line-height: 15px;}
 
-h1 big { color: #191919; font-size: 150%; font-weight: bold; text-transform: uppercase;}
-body.contractors_med h1 big { font-size: 130%;}
-body.contractors_sm h1 big { font-size: 120%;}
+.med h1#mainTitle { font-size: 120%; line-height: 15px;}
+.sm h1#mainTitle { font-size: 100%; line-height: 14px;}
+
+h1 big { font-size: 115%; }
+
+.med h1 big { font-size: 105%;}
+.sm h1 big { font-size: 100%;}
+
 body.contractors_sm h1 small { font-size: 90%; }
-h1 small { display: block; font-size: 100%; font-family: Georgia, Times New Roman, Times, serif; font-style: oblique;}
+h1 small { font-size: 100%; font-family: Georgia, Times New Roman, Times, serif; font-style: oblique; }
 
-body.contractors_lg h1 { padding: 15px 15px 0;}
-
-.state { margin-left: 3px;}
-.fiscal_year { margin-right: 5px;}
+#rep { padding: 10px 0 0 10px; float: left;}
+.party { margin-right: 5px;}
 
 div#districtMap { float: right; background: #fff; width: 45px; height: 34px; padding: 15px; border-left: 1px solid #BCBCBC;}
-body.contractors_sm div#districtMap { padding: 5px; height: 69px;}
+body.contractors_sm div#districtMap { display: none;}
 body.contractors_lg div#districtMap { height: 44px;}
 
 div#mainContent { padding: 10px; }
@@ -27,6 +31,8 @@ body.contractors_lg div#mainContent { padding: 15px }
 
 body.contractors_sm div#chart-container-1 { width: 142px; height: 100px;}
 body.contractors_med div#chart-container-1 { width: 282px; height: 150px;}
+
+#contractor_names li{ text-transform: capitalize;}
 
 li { font-size: 90%; line-height: 17px; color: #878787;}
 ol { list-style-type: decimal; padding-left: 20px; margin-top: 5px;}

@@ -21,6 +21,8 @@ body.bio_med div#lawmakerMetadata { width: 175px;}
 body.bio_med div#lawmakerMetadata, body.bio_lg div#lawmakerMetadata { margin-left: 0px; padding: 0 0; float: right;}
 body.bio_lg div#lawmakerMetadata { text-align: left; width: 240px;}
 
+.party { margin-right: 5px;}
+
 body.bio_sm div.al { background: url(/images/states/AL.png) top center no-repeat;}
 body.bio_sm div.ak { background: url(/images/states/AK.png) top center no-repeat;}
 body.bio_sm div.az { background: url(/images/states/AZ.png) top center no-repeat;}
