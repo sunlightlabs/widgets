@@ -137,6 +137,7 @@
           Widget.error("There was a problem loading legislators from " + state + ".");
         else {
           $("span.full_name").hide();
+          $("small.title").hide();
           $("select.changeLawmakerSelect")
             .unbind("change")
             .html(optionsForSwitcher(legislators))
