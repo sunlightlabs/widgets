@@ -56,6 +56,12 @@
         Widget.alert(message);
       },
       
+      unalert: function() {
+        $("#pageMain").show();
+        $("#widgetAlert p").html("");
+        $("#widgetAlert").hide();
+      },
+      
       source: function(date, text) {
         $("#last_updated").html(formatSourceDate(new Date(date)));
         $("#sourceContent").html(text);
@@ -168,6 +174,7 @@
     }
     
     function switchState() {
+      Widget.unalert();
       var state = $(this).val();
       Sunlight.allForState(state, function(legislators) {
         var sorted = sortForSwitcher(legislators);
