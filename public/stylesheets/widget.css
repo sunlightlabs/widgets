@@ -29,7 +29,7 @@ body.lg { width: 392px; height: 292px; position: relative; }
 .clear { clear: both;}
 
 h1 big select { font-size: 80%; padding: 2px 0; margin-bottom: 5px; display: block;}
-.sm h1 big select, .sm select.state { width: 132px;}
+.sm h1 big select, .sm select.state { width: 132px; }
 
 #sources {
   background: #606161;

@@ -58,4 +58,17 @@ div#repInfo span.aye, div#billResult span.passed { background:url("/images/widge
 
 .contractors_lg h1 big, .contractors_med h1 big, .contractors_sm h1 big { background: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/widgets/contractors/header_title.png", sizingMethod="crop");}
 
-#changeLawmaker #closeBtn { position: absolute; right: 10px; margin-top: 5px; background: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/widgets/btn_close.png", sizingMethod="crop");}
+#changeLawmaker #closeBtn { text-indent: 0; background: none; color: #fff; margin-top: 0px; font-size: 90%;}
+
+.sm h1 big select, .sm select.state { width: 120px !important;}
+
+body.earmarks_med div#header img { width: 40px;}
+
+.changeState { background: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/widgets/icon_pencil_bw.png", sizingMethod="crop");}
+
+body.earmarks_sm div#header { padding-right: 0; }
+body.earmarks_sm #leftBox, body.earmarks_sm #rightBox { width: 60px !important; overflow: hidden;}
+body.earmarks_sm #leftBox { float: left;}
+body.earmarks_sm dd span { font-size: 85%;}
+body.earmarks_sm #chart-container-1 { width: 132px;}
+body.earmarks_sm #mainContent {width: 122px !important; overflow: hidden; padding-right: 0;}
