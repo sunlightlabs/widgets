@@ -24,6 +24,12 @@
       <% end %>
     <% end %>
     
+    // will hinge on geolocation
+    var switcher = false;
+    
+    //hack
+    var switcher_up = true;
+    
     
     // api keys
     Sunlight.api_key = sunlight_api_key;
@@ -36,28 +42,45 @@
       load: function(bioguide_id) {}, // overwritten by each child widget before document is done loading
       
       onLoad: function(legislator) {
-        prepareSource();
-        $("body").show();
+        var show = function() {
+          prepareSource();
+          $("body").show();
+        }
+        if (switcher)
+          prepareSwitcher(legislator, show);
+        else
+          show();
       },
       
-      onLoadSwitcher: function(legislator) {
-        prepareSwitcher(legislator, Widget.onLoad);
-      },
-      
-      alert: function(message) {
-        $("#pageMain").hide();
+      alert: function(message, legislator) {
+        $("#mainContent").hide();
         $("#widgetAlert p").html(message);
         $("#widgetAlert").show();
+        
+        if (switcher) {
+          //TODO populate the basic leg info alone
+          Widget.populateLegislator(legislator);
+          prepareSwitcher(legislator);
+        }
+        
         $("body").show();
       },
       
       error: function(message) {
+        $("#headerWrapper").hide();
+        $("#changeLawmaker").hide();
         $("#widgetAlert").addClass("error");
-        Widget.alert(message);
+        
+        $("#mainContent").hide();
+        $("#widgetAlert p").html(message);
+        $("#widgetAlert").show();
+        
+        $("body").show();
       },
       
       unalert: function() {
-        $("#pageMain").show();
+        $("#headerWrapper").show();
+        $("#mainContent").show();
         $("#widgetAlert p").html("");
         $("#widgetAlert").hide();
       },
@@ -65,23 +88,50 @@
       source: function(date, text) {
         $("#last_updated").html(formatSourceDate(new Date(date)));
         $("#sourceContent").html(text);
+      },
+      
+      populateLegislator: function(legislator) {
+        var legislator_district = "";
+        if (legislator.district == '0')
+          legislator_district = "AL";
+        else
+          legislator_district = legislator.district;
+
+        var legislator_state = "";
+        if (legislator.title == "Sen")
+          legislator_state = legislator.state;
+        else
+          legislator_state = legislator.state + "-" + legislator_district;
+          
+        $("#headerWrapper").autoRender({
+          title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
+          full_name: fullName(legislator),
+          pic: profileImage(legislator.bioguide_id),
+          pic_alt: "Picture of " + fullName(legislator),
+          state_downcase: legislator.state.toLowerCase(),
+          state: legislator_state,
+          party: "(" + legislator.party + ")"
+        });
+        
+        $("img.pic.pic_alt").attr("class", "pic@src pic_alt@alt");
       }
     };
     
     $(function() {
       if (geolocate) {
+        switcher = true;
         if (latitude && longitude) {
           Sunlight.allForLatLong(latitude, longitude, function(legislators) {
             if (legislators != null && legislators.length) {
               located_legislator = pullOutRep(legislators);
-              Widget.load(located_legislator.bioguide_id, Widget.onLoadSwitcher);
+              Widget.load(located_legislator.bioguide_id, Widget.onLoad);
             }
             else // geolocated the user, but found no legislator for that lat/long (user may be non-US)
-              Widget.load(bioguide_id, Widget.onLoadSwitcher);
+              Widget.load(bioguide_id, Widget.onLoad);
           });
           
         } else // geolocation is enabled for the widget, but we couldn't figure out where the user is
-          Widget.load(bioguide_id, Widget.onLoadSwitcher);
+          Widget.load(bioguide_id, Widget.onLoad);
         
       } else // geolocation is disabled for the widget
         Widget.load(bioguide_id, Widget.onLoad);
@@ -131,7 +181,10 @@
         .change(switchState);
       
       
-      $("div#changeLawmaker").show();
+      if (switcher_up) {
+        $("div#changeLawmaker").show();
+      } else
+        switcher_up = true; // reset for next time
       
       $("a.changeState").click(function() {
         $("div#changeLawmaker").toggle();
@@ -158,6 +211,9 @@
     }
     
     function switchLegislator() {
+      Widget.unalert();
+      switcher_up = false; // if it ends up an alert, keep the switcher down
+      
       Widget.load($(this).val(), onSwitchLegislator);
     }
     
@@ -175,6 +231,8 @@
     
     function switchState() {
       Widget.unalert();
+      switcher_up = true; // if it ends up an alert, keep the switcher up
+      
       var state = $(this).val();
       Sunlight.allForState(state, function(legislators) {
         var sorted = sortForSwitcher(legislators);
