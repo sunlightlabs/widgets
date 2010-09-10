@@ -175,20 +175,19 @@
       $("div#changeLawmaker span.current_name").html(fullName(legislator));
       
       $("div#changeLawmaker select.state")
-        .unbind('change')
+        .die("change")
         .val(legislator.state)
-        .change(switchState);
+        .live("change", switchState);
       
+      $("a.changeState").live('click', function() {
+        $("div#changeLawmaker").toggle();
+        return false;
+      }).show();
       
       if (switcher_up) {
         $("div#changeLawmaker").show();
       } else
         switcher_up = true; // reset for next time
-      
-      $("a.changeState").click(function() {
-        $("div#changeLawmaker").toggle();
-        return false;
-      }).show();
       
       Sunlight.allForState(legislator.state, function(legislators) {
         if (legislators == null)
@@ -197,10 +196,10 @@
           $("span.full_name").hide();
           $("small.title").hide();
           $("select.changeLawmakerSelect")
-            .unbind("change")
+            .die("change")
             .html(optionsForSwitcher(sortForSwitcher(legislators)))
             .val(legislator.bioguide_id)
-            .change(switchLegislator)
+            .live("change", switchLegislator)
             .show();
           
           if (showCallback)
@@ -212,7 +211,6 @@
     function switchLegislator() {
       Widget.unalert();
       switcher_up = false; // if it ends up an alert, keep the switcher down
-      
       Widget.load($(this).val(), onSwitchLegislator);
     }
     
@@ -224,8 +222,9 @@
         return false;
       })
       $("select.changeLawmakerSelect")
+        .die("change")
         .val(legislator.bioguide_id)
-        .change(switchLegislator);
+        .live("change", switchLegislator);
     }
     
     function switchState() {
