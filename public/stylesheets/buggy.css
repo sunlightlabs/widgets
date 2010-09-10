@@ -28,4 +28,4 @@ div#footer { margin-top: 0px; padding-top: 30px;}
 
 div#header {  background: none; border-bottom: #CCC 1px solid;}
 
-#closeBtn { position: absolute; right: 20px;}
+#closeBtn { position: absolute; right: 20px; padding-top: 20px;}
