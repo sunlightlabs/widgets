@@ -3,7 +3,7 @@ class WidgetsController < ApplicationController
   before_filter :load_legislator, :only => :show
   
   def embed
-    if params[:geolocate] and (params[:geolocate].to_i == 1)
+    if params[:geolocate] and (params[:geolocate].to_s == "true")
       @location = get_location
     end
     
