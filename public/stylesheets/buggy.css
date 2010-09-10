@@ -27,5 +27,3 @@ div#footer { margin-top: 0px; padding-top: 30px;}
 #knight { background: url(/images/site/logo-knight-8.png) top left no-repeat;}
 
 div#header {  background: none; border-bottom: #CCC 1px solid;}
-
-#changeLawmaker #closeBtn { border: 1px solid red; position: absolute; right: 20px; padding-top: 20px; background: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/widgets/btn_close.png", sizingMethod="crop");}

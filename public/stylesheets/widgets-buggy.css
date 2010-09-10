@@ -57,3 +57,5 @@ body.sponsorships_lg #header { height: 83px;}
 div#repInfo span.aye, div#billResult span.passed { background:url("/images/widgets/bill/icon_ayeLg-8.png") center top no-repeat;}
 
 .contractors_lg h1 big, .contractors_med h1 big, .contractors_sm h1 big { background: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/widgets/contractors/header_title.png", sizingMethod="crop");}
+
+#changeLawmaker #closeBtn { position: absolute; right: 10px; margin-top: 5px; background: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/widgets/btn_close.png", sizingMethod="crop");}
