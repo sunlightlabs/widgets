@@ -115,6 +115,9 @@ function updateEmbedCode() {
   if (snapshot_id)
     embed_url += "&snapshot_id=" + snapshot_id;
   
+  if (geolocate)
+    embed_url += "&geolocate=true";
+  
   $('input#grabCode').attr('value', "<script type='text\/javascript' src='" + embed_url + "'><\/script>");
 }
 
