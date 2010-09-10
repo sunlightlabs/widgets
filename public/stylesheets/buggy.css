@@ -27,3 +27,5 @@ div#footer { margin-top: 0px; padding-top: 30px;}
 #knight { background: url(/images/site/logo-knight-8.png) top left no-repeat;}
 
 div#header {  background: none; border-bottom: #CCC 1px solid;}
+
+#closeBtn { position: relative;}
