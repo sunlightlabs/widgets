@@ -1,11 +1,11 @@
 <% content_for :head do %>
 
   <script type="text/javascript">
-    Widget.load = function(bioguide_id) {
+    Widget.load = function(bioguide_id, onLoad) {
       Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
         if (legislator && legislator.bioguide_id) {
           populateWidget(legislator);
-          Widget.onLoad();
+          onLoad(legislator);
         } else
           Widget.error("There was a problem loading this lawmaker's information.");
       });
@@ -17,7 +17,7 @@
 
 <div id="header">
   <div id="rep">
-    <img alt="Picture of " src="" class="pic@src full_name@alt+" />
+    <img src="" class="pic@src pic_alt@alt" />
     <div id="repInfo">
       <h1>
         <small class="title"></small>
@@ -99,6 +99,7 @@
       title: legislator_title,
       full_name: fullName(legislator),
       pic: profileImage(legislator.bioguide_id),
+      pic_alt: "Picture of " + fullName(legislator),
       state_downcase: legislator.state.toLowerCase(),
       state: legislator_state,
       party: "(" + legislator.party + ")",
@@ -109,6 +110,7 @@
       youtube: legislator.youtube_url,
       govtrack: legislator.govtrack_id
     });
+    $("img.pic.pic_alt").attr("class", "pic@src pic_alt@alt");
     
     Widget.source(legislator.last_updated, description);
   }
