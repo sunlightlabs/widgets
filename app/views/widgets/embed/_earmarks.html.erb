@@ -5,7 +5,7 @@
       Drumbone.getLegislator(bioguide_id, "basic,earmarks", function(legislator) {
         if (legislator) {
           if (legislator.earmarks) {
-            populateWidget(legislator);
+            populateWidget(legislator, legislator.earmarks);
             onLoad(legislator);
           }
           
@@ -84,39 +84,16 @@
 
   var description = "Data provided by <a href=\"http://www.taxpayer.net\" target=\"_blank\">Taxpayers for Common Sense</a>.";
 
-  function populateWidget(legislator) {
-    var earmarks = legislator.earmarks;
-  
-    var legislator_district = "";
-    if (legislator.district == '0')
-      legislator_district = "AL";
-    else
-      legislator_district = legislator.district;
-  
-    var legislator_state = "";
-    if (legislator.title == "Sen")
-      legislator_state = legislator.state;
-    else
-      legislator_state = legislator.state + "-" + legislator_district;
+  function populateWidget(legislator, earmarks) { 
+    Widget.populateLegislator(legislator);
+    Widget.source(earmarks.last_updated, description);
     
-    var widget_data = {
-      title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
-      full_name: fullName(legislator),
-      pic: profileImage(legislator.bioguide_id),
-      pic_alt: "Picture of " + fullName(legislator),
-      state_downcase: legislator.state.toLowerCase(),
-      state: legislator_state,
-      party: "(" + legislator.party + ")",
+    $("#mainContent").autoRender({
       chamber: chamberFor(legislator.title),
       earmarks_granted: earmarks.total_number,
       earmark_avg: earmarks.average_number,
       fiscal_year: earmarks.fiscal_year
-    };
-
-    $('div#pageMain').autoRender(widget_data);
-    $("img.pic.pic_alt").attr("class", "pic@src pic_alt@alt");
-    
-    Widget.source(earmarks.last_updated, description);
+    });
     
     var dimensions = {};
     var y_label_offset = -5;
@@ -229,10 +206,6 @@
       legend: { enabled: false },
       series: series
     });
-  }
-  
-  function chamberFor(title) {
-    return (title == 'Sen') ? "Senate" : "House";
   }
   
 </script>

@@ -79,3 +79,7 @@ function govtrackBillUrl(type, number, session) {
 function govtrackLegislatorUrl(govtrack_id) {
   return "http://www.govtrack.us/congress/person.xpd?id=" + govtrack_id;
 }
+
+function chamberFor(title) {
+  return (title == 'Sen') ? "Senate" : "House";
+}
