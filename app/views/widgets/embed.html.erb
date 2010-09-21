@@ -57,9 +57,11 @@
         $("#widgetAlert p").html(message);
         $("#widgetAlert").show();
         
-        if (switcher) {
+        if (legislator) {
           Widget.populateLegislator(legislator);
-          prepareSwitcher(legislator);
+          
+          if (switcher)
+            prepareSwitcher(legislator);
         }
         
         $("body").show();
@@ -90,25 +92,16 @@
       },
       
       populateLegislator: function(legislator) {
-        var legislator_district = "";
-        if (legislator.district == '0')
-          legislator_district = "AL";
-        else
-          legislator_district = legislator.district;
-
-        var legislator_state = "";
-        if (legislator.title == "Sen")
-          legislator_state = legislator.state;
-        else
-          legislator_state = legislator.state + "-" + legislator_district;
-          
+        var district = (legislator.district == '0') ? "AL" : legislator.district;
+        var state = legislator.state + ((legislator.title == "Sen") ? "" : ("-" + district));
+        
         $("#headerWrapper").autoRender({
           title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
           full_name: fullName(legislator),
           pic: profileImage(legislator.bioguide_id),
           pic_alt: "Picture of " + fullName(legislator),
           state_downcase: legislator.state.toLowerCase(),
-          state: legislator_state,
+          state: state,
           party: "(" + legislator.party + ")"
         });
         
