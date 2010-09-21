@@ -26,6 +26,20 @@
     if (embedder && (embedder_host != location.host)) {
       pageTracker._setReferrerOverride(embedder);
       overriddenReferrer = true; // for debugging purposes
+      
+      pageTracker._setCustomVar(
+        1, // slot 1
+        "Embedder Host",
+        embedder_host,
+        2 // session-level
+      );
+      
+      pageTracker._setCustomVar(
+        2, // slot 2
+        "Embedder URL",
+        embedder,
+        2 // session-level
+      );
     }
     
     pageTracker._setDomainName("none");
