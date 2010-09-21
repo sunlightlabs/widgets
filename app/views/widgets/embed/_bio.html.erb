@@ -20,12 +20,16 @@
     <img src="" class="pic@src pic_alt@alt" />
     <div id="repInfo">
       <h1>
-        <small class="title"></small>
-        <big class="full_name"></big>
+        <small class="title"></small> 
+        <big>
+          <span class="full_name"></span>
+          <select class="changeLawmakerSelect" style="display: none;"></select>
+        </big>
       </h1>
-      <div class="state_downcase@class" id="lawmakerMetadata">
+      <div id="lawmakerMetadata">
         <span class="party"></span>
         <span class="state"></span>
+        <a class="changeState" title="Change State" href="#" style="display: none;">Change State</a>
       </div>
       <div class="clear"></div>
     </div>
@@ -48,13 +52,13 @@
     <div id="buttons">
       <ul>
         <li class="Twitter evenButton">
-          <a class="twitter@href+" target="_blank" href="http://twitter.com/">Twitter</a>
+          <a class="twitter@href" target="_blank" href="#">Twitter</a>
         </li>
         <li class="youTube oddButton">
           <a class="youtube@href" target="_blank" href="#">YouTube</a>
         </li>
         <li class="opencongress evenButton">
-          <a class="govtrack@href+" target="_blank" href="http://www.opencongress.org/person/show/">Open Congress</a>
+          <a class="govtrack@href" target="_blank" href="#">Open Congress</a>
         </li>
       </ul>
     </div>
@@ -63,27 +67,11 @@
 
 <script type="text/javascript" charset="utf-8">
 
-  var description = "Data by <a href=\"http://sunlightlabs.com\" target=\"_blank\">Sunlight Labs</a>, collected through the <a href=\"http://services.sunlightlabs.com/docs/Sunlight_Congress_API/\" target=\"_blank\">Sunlight Labs Congress API</a>.";
-  
   function populateWidget(legislator) {
-    var legislator_title = "";
-    switch (legislator.title) {
-      case 'Sen': legislator_title = "Senator"; break;
-      case 'Rep': legislator_title = "Representative"; break;
-      case 'Del': legislator_title = "Delegate"; break;
-    };
-  
-    var legislator_district = "";
-    if (legislator.district == '0')
-      legislator_district = "AL";
-    else
-      legislator_district = legislator.district;
-  
-    var legislator_state = "";
-    if (legislator_title == "Senator")
-      legislator_state = legislator.state;
-    else
-      legislator_state = legislator.state + "-" + legislator_district;
+    Widget.populateLegislator(legislator);
+    
+    var description = "Data by <a href=\"http://sunlightlabs.com\" target=\"_blank\">Sunlight Labs</a>, collected through the <a href=\"http://services.sunlightlabs.com/docs/Sunlight_Congress_API/\" target=\"_blank\">Sunlight Labs Congress API</a>.";
+    Widget.source(legislator.last_updated, description);
       
     if (legislator.youtube_url)
       $("#buttons li.youTube").show();
@@ -95,23 +83,19 @@
     else
       $("#buttons li.Twitter").hide();
     
-    $('div#pageMain').autoRender({
-      title: legislator_title,
-      full_name: fullName(legislator),
-      pic: profileImage(legislator.bioguide_id),
-      pic_alt: "Picture of " + fullName(legislator),
-      state_downcase: legislator.state.toLowerCase(),
-      state: legislator_state,
-      party: "(" + legislator.party + ")",
+    $("#mainContent").autoRender({
       tel: legislator.phone,
       street_address: legislator.congress_office,
       website: legislator.website,
-      twitter: legislator.twitter_id,
+      twitter: "http://twitter.com/" + legislator.twitter_id,
       youtube: legislator.youtube_url,
-      govtrack: legislator.govtrack_id
+      govtrack: "http://www.opencongress.org/person/show/" + legislator.govtrack_id
     });
-    $("img.pic.pic_alt").attr("class", "pic@src pic_alt@alt");
     
-    Widget.source(legislator.last_updated, description);
+    $("a.website").attr("class", "website@href");
+    $("a.twitter").attr("class", "twitter@href");
+    $("a.youtube").attr("class", "youtube@href");
+    $("a.govtrack").attr("class", "govtrack@href");
+    
   }
 </script>

@@ -95,7 +95,7 @@
         var district = (legislator.district == '0') ? "AL" : legislator.district;
         var state = legislator.state + ((legislator.title == "Sen") ? "" : ("-" + district));
         
-        $("#headerWrapper").autoRender({
+        $("#header").autoRender({
           title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
           full_name: fullName(legislator),
           pic: profileImage(legislator.bioguide_id, size),
