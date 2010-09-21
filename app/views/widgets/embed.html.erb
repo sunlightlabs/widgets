@@ -91,14 +91,14 @@
         $("#sourceContent").html(text);
       },
       
-      populateLegislator: function(legislator) {
+      populateLegislator: function(legislator, size) {
         var district = (legislator.district == '0') ? "AL" : legislator.district;
         var state = legislator.state + ((legislator.title == "Sen") ? "" : ("-" + district));
         
         $("#headerWrapper").autoRender({
           title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
           full_name: fullName(legislator),
-          pic: profileImage(legislator.bioguide_id),
+          pic: profileImage(legislator.bioguide_id, size),
           pic_alt: "Picture of " + fullName(legislator),
           state_downcase: legislator.state.toLowerCase(),
           state: state,

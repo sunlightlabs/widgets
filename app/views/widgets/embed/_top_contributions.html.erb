@@ -2,25 +2,26 @@
   <script type="text/javascript">
     var cycle = currentCycle();
     
-    Widget.load = function(bioguide_id) {
+    Widget.load = function(bioguide_id, onLoad) {
       
       Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
+        
         if (legislator == null)
           Widget.error("There was a problem loading this lawmaker's information.");
         else {
-          
+        
           TransparencyData.getEntityId(bioguide_id, function(entity_id) {
             if (entity_id == null)
-              Widget.alert("We do not yet have any information on this lawmaker's campaign contributions.");
+              Widget.alert("We do not yet have any information on this lawmaker's campaign contributions.", legislator);
             else {
             
               TransparencyData.topContributors(entity_id, cycle, function(top_contributors) {
                 if (top_contributors == null)
-                  Widget.error("There was a problem loading contributions for this lawmaker.");
+                  Widget.alert("There was a problem loading contributions for this lawmaker.", legislator);
                 else {
                 
                   populateWidget(legislator, top_contributors);
-                  Widget.onLoad();
+                  onLoad(legislator);
                 }
               });
             }
@@ -37,16 +38,20 @@
   <div id="header">
     <div id="rep">
       <% if params[:size] != 'sm' %>
-        <img alt="Picture of " src="" class="pic@src full_name@alt+" />
+        <img src="" class="pic@src pic_alt@alt" />
       <% end %>
       <div id="repInfo">
         <h1>
           <small class="title"></small> 
-          <big class="full_name"></big>
+          <big>
+            <span class="full_name"></span>
+            <select class="changeLawmakerSelect" style="display: none;"></select>
+          </big>
         </h1>
-        <div class="california" id="lawmakerMetadata">
+        <div id="lawmakerMetadata">
           <span class="party"></span>
           <span class="state"></span>
+          <a class="changeState" title="Change State" href="#" style="display: none;">Change State</a>
         </div>
         <div class="clear"></div>
       </div>
@@ -67,29 +72,11 @@
 <script type="text/javascript">
 
   function populateWidget(legislator, top_contributors) {
-  
+    Widget.populateLegislator(legislator, "40x50");
+    
     var crp_url = "http://www.opensecrets.org/politicians/summary.php?cid=" + legislator.crp_id;
-    
     var description = "Data provided by <a href=\"http://transparencydata.com\" target=\"_blank\">TransparencyData</a>, calculated from numbers provided by the <a href=\"" + crp_url + "\" target=\"_blank\">Center for Responsive Politics</a>, for the " + cycle + " election cycle.";
-    
     Widget.source("2010-07-03", description);
-    
-    
-    var legislator_district = "";
-    if (legislator.district == '0')
-      legislator_district = "AL";
-    else
-      legislator_district = legislator.district;
-    
-    var legislator_state = legislator.state + "-" + legislator_district;
-    
-    $('div#pageMain').autoRender({
-      title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
-      full_name: fullName(legislator),
-      pic: profileImage(legislator.bioguide_id, "40x50"),
-      state: legislator_state,
-      party: "(" + legislator.party + ")"
-    });
     
     var top_names = [];
     var top_amounts = [];
@@ -104,7 +91,9 @@
     var names = top_names;
     if (size == 'sm') {
       names = ['1', '2', '3', '4', '5'];
-      $('ol#key').autoRender({"contributors": name_objects});
+      $("ol#key")
+        .html("<li class=\"contributors name\"></li>") // not idempotent
+        .autoRender({"contributors": name_objects});
     }
     
     var dimensions = {};
@@ -123,9 +112,7 @@
       dimensions.height = 95;
       dimensions.margin = [10, 5, 15, 15];
       dimensions.maxPadding = 0.7;
-      categories = ['1', '2', '3', '4', '5'];
-    }    
-    
+    }
 
     $(document).ready(function() {
       var chart1 = new Highcharts.Chart({
