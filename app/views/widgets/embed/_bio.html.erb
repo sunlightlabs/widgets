@@ -45,7 +45,7 @@
         <div class="street_address"></div>
         <span class="locality">Washington</span>
         <abbr class="region" title="District of Columbia">DC</abbr>
-        <span class="postal-code">22111</span>
+        <span class="zip">22111</span>
       </div>	
       <div class="url even"><a class="website@href" target="_blank" href="#">Website</a></div>
     </div>
@@ -83,9 +83,16 @@
     else
       $("#buttons li.Twitter").hide();
     
+    var zip;
+    if (legislator.title == 'Sen')
+      zip = 20510;
+    else
+      zip = 20515;
+    
     $("#mainContent").autoRender({
       tel: legislator.phone,
       street_address: legislator.congress_office,
+      zip: zip,
       website: legislator.website,
       twitter: "http://twitter.com/" + legislator.twitter_id,
       youtube: legislator.youtube_url,
