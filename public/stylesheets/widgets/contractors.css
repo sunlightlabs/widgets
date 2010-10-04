@@ -21,9 +21,9 @@ h1 small { font-size: 100%; font-family: Georgia, Times New Roman, Times, serif;
 #rep { padding: 10px 0 0 10px; float: left;}
 .party { margin-right: 5px;}
 
-div#districtMap { float: right; background: #fff; width: 45px; height: 34px; padding: 15px; border-left: 1px solid #BCBCBC;}
+div#districtMap { float: right; background: #fff; width: 45px; height: 34px; padding: 15px; border-left: 1px solid #BCBCBC; position: absolute; top: 0; right: 0;}
 body.contractors_sm div#districtMap { display: none;}
-body.contractors_lg div#districtMap { height: 44px;}
+body.contractors_lg div#districtMap { height: 44px; }
 
 div#mainContent { padding: 10px; }
 body.contractors_sm div#mainContent { padding: 12px 10px 10px; }

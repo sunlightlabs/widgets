@@ -14,26 +14,27 @@
   </script>
   
 <% end %>
-
-<div id="header">
-  <div id="rep">
-    <img src="" class="pic@src pic_alt@alt" />
-    <div id="repInfo">
-      <h1>
-        <small class="title"></small> 
-        <big>
-          <span class="full_name"></span>
-          <select class="changeLawmakerSelect" style="display: none;"></select>
-        </big>
-      </h1>
-      <div id="lawmakerMetadata">
-        <span class="party"></span>
-        <span class="state"></span>
-        <a class="changeState" title="Change State" href="#" style="display: none;">Change State</a>
+<div id="headerWrapper">
+  <div id="header">
+    <div id="rep">
+      <img src="" class="pic@src pic_alt@alt" />
+      <div id="repInfo">
+        <h1>
+          <small class="title"></small> 
+          <big>
+            <span class="full_name"></span>
+            <select class="changeLawmakerSelect" style="display: none;"></select>
+          </big>
+        </h1>
+        <div id="lawmakerMetadata">
+          <span class="party"></span>
+          <span class="state"></span>
+          <a class="changeState" title="Change State" href="#" style="display: none;">Change State</a>
+        </div>
+        <div class="clear"></div>
       </div>
-      <div class="clear"></div>
-    </div>
-  </div>  
+    </div>  
+  </div>
 </div>
 
 <div id="mainContent" style="background-color: #<%= params[:color] || "1F83B5" %>">
