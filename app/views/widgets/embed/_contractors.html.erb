@@ -72,16 +72,16 @@
     else
       pic_filename = "/images/districts/" + legislator.state + legislator.district + "-small.gif";
 
-    var widget_data = {
+    $("div#headerWrapper").autoRender({
       full_name: fullName(legislator),
-      pic: pic_filename,
       state_downcase: legislator.state.toLowerCase(),
       state: legislator_state,
       party: "(" + legislator.party + ")",
       fiscal_year: " for FY" + fiscal_year
-    };
+    });
+    
+    $("div#districtMap").autoRender({pic: pic_filename});
 
-    $('div#header').autoRender(widget_data);
     Widget.source(legislator.contracts.last_updated, description);
     
     var top_contractors = legislator.contracts.top_contractors;
