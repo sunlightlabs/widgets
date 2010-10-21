@@ -1,6 +1,6 @@
 source :rubygems
 
-gem "rails", "3.0.0.beta3"
+gem "rails", "3.0.0"
 
 gem "sunlight", :require => "sunlight"
 gem "s3"
