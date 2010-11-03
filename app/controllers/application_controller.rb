@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
   
   def get_location
-    location_for_ip request.env['REMOTE_ADDR']
+    location_for_ip request.ip
   end
   
   def load_settings
