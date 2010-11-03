@@ -5,24 +5,27 @@
 :data_endpoint: http://localhost:4567/api/
 
 # API key for Sunlight API services
-:sunlight_api_key: 
+:sunlight_api_key:
 
 # Location to look for stored snapshots
 # Give the full URL down to the directory, but not the snapshot file
 # e.g. "http://data.politiwidgets.com/production/" (Include the trailing slash!)
-:snapshot_directory: 
+:snapshot_directory:
 
 :featured:
   :legislator: # Bioguide ID of a legislator to feature
   :widget: # Key of a widget (from widgets.yml) to feature
-  
+
 # Amazon S3 info, for storing snapshots
 # Leave access_key blank to store JSON files locally (e.g. in development)
 :s3:
-  :access_key: 
-  :secret_key: 
+  :access_key:
+  :secret_key:
   :bucket: # e.g. "data.politiwidgets.com"
   :path: # e.g. "production/" (Include the trailing slash [but not the prefacing slash!]!)
-  
+
 :google_analytics:
   :key: # e.g. UA-XXXXXX-XX
+
+# API key for GeoIP service
+:geo_ip_api_key:
