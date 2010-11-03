@@ -3,6 +3,7 @@
 /tmp/**/*
 /tmp/*
 /vendor/gems
+/vendor/bundle
 /config/*.yml
 /bin
 /.bundle
