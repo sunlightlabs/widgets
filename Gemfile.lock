@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/luigi/geo_ip.git
+  revision: b397bb312498a45e529216c98a5fa0e3c9aac966
+  specs:
+    geo_ip (0.2.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -38,10 +44,10 @@ GEM
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.0.0)
     crack (0.1.8)
-    cucumber (0.9.2)
+    cucumber (0.9.3)
       builder (~> 2.1.2)
       diff-lcs (~> 1.1.2)
-      gherkin (~> 2.2.5)
+      gherkin (~> 2.2.9)
       json (~> 1.4.6)
       term-ansicolor (~> 1.0.5)
     daemons (1.0.10)
@@ -52,7 +58,6 @@ GEM
     erubis (2.6.6)
       abstract (>= 1.0.0)
     gem_plugin (0.2.3)
-    geo_ip (0.2.0)
     gherkin (2.2.9)
       json (~> 1.4.6)
       term-ansicolor (~> 1.0.5)
@@ -60,12 +65,13 @@ GEM
     highline (1.6.1)
     httparty (0.6.1)
       crack (= 0.1.8)
-    i18n (0.4.1)
+    i18n (0.4.2)
     json (1.4.6)
-    mail (2.2.7)
+    mail (2.2.9)
       activesupport (>= 2.3.6)
-      mime-types
-      treetop (>= 1.4.5)
+      i18n (~> 0.4.1)
+      mime-types (~> 1.16)
+      treetop (~> 1.4.8)
     mime-types (1.16)
     mongrel (1.2.0.pre2)
       daemons (~> 1.0.10)
@@ -132,7 +138,7 @@ DEPENDENCIES
   capistrano
   cucumber
   drumbone (>= 0.2.0)
-  geo_ip
+  geo_ip!
   mongrel (= 1.2.0.pre2)
   rails (= 3.0.0)
   rspec

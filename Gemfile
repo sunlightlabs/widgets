@@ -5,7 +5,7 @@ gem "rails", "3.0.0"
 gem "sunlight", :require => "sunlight"
 gem "s3"
 gem "drumbone", ">=0.2.0"
-gem "geo_ip"
+gem "geo_ip", :git => "git://github.com/luigi/geo_ip.git"
 
 group :development do
   gem "mongrel", "1.2.0.pre2"
