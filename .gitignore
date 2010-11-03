@@ -4,6 +4,7 @@
 /tmp/*
 /vendor/gems
 /vendor/bundle
+/vendor/cache
 /config/*.yml
 /bin
 /.bundle
