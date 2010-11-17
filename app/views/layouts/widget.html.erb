@@ -1,6 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
+  <%= render :partial => "layouts/chartbeat_header" %>
+  
   <!-- jQuery and utilities -->
   <%= javascript_include_tag 'jquery-1.4.2.min' %>
   <%= javascript_include_tag 'pure.min' %>
@@ -71,9 +73,10 @@
   </div>
   
   
-  <%= render :partial => "layouts/analytics" %>
-  
   <%= yield :tail %>
+  
+  <%= render :partial => "layouts/analytics" %>
+  <%= render :partial => "layouts/chartbeat_footer" %>
 </body>
 
 </html>
