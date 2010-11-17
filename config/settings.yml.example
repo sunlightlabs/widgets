@@ -27,5 +27,10 @@
 :google_analytics:
   :key: # e.g. UA-XXXXXX-XX
 
-# API key for GeoIP service
+# API key for IPInfoDB
 :geo_ip_api_key:
+
+# chartbeat info, take from footer snippet
+:chartbeat:
+  :uid: 
+  :domain: 
