@@ -52,13 +52,13 @@
           show();
       },
       
-      alert: function(message, legislator) {
+      alert: function(message, legislator, size) {
         $("#mainContent").hide();
         $("#widgetAlert p").html(message);
         $("#widgetAlert").show();
         
         if (legislator) {
-          Widget.populateLegislator(legislator);
+          Widget.populateLegislator(legislator, size);
           
           if (switcher)
             prepareSwitcher(legislator);

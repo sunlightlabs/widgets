@@ -12,14 +12,14 @@
         
           TransparencyData.getEntityId(bioguide_id, function(entity_id) {
             if (entity_id == null)
-              Widget.alert("We do not yet have any information on this lawmaker's campaign contributions.", legislator);
+              Widget.alert("We do not yet have any information on this lawmaker's campaign contributions.", legislator, "40x50");
             else {
             
               TransparencyData.topContributors(entity_id, cycle, function(top_contributors) {
                 if (top_contributors == null)
-                  Widget.alert("There was a problem loading contributions for this lawmaker.", legislator);
+                  Widget.alert("There was a problem loading contributions for this lawmaker.", legislator, "40x50");
                 else if (top_contributors.length == 0)
-                  Widget.alert("We don't have any contribution information for this lawmaker for the " + cycle + " cycle.", legislator);
+                  Widget.alert("We don't have any contribution information for this lawmaker for the " + cycle + " cycle.", legislator, "40x50");
                 else {
                 
                   populateWidget(legislator, top_contributors);
