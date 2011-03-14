@@ -18,6 +18,8 @@
               TransparencyData.topContributors(entity_id, cycle, function(top_contributors) {
                 if (top_contributors == null)
                   Widget.alert("There was a problem loading contributions for this lawmaker.", legislator);
+                else if (top_contributors.length == 0)
+                  Widget.alert("We don't have any contribution information for this lawmaker for the " + cycle + " cycle.", legislator);
                 else {
                 
                   populateWidget(legislator, top_contributors);

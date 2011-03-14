@@ -34,8 +34,10 @@
               // load from top_contributors API otherwise
               else {
                 TransparencyData.topContributors(entity_id, cycle, function(top_contributors) {
-                  if (top_contributors == null || !top_contributors.length)
+                  if (top_contributors == null)
                     Widget.alert("There was a problem loading contribution information for this lawmaker.", legislator);
+                  else if (top_contributors.length == 0)
+                    Widget.alert("We don't have any contribution information for this lawmaker for the " + cycle + " cycle.", legislator);
                   else {
                   
                     var entity_name = top_contributors[0].name;

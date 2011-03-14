@@ -23,7 +23,7 @@ var TransparencyData = {
     return TransparencyData.getJSON("/aggregates/pol/" + entity_id + "/contributors.json", {
       data: {cycle: cycle},
       success: function(data) {
-        if (data && data.length > 0 && data[0].total_amount)
+        if (data)
           callback(data);
         else
           callback(null);
