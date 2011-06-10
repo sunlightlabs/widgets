@@ -3,6 +3,9 @@
 var TransparencyData = {
   api_key: null,
   base_url: "http://transparencydata.com/api/1.0",
+  
+  // needs to be kept up to date by hand
+  currentCycle: 2010,
 
   // takes a CRP ID, gets an entity id
   // takes in a callback which will get passed a 

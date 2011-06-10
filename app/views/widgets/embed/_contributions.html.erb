@@ -4,7 +4,7 @@
     
       var contributor_entity = "<%= params[:contributor_entity] %>";
       
-      var cycle = currentCycle();
+      var cycle = TransparencyData.currentCycle;
       
       Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
         if (legislator) {
