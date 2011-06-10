@@ -5,7 +5,7 @@ set :application, user
 set :deploy_to, "/home/#{user}/www"
 
 if environment == 'production'
-  set :domain, "politiwidgets.com"
+  set :domain, "rubyhaus.sunlightlabs.org"
 else
   set :domain, "widgets.sunlightlabs.com"
 end
