@@ -10,6 +10,7 @@ gem "geo_ip", :git => "git://github.com/luigi/geo_ip.git"
 group :development do
   gem "unicorn"
   gem "capistrano"
+  gem "rack", "1.2.1"
 end
 
 group :test do

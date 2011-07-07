@@ -138,6 +138,7 @@ DEPENDENCIES
   cucumber
   drumbone (>= 0.2.0)
   geo_ip!
+  rack (= 1.2.1)
   rails (= 3.0.0)
   rspec
   s3
