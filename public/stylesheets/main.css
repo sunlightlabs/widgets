@@ -481,7 +481,7 @@ div#embedCode span { margin-bottom: 5px; display: block;}
 
 /* buttons */
 
-button { text-indent: -9999em; display: block; border: none; cursor: pointer; }
+button, .buttonLink { text-indent: -9999em; display: block; border: none; cursor: pointer; }
 
 .submitBtn { background: url(/images/site/button-submit.png) top left no-repeat; width: 100px; height: 40px; margin-top: 20px; margin-left: 120px;}
 .submitBtn:hover { background: url(/images/site/button-submit.jpg) left -40px no-repeat; }
@@ -498,6 +498,10 @@ button.noImage:hover { background-color: #0178A2;}
 .submit { background: url(/images/site/btn-search.jpg) top left no-repeat; width: 88px; height: 26px; float: left; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
 .submit:hover { background: url(/images/site/btn-search.jpg) left -27px no-repeat; }
 
+#surveyBtn { background: url(/images/site/btn_survey.jpg) center top no-repeat; width: 209px; height: 40px; margin-top: 25px;}
+#surveyBtn:hover { background: url(/images/site/btn_survey.jpg) center bottom no-repeat; }
+
+#surveySidebar { margin-bottom: 40px;}
 
 /*footer*/
 
