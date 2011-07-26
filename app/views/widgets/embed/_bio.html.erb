@@ -1,18 +1,31 @@
 <% content_for :head do %>
 
   <script type="text/javascript">
-    Widget.load = function(bioguide_id, onLoad) {
-      Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
-        if (legislator && legislator.bioguide_id) {
-          populateWidget(legislator);
-          onLoad(legislator);
-        } else
+    Widget.load = function(bioguide_id, votesmart_id, onLoad) {
+      if(bioguide_id){
+          Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
+            if (legislator && legislator.bioguide_id) {
+              populateWidget(legislator);
+              onLoad(legislator);
+            } else
+              Widget.error("There was a problem loading this lawmaker's information.");
+          });
+      }else if(votesmart_id){
+          Challengers.getChallenger(votesmart_id, function(legislator) {
+              if (legislator && legislator.votesmart_id) {
+                populateWidget(legislator);
+                onLoad(legislator);
+              } else
+                Widget.error("There was a problem loading this lawmaker's information.");
+            });
+      }else{
           Widget.error("There was a problem loading this lawmaker's information.");
-      });
-      
+      }
+
+
     };
   </script>
-  
+
 <% end %>
 <div id="headerWrapper">
   <div id="header">
@@ -20,7 +33,7 @@
       <img src="" class="pic@src pic_alt@alt" />
       <div id="repInfo">
         <h1>
-          <small class="title"></small> 
+          <small class="title"></small>
           <big>
             <span class="full_name"></span>
             <select class="changeLawmakerSelect" style="display: none;"></select>
@@ -33,7 +46,7 @@
         </div>
         <div class="clear"></div>
       </div>
-    </div>  
+    </div>
   </div>
 </div>
 
@@ -47,7 +60,7 @@
         <span class="locality">Washington</span>
         <abbr class="region" title="District of Columbia">DC</abbr>
         <span class="zip">22111</span>
-      </div>	
+      </div>
       <div class="url even"><a class="website@href" target="_blank" href="#">Website</a></div>
     </div>
     <div id="buttons">
@@ -70,40 +83,64 @@
 
   function populateWidget(legislator) {
     Widget.populateLegislator(legislator);
-    
+
     var description = "Data by <a href=\"http://sunlightlabs.com\" target=\"_blank\">Sunlight Labs</a>, collected through the <a href=\"http://services.sunlightlabs.com/docs/Sunlight_Congress_API/\" target=\"_blank\">Sunlight Labs Congress API</a>.";
     Widget.source(legislator.last_updated, description);
-      
+
     if (legislator.youtube_url)
       $("#buttons li.youTube").show();
     else
       $("#buttons li.youTube").hide();
-      
+
     if (legislator.twitter_id)
       $("#buttons li.Twitter").show();
     else
       $("#buttons li.Twitter").hide();
-    
-    var zip;
-    if (legislator.title == 'Sen')
-      zip = 20510;
+
+    if (legislator.govtrack_id)
+      $("#buttons li.opencongress").show();
     else
-      zip = 20515;
-    
+      $("#buttons li.opencongress").hide();
+
+    var zip;
+    if (legislator.is_running == true) {
+      addr_parts = legislator.campaign_office.split("\n")
+      try{
+        addr2 = legislator.campaign_office.split("\n")[1]
+        zip = legislator.campaign_office.split("\n")[1].split(' ');
+        zip = zip[zip.length-1]
+        locality = addr2.split(', ')[0]
+        region = addr2.split(', ')[1].split(' ')[0]
+      }catch(e){
+        zip = locality = region = '';
+
+      }
+    } else {
+      locality = 'Washington';
+      region = 'DC';
+      if (legislator.title == 'Sen') {
+        zip = 20510;
+      } else {
+        zip = 20515;
+      }
+    }
+
     $("#mainContent").autoRender({
       tel: legislator.phone,
-      street_address: legislator.congress_office,
+      street_address: legislator.congress_office || legislator.campaign_office.split("\n")[0],
+      locality: locality,
+      region: region,
       zip: zip,
       website: legislator.website,
       twitter: "http://twitter.com/" + legislator.twitter_id,
       youtube: legislator.youtube_url,
-      govtrack: "http://www.opencongress.org/person/show/" + legislator.govtrack_id
+      govtrack: legislator.govtrack_id ? "http://www.opencongress.org/person/show/" + legislator.govtrack_id : '#'
     });
-    
+
     $("a.website").attr("class", "website@href");
     $("a.twitter").attr("class", "twitter@href");
     $("a.youtube").attr("class", "youtube@href");
     $("a.govtrack").attr("class", "govtrack@href");
-    
+
   }
 </script>

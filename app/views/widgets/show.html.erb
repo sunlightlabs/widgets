@@ -7,11 +7,12 @@
     var frontend_hostname = "<%= settings[:frontend_hostname] %>";
     var widget_id = "<%= params[:id] %>";
     var bioguide_id = "<%= params[:bioguide_id] %>";
+    var votesmart_id = "<%= params[:votesmart_id] %>";
     var sunlight_api_key = "<%= settings[:sunlight_api_key] %>";
-    var data_endpoint = "<%= settings[:data_endpoint] %>";
-    
+    var data_endpoint = "<%= settings[:data_endpoints][:drumbone] %>";
+
     var geolocate = false; // manage whether geolocation is on
-    
+
     // various globals to help out in keeping state of the widget during customization
     var sizes = {sm: [160, 300], med: [300, 250], lg: [400,300]};
     var widget_size = 'lg';
@@ -19,35 +20,35 @@
     // should be filled in with any default values before the document is ready
     var custom = {};
 
-    // fill in this object in the widget-specific form partial to have them included in any 
+    // fill in this object in the widget-specific form partial to have them included in any
     // snapshot request to Drumbone
     var snapshot = {};
-    
+
     // this will get filled in when someone clicks the freeze checkbox
     var snapshot_id = null;
-    
-    
+
+
     // color picker
     custom.color = "<%= @widget[:custom][:color] %>";
-  
+
     $(function() {
       $("#primaryColorText").val("#" + custom.color);
       $.farbtastic("#primaryColor", "#primaryColorText").setColor("#" + custom.color);
-    
+
       // color picker
       $("#updateColor").click(function() {
         var picked = $("#primaryColorText").val();
         if (picked && picked.replace)
           custom.color = picked.replace("#", "");
-        
+
         updateFrame();
       });
     });
-    
+
   </script>
-  
+
   <%= javascript_include_tag 'politiwidgets_customize' %>
-  
+
 <% end %>
 
 <% content_for :title, h(@widget[:name] + " for " + titled_name_for(@legislator)) %>
@@ -59,7 +60,7 @@
       <%= h @widget[:name] %>
       for
       <span>
-        <a href="<%= legislator_path :bioguide_id => @legislator.bioguide_id %>">
+        <a href="<%= any_person_path :bioguide_id => @legislator.bioguide_id, :votesmart_id => @legislator.votesmart_id %>">
           <%= titled_name_for @legislator %>
         </a>
       </span>
@@ -68,7 +69,7 @@
   </div>
   <p class="tipText">Pick from the sizes below<%= ", and use the controls to the right to customize your widget" if @widget[:custom] %>.  Copy the embed code at any time to place the widget on your website.</p>
   <div id="leftWidgetColumn">
-  
+
     <div id="widgetStage">
       <div class="widgetSizes">
         <h3>Choose Size</h3>
@@ -79,15 +80,15 @@
         </ul>
         <div class="clear"></div>
       </div>
-    
+
       <div id="widgetConstruct">
         <div style="text-align: center;">
           <iframe frameborder='0'></iframe>
         </div>
       </div>
-        
+
     </div>
-  
+
   </div>
 
   <div id="rightWidgetColumn">
@@ -98,7 +99,7 @@
         <legend>Select a New Lawmaker</legend>
         <select id="id_state" name="state">
           <option value="california">California</option>
-        </select> 
+        </select>
         <select id="id_lawmaker" name="lawmaker">
           <option value="lawmaker">Lawmaker</option>
         </select>
@@ -107,15 +108,15 @@
         </button>
       </fieldset>
       -->
-      
+
       <fieldset class="custom">
         <div id="primaryColor"></div>
         <input type="text" id="primaryColorText" class="rtColumnInput" />
         <button type="button" value="Update Color" class="noImage" id="updateColor">
           <span>Update Color</span>
-        </button>  
+        </button>
       </fieldset>
-    
+
       <ul id="widgetOptions">
         <% unless @widget[:custom] and @widget[:custom][:disable_geolocate] %>
         <li id="geolocateBox">
@@ -127,7 +128,7 @@
           <p id="geolocateExplain">If you check this box, we'll attempt to geographically locate users viewing the widget (using <a href="http://ipinfodb.com" class="inline" target="_blank">IPInfoDB</a>), and show them their own elected official. <strong>This does not always work</strong>, and if it doesn't, the widget will default to the legislator you originally selected (<%= titled_name_for @legislator %>).</p>
         </li>
         <% end %>
-    
+
         <% unless @widget[:custom] and @widget[:custom][:disable_snapshot] %>
         <li id="freezeBox">
           <label class="checkBoxType">
@@ -143,15 +144,15 @@
         <%= image_tag "site/spinner.gif" %>
         <span>Freezing the data...</span>
       </div>
-    
+
       <div id="errorBox"></div>
-  
+
     <% end %>
-    
+
     <div id="embedCode">
       <span>Embed Code</span>
       <input id="grabCode" name="widgetCode" type="text"/>
     </div>
-  
+
   </div>
 </div>

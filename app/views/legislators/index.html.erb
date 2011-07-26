@@ -1,8 +1,8 @@
 <% content_for :head do %>
   <%= javascript_include_tag 'jquery.tablesorter.min' %>
-  
+
   <script type="text/javascript">
-    $().ready(function() {  
+    $().ready(function() {
 
       $('tr.lawMaker').hover(function() {
         $(this).addClass('hover');
@@ -13,16 +13,16 @@
         if (url)
             window.location = url;
       });
-      
+
       $("th.sortable").hover(function() {
         $(this).addClass('hover');
       }, function() {
         $(this).removeClass('hover');
       });
-      
+
       $('#mainTable').tablesorter({
-        sortList: [[2,0]], 
-        cssAsc: "asc", 
+        sortList: [[2,0]],
+        cssAsc: "asc",
         cssDesc: "desc",
         textExtraction: function(node) {
           var contents = _.compact($.trim($(node).text()).split(' '));
@@ -33,7 +33,7 @@
         },
         headers: {0: {sorter: false}}
       });
-      
+
     });
   </script>
 <% end %>
@@ -53,16 +53,16 @@
         <th class="sortable">District</th>
       </tr>
     </thead>
-  
+
     <tbody>
       <% @legislators.each do |legislator| %>
-        <tr class="lawMaker"> 
+        <tr class="lawMaker">
           <td>
             <img src="<%= photo_url_for legislator%>" alt="headshot"/>
           </td>
           <td class="lawPosition"><%= title_for legislator %></td>
           <td class="lawName">
-            <a href="<%= legislator_path :bioguide_id => legislator.bioguide_id %>"><%= search_name_for legislator %></a>
+            <a href="<%= any_person_path :bioguide_id => legislator.bioguide_id, :votesmart_id => legislator.votesmart_id %>"><%= search_name_for legislator %></a>
           </td>
           <td class="lawParty"><%= party_for legislator %></td>
           <td class="lawDistrict"><%= full_district_for legislator %></td>

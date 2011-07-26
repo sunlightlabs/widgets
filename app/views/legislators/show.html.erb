@@ -6,12 +6,12 @@
   <ul>
     <% widgets.each do |slug, widget| %>
       <li class="<%= cycle 'odd', 'even' %> <%= 'last' if slug == widgets.keys.last %>">
-        <h3 class="floated"><a href="<%= widget_path :id => slug, :bioguide_id => @legislator.bioguide_id %>"><%= h widget[:name] %></a></h3>
-        <a class="customizer" href="<%= widget_path :id => slug, :bioguide_id => @legislator.bioguide_id %>">Customize</a>
+        <h3 class="floated"><a href="<%= widget_path :id => slug, :bioguide_id => @legislator.bioguide_id, :votesmart_id => @legislator.votesmart_id %>"><%= h widget[:name] %></a></h3>
+        <a class="customizer" href="<%= widget_path :id => slug, :bioguide_id => @legislator.bioguide_id, :votesmart_id => @legislator.votesmart_id %>">Customize</a>
         <div class="clear"></div>
         <div class="widget">
-          <a href="<%= widget_path :id => slug, :bioguide_id => @legislator.bioguide_id %>"></a>
-          <script type="text/javascript" src="<%= embed_url_for slug, @legislator.bioguide_id, :size => 'lg', :title => @legislator.title %>"></script>
+          <a href="<%= widget_path :id => slug, :bioguide_id => @legislator.bioguide_id, :votesmart_id => @legislator.votesmart_id %>"></a>
+          <script type="text/javascript" src="<%= embed_url_for slug, @legislator.bioguide_id, @legislator.votesmart_id, :size => 'lg', :title => @legislator.title %>"></script>
         </div>
       </li>
     <% end %>

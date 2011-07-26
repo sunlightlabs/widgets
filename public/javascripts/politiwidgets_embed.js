@@ -17,6 +17,7 @@ function shortTitle(legislator) {
 }
 
 function longTitle(legislator) {
+  console.log(legislator);
   var titles = {
     Sen: "Senator",
     Rep: "Representative",

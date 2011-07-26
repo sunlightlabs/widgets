@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
   <%= render :partial => "layouts/chartbeat_header" %>
-  
+
   <!-- jQuery and utilities -->
   <%= javascript_include_tag 'jquery-1.4.2.min' %>
   <%= javascript_include_tag 'pure.min' %>
@@ -11,19 +11,20 @@
   <!--[if IE]>
     <script src="/javascripts/excanvas.compiled.js" type="text/javascript"></script>
   <![endif]-->
-  
-  
+
+
   <!-- API clients -->
   <%= javascript_include_tag 'sunlight' %>
   <%= javascript_include_tag 'drumbone' %>
+  <%= javascript_include_tag 'challengers' %>
   <%= javascript_include_tag 'transparency_data' %>
-  
-  
+
+
   <!-- Site code -->
   <%= javascript_include_tag 'politiwidgets' %>
   <%= javascript_include_tag 'politiwidgets_embed' %>
-  
-  
+
+
   <!--[if IE 6]>
     <%= stylesheet_link_tag 'widgets-buggy' %>
   <![endif]-->
@@ -31,7 +32,7 @@
     <%= stylesheet_link_tag 'widgets-buggy7' %>
   <![endif]-->
   <%= stylesheet_link_tag 'widget' %>
-  
+
   <%= yield :head %>
 </head>
 
@@ -40,11 +41,11 @@
   <div id="widgetAlert" class="alert">
     <p>Here is what an alert will look like.</p>
   </div>
-  
+
   <div id="pageMain">
-  
+
     <%= yield %>
-    
+
     <div id="sources">
       <a class="sourceText" href="#">Source Info</a>
       <div id="sourceArea">
@@ -56,14 +57,14 @@
         </p>
       </div>
     </div>
-    
+
   </div>
-  
+
   <div id="changeLawmaker" style="display: none;">
       <a id="closeBtn" href="#">Close</a>
       <h4>Is <span class="current_name"></span> not your lawmaker?</h4>
       <p>Select a new one from the dropdown above or select a new state:</p>
-      
+
       <% states_by_name = state_codes.invert %>
       <select name="state" class="state">
         <% states_by_name.keys.sort.map do |name| %>
@@ -71,10 +72,10 @@
         <% end %>
       </select>
   </div>
-  
-  
+
+
   <%= yield :tail %>
-  
+
   <%= render :partial => "layouts/analytics" %>
   <%= render :partial => "layouts/chartbeat_footer" %>
 </body>

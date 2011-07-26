@@ -1,46 +1,48 @@
 <% content_for :head do %>
   <%= stylesheet_link_tag "widgets/#{params[:id]}" %>
-  
+
   <script type="text/javascript">
     // config variables
-    var data_endpoint = "<%= settings[:data_endpoint] %>";
+    var data_endpoint = "<%= settings[:data_endpoints][:drumbone] %>";
     var sunlight_api_key = "<%= settings[:sunlight_api_key] %>";
     var snapshot_directory = "<%= settings[:snapshot_directory] %>";
-    
+
     var bioguide_id = "<%= params[:bioguide_id] %>".toUpperCase();
+    var votesmart_id = "<%= params[:votesmart_id] %>";
     var size = "<%= @size %>";
     var snapshot_id = "<%= params[:snapshot_id] %>";
-    
-    
+
+
     // geolocation
     var geolocate = false;
     var latitude, longitude, located_legislator;
     <% if params[:geolocate] == "true" %>
       geolocate = true;
-      
+
       <% if @location %>
         latitude = "<%= @location[:latitude] %>";
         longitude = "<%= @location[:longitude] %>";
       <% end %>
     <% end %>
-    
+
     // will hinge on geolocation
     var switcher = false;
-    
+
     //hack
     var switcher_up = true;
-    
-    
+
+
     // api keys
     Sunlight.api_key = sunlight_api_key;
     Drumbone.base_url = data_endpoint;
     Drumbone.api_key = sunlight_api_key;
+    Challengers.api_key = '';
     TransparencyData.api_key = sunlight_api_key;
-    
-    
+
+
     var Widget = {
-      load: function(bioguide_id) {}, // overwritten by each child widget before document is done loading
-      
+      load: function(bioguide_id, votesmart_id) {}, // overwritten by each child widget before document is done loading
+
       onLoad: function(legislator) {
         var show = function() {
           prepareSource();
@@ -51,65 +53,65 @@
         else
           show();
       },
-      
+
       alert: function(message, legislator, size) {
         $("#mainContent").hide();
         $("#widgetAlert p").html(message);
         $("#widgetAlert").show();
-        
+
         if (legislator) {
           Widget.populateLegislator(legislator, size);
-          
+
           if (switcher)
             prepareSwitcher(legislator);
         }
-        
+
         $("body").show();
       },
-      
+
       error: function(message) {
         $("#headerWrapper").hide();
         $("#changeLawmaker").hide();
         $("#widgetAlert").addClass("error");
-        
+
         $("#mainContent").hide();
         $("#widgetAlert p").html(message);
         $("#widgetAlert").show();
-        
+
         $("body").show();
       },
-      
+
       unalert: function() {
         $("#headerWrapper").show();
         $("#mainContent").show();
         $("#widgetAlert p").html("");
         $("#widgetAlert").hide();
       },
-      
+
       source: function(date, text) {
         $("#last_updated").html(formatSourceDate(new Date(date)));
         $("#sourceContent").html(text);
       },
-      
+
       populateLegislator: function(legislator, size) {
         var district = (legislator.district == '0') ? "AL" : legislator.district;
         var state = legislator.state + ((legislator.title == "Sen") ? "" : ("-" + district));
-        
+
         $("#header").autoRender({
           title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
           full_name: fullName(legislator),
-          pic: profileImage(legislator.bioguide_id, size),
+          pic: legislator.bioguide_id ? profileImage(legislator.bioguide_id, size) : legislator.bio.photo,
           pic_alt: "Picture of " + fullName(legislator),
           state_downcase: legislator.state.toLowerCase(),
           state: state,
           party: "(" + legislator.party + ")"
         });
-        
+
         // reset the special class so that it can auto-rendered again
         $("img.pic.pic_alt").attr("class", "pic@src pic_alt@alt");
       }
     };
-    
+
     $(function() {
       if (geolocate) {
         switcher = true;
@@ -117,20 +119,20 @@
           Sunlight.allForLatLong(latitude, longitude, function(legislators) {
             if (legislators != null && legislators.length) {
               located_legislator = pullOutRep(legislators);
-              Widget.load(located_legislator.bioguide_id, Widget.onLoad);
+              Widget.load(located_legislator.bioguide_id, located_legislator.votesmart_id, Widget.onLoad);
             }
             else // geolocated the user, but found no legislator for that lat/long (user may be non-US)
-              Widget.load(bioguide_id, Widget.onLoad);
+              Widget.load(bioguide_id, votesmart_id, Widget.onLoad);
           });
-          
+
         } else // geolocation is enabled for the widget, but we couldn't figure out where the user is
-          Widget.load(bioguide_id, Widget.onLoad);
-        
+          Widget.load(bioguide_id, votesmart_id, Widget.onLoad);
+
       } else // geolocation is disabled for the widget
-        Widget.load(bioguide_id, Widget.onLoad);
+        Widget.load(bioguide_id, votesmart_id, Widget.onLoad);
     });
-    
-    // pull out the first legislator whose title is not 'Sen', 
+
+    // pull out the first legislator whose title is not 'Sen',
     // and if there is none (i.e. open seat) then just return the first one
     function pullOutRep(legislators) {
       var index = -1;
@@ -143,7 +145,7 @@
       });
       return legislators[index > -1 ? index : 0].legislator;
     }
-    
+
     function prepareSource() {
       $("div#sources a.sourceText").toggle(
         function(){
@@ -155,34 +157,34 @@
           $(this).removeClass("active");
           $("div#sourceArea").slideUp("slow");
           return false;
-        } 
+        }
       );
     }
-    
+
     // needs to be idempotent - may be called repeatedly as users switch states/legislators
     function prepareSwitcher(legislator, showCallback) {
       $("div#changeLawmaker a#closeBtn").click(function() {
         $("div#changeLawmaker").hide();
         return false;
       });
-      
+
       $("div#changeLawmaker span.current_name").html(fullName(legislator));
-      
+
       $("div#changeLawmaker select.state")
         .die("change")
         .val(legislator.state)
         .live("change", switchState);
-      
+
       $("a.changeState").live('click', function() {
         $("div#changeLawmaker").toggle();
         return false;
       }).show();
-      
+
       if (switcher_up) {
         $("div#changeLawmaker").show();
       } else
         switcher_up = true; // reset for next time
-      
+
       Sunlight.allForState(legislator.state, function(legislators) {
         if (legislators == null)
           Widget.error("There was a problem loading legislators from " + state + ".");
@@ -195,19 +197,19 @@
             .val(legislator.bioguide_id)
             .live("change", switchLegislator)
             .show();
-          
+
           if (showCallback)
             showCallback();
         }
       });
     }
-    
+
     function switchLegislator() {
       Widget.unalert();
       switcher_up = false; // if it ends up an alert, keep the switcher down
       Widget.load($(this).val(), onSwitchLegislator);
     }
-    
+
     function onSwitchLegislator(legislator) {
       $("div#changeLawmaker span.current_name").html(fullName(legislator));
       $("div#changeLawmaker").hide();
@@ -220,25 +222,25 @@
         .val(legislator.bioguide_id)
         .live("change", switchLegislator);
     }
-    
+
     function switchState() {
       Widget.unalert();
       switcher_up = true; // if it ends up an alert, keep the switcher up
-      
+
       var state = $(this).val();
       Sunlight.allForState(state, function(legislators) {
         var sorted = sortForSwitcher(legislators);
         if (legislators == null)
           Widget.error("There was a problem loading legislators from " + state + ".");
         else
-          Widget.load(sorted[0].legislator.bioguide_id, onSwitchState);
+          Widget.load(sorted[0].legislator.bioguide_id, sorted[0].legislator.votesmart_id, onSwitchState);
       });
     }
-    
+
     function onSwitchState(legislator) {
       prepareSwitcher(legislator);
     }
-    
+
     function optionsForSwitcher(legislators) {
       var options = "";
       $.each(legislators, function(index, l) {
@@ -247,7 +249,7 @@
       });
       return options;
     }
-    
+
     function sortForSwitcher(legislators) {
       var senators = [];
       var reps = [];
@@ -259,7 +261,7 @@
       });
       return senators.concat(reps);
     }
-    
+
   </script>
 <% end %>
 
