@@ -8,7 +8,6 @@ gem "drumbone", ">=0.2.0"
 gem "geo_ip", :git => "git://github.com/luigi/geo_ip.git"
 
 group :development do
-  gem "unicorn"
   gem "capistrano"
 end
 
