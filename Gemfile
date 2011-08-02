@@ -1,6 +1,6 @@
 source :rubygems
 
-gem "rails", "3.0.0"
+gem "rails", "3.0.9"
 
 gem "sunlight", :require => "sunlight"
 gem "s3"
@@ -10,7 +10,6 @@ gem "geo_ip", :git => "git://github.com/luigi/geo_ip.git"
 group :development do
   gem "unicorn"
   gem "capistrano"
-  gem "rack", "1.2.1"
 end
 
 group :test do
