@@ -4,6 +4,9 @@ set :user, 'widgets'
 set :application, user
 set :deploy_to, "/home/#{user}/www"
 
+set :sock, "#{user}.sock"
+set :gem_bin, "/home/#{user}/.gem/ruby/1.8/bin"
+
 if environment == 'production'
   set :domain, "rubyhaus.sunlightlabs.org"
 else
@@ -22,14 +25,28 @@ role :db,  domain, :primary => true
 after "deploy", "deploy:cleanup"
 
 namespace :deploy do
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "touch #{current_path}/tmp/restart.txt"
+  
+  task :start do
+    run "cd #{current_path} && #{gem_bin}/unicorn -D -l #{shared_path}/#{sock} -c #{current_path}/unicorn.rb"
   end
+  
+  task :stop do
+    run "kill `cat #{shared_path}/unicorn.pid`"
+  end
+  
+  task :migrate do; end
+  
+  desc "Restart the server"
+  task :restart, :roles => :app, :except => {:no_release => true} do
+    run "kill -HUP `cat #{shared_path}/unicorn.pid`"
+  end
+  
   
   task :symlink_config do
     run "ln -s #{shared_path}/config/widgets.yml #{release_path}/config/widgets.yml"
     run "ln -s #{shared_path}/config/settings.yml #{release_path}/config/settings.yml"
     run "ln -s #{shared_path}/config/mailer.rb #{release_path}/config/initializers/mailer.rb"
+    run "ln -nfs #{shared_path}/unicorn.rb #{release_path}/unicorn.rb"
   end
 end
 
@@ -46,7 +63,7 @@ namespace :bundler do
 
   task :bundle do
     bundler.symlink_vendor
-    run("cd #{release_path} && export PATH=/home/widgets/.gem/ruby/1.8/bin:$PATH && bundle install --deployment")
+    run("cd #{release_path} && #{gem_bin}/bundle install --local")
   end
 end
 
