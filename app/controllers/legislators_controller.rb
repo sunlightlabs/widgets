@@ -40,6 +40,13 @@ class LegislatorsController < ApplicationController
       @query_type = "All Members of Congress"
       @legislators = Sunlight::Legislator.all_where(:in_office => true)
 
+    elsif @query =~ /^[A-Za-z\s0-9\., ]+ \([^\)]+?\)$/
+      @query_type = "Name and Party"
+      @name, @party = @query.split(' (')
+      @party = @party.sub(')', '')
+      @legislators = Sunlight::Legislator.search_by_name(@name, 0.90) || []
+      @legislators = @legislators.map{ |legislator| legislator.party.downcase == @party.downcase ? legislator : nil}.compact
+
     else
       @query_type = "Name"
       @legislators = Sunlight::Legislator.search_by_name(@query, 0.90)
