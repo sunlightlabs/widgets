@@ -9,7 +9,6 @@ var Challengers = Challengers || {
   // takes a CRP ID, gets an entity id
   // takes in a callback which will get passed a
   getChallenger: function(votesmart_id, callback) {
-    console.log('got call:', votesmart_id);
     return Challengers.getJSON("people/", {
       data: {votesmart_id: votesmart_id},
       success: function(data) {

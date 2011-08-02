@@ -18,33 +18,43 @@ class LegislatorsController < ApplicationController
     if @query =~ /^[0-9]{5}$/
       @query_type = "ZIP Code"
       @legislators = Sunlight::Legislator.all_in_zipcode(@query) +
-                     @@challengers.people(:address__zip_code__exact => @query)
+                     challengers.people(:address__zip_code__exact => @query)
 
     elsif @query =~ /^[A-Za-z]{2}-[0-9]{1,2}$/
       @query_type = "Congressional District"
       @state, @district = *@query.split("-")
       @legislators = Sunlight::Legislator.all_where(:state => @state, :district => @district) +
                      Sunlight::Legislator.all_where(:state => @state, :title => "Sen") +
-                     @@challengers.people(:state_district__iexact => @query) +
-                     @@challengers.people(:state__iexact => @state, :title__iexact => 'sen')
+                     challengers.people(:state_district__iexact => @query) rescue [] +
+                     challengers.people(:state__iexact => @state, :title__iexact => 'sen') rescue []
 
     elsif @state = is_a_state?(@query)
       @query_type = "State"
       @query = @state
       @legislators = Sunlight::Legislator.all_where(:state => @state) +
-                     @challengers.people(:state__iexact => @state)
+                     challengers.people(:state__iexact => @state) rescue []
 
     elsif @query =~ /^[0-9]+.+/
       @district = Sunlight::District.get(:address => @query)
       @query_type = "Address"
       @legislators = Sunlight::Legislator.all_for(:address => @query).values +
-                     @@challengers.people(:address__icontains => @query)
+                     challengers.people(:address__icontains => @query) rescue []
 
     elsif @query == ''
-      @query_type = "All Members of Congress"
+      @query_type = "All Members of Congress and Challengers"
       @legislators = Sunlight::Legislator.all_where(:in_office => true) +
-                     @@challengers.people()
+                     challengers.people()
 
+    elsif @query =~ /^[A-Za-z\s0-9\., ]+ \([^\)]+?\)$/
+      @query_type = "Name and Party"
+      puts @query_type
+      @name, @party = @query.split(' (')
+      @party = @party.sub(')', '')
+      puts @name
+      @legislators = Sunlight::Legislator.search_by_name(@name, 0.90) || [] +
+                     challengers.people(:q => @name) rescue []
+      puts @legislators
+      @legislators = @legislators.map{|legislator| legislator.party.downcase == @party.downcase ? legislator : nil}.compact
 
     elsif @query =~ /^[A-Za-z\s0-9\., ]+ \([^\)]+?\)$/
       @query_type = "Name and Party"
@@ -55,8 +65,9 @@ class LegislatorsController < ApplicationController
 
     else
       @query_type = "Name"
+      puts @query_type
       @legislators = Sunlight::Legislator.search_by_name(@query, 0.90) || [] +
-                     @@challengers.people(:q => @query)
+                     challengers.people(:q => @query) rescue []
     end
 
     if @legislators
@@ -76,6 +87,7 @@ class LegislatorsController < ApplicationController
             redirect_to challenger_path(:votesmart_id => legislator.votesmart_id)
           end
           return
+        end
       end
       format.json {render :json => @legislators}
     end

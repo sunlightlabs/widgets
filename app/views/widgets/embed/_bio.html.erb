@@ -127,7 +127,7 @@
 
     $("#mainContent").autoRender({
       tel: legislator.phone,
-      street_address: legislator.congress_office || legislator.campaign_office.split("\n")[0],
+      street_address: legislator.congress_office || legislator.campaign_office && legislator.campaign_office.split("\n")[0],
       locality: locality,
       region: region,
       zip: zip,

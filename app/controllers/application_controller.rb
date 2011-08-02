@@ -18,8 +18,13 @@ class ApplicationController < ActionController::Base
     bioguide_id = params[:bioguide_id].present? ? params[:bioguide_id].upcase : nil
     votesmart_id = params[:votesmart_id].present? ? params[:votesmart_id] : nil
     unless (bioguide_id and person = Drumbone::Legislator.find(:bioguide_id => bioguide_id)) or
-           (votesmart_id and person = @@challengers.people(:votesmart_id => votesmart_id))
+           (votesmart_id and person = challengers.people(:votesmart_id => votesmart_id))
       return false
+    end
+    if person.in_office?
+      person.person_type = 'legislator'
+    else
+      person.person_type = 'challenger'
     end
     person
   end
@@ -28,7 +33,10 @@ class ApplicationController < ActionController::Base
     Sunlight::Base.api_key = settings[:sunlight_api_key]
     Drumbone.api_key = settings[:sunlight_api_key]
     Drumbone.url = settings[:data_endpoints][:drumbone]
-    @@challengers ||= Tastyrb::Client.new(base_uri=settings[:data_endpoints][:challengers], api_key=settings[:sunlight_api_key])
+  end
+
+  def challengers
+    @@challengers = Tastyrb::Client.new(base_uri=settings[:data_endpoints][:challengers], api_key=settings[:sunlight_api_key])
   end
 
   def settings

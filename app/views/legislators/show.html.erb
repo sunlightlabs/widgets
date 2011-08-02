@@ -5,6 +5,7 @@
 
   <ul>
     <% widgets.each do |slug, widget| %>
+    <% if widget[:display_for].include? @legislator.person_type.pluralize.to_sym %>
       <li class="<%= cycle 'odd', 'even' %> <%= 'last' if slug == widgets.keys.last %>">
         <h3 class="floated"><a href="<%= widget_path :id => slug, :bioguide_id => @legislator.bioguide_id, :votesmart_id => @legislator.votesmart_id %>"><%= h widget[:name] %></a></h3>
         <a class="customizer" href="<%= widget_path :id => slug, :bioguide_id => @legislator.bioguide_id, :votesmart_id => @legislator.votesmart_id %>">Customize</a>
@@ -14,6 +15,7 @@
           <script type="text/javascript" src="<%= embed_url_for slug, @legislator.bioguide_id, @legislator.votesmart_id, :size => 'lg', :title => @legislator.title %>"></script>
         </div>
       </li>
+    <% end %>
     <% end %>
   </ul>
 </div>

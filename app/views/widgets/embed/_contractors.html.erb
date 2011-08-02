@@ -1,25 +1,33 @@
 <% content_for :head do %>
   <script type="text/javascript">
-    Widget.load = function(bioguide_id) {
-    
-      Drumbone.getLegislator(bioguide_id, ["basic", "contracts"], function(legislator) {
+    Widget.load = function(bioguide_id, votesmart_id) {
+      var loadCallback = function(legislator) {
         if (legislator) {
+          // pulled from drumbone; have contract info embedded
           if (legislator.contracts) {
             populateWidget(legislator);
             Widget.onLoad();
-          }
-          
-          else
+          } else {
+            // might have pulled from challengers, get district and try to pull from drumbone
+            Sunlight.getForDistrict(legislator.state, legislator.district, function(legislator){
+              // query drumbone here
+            });
             Widget.alert("We do not yet have any information on this lawmaker's district's federal contracts.");
-        }
-        
-        else
+          }
+        } else {
           Widget.error("There was a problem loading this lawmaker's information.");
-      });
-      
-    };
+        }
+      }
+      if (bioguide_id) {
+        Drumbone.getLegislator(bioguide_id, ["basic", "contracts"], loadCallback)
+      } else if (votesmart_id) {
+        Challengers.getChallenger(votesmart_id, loadCallback);
+      }
+
+
+};
   </script>
-  
+
 <% end %>
 
 <div id="headerWrapper" style="background-color: #<%= params[:color] || "DDD9D7" %>">
@@ -34,8 +42,8 @@
         <span class="party"></span>
         <span class="state"></span>
       </div>
-    </div>   
-    <div class="clear"></div> 
+    </div>
+    <div class="clear"></div>
   </div>
 </div>
 <div id="districtMap">
@@ -57,15 +65,15 @@
   function populateWidget(legislator) {
     var fiscal_year = legislator.contracts.fiscal_year;
     var description = "Data valid for FY" + fiscal_year + ", provided by <a href=\"http://www.usaspending.gov\" target=\"_blank\">USASpending.gov</a>.";
-    
+
     var legislator_district = "";
     if (legislator.district == '0')
       legislator_district = "AL";
     else
       legislator_district = legislator.district;
-    
+
     var legislator_state = legislator.state + "-" + legislator_district;
-    
+
     var pic_filename;
     if (legislator.title == 'Sen')
       pic_filename = "/images/states/" + legislator.state + ".png";
@@ -79,11 +87,11 @@
       party: "(" + legislator.party + ")",
       fiscal_year: " for FY" + fiscal_year
     });
-    
+
     $("div#districtMap").autoRender({pic: pic_filename});
 
     Widget.source(legislator.contracts.last_updated, description);
-    
+
     var top_contractors = legislator.contracts.top_contractors;
     var top_names = [];
     var top_amounts = [];
@@ -93,8 +101,8 @@
       name_objects[i] = {name: top_contractors[i].name.substring(0,15)};
       top_amounts[i] = parseFloat(top_contractors[i].amount);
     }
-    
-    var names = top_names;      
+
+    var names = top_names;
     if (size == 'sm') {
       names = ['1', '2', '3', '4', '5'];
       $('ol#contractor_names').autoRender({"contractors": name_objects});
@@ -115,7 +123,7 @@
       dimensions.margin = [0, 30, 20, 80];
     }
 
-    
+
     var chart1 = new Highcharts.Chart({
       chart: {
         renderTo: 'chart-container-1',

@@ -58,7 +58,9 @@
       <% @legislators.each do |legislator| %>
         <tr class="lawMaker">
           <td>
-            <img src="<%= photo_url_for legislator%>" alt="headshot"/>
+            <% if not photo_url_for(legislator).blank? %>
+            <img src="<%= photo_url_for legislator%>" width="40" alt="headshot"/>
+            <% end %>
           </td>
           <td class="lawPosition"><%= title_for legislator %></td>
           <td class="lawName">
