@@ -3,16 +3,31 @@
     Widget.load = function(bioguide_id, votesmart_id) {
       var loadCallback = function(legislator) {
         if (legislator) {
+
           // pulled from drumbone; have contract info embedded
           if (legislator.contracts) {
+            console.log(legislator)
             populateWidget(legislator);
             Widget.onLoad();
           } else {
             // might have pulled from challengers, get district and try to pull from drumbone
-            Sunlight.getForDistrict(legislator.state, legislator.district, function(legislator){
+            Sunlight.getForDistrict(legislator.state, legislator.district, function(sitting_legislator){
               // query drumbone here
+              if (sitting_legislator && sitting_legislator.bioguide_id){
+                Drumbone.getLegislator(sitting_legislator.bioguide_id, ["basic", "contracts"], function(sitting_legislator){
+                  if (sitting_legislator.contracts){
+                    populateWidget($.extend(legislator, {contracts: sitting_legislator.contracts}));
+                    Widget.onLoad();
+                  } else {
+                    Widget.alert("We do not yet have any information on this lawmaker's district's federal contracts.");
+                  }
+                });
+              } else {
+                populateWidget($.extend(legislator, {contracts: {}}));
+                Widget.onLoad();
+                Widget.alert("We do not yet have any information on this lawmaker's district's federal contracts.");
+              }
             });
-            Widget.alert("We do not yet have any information on this lawmaker's district's federal contracts.");
           }
         } else {
           Widget.error("There was a problem loading this lawmaker's information.");
@@ -23,9 +38,7 @@
       } else if (votesmart_id) {
         Challengers.getChallenger(votesmart_id, loadCallback);
       }
-
-
-};
+    };
   </script>
 
 <% end %>
@@ -75,28 +88,34 @@
     var legislator_state = legislator.state + "-" + legislator_district;
 
     var pic_filename;
-    if (legislator.title == 'Sen')
+
+    if (legislator.title == 'Sen' || (legislator.in_office == false &&
+                                      legislator.chamber &&
+                                      legislator.chamber.match(/senate/i)) ) {
       pic_filename = "/images/states/" + legislator.state + ".png";
-    else
+    } else {
       pic_filename = "/images/districts/" + legislator.state + legislator.district + "-small.gif";
+    }
 
     $("div#headerWrapper").autoRender({
       full_name: fullName(legislator),
       state_downcase: legislator.state.toLowerCase(),
       state: legislator_state,
       party: "(" + legislator.party + ")",
-      fiscal_year: " for FY" + fiscal_year
+      fiscal_year: " for FY" + fiscal_year,
+      title: shortTitle(legislator)
     });
 
     $("div#districtMap").autoRender({pic: pic_filename});
 
-    Widget.source(legislator.contracts.last_updated, description);
+    Widget.source(legislator.contracts && legislator.contracts.last_updated, description);
 
-    var top_contractors = legislator.contracts.top_contractors;
+    var top_contractors = legislator.contracts && legislator.contracts.top_contractors || [];
     var top_names = [];
     var top_amounts = [];
     var name_objects = [];
-    for (var i = 0; i < 5; i++) {
+
+    for (var i = 0; i < Math.min(5, top_contractors.length); i++) {
       top_names[i] = top_contractors[i].name;
       name_objects[i] = {name: top_contractors[i].name.substring(0,15)};
       top_amounts[i] = parseFloat(top_contractors[i].amount);
@@ -107,6 +126,8 @@
       names = ['1', '2', '3', '4', '5'];
       $('ol#contractor_names').autoRender({"contractors": name_objects});
     }
+
+
 
     var dimensions = {};
     if (size == 'sm') {

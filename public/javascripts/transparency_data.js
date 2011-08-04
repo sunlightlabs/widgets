@@ -3,15 +3,31 @@
 var TransparencyData = {
   api_key: null,
   base_url: "http://transparencydata.com/api/1.0",
-  
+
   // needs to be kept up to date by hand
   currentCycle: 2010,
 
-  // takes a CRP ID, gets an entity id
-  // takes in a callback which will get passed a 
-  getEntityId: function(bioguide_id, callback) { 
+  // takes a Bioguide ID, or object with a bgd or crp id,
+  // gets an entity id
+  // takes a callback which will get called on success
+  getEntityId: function(legislator_or_bioguide_id, callback) {
+    var params;
+    if (typeof legislator_or_bioguide_id == 'object'){
+      var legislator = legislator_or_bioguide_id;
+      if (legislator && legislator.bioguide_id) {
+        params = {bioguide_id: legislator.bioguide_id};
+      } else if (legislator && legislator.crp_id) {
+        params = {namespace: 'urn:crp:recipient', id: legislator.crp_id};
+      } else {
+        return callback(null);
+      }
+    } else if (legislator_or_bioguide_id) {
+      params = {bioguide_id: legislator_or_bioguide_id};
+    } else {
+      return callback(null);
+    }
     return TransparencyData.getJSON("/entities/id_lookup.json", {
-      data: {bioguide_id: bioguide_id},
+      data: params,
       success: function(data) {
         if (data && data.length > 0 && data[0].id)
           callback(data[0].id);
@@ -33,7 +49,7 @@ var TransparencyData = {
       }
     });
   },
-  
+
   pairwiseContributionInfo: function(recipient_id, contributor_id, cycle, callback) {
     return TransparencyData.getJSON("/aggregates/recipient/" + recipient_id + "/contributor/" + contributor_id + "/amount.json", {
       data: {cycle: cycle},
@@ -45,11 +61,11 @@ var TransparencyData = {
       }
     });
   },
-  
+
   entitySearch: function(name, cycle, callback) {
     return TransparencyData.getJSON("/entities.json", {
       data: {
-          cycle: cycle, 
+          cycle: cycle,
           search: name
       },
       success: function(data) {
@@ -58,9 +74,9 @@ var TransparencyData = {
         else
           callback(null);
       }
-    });  
+    });
   },
-  
+
   getJSON: function(path, options) {
     return $.ajax($.extend(true, options, {
       url: TransparencyData.base_url + path,
@@ -70,5 +86,5 @@ var TransparencyData = {
       dataType: "jsonp"
     }));
   }
-  
+
 };

@@ -1,22 +1,22 @@
 <% content_for :head do %>
   <script type="text/javascript">
-    Widget.load = function(bioguide_id) {
-      
+    Widget.load = function(bioguide_id, votesmart_id) {
+
       Drumbone.getLegislator(bioguide_id, "basic,parties", function(legislator) {
         if (legislator) {
           if (legislator.parties) {
             populateWidget(legislator);
             Widget.onLoad();
-          } 
-          
+          }
+
           else
             Widget.alert("We do not yet have any information on this legislator's fundraising parties.");
-        } 
-        
+        }
+
         else
           Widget.error("There was a problem loading this lawmaker's information.");
       });
-      
+
     };
   </script>
 <% end %>
@@ -39,7 +39,7 @@
         <div class="clear"></div>
       </div>
     </div>
-  
+
     <div id="nav">
       <ul>
         <li class="upcoming" style="display: none">
@@ -50,10 +50,10 @@
         <li class="recent" style="display: none">
           <a href="#">Recent Parties</a>
         </li>
-      </ul> 
+      </ul>
       <div class="clear"></div>
     </div>
-    
+
   </div>
 </div>
 
@@ -66,34 +66,34 @@
 <script type="text/javascript" charset="utf-8">
 
   function populateWidget(legislator) {
-    
+
     var legislator_district = "";
     if (legislator.district == '0')
       legislator_district = "AL";
     else
       legislator_district = legislator.district;
-    
+
     var legislator_state = "";
     if (legislator.title == "Sen")
       legislator_state = legislator.state;
     else
       legislator_state = legislator.state + "-" + legislator_district;
-    
+
     var widget_data = {
       title: shortTitle(legislator),
       full_name: fullName(legislator),
-      pic: profileImage(legislator.bioguide_id, "40x50"),
+      pic: profileImage(legislator, "40x50"),
       state_downcase: legislator.state.toLowerCase(),
       state: legislator_state,
       party: partyFor(legislator)
     };
-    
+
     $("div#pageMain").autoRender(widget_data);
-    
+
     // set up the tab contents and interaction
     var upcoming = [];
     var recent = [];
-    
+
     var now = new Date();
     window.events = legislator.parties.events;
     $.each(legislator.parties.events, function(i, event) {
@@ -104,22 +104,22 @@
         date.setHours(parseInt(pieces[1]));
         date.setMinutes(parseInt(pieces[2]));
       }
-      
+
       if (date.getTime() < now)
         recent.unshift(event);
       else
         upcoming.unshift(event);
     });
-    
+
     // slice each array to the last 2
     upcoming = upcoming.slice(0, 2);
     recent = recent.slice(0, 2);
-    
+
     // if both are empty, display empty message
     if (upcoming.length == 0 && recent.length == 0)
       $("#mainContent").append("<p>No recent or upcoming parties for this legislator.</p>");
     else {
-    
+
       // upcoming parties
       if (upcoming.length > 0) {
         $.each(upcoming, function(i, event) {
@@ -127,22 +127,22 @@
         });
       } else
         $("#mainContent ol.upcoming").append("<p>No upcoming parties for this legislator.</p>");
-      
+
       $("#nav li.upcoming").show();
-      
+
       $("#mainContent ol.upcoming").show();
       $("#nav li.upcoming").addClass("active");
-      
+
       $("#nav li.upcoming a").click(function() {
         $("#mainContent ol.recent").hide();
         $("#nav li.recent").removeClass("active");
-        
+
         $("#mainContent ol.upcoming").show();
         $("#nav li.upcoming").addClass("active");
         return false;
       });
-      
-      
+
+
       // recent parties
       if (recent.length > 0) {
         $.each(recent, function(i, event) {
@@ -150,51 +150,51 @@
         });
       } else
         $("#mainContent ol.recent").append("<p>No recent parties for this legislator.</p>");
-      
+
       $("#nav li.recent").show();
-      
+
       $("#nav li.recent a").click(function() {
         $("#mainContent ol.upcoming").hide();
         $("#nav li.upcoming").removeClass("active");
-        
+
         $("#mainContent ol.recent").show();
         $("#nav li.recent").addClass("active");
         return false;
       });
-        
+
     }
-    
+
     var partytime_url = "http://politicalpartytime.org/pol/" + legislator.crp_id + "/";
     var description = "Party details taken from Sunlight's <a href=\"" + partytime_url + "\" target=\"_blank\">Party Time</a>.";
     Widget.source(legislator.parties.last_updated, description);
   }
-  
-  
+
+
   function partyItemFor(event, size) {
     var party_id = event.party_id;
     var date = parseShortDate(event.date);
-    
+
     var month = monthShort(date.getMonth());
     var day = date.getDate();
-    
+
     var time;
     if (event.start_time) {
       var pieces = event.start_time.split(":");
       var hours = parseInt(pieces[0].replace(/^0/, ""));
       var minutes = pieces[1];
       var meridian = (hours < 12) ? "am" : "pm";
-      
+
       if (hours == 0)
         hours = 12;
       else if (hours > 12)
         hours -= 12;
-      
+
       time = hours + ":" + minutes + meridian;
     }
-    
+
     return "<li>" +
       "<div class=\"date\">" +
-        "<span class=\"month\">" + month + "</span>" + 
+        "<span class=\"month\">" + month + "</span>" +
         "<span class=\"day\">" + day + "</span>" +
       "</div>" +
       "<div class=\"details\">" +

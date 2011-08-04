@@ -22,8 +22,8 @@ module ApplicationHelper
   def long_title(title)
     {:rep => 'Representative',
      :senator => 'Senator',
-     :del => 'Delegate'
-    }[title.downcase.to_sym]
+     :del => 'Delegate',
+    }[title.downcase.to_sym || 'Candidate']
   end
 
   def photo_url_for(legislator, size = :small)
@@ -38,7 +38,7 @@ module ApplicationHelper
   def title_for(legislator)
     {"Rep" => "Representative",
      "Sen" => "Senator",
-     "Del" => "Delegate"}[legislator.title] || "Delegate"
+     "Del" => "Delegate"}[legislator.title] || "Candidate"
   end
 
   def party_for(legislator)

@@ -30,7 +30,7 @@
 <div id="headerWrapper">
   <div id="header">
     <div id="rep">
-      <img src="" class="pic@src pic_alt@alt" />
+      <img src="" class="pic@src pic_alt@alt" width="100" />
       <div id="repInfo">
         <h1>
           <small class="title"></small>
@@ -101,6 +101,12 @@
       $("#buttons li.opencongress").show();
     else
       $("#buttons li.opencongress").hide();
+
+    if (!legislator.phone)
+      $("#mainVcard .tel").hide();
+
+    if (!legislator.website)
+      $("#mainVcard .website").hide();
 
     var zip;
     if (legislator.is_running == true) {

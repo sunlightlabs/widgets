@@ -1,20 +1,20 @@
 <% content_for :head do %>
   <script type="text/javascript">
-    Widget.load = function(bioguide_id, onLoad) {
-    
+    Widget.load = function(bioguide_id, votesmart_id, onLoad) {
+
       Drumbone.getLegislator(bioguide_id, "basic,earmarks", function(legislator) {
         if (legislator) {
           if (legislator.earmarks) {
             populateWidget(legislator, legislator.earmarks);
             onLoad(legislator);
           }
-          
+
           else
             Widget.alert("We do not yet have any information on this legislator's earmarks.", legislator);
         } else
-          Widget.error("There was a problem loading this lawmaker's information."); 
+          Widget.error("There was a problem loading this lawmaker's information.");
       });
-      
+
     };
   </script>
 <% end %>
@@ -24,10 +24,10 @@
     <div id="rep">
       <% unless @size == 'sm' -%>
         <img src="" class="pic@src pic_alt@alt" width="40px" />
-      <% end -%>  
-      <div id="repInfo">    
+      <% end -%>
+      <div id="repInfo">
         <h1>
-          <small class="title"></small> 
+          <small class="title"></small>
           <big>
             <span class="full_name"></span>
             <select class="changeLawmakerSelect" style="display: none;"></select>
@@ -61,22 +61,22 @@
       </dl>
     </div>
     <div class="clear"></div>
-  
+
   <% else -%>
-  
+
     <dl>
       <dt id="granted" class="earmarks_granted"></dt>
       <dd>Granted <span>to</span> <span class="full_name"></span></dd>
-    </dl>  
+    </dl>
     <div class="clear"></div>
-    
+
     <div id="chart-container-1"></div>
-    
+
     <dl>
       <dt id="average" class="earmark_avg"></dt>
       <dd>Average <span>for</span> <span class="chamber"></span></dd>
     </dl>
-    
+
   <% end -%>
 </div> <!-- end mainContent -->
 
@@ -84,30 +84,30 @@
 
   var description = "Data provided by <a href=\"http://www.taxpayer.net\" target=\"_blank\">Taxpayers for Common Sense</a>.";
 
-  function populateWidget(legislator, earmarks) { 
+  function populateWidget(legislator, earmarks) {
     Widget.populateLegislator(legislator);
     Widget.source(earmarks.last_updated, description);
-    
+
     $("#mainContent").autoRender({
       chamber: chamberFor(legislator.title),
       earmarks_granted: earmarks.total_number,
       earmark_avg: earmarks.average_number,
       fiscal_year: earmarks.fiscal_year
     });
-    
+
     var dimensions = {};
     var y_label_offset = -5;
     var series_type = 'bar';
     var colors = ['#bfe941', '#73B745'];
     var chamber_data = { name: chamberFor(legislator.title),
                          data: [earmarks.average_amount]
-                       }; 
+                       };
     var lawmaker_data = { name: legislator.first_name + " " + legislator.last_name,
                           data: [earmarks.total_amount]
                         };
     var series = [chamber_data, lawmaker_data];
     var line_width = 0;
-  
+
     if (size == 'lg') {
       dimensions.width = 330;
       dimensions.height = 90;
@@ -118,7 +118,7 @@
       dimensions.height = 65;
       dimensions.margin = [-10, 10, -10, 0];
       y_label_offset = -3;
-    } else {      
+    } else {
       dimensions.width = 132;
       dimensions.height = 115;
       dimensions.margin = [4, 0, 10, 0];
@@ -128,7 +128,7 @@
       series = [lawmaker_data, chamber_data];
       line_width = 1;
     }
-        
+
     var chart1 = new Highcharts.Chart({
       chart: {
         renderTo: 'chart-container-1',
@@ -166,7 +166,7 @@
         }
       },
 
-      colors: colors, 
+      colors: colors,
       credits: { enabled: false },
 
       plotOptions: {
@@ -201,11 +201,11 @@
           return '<strong>'+ this.series.name +'</strong><br/>'+
           '$' + Highcharts.numberFormat(this.y, 2, '.');
         }
-      }, 
+      },
 
       legend: { enabled: false },
       series: series
     });
   }
-  
+
 </script>

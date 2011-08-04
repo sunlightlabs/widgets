@@ -1,7 +1,7 @@
 <% content_for :head do %>
   <script type="text/javascript">
-    Widget.load = function(bioguide_id) {
-      
+    Widget.load = function(bioguide_id, votesmart_id) {
+
       Drumbone.getLegislator(bioguide_id, ["basic", "sponsorships"], function(legislator) {
         if (legislator) {
           if (legislator.sponsorships) {
@@ -12,7 +12,7 @@
         } else
           Widget.error("There was a problem loading this lawmaker's information.");
       });
-      
+
     };
   </script>
 <% end %>
@@ -25,7 +25,7 @@
       <% end -%>
       <div id="repInfo">
         <h1>
-          <small class="title"></small> 
+          <small class="title"></small>
           <big class="full_name"></big>
         </h1>
         <div class="california" id="lawmakerMetadata">
@@ -72,17 +72,17 @@
       legislator_district = "AL";
     else
       legislator_district = legislator.district;
-  
+
     var legislator_state = "";
     if (legislator.title == "Sen")
       legislator_state = legislator.state;
     else
       legislator_state = legislator.state + "-" + legislator_district;
-    
+
     var widget_data = {
       title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
       full_name: fullName(legislator),
-      pic: profileImage(legislator.bioguide_id),
+      pic: profileImage(legislator),
       state_downcase: legislator.state.toLowerCase(),
       state: legislator_state,
       party: "(" + legislator.party + ")",
@@ -91,11 +91,11 @@
     };
 
     $('div#pageMain').autoRender(widget_data);
-    
+
     var govtrack_url = govtrackLegislatorUrl(legislator.govtrack_id);
     var description = "Data provided by <a href=\"" + govtrack_url + "\" target=\"_blank\">GovTrack</a> through the <a href=\"http://thomas.loc.gov\" target=\"_blank\">Library of Congress</a>.<br/>Statistics apply to legislative activity for the " + currentSession() + "th Congress.";
     Widget.source(legislator.last_updated, description);
-    
+
     var dimensions = {};
     if (size == 'lg') {
       dimensions.width = 200;
@@ -105,19 +105,19 @@
       dimensions.width = 205;
       dimensions.height = 123;
       dimensions.margin = [10, 0, 10, 85];
-    } else {      
+    } else {
       dimensions.width = 130;
       dimensions.height = 95;
       dimensions.margin = [10, 30, 15, 20];
     }
-    
+
     var categories = ['Sponsored',  'Then Enacted', 'Cosponsored', 'Then Enacted'];
     var group_padding = .05;
     if (size == 'sm') {
       categories = ['1', '2', '3', '4'];
       group_padding = -.02;
     }
-    
+
     var chart1 = new Highcharts.Chart({
       chart: {
         renderTo: 'chart-container-1',
@@ -173,28 +173,28 @@
           return '<b>'+ this.x +'</b><br/>'+
           this.series.name +': '+ decimal_format(this.y,1) + '';
         }
-      }, 
+      },
 
       legend: { enabled: false },
 
       series: [
         {name: chamberFor(legislator.title) + ' Average',
-        data: [legislator.sponsorships.average_sponsored, 
-              legislator.sponsorships.average_sponsored_enacted, 
+        data: [legislator.sponsorships.average_sponsored,
+              legislator.sponsorships.average_sponsored_enacted,
               legislator.sponsorships.average_cosponsored,
               legislator.sponsorships.average_cosponsored_enacted]},
         {name: legislator.first_name + " " + legislator.last_name,
-        data: [legislator.sponsorships.sponsored, 
-              legislator.sponsorships.sponsored_enacted, 
-              legislator.sponsorships.cosponsored, 
+        data: [legislator.sponsorships.sponsored,
+              legislator.sponsorships.sponsored_enacted,
+              legislator.sponsorships.cosponsored,
               legislator.sponsorships.cosponsored_enacted]}
         ]
     });
-    
+
   }
-  
+
   function chamberFor(title) {
     return (title == 'Sen') ? "Senate" : "House";
   }
-  
+
 </script>

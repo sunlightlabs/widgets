@@ -1,12 +1,12 @@
 <% content_for :head do %>
   <script type="text/javascript">
     // does not support geolocation as of yet
-    
-    Widget.load = function(bioguide_id) {
-    
+
+    Widget.load = function(bioguide_id, votesmart_id) {
+
       Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
         if (legislator && legislator.bioguide_id == bioguide_id) {
-        
+
           <%
             roll_id = nil
             if params[:roll_id]
@@ -18,9 +18,9 @@
             end
           %>
           var roll_id = "<%= roll_id %>";
-    
+
           var sections = ["basic", "bill", "party_vote_breakdown", "voter_ids." + bioguide_id];
-          
+
           Drumbone.getRoll(roll_id, sections, function(roll) {
             if (roll) {
               if (roll.voter_ids && roll.voter_ids[bioguide_id]) {
@@ -28,23 +28,23 @@
                 populateWidget(vote, roll, roll.bill, legislator);
                 Widget.onLoad();
               }
-              
+
               else {
                 window.voter_ids = roll.voter_ids;
                 Widget.alert("This representative has no recorded vote for this bill.");
               }
-              
+
             } else
               Widget.error("There was a problem loading this lawmaker's information.");
           });
         }
-        
+
         else
           Widget.error("There was a problem loading this lawmaker's information.");
       });
     };
   </script>
-  
+
 <% end %>
 
 <div id="headerWrapper" style="background-color: #<%= params[:color] || "DDD9D7" %>">
@@ -58,8 +58,8 @@
     <!--<div id="billResult" class="left">
       <span class="result_upper result_lower@class"></span>
     </div> -->
-    <div class="clear"></div> 
-  </div>  
+    <div class="clear"></div>
+  </div>
 </div>
 <div id="mainContent">
   <div id="rep" class="right">
@@ -94,7 +94,7 @@
         <dd>Ind</dd>
       </dl>
     </div>
-    
+
     <div id="chart-container-1" class="right"></div>
   </div>
 </div>
@@ -102,22 +102,22 @@
 <script type="text/javascript" charset="utf-8">
   function populateWidget(vote, roll, bill, legislator) {
     var description = "Data provided by <a href=\"" + govtrackBillUrl(bill.type, bill.number, bill.session) + "\" target=\"_blank\">GovTrack.us</a> through the <a href=\"http://thomas.loc.gov\" target=\"_blank\">Library of Congress</a>.<br/>Bill code and vote data applies to legislative activity in the " + currentSession() + "th Congress.";
-    
+
     Widget.source(bill.last_updated, description);
-    
-    
+
+
     var legislator_district = "";
     if (legislator.district == '0')
       legislator_district = "AL";
     else
       legislator_district = legislator.district;
-  
+
     var legislator_state = "";
     if (legislator.title == "Sen")
       legislator_state = legislator.state;
     else
       legislator_state = legislator.state + "-" + legislator_district;
-    
+
     var party_long = "";
     if (legislator.party == 'D')
       party_long = "democrat";
@@ -125,11 +125,11 @@
       party_long = "republican";
     else
       party_long = "independent";
-    
+
     var legislator_data = {
       title: (size == 'lg' ? longTitle(legislator) : shortTitle(legislator)),
       full_name: fullName(legislator),
-      pic: profileImage(legislator.bioguide_id),
+      pic: profileImage(legislator),
       state_downcase: legislator.state.toLowerCase(),
       state: legislator_state,
       party: "(" + legislator.party + ")",
@@ -137,14 +137,14 @@
     };
 
     $('div#rep').autoRender(legislator_data);
-    
+
     var bill_data = {
       short_title: bill.short_title,
       bill_code: bill.type.toUpperCase() + " " + bill.number
     };
     $('div#header').autoRender(bill_data);
-    
-    
+
+
     var roll_data = {
         ayes: roll.vote_breakdown.ayes,
         nays: roll.vote_breakdown.nays,
@@ -160,17 +160,17 @@
         rep_not_voting: roll.party_vote_breakdown.R.not_voting
       };
     $('div#voteTotals').autoRender(roll_data);
-    
+
     var vote_map = {
       '+': {legislator_vote_value: "Aye", legislator_vote_class: "aye"},
       '-': {legislator_vote_value: "Nay", legislator_vote_class: "nay"},
       'P': {legislator_vote_value: "Present", legislator_vote_class: "present"},
       '0': {legislator_vote_value: "Absent", legislator_vote_class: "notvoting"}
     }
-    
+
     $('div#lawmakerVote').autoRender(vote_map[vote]);
-    
-    
+
+
     var dimensions = {};
     if (size == 'sm') {
       dimensions.width = 150;
@@ -185,7 +185,7 @@
       dimensions.height = 75;
       dimensions.margin = [5, 20, 20, 30];
     }
-    
+
     var series = [];
     series[0] = {
                   name: 'Democrat',
@@ -201,7 +201,7 @@
                     data: [roll.party_vote_breakdown.I.ayes, roll.party_vote_breakdown.I.nays]
                   };
     }
-    
+
     var chart1 = new Highcharts.Chart({
       chart: {
         renderTo: 'chart-container-1',
@@ -246,10 +246,10 @@
           return '<b>'+ this.y +'</b>' + ' ' + this.x + ' Votes' + '<br/>'+
           'by ' + this.series.name + 's';
         }
-      }, 
+      },
       series: series
     });
-    
+
   }
-  
+
 </script>

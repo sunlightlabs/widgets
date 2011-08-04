@@ -1,6 +1,15 @@
-function profileImage(bioguide, size) {
+function profileImage(legislator_or_bioguide, size) {
+  var bioguide, legislator;
+  bioguide = (typeof(legislator_or_bioguide) == 'object') ?
+    legislator_or_bioguide.bioguide_id :
+    legislator_or_bioguide;
+  legislator = (typeof(legislator_or_bioguide) == 'object') ?
+    legislator_or_bioguide : false;
   if (!size) size = "100x125";
-  return "http://assets.sunlightfoundation.com/moc/" + size + "/" + bioguide + ".jpg";
+  if (bioguide)
+    return "http://assets.sunlightfoundation.com/moc/" + size + "/" + bioguide + ".jpg";
+  else
+    return legislator.bio.photo;
 }
 
 function influenceExplorerUrl(entity_name, entity_id, cycle) {

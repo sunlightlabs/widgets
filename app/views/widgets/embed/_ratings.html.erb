@@ -1,49 +1,49 @@
 <% content_for :head do %>
   <script type="text/javascript" charset="utf-8">
-    Widget.load = function(bioguide_id) {
+    Widget.load = function(bioguide_id, votesmart_id) {
       var sig_id = "<%= params[:sig_id] || ""%>";
-      
+
       if (sig_id) {
-      
+
         var sections = ["basic","ratings.last_updated","ratings." + sig_id];
         Drumbone.getLegislator(bioguide_id, sections, function(legislator) {
           if (legislator) {
             populateWidget(legislator, sig_id);
             Widget.onLoad();
-          } 
-          
+          }
+
           else
             Widget.error("There was a problem loading this lawmaker's information.");
         });
       }
-      
+
       else {
         Drumbone.getLegislator(bioguide_id, "basic,ratings", function(legislator) {
           if (legislator) {
             sig_id = getFirstSigId(legislator);
-            
+
             if (sig_id) {
               populateWidget(legislator, sig_id);
               Widget.onLoad();
-            } 
-            
+            }
+
             else
               Widget.alert("This legislator has no known recent interest group ratings.");
-          } 
-          
+          }
+
           else
             Widget.error("There was a problem loading this lawmaker's information.");
         });
       }
     };
-    
+
     function getFirstSigId(legislator) {
       var sig_ids = [];
       $.each(legislator.ratings, function(sig_id, group) {
         if (sig_id != "last_updated")
           sig_ids[sig_ids.length] = sig_id;
       });
-      
+
       return sig_ids[0]; // could be null
     }
   </script>
@@ -55,7 +55,7 @@
       <img alt="Picture of " src="" class="pic@src full_name@alt+" />
       <div id="repInfo">
         <h1>
-          <small class="title"></small> 
+          <small class="title"></small>
           <big class="full_name"></big>
         </h1>
         <div class="california" id="lawmakerMetadata">
@@ -75,23 +75,23 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-  
+
   function populateWidget(legislator, sig_id) {
     var ratings = legislator.ratings;
     var rating = ratings[sig_id];
-  
+
     var legislator_district = "";
     if (legislator.district == '0')
       legislator_district = "AL";
     else
       legislator_district = legislator.district;
-  
+
     var legislator_state = "";
     if (legislator.title == "Sen")
       legislator_state = legislator.state;
     else
       legislator_state = legislator.state + "-" + legislator_district;
-    
+
     var legislator_party = "";
     if (legislator.party == "R")
       legislator_party = "Republican";
@@ -99,11 +99,11 @@
       legislator_party = "Democrat";
     else
       legislator_party = "Independent";
-    
+
     var widget_data = {
       title: longTitle(legislator),
       full_name: fullName(legislator),
-      pic: profileImage(legislator.bioguide_id),
+      pic: profileImage(legislator),
       state_downcase: legislator.state.toLowerCase(),
       state: legislator_state,
       party: legislator_party,
@@ -112,9 +112,9 @@
     };
 
     $('div#pageMain').autoRender(widget_data);
-    
+
     var votesmart_url = "http://votesmart.org/summary.php?can_id=" + legislator.votesmart_id;
-    
+
     var description = "Data provided by <a href=\"" + votesmart_url + "\" target=\"_blank\">Project Vote Smart</a>.  All ratings are for <%= Time.now.year - 1 %> or <%= Time.now.year %>.";
 
     Widget.source(ratings.last_updated, description);

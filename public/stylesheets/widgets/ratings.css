@@ -6,7 +6,7 @@ div#headerWrapper { height: 130px; background-color: #F6F5E8;}
 body.med div#headerWrapper { height: 100px; }
 body.lg div#headerWrapper { height: 125px; }
 
-body.sm h1 { margin-bottom: 8px; text-align: center; float: none; width: 132px; margin-top: 0px;} 
+body.sm h1 { margin-bottom: 8px; text-align: center; float: none; width: 132px; margin-top: 0px;}
 body.med h1 { margin-top: 5px; margin-bottom: 3px; width: 170px;}
 h1 { width: 240px; margin-top: 10px; margin-bottom: 3px; float: right;}
 
@@ -22,7 +22,7 @@ body.sm div#lawmakerMetadata { line-height: 19px; text-align: center; margin-top
 body.med div#lawmakerMetadata { width: 170px;}
 div#lawmakerMetadata { width: 240px; float: right;}
 
-h2 { font-size: 150%; line-height: 23px; margin-bottom: 10px;}
+h2 { font-size: 150%; line-height: 23px; margin-bottom: 10px;margin-bottom: 0;}
 body.med h2 { font-size: 130%; line-height: 20px; }
 body.sm h2 { font-size: 130%; line-height: 18px; }
 
@@ -36,9 +36,9 @@ body.sm span.rating { font-size: 300%; line-height: 45px; }
 span.party { margin-right: 5px;}
 body.sm span.party { margin-right: 0px; display: block;}
 
-div#mainContent {  height: 118px; padding: 0 15px; text-align: center; margin-top: 25px;} 
-body.med div#mainContent { height: 106px; margin-top: 10px;} 
-body.lg div#mainContent { height: 121px; } 
+div#mainContent {  height: 118px; padding: 0 15px; text-align: center; margin-top: 25px;}
+body.med div#mainContent { height: 106px; margin-top: 10px;}
+body.lg div#mainContent { height: 121px; }
 
 body.lg .alert { width: 392px; height: 165px; }
 body.med .alert { width: 292px; height: 141px; }

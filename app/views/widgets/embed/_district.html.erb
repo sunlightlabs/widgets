@@ -4,23 +4,33 @@
 
 <% content_for :head do %>
   <script type="text/javascript">
-    
+
     function doneLoadingMap() {
-      // The map is wildly distorted, in different ways on different browsers, 
+      // The map is wildly distorted, in different ways on different browsers,
       // at medium size, for unknown reasons
-      if (size == 'med') 
+      if (size == 'med')
         Widget.alert("This widget cannot be used at this size.");
       else {
-        Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
-          if (legislator) {
-            populateWidget(legislator);
-            Widget.onLoad();
-          } else
-            Widget.error("There was a problem loading this lawmaker's information.");
-        });
+        if (bioguide_id){
+          Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
+            if (legislator) {
+              populateWidget(legislator);
+              Widget.onLoad();
+            } else
+              Widget.error("There was a problem loading this lawmaker's information.");
+          });
+        } else if (votesmart_id){
+          Challengers.getChallenger(votesmart_id, function(legislator) {
+            if (legislator) {
+              populateWidget(legislator);
+              Widget.onLoad();
+            } else
+              Widget.error("There was a problem loading this lawmaker's information");
+          });
+        }
       }
     }
-    
+
   </script>
 <% end %>
 
@@ -28,7 +38,7 @@
   <div id="header">
     <div id="rep">
       <% if params[:size] != 'sm' %>
-        <img alt="Picture of " src="" class="pic@src full_name@alt+" />
+        <img alt="Picture of " src="" class="pic@src full_name@alt+" width="40" />
       <% end %>
       <div id="repInfo">
         <h1>
@@ -48,38 +58,38 @@
 <script type="text/javascript" charset="utf-8">
 
   var description = "Information is from the US Census, and turned into map data by <a href=\"http://www.govtrack.us/embed/googlemaps.xpd\" target=\"_blank\">GovTrack.us</a>.";
-  
-  
-  function populateWidget(legislator) {  
+
+
+  function populateWidget(legislator) {
     var legislator_district = "";
     if (legislator.district == '0')
       legislator_district = "AL";
     else
       legislator_district = legislator.district;
-  
+
     var legislator_state = "";
     if (legislator.title == "Sen")
       legislator_state = legislator.state;
     else
       legislator_state = legislator.state + "-" + legislator_district;
-    
+
     var widget_data = {
       title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
       full_name: fullName(legislator),
-      pic: profileImage(legislator.bioguide_id, "40x50"),
+      pic: profileImage(legislator, "40x50"),
       state_downcase: legislator.state.toLowerCase(),
       state: legislator_state,
       party: "(" + legislator.party + ")"
     };
 
     $('div#pageMain').autoRender(widget_data);
-    
+
     displayMap(legislator);
-    
+
     Widget.source(legislator.last_updated, description);
   }
-  
-  function displayMap(legislator) {      
+
+  function displayMap(legislator) {
     var map = new window.google.maps.Map(document.getElementById("mainContent"), {
       mapTypeId: window.google.maps.MapTypeId.ROADMAP,
       zoom: 1,
@@ -90,7 +100,7 @@
     var layer = new window.google.maps.KmlLayer(mapUrl(legislator));
     layer.setMap(map);
   }
-  
+
   function mapUrl(legislator) {
     var base = "http://data.politiwidgets.com/kml/";
     if (legislator.title == 'Sen')
@@ -98,7 +108,7 @@
     else
       return base + "cds/" + currentMapSession() + "/" + legislator.state + "-" + legislator.district + ".kml";
   }
-  
+
   // hardcode to 110th session for now, hard to predict programmatically when this will be updated
   function currentMapSession() {
     return 110;

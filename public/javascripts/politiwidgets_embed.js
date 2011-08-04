@@ -13,6 +13,7 @@ function shortTitle(legislator) {
     Del: "Del.",
     def: "Hon."
   }
+  if(legislator.in_office == false && legislator.is_running) return 'Cand.';
   return titles[legislator.title] || titles.def;
 }
 
@@ -23,6 +24,7 @@ function longTitle(legislator) {
     Del: "Delegate",
     def: "Honorable"
   }
+  if(legislator.in_office == false && legislator.is_running) return 'Candidate';
   return titles[legislator.title] || titles.def;
 }
 
