@@ -30,8 +30,10 @@ module ApplicationHelper
     sizes = {:small => "40x50", :medium => "100x125", :large => "200x250"}
     if !legislator.bioguide_id.blank?
       "http://assets.sunlightfoundation.com/moc/#{sizes[size]}/#{legislator.bioguide_id}.jpg"
-    else
+    elsif !legislator.bio.photo.blank?
       legislator.bio.photo
+    else
+      "http://assets.sunlightfoundation.com/moc/default.png"
     end
   end
 
@@ -44,7 +46,7 @@ module ApplicationHelper
   def party_for(legislator)
     {"D" => "Democratic",
      "R" => "Republican",
-     "I" => "Independent"}[legislator.party]
+     "I" => "Independent"}[legislator.party] || legislator.party.chomp(' Party')
   end
 
   def full_district_for(legislator)

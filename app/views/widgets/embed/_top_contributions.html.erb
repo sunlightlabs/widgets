@@ -89,7 +89,7 @@
     var top_amounts = [];
     var name_objects = [];
 
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < Math.min(5, top_contributors.length); i++) {
       top_names[i] = top_contributors[i].name;
       name_objects[i] = {name: top_contributors[i].name.substring(0,15)};
       top_amounts[i] = parseFloat(top_contributors[i].total_amount);

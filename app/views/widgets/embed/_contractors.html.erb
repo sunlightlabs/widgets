@@ -6,7 +6,6 @@
 
           // pulled from drumbone; have contract info embedded
           if (legislator.contracts) {
-            console.log(legislator)
             populateWidget(legislator);
             Widget.onLoad();
           } else {
@@ -15,16 +14,16 @@
               // query drumbone here
               if (sitting_legislator && sitting_legislator.bioguide_id){
                 Drumbone.getLegislator(sitting_legislator.bioguide_id, ["basic", "contracts"], function(sitting_legislator){
-                  if (sitting_legislator.contracts){
+                  if (sitting_legislator && sitting_legislator.contracts){
                     populateWidget($.extend(legislator, {contracts: sitting_legislator.contracts}));
                     Widget.onLoad();
                   } else {
+                    populateWidget($.extend(legislator, {contracts: {}}));
                     Widget.alert("We do not yet have any information on this lawmaker's district's federal contracts.");
                   }
                 });
               } else {
                 populateWidget($.extend(legislator, {contracts: {}}));
-                Widget.onLoad();
                 Widget.alert("We do not yet have any information on this lawmaker's district's federal contracts.");
               }
             });

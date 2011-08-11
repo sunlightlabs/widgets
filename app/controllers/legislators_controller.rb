@@ -10,6 +10,7 @@ class LegislatorsController < ApplicationController
     unless @legislator = get_person_by_any_id(params)
       head :not_found and return false
     end
+    @widgets = widgets_for @legislator
   end
 
   def index
@@ -47,30 +48,30 @@ class LegislatorsController < ApplicationController
 
     elsif @query =~ /^[A-Za-z\s0-9\., ]+ \([^\)]+?\)$/
       @query_type = "Name and Party"
-      puts @query_type
       @name, @party = @query.split(' (')
       @party = @party.sub(')', '')
-      puts @name
-      @legislators = Sunlight::Legislator.search_by_name(@name, 0.90) || [] +
+
+      @legislators = (Sunlight::Legislator.search_by_name(@name, 0.90) || []) +
                      challengers.people(:q => @name) rescue []
-      puts @legislators
-      @legislators = @legislators.map{|legislator| legislator.party.downcase == @party.downcase ? legislator : nil}.compact
 
-    elsif @query =~ /^[A-Za-z\s0-9\., ]+ \([^\)]+?\)$/
-      @query_type = "Name and Party"
-      @name, @party = @query.split(' (')
-      @party = @party.sub(')', '')
-      @legislators = Sunlight::Legislator.search_by_name(@name, 0.90) || []
-      @legislators = @legislators.map{ |legislator| legislator.party.downcase == @party.downcase ? legislator : nil}.compact
-
+      @legislators = @legislators.reject{|legislator| legislator.party.downcase != @party.downcase}
     else
       @query_type = "Name"
-      puts @query_type
-      @legislators = Sunlight::Legislator.search_by_name(@query, 0.90) || [] +
+      @legislators = (Sunlight::Legislator.search_by_name(@query, 0.90) || []) +
                      challengers.people(:q => @query) rescue []
     end
 
     if @legislators
+      #dedup & then remove nils
+      prev_ids = []
+      @legislators.delete_if do |legislator|
+        if prev_ids.include? legislator.votesmart_id.to_i
+          true
+        else
+          prev_ids.push(legislator.votesmart_id.to_i)
+          false
+        end
+      end
       @legislators.compact!
     else
       @legislators = []

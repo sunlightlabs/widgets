@@ -13,7 +13,7 @@ body.bill_sm .left { width: 132px;}
 div#mainContent { padding: 0 15px; background: #FFF;}
 body.bill_sm div#mainContent { height: 212px; width: 132px; padding: 0 10px;}
 body.bill_med div#mainContent { height: 152px; padding: 0 10px; }
-body.bill_lg div#mainContent { height: 180px;} 
+body.bill_lg div#mainContent { height: 180px;}
 
 small { font-family: Georgia, Times New Roman, Times, serif; font-style: oblique; }
 body.bill_lg big, body.bill_lg small { display: block;}

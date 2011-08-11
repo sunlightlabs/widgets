@@ -8,8 +8,10 @@ function profileImage(legislator_or_bioguide, size) {
   if (!size) size = "100x125";
   if (bioguide)
     return "http://assets.sunlightfoundation.com/moc/" + size + "/" + bioguide + ".jpg";
-  else
+  else if (legislator.bio && legislator.bio.photo)
     return legislator.bio.photo;
+  else
+    return "http://assets.sunlightfoundation.com/moc/default.png";
 }
 
 function influenceExplorerUrl(entity_name, entity_id, cycle) {
@@ -68,3 +70,11 @@ function queryString(object) {
   });
   return query;
 }
+
+;(function($){
+  $(function(){
+    $('img.pic\\@src, td>img[alt=headshot]').error(function(){
+      $(this).attr('src', '//assets.sunlightfoundation.com/moc/default.png');
+    });
+  });
+})(jQuery);

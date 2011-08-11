@@ -61,5 +61,6 @@ class WidgetsController < ApplicationController
     unless @legislator = get_person_by_any_id(params)
       head :not_found and return false
     end
+    @widgets = widgets_for(@legislator)
   end
 end

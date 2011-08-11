@@ -47,6 +47,10 @@ class ApplicationController < ActionController::Base
     @@widgets ||= load_widgets
   end
 
+  def widgets_for(legislator)
+    widgets.reject { |slug, widget| widget[:display_for].exclude? legislator.person_type.pluralize.to_sym }
+  end
+
   # It would be nicer if you could cleanly load a YAML file into an ordered hash
   def load_widgets
     widgets = ActiveSupport::OrderedHash.new

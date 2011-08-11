@@ -89,7 +89,7 @@
       },
 
       source: function(date, text) {
-        $("#last_updated").html(formatSourceDate(new Date(date)));
+        $("#last_updated").html(formatSourceDate(new Date(date)));x
         $("#sourceContent").html(text);
       },
 
@@ -100,7 +100,7 @@
         $("#header").autoRender({
           title: (size == 'sm' ? shortTitle(legislator) : longTitle(legislator)),
           full_name: fullName(legislator),
-          pic: legislator.bioguide_id ? profileImage(legislator.bioguide_id, size) : legislator.bio.photo,
+          pic: profileImage(legislator, size),
           pic_alt: "Picture of " + fullName(legislator),
           state_downcase: legislator.state.toLowerCase(),
           state: state,

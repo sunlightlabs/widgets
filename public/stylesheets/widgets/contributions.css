@@ -6,7 +6,9 @@ div#headerWrapper { height: 130px; background-color: #E5EAE6;}
 body.med div#headerWrapper { height: 100px; }
 body.lg div#headerWrapper { height: 125px; }
 
-body.sm h1 { margin-bottom: 8px; text-align: center; float: none; width: 132px; margin-top: 0px;} 
+div#header img { position: relative; z-index: 10; }
+
+body.sm h1 { margin-bottom: 8px; text-align: center; float: none; width: 132px; margin-top: 0px;}
 body.med h1 { margin-top: 5px; margin-bottom: 3px; width: 170px;}
 h1 { width: 240px; margin-top: 10px; margin-bottom: 3px; float: right;}
 
@@ -30,7 +32,7 @@ strong { font-weight: bold; display: block; font-size: 120%; margin-top: 5px; li
 
 a.ie_url {color: #5A5A5A}
 
-body.sm img { max-width: 62px; margin-right: 0px; position: absolute; top: 62px;}
+body.sm div#header img { max-width: 62px; margin-right: 0px; position: absolute; top: 62px;}
 body.med img { max-width: 80px; }
 img { border: 2px solid #E0DEDE; float: left; margin-right: 15px;}
 
@@ -44,10 +46,10 @@ body.sm span.amount { font-size: 200%; line-height: 30px; }
 span.party { margin-right: 5px;}
 body.sm span.party { margin-right: 0px; display: block;}
 
-div#mainContent {  height: 118px; padding: 0 15px; text-align: center; margin-top: 8px;} 
+div#mainContent {  height: 118px; padding: 0 15px; text-align: center; margin-top: 8px;}
 body.sm div#mainContent { padding: 0 10px; margin-top: 18px;}
-body.med div#mainContent { height: 111px; margin-top: 5px;} 
-body.lg div#mainContent { height: 126px; margin-top: 8px;} 
+body.med div#mainContent { height: 111px; margin-top: 5px;}
+body.lg div#mainContent { height: 126px; margin-top: 8px;}
 
 body.lg .alert { width: 392px; height: 165px; }
 body.med .alert { width: 292px; height: 141px; }
