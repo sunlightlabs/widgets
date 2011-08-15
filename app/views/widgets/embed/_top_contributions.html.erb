@@ -2,7 +2,7 @@
   <script type="text/javascript">
     var cycle = TransparencyData.currentCycle;
 
-    Widget.load = function(bioguide_id, votesmart_id, onLoad) {
+    Widget.load = function(id, onLoad) {
 
       var legislatorCallback = function(legislator){
 
@@ -30,12 +30,7 @@
         };
       };
 
-      if (bioguide_id){
-        Drumbone.getLegislator(bioguide_id, "basic", legislatorCallback);
-      } else if (votesmart_id) {
-        Challengers.getChallenger(votesmart_id, legislatorCallback);
-      }
-
+      Politiwidgets.People.get(id, "basic", legislatorCallback);
     };
 
   </script>

@@ -3,7 +3,7 @@
   <ul id="sideNav">
     <% widgets.each do |slug, widget| %>
       <li>
-        <a href="<%= widget_path :id => slug, :bioguide_id => (@legislator ? @legislator.bioguide_id : settings[:featured][:legislator]), :votesmart_id => (@legislator ? @legislator.votesmart_id : '' %>"><%= widget[:name] %></a>
+        <a href="<%= widget_path :id => slug, :legislator => (@legislator ? id_for(@legislator) : settings[:featured][:legislator]) %>"><%= widget[:name] %></a>
       </li>
     <% end %>
   </ul>

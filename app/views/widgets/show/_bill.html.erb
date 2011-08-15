@@ -5,9 +5,9 @@
   <button type="button" id="find_bill" value="Find Bill" class="noImage">
     <span>Find Bill</span>
   </button>
-  
+
   <div id="vote_error" style="display: none; color: #f00; font-size: 10pt; margin-bottom: 10px;"></div>
-  
+
   <div id="vote_results" style="display: none">
     <h4 id="bill_title"></h4>
     <span id="bill_chamber" style="font-size: 10pt"></span>
@@ -18,80 +18,80 @@
 <script type="text/javascript">
   <% chamber = (@legislator.title == 'Sen' ? :senate : :house) %>
   var chamber = chamberFor("<%= @legislator.title %>");
-  
+
   snapshot.method = "roll";
-  snapshot.sections = ["basic", "bill", "party_vote_breakdown", "voters." + bioguide_id];
-  
+  snapshot.sections = ["basic", "bill", "party_vote_breakdown", "voters." + id];
+
   // both will need to be kept up to date as the roll_id changes with user input
   custom.roll_id = "<%= @widget[:custom][:roll_id][chamber] %>";
   snapshot.options = {roll_id: custom.roll_id};
-  
+
   $(function() {
     // pre-populate with the default
     $("#roll_id").val(custom.roll_id);
-    
+
     $("#find_bill").click(function() {
       $("#vote_error").hide();
       $("#vote_results").hide();
-      
+
       var bill_id = billIdFor($("#bill_code").val());
-      
-      var url = drumboneUrl(data_endpoint, "bill", {
-        apikey: sunlight_api_key, 
+
+      var url = drumboneUrl(drumbone_endpoint, "bill", {
+        apikey: sunlight_api_key,
         sections: "basic,votes",
         bill_id: bill_id,
         callback: "?"
       });
-      
+
       $.getJSON(url, function(data) {
-        
+
         if (data.error) {
           $("#vote_error").html("Couldn't find a bill by this code.").show();
           return;
         }
-        
+
         var bill = data.bill;
-        
+
         var title = bill.short_title || bill.official_title;
         $("#bill_title").html(title);
         $("#bill_chamber").html(chamber + " votes");
         $("#bill_code").val("");
-        
+
         var rolls = 0;
         var votes = [];
         var latest_roll_id;
-        
+
         $.each(bill.votes, function(i, vote) {
           if (vote.chamber.toLowerCase() == chamber.toLowerCase()) {
             votes[votes.length] = vote;
-            
+
             if (vote.how == "roll") {
               rolls += 1;
               latest_roll_id = vote.roll_id;
             }
           }
         });
-        
+
         // no votes whatsoever
         if (votes.length == 0)
           $("#vote_error").html("No votes have been taken in the " + chamber + " on this bill.").show();
-        
+
         // only voice votes, so no applicable widget
         else if (rolls == 0)
           $("#vote_error").html("No roll call votes were recorded in the " + chamber + " for this bill, only voice votes.").show();
-        
+
         // only one vote, autoselect and don't bother showing the form
         else if (votes.length == 1)
           updateRoll(votes[0].roll_id);
-        
+
         // multiple votes with at least one roll call vote, show the radio buttons
         else if (votes.length > 1) {
-        
+
           var html = "";
           $.each(votes, function(i, vote) {
             var date = formatDate(new Date(vote.voted_at));
             var result = "<span style=\"font-weight: bold\">" + vote.result + "ed</span>";
-            
+
             var disabled, how, greyed;
             if (vote.how == "roll") {
               disabled = "";
@@ -102,38 +102,38 @@
               how = "voice vote";
               greyed = "style=\"color: #999\" ";
             }
-            
+
             html += "<li>";
             html += "<input " + disabled + "type=\"radio\" name=\"roll_id\" class=\"roll_id\" value=\"" + vote.roll_id + "\" id=\"roll_" + vote.roll_id + "\"/> ";
             html += "<label " + greyed + "for=\"roll_" + vote.roll_id + "\">" + date + " - " + result + " by " + how + "</label>";
             html += "<div class='clear'></div>";
             html += "</li>";
           });
-          
+
           $("#vote_list").html(html);
-          
+
           $("#roll_" + latest_roll_id).click();
-          
+
           $("#vote_results").show();
         }
       });
     });
-    
+
     $(".roll_id").live('click', function() {
       updateRoll($(this).val());
     });
   });
-  
+
   function updateRoll(roll_id) {
     custom.roll_id = roll_id;
     snapshot.options.roll_id = roll_id;
     updateFrame();
   }
-  
+
   function formatDate(date) {
     return (date.getMonth() + 1) + "/" + date.getDate() + "/" + (zeroPrefix(date.getYear() % 100));
   }
-  
+
   function zeroPrefix(n) {
     return ((n < 10) ? "0" : "") + n;
   }
@@ -142,9 +142,9 @@
   function billIdFor(code) {
     return code.replace(/[\. ]/g, "").toLowerCase() + "-" + currentSession();
   }
-  
+
   function chamberFor(title) {
     return (title == "Sen") ? "Senate" : "House";
   }
-  
+
 </script>

@@ -7,58 +7,53 @@ class LegislatorsController < ApplicationController
   end
 
   def show
-    unless @legislator = get_person_by_any_id(params)
+    unless @legislator = get_person_by_any_id(params[:id])
       head :not_found and return false
     end
     @widgets = widgets_for @legislator
   end
 
   def index
+    district_addons = [0, 'Junior Seat', 'Senior Seat']
     @query = params[:q] || ""
 
     if @query =~ /^[0-9]{5}$/
       @query_type = "ZIP Code"
-      @legislators = Sunlight::Legislator.all_in_zipcode(@query) +
-                     challengers.people(:address__zip_code__exact => @query)
+      districts = Sunlight::District.all_from_zipcode(@query)
+      state = districts[0].state
+      districts = districts.map {|district| district.number} + district_addons
+      @legislators = api.personlist(:state__iexact => state, :district__in => districts.join(',')) rescue []
 
     elsif @query =~ /^[A-Za-z]{2}-[0-9]{1,2}$/
       @query_type = "Congressional District"
       @state, @district = *@query.split("-")
-      @legislators = Sunlight::Legislator.all_where(:state => @state, :district => @district) +
-                     Sunlight::Legislator.all_where(:state => @state, :title => "Sen") +
-                     challengers.people(:state_district__iexact => @query) rescue [] +
-                     challengers.people(:state__iexact => @state, :title__iexact => 'sen') rescue []
+      @legislators = api.personlist(:state__iexact => @state, :district__in => (district_addons << @district).join(',')) rescue []
 
     elsif @state = is_a_state?(@query)
       @query_type = "State"
       @query = @state
-      @legislators = Sunlight::Legislator.all_where(:state => @state) +
-                     challengers.people(:state__iexact => @state) rescue []
+      @legislators = api.personlist(:state__iexact => @state) rescue []
 
     elsif @query =~ /^[0-9]+.+/
       @district = Sunlight::District.get(:address => @query)
       @query_type = "Address"
-      @legislators = Sunlight::Legislator.all_for(:address => @query).values +
-                     challengers.people(:address__icontains => @query) rescue []
+      @legislators = api.personlist(:state__iexact => @district.state, :district__in => (district_addons << @district.number).join(',')) rescue []
 
     elsif @query == ''
-      @query_type = "All Members of Congress and Challengers"
-      @legislators = Sunlight::Legislator.all_where(:in_office => true) +
-                     challengers.people()
+      @query_type = "All Members of Congress and Candidates"
+      @legislators = api.personlist()
 
     elsif @query =~ /^[A-Za-z\s0-9\., ]+ \([^\)]+?\)$/
       @query_type = "Name and Party"
       @name, @party = @query.split(' (')
       @party = @party.sub(')', '')
 
-      @legislators = (Sunlight::Legislator.search_by_name(@name, 0.90) || []) +
-                     challengers.people(:q => @name) rescue []
-
+      @legislators = api.personlist(:q => @name) rescue []
       @legislators = @legislators.reject{|legislator| legislator.party.downcase != @party.downcase}
+
     else
       @query_type = "Name"
-      @legislators = (Sunlight::Legislator.search_by_name(@query, 0.90) || []) +
-                     challengers.people(:q => @query) rescue []
+      @legislators = api.personlist(:q => @query) rescue []
     end
 
     if @legislators
@@ -82,11 +77,7 @@ class LegislatorsController < ApplicationController
       format.html do
         if @legislators.length == 1
           legislator = @legislators.first
-          if !legislator.bioguide_id.blank?
-            redirect_to legislator_path(:bioguide_id => legislator.bioguide_id)
-          elsif !legislator.votesmart_id.blank?
-            redirect_to challenger_path(:votesmart_id => legislator.votesmart_id)
-          end
+          redirect_to legislator_path(:id => id_for(legislator))
           return
         end
       end

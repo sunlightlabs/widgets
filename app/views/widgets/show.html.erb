@@ -6,10 +6,10 @@
   <script type="text/javascript">
     var frontend_hostname = "<%= settings[:frontend_hostname] %>";
     var widget_id = "<%= params[:id] %>";
-    var bioguide_id = "<%= params[:bioguide_id] %>";
-    var votesmart_id = "<%= params[:votesmart_id] %>";
+    var id = "<%= params[:legislator] %>";
     var sunlight_api_key = "<%= settings[:sunlight_api_key] %>";
-    var data_endpoint = "<%= settings[:data_endpoints][:drumbone] %>";
+    var drumbone_endpoint = "<%= settings[:data_endpoints][:drumbone] %>";
+    var politiwidgets_endpoint = "<%= settings[:data_endpoints][:politiwidgets] %>";
 
     var geolocate = false; // manage whether geolocation is on
 
@@ -60,7 +60,7 @@
       <%= h @widget[:name] %>
       for
       <span>
-        <a href="<%= any_person_path :bioguide_id => @legislator.bioguide_id, :votesmart_id => @legislator.votesmart_id %>">
+        <a href="<%= legislator_path :id => id_for(@legislator) %>">
           <%= titled_name_for @legislator %>
         </a>
       </span>

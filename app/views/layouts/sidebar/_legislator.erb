@@ -4,11 +4,11 @@
   <ul id="sideNav">
     <% @widgets.each do |slug, widget| %>
       <li>
-        <a href="<%= widget_path :id => slug, :bioguide_id => (@legislator ? @legislator.bioguide_id : settings[:featured][:legislator]), :votesmart_id => (@legislator ? @legislator.votesmart_id: '') %>"><%= widget[:name] %></a>
+        <a href="<%= widget_path :id => slug, :legislator => (@legislator ? id_for(@legislator) : settings[:featured][:legislator]) %>"><%= widget[:name] %></a>
       </li>
     <% end %>
     <li>
-      <a href="<%= any_person_path :bioguide_id => @legislator.bioguide_id, :votesmart_id => @legislator.votesmart_id %>">View all widgets</a>
+      <a href="<%= legislator_path :id => id_for(@legislator) %>">View all widgets</a>
     </li>
   </ul>
 </div>

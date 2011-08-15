@@ -64,7 +64,7 @@
           </td>
           <td class="lawPosition"><%= title_for legislator %></td>
           <td class="lawName">
-            <a href="<%= any_person_path :bioguide_id => legislator.bioguide_id, :votesmart_id => legislator.votesmart_id %>"><%= search_name_for legislator %></a>
+            <a href="<%= legislator_path :id => id_for(legislator) %>"><%= titled_name_for legislator %></a>
           </td>
           <td class="lawParty"><%= party_for legislator %></td>
           <td class="lawDistrict"><%= full_district_for legislator %></td>

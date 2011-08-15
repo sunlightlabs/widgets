@@ -11,21 +11,13 @@
       if (size == 'med')
         Widget.alert("This widget cannot be used at this size.");
       else {
-        if (bioguide_id){
-          Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
+        if (id){
+          Politiwidgets.People.get(id, "basic", function(legislator) {
             if (legislator) {
               populateWidget(legislator);
               Widget.onLoad();
             } else
               Widget.error("There was a problem loading this lawmaker's information.");
-          });
-        } else if (votesmart_id){
-          Challengers.getChallenger(votesmart_id, function(legislator) {
-            if (legislator) {
-              populateWidget(legislator);
-              Widget.onLoad();
-            } else
-              Widget.error("There was a problem loading this lawmaker's information");
           });
         }
       }

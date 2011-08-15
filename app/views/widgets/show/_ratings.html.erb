@@ -5,66 +5,65 @@
   </select>
 </fieldset>
 
-<script type="text/javascript">  
-  
+<script type="text/javascript">
+
   snapshot.method = "legislator";
-  snapshot.options = {bioguide_id: bioguide_id};
-  
+  snapshot.options = {id: id};
+
   // both will have to be kept up to date as the sig_id changes with user input
   function updateSig(sig_id) {
     custom.sig_id = sig_id;
     snapshot.sections = ["basic", "ratings.last_updated", "ratings." + custom.sig_id];
     updateFrame();
   }
-  
+
   function sigError(message) {
-    $("#interest_groups option").html("Error loading interest groups.");
+    $("#interest_groups option").html(message);
     updateFrame();
     disableEmbed();
   }
-  
+
   // load interest groups
-  var url = drumboneUrl(data_endpoint, "legislator", {
-    apikey: sunlight_api_key, 
-    sections: "ratings", 
-    bioguide_id: bioguide_id,
+  var url = politiwidgetsUrl(politiwidgets_endpoint, "people", {
+    apikey: sunlight_api_key,
+    sections: "ratings",
+    q: id,
+    format: 'jsonp',
     callback: "?"
   });
-  
-  $.getJSON(url, function(data) {
-    
+
+  $.getJSON(url, function(data, status) {
+
     if (data.error) {
       sigError("Error loading interest groups.");
       return;
-    } else if (!data.legislator.ratings) {
+    } else if (!data.objects[0].ratings) {
       sigError("No interest group ratings.");
       return;
     }
-    
+
     var groups_by_name = {}
     var group_names = [];
-    $.each(data.legislator.ratings, function(sig_id, group) {
-      if (sig_id != "last_updated") {
-        groups_by_name[group.name] = sig_id;
-        group_names[group_names.length] = group.name;
-      }
+    $.each(data.objects[0].ratings, function(idx, group) {
+      groups_by_name[group.name] = group.sig_id;
+      group_names[group_names.length] = group.name;
     });
-    
+
     if (group_names.length < 1) {
       sigError("No recent ratings.");
       return;
     }
-    
+
     group_names = group_names.sort();
-    
+
     $("#interest_groups option").attr("value", "-1").html("Select a group:");
     $("#interest_groups").removeAttr("disabled");
-    
+
     $.each(group_names, function(i) {
       $("#interest_groups").append("<option value=\"" + groups_by_name[group_names[i]] + "\">" + group_names[i] + "</option>");
     });
   });
-  
+
   $("#interest_groups").change(function() {
     var sig = $(this).val();
     if (sig != "-1") {

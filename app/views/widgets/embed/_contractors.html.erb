@@ -1,41 +1,21 @@
 <% content_for :head do %>
   <script type="text/javascript">
-    Widget.load = function(bioguide_id, votesmart_id) {
+    Widget.load = function(id) {
       var loadCallback = function(legislator) {
         if (legislator) {
-
-          // pulled from drumbone; have contract info embedded
           if (legislator.contracts) {
             populateWidget(legislator);
             Widget.onLoad();
           } else {
-            // might have pulled from challengers, get district and try to pull from drumbone
-            Sunlight.getForDistrict(legislator.state, legislator.district, function(sitting_legislator){
-              // query drumbone here
-              if (sitting_legislator && sitting_legislator.bioguide_id){
-                Drumbone.getLegislator(sitting_legislator.bioguide_id, ["basic", "contracts"], function(sitting_legislator){
-                  if (sitting_legislator && sitting_legislator.contracts){
-                    populateWidget($.extend(legislator, {contracts: sitting_legislator.contracts}));
-                    Widget.onLoad();
-                  } else {
-                    populateWidget($.extend(legislator, {contracts: {}}));
-                    Widget.alert("We do not yet have any information on this lawmaker's district's federal contracts.");
-                  }
-                });
-              } else {
-                populateWidget($.extend(legislator, {contracts: {}}));
-                Widget.alert("We do not yet have any information on this lawmaker's district's federal contracts.");
-              }
-            });
+            populateWidget($.extend(legislator, {contracts: {}}));
+            Widget.alert("We do not yet have any information on this lawmaker's district's federal contracts.");
           }
         } else {
           Widget.error("There was a problem loading this lawmaker's information.");
         }
       }
-      if (bioguide_id) {
-        Drumbone.getLegislator(bioguide_id, ["basic", "contracts"], loadCallback)
-      } else if (votesmart_id) {
-        Challengers.getChallenger(votesmart_id, loadCallback);
+      if (id) {
+        Politiwidgets.People.get(id, 'basic,contracts', loadCallback);
       }
     };
   </script>
@@ -115,8 +95,8 @@
     var name_objects = [];
 
     for (var i = 0; i < Math.min(5, top_contractors.length); i++) {
-      top_names[i] = top_contractors[i].name;
-      name_objects[i] = {name: top_contractors[i].name.substring(0,15)};
+      top_names[i] = top_contractors[i].company_name;
+      name_objects[i] = {name: top_contractors[i].company_name.substring(0,15)};
       top_amounts[i] = parseFloat(top_contractors[i].amount);
     }
 

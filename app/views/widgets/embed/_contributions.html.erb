@@ -1,6 +1,6 @@
 <% content_for :head do %>
   <script type="text/javascript">
-    Widget.load = function(bioguide_id, votesmart_id, onLoad) {
+    Widget.load = function(id, onLoad) {
 
       var contributor_entity = "<%= params[:contributor_entity] %>";
 
@@ -55,11 +55,7 @@
           Widget.error("There was a problem loading this lawmaker's information.");
       }
 
-      if (bioguide_id)
-        Drumbone.getLegislator(bioguide_id, "basic", legislatorCallback);
-      else if (votesmart_id)
-        Challengers.getChallenger(votesmart_id, legislatorCallback);
-
+      Politiwidgets.People.get(id, "basic", legislatorCallback);
     };
 
   </script>

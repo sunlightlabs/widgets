@@ -1,12 +1,12 @@
 <% content_for :head do %>
   <script type="text/javascript" charset="utf-8">
-    Widget.load = function(bioguide_id, votesmart_id) {
+    Widget.load = function(id) {
       var sig_id = "<%= params[:sig_id] || ""%>";
 
       if (sig_id) {
 
-        var sections = ["basic","ratings.last_updated","ratings." + sig_id];
-        Drumbone.getLegislator(bioguide_id, sections, function(legislator) {
+        var sections = ["basic","ratings.last_updated","ratings." + sig_id].join(',');
+        Politiwidgets.People.get(id, sections, function(legislator) {
           if (legislator) {
             populateWidget(legislator, sig_id);
             Widget.onLoad();
@@ -18,7 +18,7 @@
       }
 
       else {
-        Drumbone.getLegislator(bioguide_id, "basic,ratings", function(legislator) {
+        Politiwidgets.People.get(id, "basic,ratings", function(legislator) {
           if (legislator) {
             sig_id = getFirstSigId(legislator);
 
@@ -38,13 +38,15 @@
     };
 
     function getFirstSigId(legislator) {
-      var sig_ids = [];
-      $.each(legislator.ratings, function(sig_id, group) {
-        if (sig_id != "last_updated")
-          sig_ids[sig_ids.length] = sig_id;
-      });
-
-      return sig_ids[0]; // could be null
+      // TODO: this didn't make any sense to me. ask about it
+      return legislator.ratings && legislator.ratings[0] && legislator.ratings[0].sig_id
+      // var sig_ids = [];
+      // $.each(legislator.ratings, function(sig_id, group) {
+      //   if (sig_id != "last_updated")
+      //     sig_ids[sig_ids.length] = sig_id;
+      // });
+      //
+      // return sig_ids[0]; // could be null
     }
   </script>
 <% end %>
@@ -78,7 +80,7 @@
 
   function populateWidget(legislator, sig_id) {
     var ratings = legislator.ratings;
-    var rating = ratings[sig_id];
+    var rating = pullOutSig(legislator.ratings, sig_id);
 
     var legislator_district = "";
     if (legislator.district == '0')

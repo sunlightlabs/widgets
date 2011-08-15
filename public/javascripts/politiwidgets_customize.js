@@ -84,7 +84,7 @@ function setEventHandlers() {
 
   var baseUrl = window.location.href.replace(window.location.search, "");
   $("div.changeResults li").live("click", function() {
-    window.location = baseUrl + "?bioguide_id=" + this.id;
+    window.location = baseUrl + "?legislator=" + this.id;
   });
 }
 
@@ -94,7 +94,7 @@ function disableEmbed() {
 }
 
 function updateFrame() {
-  var iframe_url = "http://" + frontend_hostname + "/widgets/" + widget_id + "/embed?bioguide_id=" + bioguide_id + "&votesmart_id=" + votesmart_id + "&size=" + widget_size + "&" + queryString(custom);
+  var iframe_url = "http://" + frontend_hostname + "/widgets/" + widget_id + "/embed?legislator=" + id + "&size=" + widget_size + "&" + queryString(custom);
 
   if (snapshot_id)
     iframe_url += "&snapshot_id=" + snapshot_id;
@@ -110,7 +110,7 @@ function updateFrame() {
 }
 
 function updateEmbedCode() {
-  var embed_url = "http://" + frontend_hostname + "/embed?w=" + widget_id + "&bgd=" + bioguide_id + "&vst=" + votesmart_id + "&s=" + widget_size + "&" + queryString(custom);
+  var embed_url = "http://" + frontend_hostname + "/embed?w=" + widget_id + "&legislator=" + id + "&s=" + widget_size + "&" + queryString(custom);
 
   if (snapshot_id)
     embed_url += "&snapshot_id=" + snapshot_id;

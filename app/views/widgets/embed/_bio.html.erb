@@ -1,23 +1,15 @@
 <% content_for :head do %>
 
   <script type="text/javascript">
-    Widget.load = function(bioguide_id, votesmart_id, onLoad) {
-      if(bioguide_id){
-          Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
-            if (legislator && legislator.bioguide_id) {
+    Widget.load = function(id, onLoad) {
+      if(id){
+          Politiwidgets.People.get(id, "basic", function(legislator) {
+            if (legislator) {
               populateWidget(legislator);
               onLoad(legislator);
             } else
               Widget.error("There was a problem loading this lawmaker's information.");
           });
-      }else if(votesmart_id){
-          Challengers.getChallenger(votesmart_id, function(legislator) {
-              if (legislator && legislator.votesmart_id) {
-                populateWidget(legislator);
-                onLoad(legislator);
-              } else
-                Widget.error("There was a problem loading this lawmaker's information.");
-            });
       }else{
           Widget.error("There was a problem loading this lawmaker's information.");
       }

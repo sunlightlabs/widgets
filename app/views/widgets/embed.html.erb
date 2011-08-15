@@ -3,12 +3,12 @@
 
   <script type="text/javascript">
     // config variables
-    var data_endpoint = "<%= settings[:data_endpoints][:drumbone] %>";
+    var drumbone_endpoint = "<%= settings[:data_endpoints][:drumbone] %>";
+    var politiwidgets_endpoint = "<%= settings[:data_endpoints][:politiwidgets] %>";
     var sunlight_api_key = "<%= settings[:sunlight_api_key] %>";
     var snapshot_directory = "<%= settings[:snapshot_directory] %>";
 
-    var bioguide_id = "<%= params[:bioguide_id] %>".toUpperCase();
-    var votesmart_id = "<%= params[:votesmart_id] %>";
+    var id = "<%= params[:legislator] %>".toUpperCase();
     var size = "<%= @size %>";
     var snapshot_id = "<%= params[:snapshot_id] %>";
 
@@ -34,14 +34,15 @@
 
     // api keys
     Sunlight.api_key = sunlight_api_key;
-    Drumbone.base_url = data_endpoint;
+    Drumbone.base_url = drumbone_endpoint;
     Drumbone.api_key = sunlight_api_key;
-    Challengers.api_key = '';
+    Politiwidgets.api_key = '';
     TransparencyData.api_key = sunlight_api_key;
+    RTC.api_key = sunlight_api_key;
 
 
     var Widget = {
-      load: function(bioguide_id, votesmart_id) {}, // overwritten by each child widget before document is done loading
+      load: function(id) {}, // overwritten by each child widget before document is done loading
 
       onLoad: function(legislator) {
         var show = function() {
@@ -89,7 +90,7 @@
       },
 
       source: function(date, text) {
-        $("#last_updated").html(formatSourceDate(new Date(date)));x
+        $("#last_updated").html(formatSourceDate(new Date(date)));
         $("#sourceContent").html(text);
       },
 
@@ -119,17 +120,17 @@
           Sunlight.allForLatLong(latitude, longitude, function(legislators) {
             if (legislators != null && legislators.length) {
               located_legislator = pullOutRep(legislators);
-              Widget.load(located_legislator.bioguide_id, located_legislator.votesmart_id, Widget.onLoad);
+              Widget.load(idFor(located_legislator), Widget.onLoad);
             }
             else // geolocated the user, but found no legislator for that lat/long (user may be non-US)
-              Widget.load(bioguide_id, votesmart_id, Widget.onLoad);
+              Widget.load(id, Widget.onLoad);
           });
 
         } else // geolocation is enabled for the widget, but we couldn't figure out where the user is
-          Widget.load(bioguide_id, votesmart_id, Widget.onLoad);
+          Widget.load(id, Widget.onLoad);
 
       } else // geolocation is disabled for the widget
-        Widget.load(bioguide_id, votesmart_id, Widget.onLoad);
+        Widget.load(id, Widget.onLoad);
     });
 
     // pull out the first legislator whose title is not 'Sen',
@@ -144,6 +145,17 @@
         }
       });
       return legislators[index > -1 ? index : 0].legislator;
+    }
+
+    function pullOutSig(sigs, sig_id) {
+      var index = 0;
+      $.each(sigs, function(i, sig){
+        if(sig.sig_id == sig_id){
+           index = i;
+           return false;
+        }
+      });
+      return sigs[index];
     }
 
     function prepareSource() {
@@ -233,7 +245,7 @@
         if (legislators == null)
           Widget.error("There was a problem loading legislators from " + state + ".");
         else
-          Widget.load(sorted[0].legislator.bioguide_id, sorted[0].legislator.votesmart_id, onSwitchState);
+          Widget.load(idFor(sorted[0].legislator), onSwitchState);
       });
     }
 
@@ -245,7 +257,7 @@
       var options = "";
       $.each(legislators, function(index, l) {
         var legislator = l.legislator;
-        options += "<option value=\"" + legislator.bioguide_id + "\">" + titledName(legislator, true) + "</option>";
+        options += "<option value=\"" + idFor(legislator) + "\">" + titledName(legislator, true) + "</option>";
       });
       return options;
     }

@@ -1,3 +1,11 @@
+function idFor(legislator) {
+  return legislator.bioguide_id ||
+         legislator.votesmart_id ||
+         legislator.crp_id ||
+         legislator.govtrack_id ||
+         legislator.transparencydata_id;
+}
+
 function profileImage(legislator_or_bioguide, size) {
   var bioguide, legislator;
   bioguide = (typeof(legislator_or_bioguide) == 'object') ?
@@ -41,6 +49,9 @@ function parseShortDate(dateString) {
     date.setFullYear(parts[1], month - 1, parts[3]);
     if (month != date.getMonth() + 1)
       date.setTime(NaN);
+  }else{
+    // fall back to normal dates; new api uses plain ol javascript date reprs
+    date = new Date(dateString);
   }
   return date;
 }
@@ -56,6 +67,10 @@ function standardYear(date) {
 
 function drumboneUrl(endpoint, method, options) {
   return endpoint + method + ".json" + (options ? "?" + queryString(options) : "");
+}
+
+function politiwidgetsUrl(endpoint, method, options) {
+  return endpoint + method + "/?format=json&" + (options ? queryString(options) : '');
 }
 
 function snapshotUrl(endpoint, id) {

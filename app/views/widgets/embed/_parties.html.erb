@@ -1,10 +1,10 @@
 <% content_for :head do %>
   <script type="text/javascript">
-    Widget.load = function(bioguide_id, votesmart_id) {
+    Widget.load = function(id) {
 
-      Drumbone.getLegislator(bioguide_id, "basic,parties", function(legislator) {
+      Politiwidgets.People.get(id, "basic,events", function(legislator) {
         if (legislator) {
-          if (legislator.parties) {
+          if (legislator.events) {
             populateWidget(legislator);
             Widget.onLoad();
           }
@@ -95,8 +95,8 @@
     var recent = [];
 
     var now = new Date();
-    window.events = legislator.parties.events;
-    $.each(legislator.parties.events, function(i, event) {
+    window.events = legislator.events;
+    $.each(legislator.events, function(i, event) {
       // combine date and start_time into the moment of the event
       var date = parseShortDate(event.date); // UTCify just the date portion
       if (event.start_time) {
@@ -133,7 +133,7 @@
       $("#mainContent ol.upcoming").show();
       $("#nav li.upcoming").addClass("active");
 
-      $("#nav li.upcoming a").click(function() {
+      $("#nav li.upcoming a").html($("#nav li.upcoming a").html() + ' (' + upcoming.length + ')').click(function() {
         $("#mainContent ol.recent").hide();
         $("#nav li.recent").removeClass("active");
 
@@ -153,7 +153,7 @@
 
       $("#nav li.recent").show();
 
-      $("#nav li.recent a").click(function() {
+      $("#nav li.recent a").html($("#nav li.recent a").html() + ' (' + recent.length + ')').click(function() {
         $("#mainContent ol.upcoming").hide();
         $("#nav li.upcoming").removeClass("active");
 
@@ -162,11 +162,15 @@
         return false;
       });
 
+      if (upcoming.length == 0 && recent.length > 0) {
+        $("#nav li.recent a").click();
+      }
+
     }
 
     var partytime_url = "http://politicalpartytime.org/pol/" + legislator.crp_id + "/";
     var description = "Party details taken from Sunlight's <a href=\"" + partytime_url + "\" target=\"_blank\">Party Time</a>.";
-    Widget.source(legislator.parties.last_updated, description);
+    Widget.source(legislator.events_updated_date, description);
   }
 
 
@@ -199,7 +203,7 @@
       "</div>" +
       "<div class=\"details\">" +
         (time ? ("<span class=\"time\">" + time + " -</span>") : "") +
-        "<a href=\"http://politicalpartytime.org/party/" + party_id + "/\" target=\"_blank\"><span>" + event.type + " at " + event.venue + "</span></a>" +
+        "<a href=\"http://politicalpartytime.org/party/" + party_id + "/\" target=\"_blank\"><span>" + event.event_type + " at " + event.venue + "</span></a>" +
       "</div>" +
       "<div class=\"clear\"></div>" +
       "</li>";

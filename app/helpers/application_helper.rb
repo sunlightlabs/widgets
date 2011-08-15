@@ -1,20 +1,9 @@
 module ApplicationHelper
 
-  def any_person_path(params = {})
-    if params[:bioguide_id].present?
-      legislator_path :bioguide_id => params[:bioguide_id]
-    elsif params[:votesmart_id].present?
-      challenger_path :votesmart_id => params[:votesmart_id]
-    else
-      '#'
-    end
-  end
-
-  def embed_url_for(widget_id, bioguide_id = nil, votesmart_id = nil, options = {})
+  def embed_url_for(widget_id, legislator_id=nil, options = {})
     options[:s] ||= options.delete(:size) || 'lg'
     options[:w] = widget_id
-    options[:bgd] = bioguide_id
-    options[:vst] = votesmart_id
+    options[:legislator] = legislator_id
 
     "http://#{settings[:frontend_hostname]}/embed?#{query_string_for options}"
   end
@@ -26,11 +15,19 @@ module ApplicationHelper
     }[title.downcase.to_sym || 'Candidate']
   end
 
+  def id_for(legislator)
+    [legislator.bioguide_id,
+     legislator.votesmart_id,
+     legislator.crp_id,
+     legislator.govtrack_id,
+     legislator.transparencydata_id].reject {|x| x.blank? }[0]
+  end
+
   def photo_url_for(legislator, size = :small)
     sizes = {:small => "40x50", :medium => "100x125", :large => "200x250"}
     if !legislator.bioguide_id.blank?
       "http://assets.sunlightfoundation.com/moc/#{sizes[size]}/#{legislator.bioguide_id}.jpg"
-    elsif !legislator.bio.photo.blank?
+    elsif legislator.bio && !legislator.bio.photo.blank?
       legislator.bio.photo
     else
       "http://assets.sunlightfoundation.com/moc/default.png"
@@ -55,38 +52,23 @@ module ApplicationHelper
 
   def district_for(legislator)
     return 'AL' if legislator.district == '0'
-    legislator.title == 'Sen' ? legislator.district.gsub(' Seat', '') : zero_prefix(legislator.district)
+    legislator.title == 'Sen' ? legislator.district.gsub(' Seat', '') : "%02d" % legislator.district.to_i
   end
 
-  def zero_prefix(district)
-    district.to_i < 10 ? "0#{district}" : "#{district}"
-  end
-
-  # Sunlight Drumbone API legislator only
   def titled_name_for(legislator)
-    name = "#{legislator.nickname.present? ? legislator.nickname : legislator.first_name} "
-    name << legislator.last_name
-    name << " #{legislator.name_suffix}" if legislator.name_suffix.present?
-    name
-  end
-
-  # Sunlight Congress API legislator only
-  def search_name_for(legislator)
     name = "#{legislator.nickname.present? ? legislator.nickname : legislator.firstname} "
     name << legislator.lastname
     name << " #{legislator.name_suffix}" if legislator.name_suffix.present?
     name
   end
 
-  # Sunlight Drumbone API legislator only
   def full_name_for(legislator)
     "#{title_for legislator} #{titled_name_for legislator} (#{legislator.party}) #{full_district_for legislator}"
   end
 
   def param_string
     options = {}
-    options[:bioguide_id] = params.delete :bgd
-    options[:votesmart_id] = params.delete :vst
+    options[:id] = params.delete :w
     options[:size] = params.delete :s
     options = options.merge params
 

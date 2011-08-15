@@ -2,10 +2,10 @@
   <script type="text/javascript">
     // does not support geolocation as of yet
 
-    Widget.load = function(bioguide_id, votesmart_id) {
+    Widget.load = function(id) {
 
-      Drumbone.getLegislator(bioguide_id, "basic", function(legislator) {
-        if (legislator && legislator.bioguide_id == bioguide_id) {
+      Politiwidgets.People.get(id, "basic", function(legislator) {
+        if (legislator && legislator.bioguide_id == id) {
 
           <%
             roll_id = nil
@@ -19,17 +19,15 @@
           %>
           var roll_id = "<%= roll_id %>";
 
-          var sections = ["basic", "bill", "party_vote_breakdown", "voter_ids." + bioguide_id];
+          var sections = ["basic", "bill", "party_vote_breakdown", "voter_ids." + id];
 
           Drumbone.getRoll(roll_id, sections, function(roll) {
             if (roll) {
-              if (roll.voter_ids && roll.voter_ids[bioguide_id]) {
-                vote = roll.voter_ids[bioguide_id];
+              if (roll.voter_ids && roll.voter_ids[id]) {
+                vote = roll.voter_ids[id];
                 populateWidget(vote, roll, roll.bill, legislator);
                 Widget.onLoad();
-              }
-
-              else {
+              } else {
                 window.voter_ids = roll.voter_ids;
                 Widget.alert("This representative has no recorded vote for this bill.");
               }

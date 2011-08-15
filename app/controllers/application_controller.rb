@@ -1,7 +1,10 @@
+require 'logger'
+
 class ApplicationController < ActionController::Base
   before_filter :load_settings, :load_size
   helper_method :settings, :widgets, :featured
 
+  include ApplicationHelper
 
   def location_for_ip(ip)
     GeoIp.api_key = settings[:geo_ip_api_key]
@@ -14,17 +17,15 @@ class ApplicationController < ActionController::Base
     location_for_ip request.ip
   end
 
-  def get_person_by_any_id(params={})
-    bioguide_id = params[:bioguide_id].present? ? params[:bioguide_id].upcase : nil
-    votesmart_id = params[:votesmart_id].present? ? params[:votesmart_id] : nil
-    unless (bioguide_id and person = Drumbone::Legislator.find(:bioguide_id => bioguide_id)) or
-           (votesmart_id and person = challengers.people(:votesmart_id => votesmart_id))
+  def get_person_by_any_id(id)
+    unless person = api.personlist(:q => id, :limit => 1)
       return false
     end
+    person = person[0] if person.is_a? Array
     if person.in_office?
       person.person_type = 'legislator'
     else
-      person.person_type = 'challenger'
+      person.person_type = 'candidate'
     end
     person
   end
@@ -35,8 +36,8 @@ class ApplicationController < ActionController::Base
     Drumbone.url = settings[:data_endpoints][:drumbone]
   end
 
-  def challengers
-    @@challengers = Tastyrb::Client.new(base_uri=settings[:data_endpoints][:challengers], api_key=settings[:sunlight_api_key])
+  def api
+    @@api ||= Tastyrb::Client.new(base_uri=settings[:data_endpoints][:politiwidgets], api_key=settings[:sunlight_api_key])
   end
 
   def settings
