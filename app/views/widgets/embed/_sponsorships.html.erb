@@ -1,8 +1,9 @@
 <% content_for :head do %>
   <script type="text/javascript">
-    Widget.load = function(bioguide_id) {
+    Widget.load = function(id) {
 
-      Drumbone.getLegislator(bioguide_id, ["basic", "sponsorships"], function(legislator) {
+      // Politiwidgets.People.get(id, 'basic', function(legislator) {
+      Drumbone.getLegislator(id, ["basic", "sponsorships"], function(legislator) {
         if (legislator) {
           if (legislator.sponsorships) {
             populateWidget(legislator);
