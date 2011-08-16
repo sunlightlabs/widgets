@@ -3,7 +3,7 @@
     // does not support geolocation as of yet
 
     Widget.load = function(id) {
-
+      var id = id;
       Politiwidgets.People.get(id, "basic", function(legislator) {
         if (legislator && legislator.bioguide_id == id) {
 
@@ -19,12 +19,11 @@
           %>
           var roll_id = "<%= roll_id %>";
 
-          var sections = ["basic", "bill", "party_vote_breakdown", "voter_ids." + id];
+          RTC.Votes.get(roll_id, {chamber: legislator.chamber}, function(roll){
 
-          Drumbone.getRoll(roll_id, sections, function(roll) {
             if (roll) {
               if (roll.voter_ids && roll.voter_ids[id]) {
-                vote = roll.voter_ids[id];
+                var vote = roll.voter_ids[id];
                 populateWidget(vote, roll, roll.bill, legislator);
                 Widget.onLoad();
               } else {
@@ -101,8 +100,7 @@
   function populateWidget(vote, roll, bill, legislator) {
     var description = "Data provided by <a href=\"" + govtrackBillUrl(bill.type, bill.number, bill.session) + "\" target=\"_blank\">GovTrack.us</a> through the <a href=\"http://thomas.loc.gov\" target=\"_blank\">Library of Congress</a>.<br/>Bill code and vote data applies to legislative activity in the " + currentSession() + "th Congress.";
 
-    Widget.source(bill.last_updated, description);
-
+    Widget.source(bill.last_action_at, description);
 
     var legislator_district = "";
     if (legislator.district == '0')
@@ -138,32 +136,32 @@
 
     var bill_data = {
       short_title: bill.short_title,
-      bill_code: bill.type.toUpperCase() + " " + bill.number
+      bill_code: bill.bill_type.toUpperCase() + " " + bill.number
     };
     $('div#header').autoRender(bill_data);
 
 
     var roll_data = {
-        ayes: roll.vote_breakdown.ayes,
-        nays: roll.vote_breakdown.nays,
-        present: roll.vote_breakdown.present,
-        not_voting: roll.vote_breakdown.not_voting,
-        dem_ayes: roll.party_vote_breakdown.D.ayes,
-        dem_nays: roll.party_vote_breakdown.D.nays,
-        dem_present: roll.party_vote_breakdown.D.present,
-        dem_not_voting: roll.party_vote_breakdown.D.not_voting,
-        rep_ayes: roll.party_vote_breakdown.R.ayes,
-        rep_nays: roll.party_vote_breakdown.R.nays,
-        rep_present: roll.party_vote_breakdown.R.present,
-        rep_not_voting: roll.party_vote_breakdown.R.not_voting
+        ayes: roll.vote_breakdown.total.Yea,
+        nays: roll.vote_breakdown.total.Nay,
+        present: roll.vote_breakdown.Present,
+        not_voting: roll.vote_breakdown['Not Voting'],
+        dem_ayes: roll.vote_breakdown.party.D.Yea,
+        dem_nays: roll.vote_breakdown.party.D.Nay,
+        dem_present: roll.vote_breakdown.party.D.Present,
+        dem_not_voting: roll.vote_breakdown.party.D['Not Voting'],
+        rep_ayes: roll.vote_breakdown.party.R.Yea,
+        rep_nays: roll.vote_breakdown.party.R.Nay,
+        rep_present: roll.vote_breakdown.party.R.Present,
+        rep_not_voting: roll.vote_breakdown.party.R['Not Voting']
       };
     $('div#voteTotals').autoRender(roll_data);
 
     var vote_map = {
-      '+': {legislator_vote_value: "Aye", legislator_vote_class: "aye"},
-      '-': {legislator_vote_value: "Nay", legislator_vote_class: "nay"},
-      'P': {legislator_vote_value: "Present", legislator_vote_class: "present"},
-      '0': {legislator_vote_value: "Absent", legislator_vote_class: "notvoting"}
+      'Yea': {legislator_vote_value: "Aye", legislator_vote_class: "aye"},
+      'Nay': {legislator_vote_value: "Nay", legislator_vote_class: "nay"},
+      'Present': {legislator_vote_value: "Present", legislator_vote_class: "present"},
+      'Not Voting': {legislator_vote_value: "Absent", legislator_vote_class: "notvoting"}
     }
 
     $('div#lawmakerVote').autoRender(vote_map[vote]);
@@ -187,16 +185,16 @@
     var series = [];
     series[0] = {
                   name: 'Democrat',
-                  data: [roll.party_vote_breakdown.D.ayes, roll.party_vote_breakdown.D.nays]
+                  data: [roll.vote_breakdown.party.D.Yea, roll.vote_breakdown.party.D.Nay]
                 };
     series[1] = {
                   name: 'Republican',
-                  data: [roll.party_vote_breakdown.R.ayes, roll.party_vote_breakdown.R.nays]
+                  data: [roll.vote_breakdown.party.R.Yea, roll.vote_breakdown.party.R.Nay]
                   };
-    if (roll.party_vote_breakdown.I != null) {
+    if (roll.vote_breakdown.party.I != null) {
       series[2] = {
                     name: 'Independent',
-                    data: [roll.party_vote_breakdown.I.ayes, roll.party_vote_breakdown.I.nays]
+                    data: [roll.vote_breakdown.party.I.Yea, roll.vote_breakdown.party.I.Nay]
                   };
     }
 

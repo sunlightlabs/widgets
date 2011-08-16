@@ -11,10 +11,11 @@ var RTC = RTC || {
 
     return $.ajax($.extend({}, options, {
       url: RTC.base_url + path,
-      data: $.extend(true, options.data || {}, {api_key: RTC.api_key}),
+      data: $.extend(true, options.data || {}, {apikey: RTC.api_key}),
       dataType: "jsonp"
     }));
   },
+  // get the first result for an id. returns object or null
   get : function(klass, query, options, callback){
     var options=options, callback=callback;
     if (typeof options == 'function') {
@@ -24,18 +25,35 @@ var RTC = RTC || {
     options = {
       data: $.extend({}, options, query),
       success: function(data) {
-        if (data && data[klass] && data[klass].length) {
-          if (data[klass].length == 1)
-            callback(data[klass][0]);
-          else
-            callback(data[klass]);
-        } else
+        if (data && data[klass] && data[klass].length){
+          callback(data[klass][0]);
+        }else
           callback(null);
       },
       failure: function() {callback(null);}
     };
     return RTC.getJSON(klass + '.json', options);
   },
+  // get a collection for an id. returns array or null
+  all: function(klass, query, options, callback){
+    var options=options, callback=callback;
+    if (typeof options == 'function') {
+      callback = options;
+      options = {};
+    }
+    options = {
+      data: $.extend({}, options, query),
+      success: function(data) {
+        if (data && data[klass] && data[klass].length){
+          callback(data[klass]);
+        }else
+          callback(null);
+      },
+      failure: function() {callback(null);}
+    };
+    return RTC.getJSON(klass + '.json', options);
+  },
+  // search on a query. returns array or null
   search: function(klass, q, options, callback){
     var id_name, options=options, callback=callback;
     if (typeof options == 'function') {
@@ -69,15 +87,49 @@ RTC.Bills = RTC.Bills || {
 
 RTC.Votes = RTC.Votes || {
 
+  init: function() {
+    this.defaults = {
+      order: 'voted_at',
+      sort: 'desc',
+      sections: 'bill,vote_breakdown,voter_ids'
+    };
+    return this;
+  },
+
   get: function(id, options, callback) {
-    return RTC.get('votes', {bill_id: id}, options, callback);
+    // this block gets repeated whenever there are defaults... womp womp.
+    var options=options, callback=callback;
+    if (typeof options == 'function') {
+      callback = options;
+      options = {};
+    }
+    return RTC.get('votes', {roll_id: id}, $.extend({}, RTC.Votes.defaults, options), callback);
   },
 
   search: function(q, options, callback) {
-    return RTC.search('votes', q, options, callback);
-  }
+    return RTC.search('votes', q, $.extend({}, RTC.Votes.defaults, options), callback);
+  },
 
-};
+  get_for_bill: function(id, options, callback) {
+    // this block gets repeated whenever there are defaults...
+    var options=options, callback=callback;
+    if (typeof options == 'function') {
+      callback = options;
+      options = {};
+    }
+    return RTC.get('votes', {bill_id: id}, $.extend({}, RTC.Votes.defaults, options), callback);
+  },
+
+  all_for_bill: function(id, options, callback) {
+    var options=options, callback=callback;
+    if (typeof options == 'function') {
+      callback = options;
+      options = {};
+    }
+    return RTC.all('votes', {bill_id: id}, $.extend({}, RTC.Votes.defaults, options), callback);
+  },
+
+}.init();
 
 RTC.Amendments = RTC.Amendments || {
 

@@ -15,9 +15,12 @@
   </div>
 </fieldset>
 
+<%= javascript_include_tag 'rtc' %>
+
 <script type="text/javascript">
-  <% chamber = (@legislator.title == 'Sen' ? :senate : :house) %>
-  var chamber = chamberFor("<%= @legislator.title %>");
+  RTC.api_key = "<%= settings[:sunlight_api_key] %>";
+  <% chamber = @legislator.chamber.to_sym %>
+  var chamber = "<%= @legislator.chamber %>";
 
   snapshot.method = "roll";
   snapshot.sections = ["basic", "bill", "party_vote_breakdown", "voters." + id];
@@ -36,21 +39,14 @@
 
       var bill_id = billIdFor($("#bill_code").val());
 
-      var url = drumboneUrl(drumbone_endpoint, "bill", {
-        apikey: sunlight_api_key,
-        sections: "basic,votes",
-        bill_id: bill_id,
-        callback: "?"
-      });
+      RTC.Bills.get(bill_id, {sections: 'basic,passage_votes'}, function(data){
 
-      $.getJSON(url, function(data) {
-
-        if (data.error) {
+        if (!data || data.error) {
           $("#vote_error").html("Couldn't find a bill by this code.").show();
           return;
         }
 
-        var bill = data.bill;
+        var bill = data;
 
         var title = bill.short_title || bill.official_title;
         $("#bill_title").html(title);
@@ -61,7 +57,7 @@
         var votes = [];
         var latest_roll_id;
 
-        $.each(bill.votes, function(i, vote) {
+        $.each(data.passage_votes, function(i, vote) {
           if (vote.chamber.toLowerCase() == chamber.toLowerCase()) {
             votes[votes.length] = vote;
 
@@ -138,8 +134,9 @@
     return ((n < 10) ? "0" : "") + n;
   }
 
-  // returns a bill id in the form that Drumbone expects
+  // returns a bill id in the form that the API expects
   function billIdFor(code) {
+    console.log(code.replace(/[\. ]/g, "").toLowerCase() + "-" + currentSession());
     return code.replace(/[\. ]/g, "").toLowerCase() + "-" + currentSession();
   }
 
