@@ -2,7 +2,7 @@
   <script type="text/javascript">
     Widget.load = function(id) {
 
-      // Politiwidgets.People.get(id, 'basic', function(legislator) {
+      // Politiwidgets.Personlist.get(id, function(legislator) {
       Drumbone.getLegislator(id, ["basic", "sponsorships"], function(legislator) {
         if (legislator) {
           if (legislator.sponsorships) {

@@ -3,6 +3,8 @@
   <%= stylesheet_link_tag 'farbtastic' %>
   <%= javascript_include_tag 'farbtastic' %>
 
+  <link rel="canonical" href="<%= widget_url :id => params[:id], :legislator => id_for(@legislator) %>">
+
   <script type="text/javascript">
     var frontend_hostname = "<%= settings[:frontend_hostname] %>";
     var widget_id = "<%= params[:id] %>";

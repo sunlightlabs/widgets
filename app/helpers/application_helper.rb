@@ -27,8 +27,8 @@ module ApplicationHelper
     sizes = {:small => "40x50", :medium => "100x125", :large => "200x250"}
     if !legislator.bioguide_id.blank?
       "http://assets.sunlightfoundation.com/moc/#{sizes[size]}/#{legislator.bioguide_id}.jpg"
-    elsif legislator.bio && !legislator.bio.photo.blank?
-      legislator.bio.photo
+    elsif !legislator.photo.blank?
+      legislator.photo
     else
       "http://assets.sunlightfoundation.com/moc/default.png"
     end

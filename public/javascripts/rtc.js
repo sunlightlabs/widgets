@@ -127,7 +127,7 @@ RTC.Votes = RTC.Votes || {
       options = {};
     }
     return RTC.all('votes', {bill_id: id}, $.extend({}, RTC.Votes.defaults, options), callback);
-  },
+  }
 
 }.init();
 

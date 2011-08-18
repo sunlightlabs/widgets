@@ -3,7 +3,7 @@ body.bio_sm div#header  { height: 150px;}
 body.bio_med div#header { height: 129px;}
 body.bio_lg div#header { padding: 15px 15px 0; height: 129px;}
 
-body.bio_sm h1 { margin-bottom: 8px; text-align: center;} 
+body.bio_sm h1 { margin-bottom: 8px; text-align: center;}
 body.bio_med h1 { margin-top: 5px; margin-bottom: 3px; float: right; width: 175px;}
 body.bio_lg h1 { text-align: left; width: 240px; margin-top: 10px; float: right; margin-bottom: 3px; }
 
@@ -117,7 +117,7 @@ li.opencongress a:hover { background: url(/images/widgets/bio/social_icons.png) 
 li.youTube a { background: url(/images/widgets/bio/social_icons.png) -56px top no-repeat; }
 li.youTube a:hover { background: url(/images/widgets/bio/social_icons.png) -56px -28px no-repeat;}
 
-a.website, a.website:visited {color: #DDD;}
+a.website, a.website:visited, #mainVcard div.url a, #mainVcard div.url a:visited {color: #DDD;}
 a.website:hover {color: #FFF;}
 
 body.bio_lg li.Twitter a { background: url(/images/widgets/bio/social_icons_lg.png) top left no-repeat; }
@@ -129,7 +129,7 @@ body.bio_lg li.opencongress a:hover { background: url(/images/widgets/bio/social
 body.bio_lg li.youTube a { background: url(/images/widgets/bio/social_icons_lg.png) -36px top no-repeat; }
 body.bio_lg li.youTube a:hover { background: url(/images/widgets/bio/social_icons_lg.png) -36px -36px no-repeat;}
 
-body.bio_med div#mainVcard { width: 175px; float: right; } 
+body.bio_med div#mainVcard { width: 175px; float: right; }
 body.bio_lg div#mainVcard { width: 240px; float: right; }
 
 body.lg .alert { width: 392px; height: 162px; }

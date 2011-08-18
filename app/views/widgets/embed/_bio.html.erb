@@ -76,8 +76,8 @@
   function populateWidget(legislator) {
     Widget.populateLegislator(legislator);
 
-    var description = "Data by <a href=\"http://sunlightlabs.com\" target=\"_blank\">Sunlight Labs</a>, collected through the <a href=\"http://services.sunlightlabs.com/docs/Sunlight_Congress_API/\" target=\"_blank\">Sunlight Labs Congress API</a>.";
-    Widget.source(legislator.last_updated, description);
+    var description = "Congressional data by <a href=\"http://sunlightlabs.com\" target=\"_blank\">Sunlight Labs</a>, collected through the <a href=\"http://services.sunlightlabs.com/docs/Sunlight_Congress_API/\" target=\"_blank\">Sunlight Labs Congress API</a>. Candidate data collected from the <a href=\"http://www.votesmart.org/services_api.php\" target=\"_blank\">Project VoteSmart API</a>";
+    Widget.source(legislator.updated_date, description);
 
     if (legislator.youtube_url)
       $("#buttons li.youTube").show();
@@ -101,7 +101,7 @@
       $("#mainVcard .url").hide();
 
     var zip;
-    if (legislator.is_running == true) {
+    if (!legislator.in_office) {
       addr_parts = legislator.campaign_office.split("\n")
       try{
         addr2 = legislator.campaign_office.split("\n")[1]

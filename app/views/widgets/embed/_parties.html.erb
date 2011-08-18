@@ -98,7 +98,7 @@
     window.events = legislator.events;
     $.each(legislator.events, function(i, event) {
       // combine date and start_time into the moment of the event
-      var date = new Date(event.date);
+      var date = parseDate(event.date);
       // var date = parseShortDate(event.date); // UTCify just the date portion
       // if (event.start_time) {
       //   var pieces = event.start_time.split(":");
@@ -172,23 +172,23 @@
 
     var partytime_url = "http://politicalpartytime.org/pol/" + legislator.crp_id + "/";
     var description = "Party details taken from Sunlight's <a href=\"" + partytime_url + "\" target=\"_blank\">Party Time</a>.";
-    Widget.source(legislator.events_updated_date, description);
+    Widget.source(legislator.events_updated_date || legislator.updated_date, description);
   }
 
 
   function partyItemFor(event, size) {
     var party_id = event.party_id;
-    var date = new Date(event.date);
+    var date = parseDate(event.date);
 
     var month = monthShort(date.getMonth());
     var day = date.getDate();
 
-    var time, hours = date.getHours() % 12, minutes = '0' + date.getMinutes(), meridian = 'am';
+    var time, hours = date.getHours() % 12, minutes = date.getMinutes(), meridian = 'am';
     if (date.getHours() > 11)
       meridian = 'pm';
     if (hours == 0)
       hours = 12;
-    minutes = minutes.substring(-2)
+    minutes = parseInt(minutes)<10 ? '0' + minutes : minutes;
 
     time = hours + ':' + minutes + meridian;
 

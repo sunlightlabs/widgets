@@ -4,7 +4,7 @@
 
     Widget.load = function(id) {
       var id = id;
-      Politiwidgets.People.get(id, "basic", function(legislator) {
+      Politiwidgets.Personlist.get(id, function(legislator) {
         if (legislator && legislator.bioguide_id == id) {
 
           <%
@@ -98,7 +98,7 @@
 
 <script type="text/javascript" charset="utf-8">
   function populateWidget(vote, roll, bill, legislator) {
-    var description = "Data provided by <a href=\"" + govtrackBillUrl(bill.type, bill.number, bill.session) + "\" target=\"_blank\">GovTrack.us</a> through the <a href=\"http://thomas.loc.gov\" target=\"_blank\">Library of Congress</a>.<br/>Bill code and vote data applies to legislative activity in the " + currentSession() + "th Congress.";
+    var description = "Data by <a href=\"http://sunlightlabs.com\" target=\"_blank\">Sunlight Labs</a>, collected through the <a href=\"http://services.sunlightlabs.com/docs/Real_Time_Congress_API/\" target=\"_blank\">Real Time Congress API</a>.<br/>Bill code and vote data applies to legislative activity in the " + currentSession() + "th Congress.";
 
     Widget.source(bill.last_action_at, description);
 

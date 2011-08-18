@@ -15,13 +15,14 @@ class WidgetsController < ApplicationController
   def snapshot
     return unless params[:method] and params[:sections]
 
-    model = "Drumbone::#{params[:method].capitalize}".constantize
+    # model = "Drumbone::#{params[:method].capitalize}".constantize
     options = params[:options].merge({
       :sections => params[:sections].split(","),
       :callback => "politiwidgetsCallback"
     })
 
-    json = model.find options
+    # json = model.find options
+    json = api.person options
 
     # timestamped, down to below the millisecond
     id = (Time.now.to_f * 100000).to_i.to_s

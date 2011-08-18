@@ -119,6 +119,6 @@
 
     var description = "Data provided by <a href=\"" + votesmart_url + "\" target=\"_blank\">Project Vote Smart</a>.  All ratings are for <%= Time.now.year - 1 %> or <%= Time.now.year %>.";
 
-    Widget.source(ratings.last_updated, description);
+    Widget.source(legislator.ratings_updated_date, description);
   }
 </script>

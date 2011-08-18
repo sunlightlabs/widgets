@@ -3,15 +3,15 @@
   :name: Business Card
   :description: Biographical and contact information for any lawmaker in Congress.
   :new: true
-  :custom: 
+  :custom:
     :color: 1F83B5
 :bill:
   :order: 2
   :name: Vote Report
   :description: See what a lawmaker voted on a particular bill, and how the vote went down.
-  :custom: 
+  :custom:
     :color: DDD9D7
-    :roll_id: 
+    :roll_id:
       :senate: s105-2010
       :house: h167-2010
     :disable_geolocate: true
@@ -19,13 +19,13 @@
   :order: 3
   :name: Top Contractors
   :description: The top 5 federal contractors in a congressional district.
-  :custom: 
+  :custom:
     :color: DDD9D7
 :sponsorships:
   :order: 4
   :name: Sponsorships
   :description: Some statistics on the bills a legislator has sponsored or cosponsored, relative to their colleagues.
-  :custom: 
+  :custom:
     :color: EBE9D4
 :contributions:
   :order: 5
@@ -43,13 +43,13 @@
   :order: 7
   :name: Earmarks
   :description: How many earmarks a lawmaker has received, relative to their colleagues.
-  :custom: 
+  :custom:
     :color: f4f8e9
 :ratings:
   :order: 8
   :name: Interest Group Ratings
   :description: Rating received from a specific interest group.
-  :custom: 
+  :custom:
     :color: F6F5E8
 :district:
   :order: 9
@@ -57,6 +57,7 @@
   :description: See a map of a legislator's district.
   :custom:
     :color: eaf3f4
+    :disable_geolocate: true
 :parties:
   :order: 10
   :name: Party Time

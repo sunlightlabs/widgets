@@ -3,7 +3,7 @@
 var Politiwidgets = Politiwidgets || {
   api_key: null,
   // default to production API
-  base_url: "http://localhost:8000/api/v1/",
+  base_url: "http://ec2-184-72-71-135.compute-1.amazonaws.com/api/v1/",
   jsonpCallback: null,
   getJSON: function(path, options) {
 
@@ -37,6 +37,56 @@ Politiwidgets.People = Politiwidgets.People || {
       },
       failure: function() {callback(null);}
     });
+  },
+
+  find: function(id, sections, callback) {
+    return Politiwidgets.getJSON("people/", {
+      data: {
+        q: id,
+        sections: typeof sections == 'string' ? sections : sections.join(',')
+      },
+      success: function(data) {
+        if (data && data.objects && data.objects.length)
+          callback(data.objects);
+        else
+          callback(null);
+      },
+      failure: function() {callback(null);}
+    });
   }
 
 };
+
+Politiwidgets.Personlist = Politiwidgets.Personlist || {
+
+  get: function(id, callback) {
+    return Politiwidgets.getJSON("personlist/", {
+      data: {
+        q: id
+      },
+      success: function(data) {
+        if (data && data.objects && data.objects.length)
+          callback(data.objects[0]);
+        else
+          callback(null);
+      },
+      failure: function() {callback(null);}
+    });
+  },
+
+  find: function(id, callback) {
+    return Politiwidgets.getJSON("personlist/", {
+      data: {
+        q: id
+      },
+      success: function(data) {
+        if (data && data.objects && data.objects.length)
+          callback(data.objects);
+        else
+          callback(null);
+      },
+      failure: function() {callback(null);}
+    });
+  }
+
+}

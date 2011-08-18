@@ -90,7 +90,7 @@
       },
 
       source: function(date, text) {
-        $("#last_updated").html(formatSourceDate(new Date(date)));
+        $("#last_updated").html(formatSourceDate(parseDate(date)));
         $("#sourceContent").html(text);
       },
 

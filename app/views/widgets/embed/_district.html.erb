@@ -12,10 +12,10 @@
         Widget.alert("This widget cannot be used at this size.");
       else {
         if (id){
-          Politiwidgets.People.get(id, "basic", function(legislator) {
+          Politiwidgets.Personlist.get(id, function(legislator) {
             if (legislator) {
               populateWidget(legislator);
-              Widget.onLoad();
+              Widget.onLoad(legislator);
             } else
               Widget.error("There was a problem loading this lawmaker's information.");
           });
@@ -78,7 +78,7 @@
 
     displayMap(legislator);
 
-    Widget.source(legislator.last_updated, description);
+    Widget.source(legislator.updated_date, description);
   }
 
   function displayMap(legislator) {

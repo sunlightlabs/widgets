@@ -16,8 +16,8 @@ function profileImage(legislator_or_bioguide, size) {
   if (!size) size = "100x125";
   if (bioguide)
     return "http://assets.sunlightfoundation.com/moc/" + size + "/" + bioguide + ".jpg";
-  else if (legislator.bio && legislator.bio.photo)
-    return legislator.bio.photo;
+  else if (legislator.photo)
+    return legislator.photo;
   else
     return "http://assets.sunlightfoundation.com/moc/default.png";
 }
@@ -52,6 +52,41 @@ function parseShortDate(dateString) {
   }else{
     // fall back to normal dates; new api uses plain ol javascript date reprs
     date = new Date(dateString);
+    if (isNaN(date.getYear())) {
+      var parts,
+          date_parts, time_parts,
+          year, month, day, hours, minutes;
+      parts = date.split('T');
+      date_parts = parts[0].split('/');
+      year = date_parts[0];
+      month = date_parts[1];
+      day = date_parts[2];
+      time_parts = parts[1].split(':');
+      hours = time_parts[0];
+      minutes = time_parts[1];
+      return new Date(year, month, day, hours, minutes);
+    }
+  }
+  return date;
+}
+
+function parseDate(dateString) {
+  if (typeof datestring == 'object')
+    return dateString;
+  var date = new Date(dateString);
+  if (isNaN(date.getYear())) {
+    var parts,
+        date_parts, time_parts,
+        year, month, day, hours, minutes;
+    parts = dateString.split('T');
+    date_parts = parts[0].split('-');
+    year = date_parts[0];
+    month = date_parts[1];
+    day = date_parts[2];
+    time_parts = parts[1].split(':');
+    hours = time_parts[0];
+    minutes = time_parts[1];
+    date = new Date(year, (month-1), day, hours, minutes);
   }
   return date;
 }
@@ -87,9 +122,13 @@ function queryString(object) {
 }
 
 ;(function($){
-  $(function(){
-    $('img.pic\\@src, td>img[alt=headshot]').error(function(){
+  // this is a hack around the way pure sets the src of
+  // an image before appending to the dom, preventing errors from bubbling.
+  $(window).load(function(){
+    $('img.pic\\@src, img.pic, td>img[alt=headshot]').error(function(){
       $(this).attr('src', '//assets.sunlightfoundation.com/moc/default.png');
+    }).each(function(){
+      $(this).attr('src', $(this).attr('src'));
     });
   });
 })(jQuery);

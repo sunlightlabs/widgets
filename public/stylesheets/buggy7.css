@@ -2,4 +2,6 @@
 
 td {border-bottom: 1px dotted #B8CED8;}
 .sorted { background:#1D77A0 url(/images/site/img-arrow-down.png) left 5px no-repeat;}
-.unsorted {	background:#1D77A0 url(/images/site/img-arrow-up.png) left 5px no-repeat;}
+.unsorted { background:#1D77A0 url(/images/site/img-arrow-up.png) left 5px no-repeat;}
+#sourceArea{ left:0; }
+#rightWidgetColumn input, body.page #rightWidgetColumn input.checkbox{border:none;}
