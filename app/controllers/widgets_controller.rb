@@ -22,7 +22,7 @@ class WidgetsController < ApplicationController
     })
 
     # json = model.find options
-    json = api.person options
+    json = api.people options
 
     # timestamped, down to below the millisecond
     id = (Time.now.to_f * 100000).to_i.to_s
