@@ -51,21 +51,7 @@ function parseShortDate(dateString) {
       date.setTime(NaN);
   }else{
     // fall back to normal dates; new api uses plain ol javascript date reprs
-    date = new Date(dateString);
-    if (isNaN(date.getYear())) {
-      var parts,
-          date_parts, time_parts,
-          year, month, day, hours, minutes;
-      parts = date.split('T');
-      date_parts = parts[0].split('/');
-      year = date_parts[0];
-      month = date_parts[1];
-      day = date_parts[2];
-      time_parts = parts[1].split(':');
-      hours = time_parts[0];
-      minutes = time_parts[1];
-      return new Date(year, month, day, hours, minutes);
-    }
+    date = parseDate(dateString);
   }
   return date;
 }
@@ -125,7 +111,7 @@ function queryString(object) {
   // this is a hack around the way pure sets the src of
   // an image before appending to the dom, preventing errors from bubbling.
   $(window).load(function(){
-    $('img.pic\\@src, img.pic, td>img[alt=headshot]').error(function(){
+    $('img.pic\\@src, #rep img.pic, td>img[alt=headshot]').error(function(){
       $(this).attr('src', '//assets.sunlightfoundation.com/moc/default.png');
     }).each(function(){
       $(this).attr('src', $(this).attr('src'));
