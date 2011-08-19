@@ -13,7 +13,7 @@ class WidgetsController < ApplicationController
   def show; end
 
   def snapshot
-    return unless params[:method] and params[:sections]
+    return unless params[:method] and params[:sections] and params[:options]['q']
 
     # model = "Drumbone::#{params[:method].capitalize}".constantize
     options = params[:options].merge({
