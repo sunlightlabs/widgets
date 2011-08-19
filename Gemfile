@@ -6,7 +6,7 @@ gem "sunlight", :require => "sunlight"
 gem "s3"
 gem "drumbone", ">=0.2.0"
 gem "geo_ip", :git => "git://github.com/luigi/geo_ip.git"
-gem "tastyrb", :path => "~/Code/git/sun/tastyrb"
+gem "tastyrb", :git => "git://github.com/dandrinkard/tastyrb.git"
 
 group :development do
   gem "capistrano"
