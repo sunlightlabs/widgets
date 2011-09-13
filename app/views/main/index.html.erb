@@ -5,23 +5,25 @@
 <div id="ltColumn">
   <ul id="widgetList">
     <% widgets.each do |slug, widget| %>
-      <li class="<%= cycle 'odd', 'even' %> <%= 'last' if slug == widgets.keys.last %>">
-        <h3><a href="<%= widget_path :id => slug, :legislator => settings[:featured][:legislator] %>">
-          <%= h widget[:name] %>
-        </a></h3>
-        <a href="<%= widget_path :id => slug, :legislator => settings[:featured][:legislator] %>">
-          <img src="images/widgets/<%= slug %>/icon_2.jpg" alt="<%= h widget[:name] %>"/>
-        </a>
+      <% if not widget[:display_for].include? :nobody %>
+        <li class="<%= cycle 'odd', 'even' %> <%= 'last' if slug == widgets.keys.last %>">
+          <h3><a href="<%= widget_path :id => slug, :legislator => settings[:featured][:legislator] %>">
+            <%= h widget[:name] %>
+          </a></h3>
+          <a href="<%= widget_path :id => slug, :legislator => settings[:featured][:legislator] %>">
+            <img src="images/widgets/<%= slug %>/icon_2.jpg" alt="<%= h widget[:name] %>"/>
+          </a>
 
-        <!--<% if widget[:new] %>
-          <span class="new">NEW</span>
-        <% end %>-->
+          <!--<% if widget[:new] %>
+            <span class="new">NEW</span>
+          <% end %>-->
 
-          <p>
-            <%= h widget[:description] %>
-          </p>
-          <a class="customize" href="<%= widget_path :id => slug, :legislator => settings[:featured][:legislator] %>">Customize</a>
-      </li>
+            <p>
+              <%= h widget[:description] %>
+            </p>
+            <a class="customize" href="<%= widget_path :id => slug, :legislator => settings[:featured][:legislator] %>">Customize</a>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 </div>
