@@ -1,0 +1,417 @@
+/*
+ * YUI Reset CSS version: 2.2.2
+ * Copyright (c) 2007, Yahoo! Inc. All rights reserved.
+ * Licensed under the BSD License: http://developer.yahoo.net/yui/license.txt
+ */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,optgroup,button,p,blockquote,th,td{margin:0;padding:0;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}table{border-collapse:collapse;border-spacing:0;}caption,th{text-align:left;}ol,ul{list-style:none;}fieldset,img{border:0;}input,textarea,select,optgroup,option,button{font-family:inherit;font-size:100%;}button,input {width: auto;overflow: visible;}optgroup,address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;}
+dl li{list-style: none;}
+
+a:link{outline: none; color: #1D77A0; text-decoration: none; transition: color .2s linear;-webkit-transition: color .2s linear;-moz-transition: color .2s linear;}
+a:visited{outline: none; color: #1D77A0; text-decoration: none;}
+a:hover{outline: none; color: #EF8741; text-decoration: none; transition: color .2s linear;}
+a:active{outline: none; color: #406C78; text-decoration: none;}
+
+.clear{ clear: both;}
+
+body{
+  padding-top: 30px;
+	color:#7d7575;
+  background-color: #01729c;
+	font-size: 76%;
+  	line-height: 20px;
+  	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+body.page #brandingbar, body.home #brandingbar { border-bottom: 2px solid #1D77A0; padding: 5px 0;}
+body.page #brandingbar a#sllink, body.home #brandingbar a#sllink { margin-top: 2px;}
+
+body.page div#ltColumn {
+  min-height: 825px;
+}
+
+/*header*/
+
+body.home #headerWrapper{
+	margin: 0 auto;
+	height: auto;
+}
+
+body.home #headerContainer{
+	height: auto;
+}
+
+#headerWrapper {
+	margin: 0 auto;
+}
+
+#headerContainer{
+}
+
+#header {
+	width: 940px;
+	margin: 0 auto;
+	padding: 0px 10px;
+}
+
+
+body.home #header {
+	
+}
+
+body.page #header {
+	
+	margin-bottom: 20px;
+}
+
+h1 {
+	width: 343px;
+	height: 39px;
+	margin-top: 10px;
+	float: left;
+}
+
+h1 a{
+	width: 343px;
+	height: 39px;
+	background: url(images/logo-h1.png) top left no-repeat;
+	display: block;
+	text-indent: -9999em;
+}
+
+h3 {
+	color: #706767;
+	font-size: 180%;
+	margin-bottom: 15px;
+	line-height: 26px;
+}
+
+.withLine { border-bottom:1px solid #B8CED8; padding-bottom: 5px; margin-bottom: 20px;}
+
+legend { color: #C96F2A; font-size: 135%; margin-bottom: 15px; line-height: 24px;}
+
+h3.withTip, legend.withTip { margin-bottom: 3px;}
+
+h3 a:link{outline: none; color: #C96F2A; font-weight: normal; text-decoration: none; }
+h3 a:visited{outline: none; color: #C96F2A; font-weight: normal; text-decoration: none;}
+h3 a:hover{outline: none; color: #1D77A0; font-weight: normal; text-decoration: none; }
+h3 a:active{outline: none; color: #C96F2A; font-weight: normal; text-decoration: none;}
+
+.floated { float: left; width: 320px;}
+
+h2 {
+	color: #585151;
+	font-size: 220%;
+	margin-bottom: 30px;
+	line-height: 30px;
+}
+
+h2 span { font-weight: 900; }
+
+body.home h2 {
+	font-size: 250%;
+	color: #585151;
+	margin-bottom: 10px;
+}
+
+h4 { font-size: 115%; color: #C96F2A; margin-top: 30px; margin-bottom: 15px;}
+
+
+#nav { padding-top: 36px; text-transform: uppercase;}
+div#nav li { float: right; }
+div#nav li a { text-decoration: none; color: #FFF; line-height: 13px; }
+
+#aboutUs, #contact {  border-right: 1px solid #8aaab5; padding-right: 15px; margin-right: 15px;}
+
+#aboutUs:hover, #contact:hover {
+	color: #EF8741;
+}
+
+
+#featureBox {
+ xbackground: url(images/featureBox.png) top left no-repeat; 
+ background-color: #188cb7; 
+ padding: 20px;
+ width: 940px; color: #fff; margin-top: 60px;
+}
+#featureBox a {color: #7dd5ef; text-decoration: underline;}
+#about { }
+p#about { font-size: 125%; line-height: 24px;}
+
+#featureBox img { float:left; }
+#featuredWidget { float: left; width: 430px;}
+
+
+/*main body*/
+
+div#pageMain{ width: 940px; margin: 0 auto 0; padding: 20px 10px 0;  }
+body.home div#pageMain { padding-top: 30px;}
+
+#ltColumn { float:left; width: 685px; margin-right: 25px; }
+
+#rtColumn { float: left; width: 205px; margin-left: 25px; }
+body.home #rtColumn { margin-top: 30px; }
+
+#fullColumn { width: 940px;}
+
+#leftWidgetColumn {
+	float: left;
+	width: 450px;
+	margin-right: 15px;
+}
+
+#rightWidgetColumn {
+	float: left;
+	width: 195px;
+	margin-left: 15px;
+}
+
+.widgetView.odd.last, .widgetView.future {
+	border-bottom: none;
+}
+
+.widget {
+  width: 444px;
+  height: 300px;
+  text-align: center;
+}
+#fullColumn li { width: 444px; float: left; border-bottom:1px dotted #B8CED8; padding: 30px 0;}
+#fullColumn li.odd{ padding-right: 25px; border-right:1px dotted #B8CED8;}
+#fullColumn li.even{ padding-left: 25px;}
+
+div.widget>a { width: 400px; height: 300px; display: block; position: absolute;}
+
+
+ul#switcher li a {
+  width: 68px;
+  height: 18px;
+  padding: 2px 5px 2px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+ul#switcher li a:hover, ul#switcher li a.active{
+  color: #fff;
+}
+
+.switcherbtn {
+  float: left;
+  display: block;
+  margin-left: 30px;
+}
+
+.custom {
+	border-bottom: 1px dotted #B8CED8;
+	margin-bottom: 25px;
+	padding-bottom: 25px;
+}
+
+.selectors {
+	font-size: 130%;
+	color: #C96F2A;
+	margin-bottom: 10px;
+	display: block;
+}
+
+.widgetSizes {
+	height: 25px;
+	display: block;
+	padding: 5px 10px;
+	border-bottom: 1px solid #B8CED8;
+}
+
+.widgetSizes h3 {
+	font-size: 130%;
+  display: block;
+  font-weight: normal;
+  float: left;
+  line-height: 20px;
+  margin-bottom: 0px;
+}
+
+#primaryColor, #secondaryColor, #lawmaker, #cycle {
+	margin-bottom: 12px;
+	color: #1D77A0;
+	font-size: 90%;
+}
+
+.or {
+	display: block;
+	float: left;
+}
+
+#widgetOptions li { margin-bottom: 20px; font-size: 90%; line-height: 18px;}
+#rightWidgetColumn .checkbox { margin-right: 5px; float: left; width: 15px; border: none;}
+
+#widgetOptions p { display: none; margin: 10px 0; }
+#widgetOptions a { font-weight: bold; text-decoration: underline; display: block;}
+#widgetOptions a.inline {display: inline;}
+
+
+#loadingBox {display: none;}
+#loadingBox img {margin-right: 10px;}
+#errorBox {
+  display: none;
+  padding-top: 10px;
+  color: #f00;
+  font-weight: normal;
+}
+
+#embedCode {
+	display: block;
+	padding: 10px 10px;
+	margin-top: 20px;
+	color: #FFF;
+}
+
+select#id_state { margin-bottom: 10px;}
+
+.customizer, .customize {
+  display: block;
+  font-family: "museo-slab-1","museo-slab-2", serif;
+  font-weight: normal;
+  font-size: 120%;
+  padding-left: 22px;
+  text-decoration: underline;
+  padding-top: 4px;
+}
+.customize { margin-top: 15px; }
+.customizer { float: right; margin-top: 3px;}
+
+.customizer:hover, .customize:hover {
+	color: #C96F2A;
+}
+
+#rightWidgetColumn .refineResults input.entity_id, #rightWidgetColumn .refineResults input.roll_id { float: left; width: 15px; margin-right: 10px; margin-top: 3px; border: none;}
+#rightWidgetColumn .refineResults label { display: block; font-weight: normal; width: 160px;}
+#rightWidgetColumn .refineResults li { margin-bottom: 10px; }
+#rightWidgetColumn .refineResults label span { font-style: oblique; font-size: 90%; display: block; color: #9d9999;}
+
+.new {
+  display: block;
+  width: 118px;
+  height: 35px;
+  position: absolute;
+  margin-left: -3px;
+  margin-top: -3px;
+  text-indent: -9999em;
+}
+
+#widgetList li.odd {
+	border-right: 1px dotted #b8ced8;
+}
+
+#widgetList li {
+	float: left;
+	width: 301px;
+	height: 230px;
+	padding: 30px 20px;
+	border-bottom: 1px dotted #b8ced8;
+}
+
+#widgetList li img { border: 1px solid #b8ced8; border-radius: 4px; margin-bottom: 10px;}
+
+.widgetHome.last {
+	border-bottom: 0px;
+}
+
+#futureLawBubble {
+	width: 279px;
+  padding: 45px 10px 10px 10px;
+  margin-top: 40px;
+  margin-left: 15px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  border-bottom-radius: 5px;
+}
+
+/* --------------------------------- for revised Widget page*/
+
+#pageTop { border-bottom: #B8CED8 1px solid; margin-bottom: 30px; padding-bottom: 15px; }
+.withSearch { float: left; margin-bottom: 0px;}
+
+#pageTop h2 a:link {color: #C96F2A;}
+#pageTop h2 a:visited {outline: none; color: #C96F2A; text-decoration: none;}
+#pageTop h2 a:hover{outline: none; color: #1D77A0; text-decoration: none; }
+
+
+a.underline {text-decoration: underline}
+
+/* forms */
+
+label { font-size: 110%; font-weight: bold; width: 120px; float: left; padding-top: 5px;}
+
+#contactForm input, #contactForm textarea {
+  width: 400px;
+  height: 15px;
+  padding: 5px 0 5px 8px;
+  color: #406C78;
+  border: 1px solid #ACB9BC;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  
+}
+
+#contactForm textarea { height: 100px; }
+#contactForm li { margin-bottom: 20px; }
+#contactForm { margin-top: 25px; margin-bottom: 50px;}
+#contactForm div.notice { font-weight: bold; margin-bottom: 15px; }
+
+.rtColumnInput { padding: 5px; font-size: 95%; width: 183px;}
+#rightWidgetColumn select { width: 185px;}
+#rightWidgetColumn input, body.page #rightWidgetColumn input { border:1px solid #666666; -moz-border-radius: 5px; -webkit-border-radius: 5px;}
+#rightWidgetColumn input#freeze { width: 15px;}
+#rightWidgetColumn div#embedCode input { width: 165px; padding: 3px;}
+#rightWidgetColumn label { width: auto; padding-top: 0;}
+div#embedCode span { margin-bottom: 5px; display: block;}
+
+
+/* buttons */
+
+button, .buttonLink { text-indent: -9999em; display: block; border: none; cursor: pointer; }
+
+/*footer*/
+
+
+div#footer {
+	margin: 0 auto;
+	width: 960px; margin-top: 50px;
+  font-size: 100%;
+}
+
+div#footer a#sunlight, div#footer a#knight {
+ margin-right: 30px; text-indent: -9999em; display: block; float: left;
+}
+
+#sunlight {
+	background: url(images/logo_sunlightFoundation.png) top left no-repeat;
+	height: 48px;
+	width: 159px;
+	margin-top: 10px;
+}
+
+#knight {
+    height: 48px;
+    width: 187px;
+  background: url(images/logo-knight.png) top left no-repeat;
+  margin-top: 19px;
+}
+
+p#footerText {
+  float: left;
+  color: #FFF;
+  font-size: 95%;
+  line-height: 140%;
+  display: block;
+  width: 580px;
+  padding-top: 9px;
+}
+
+p#footerText a{
+  font-weight: bold;
+  text-decoration: none;
+  color: #003244;
+}
