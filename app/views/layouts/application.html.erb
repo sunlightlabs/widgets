@@ -2,19 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
   <%= render :partial => "layouts/chartbeat_header" %>
-  
+
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="description" content="Customize and embed political widgets about all members of Congress." />
   <title><%= yield(:title).present? ? "#{yield :title} | Politiwidgets" : "Politiwidgets" %></title>
-  
+
   <%= stylesheet_link_tag 'main' %>
-  
+
   <%= javascript_include_tag 'jquery-1.4.2.min' %>
   <%= javascript_include_tag 'underscore.min' %>
   <%= javascript_include_tag 'politiwidgets' %>
-  
+
   <script type="text/javascript">
     $(function() {
       var original = "Search a lawmaker or state";
@@ -24,27 +24,28 @@
       });
     });
   </script>
-  
+
   <!--[if IE 6]>
     <%= stylesheet_link_tag 'buggy' %>
   <![endif]-->
   <!--[if IE 7]>
     <%= stylesheet_link_tag 'buggy7' %>
   <![endif]-->
-  
+
   <script type="text/javascript" src="http://use.typekit.com/dsl8cnv.js"></script>
   <script type="text/javascript">try {Typekit.load();} catch(e) {}</script>
-  
+
   <%= yield :head %>
 </head>
 
 <body class="<%= yield(:body).present? ? yield(:body) : "page" %>">
-  
+
   <div id="headerWrapper">
     <div id="headerContainer">
       <div id="header">
           <div id="nav">
               <ul>
+                <li class="share-buttons" data-gigya="auto" data-services="twitter, facebook" data-options="linkBack=http%3A%2F%2Fpolitiwidgets.com%2F"></li>
                 <li><%= link_to 'Contact', contact_path, :id => 'contact' %></li>
                 <li><%= link_to 'About Us', about_path, :id => 'aboutUs' %></li>
               </ul>
@@ -63,25 +64,25 @@
           <% if yield(:featured).present? %>
             <%= render :partial => "layouts/featured" %>
           <% end %>
-          
+
       </div>
     </div>
   </div>
-  
+
   <div id="pageMain">
     <% if yield(:page_header).present? %>
       <%= yield :page_header %>
     <% end %>
-    
+
     <%= yield %>
-    
+
     <% unless yield(:hide_sidebar).present? %>
       <div id="rtColumn">
         <%= render :partial => "layouts/sidebar/#{yield(:sidebar).present? ? yield(:sidebar) : 'nav'}" %>
-        
+
       </div>
     <% end %>
-    
+
     <div class="clear"></div>
   </div> <!-- end pageMain -->
 
@@ -93,14 +94,15 @@
         <div class="clear"></div>
     </div>
   </div>
-  
+
   <%= render :partial => "layouts/analytics" %>
-  
+
   <script type="text/javascript" src="http://dnn506yrbagrg.cloudfront.net/pages/scripts/0011/1949.js"></script>
   <script src="http://services.sunlightlabs.com/brandingbar/hat_js/tcorps/" type="text/javascript"></script>
-  
+  <script type="text/javascript" src="//assets.sunlightfoundation.com/site/4.0/scripts/gigya.min.js"></script>
+
   <%= render :partial => "layouts/chartbeat_footer" %>
-  
+
   <%= render :partial => "layouts/quantcast" %>
 </body>
 </html>
